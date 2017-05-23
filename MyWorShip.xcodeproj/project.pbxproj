@@ -15,6 +15,7 @@
 		9D9771691ED41BB9005EAC95 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D9771671ED41BB9005EAC95 /* LaunchScreen.storyboard */; };
 		9D9771741ED41BB9005EAC95 /* MyWorShipTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9771731ED41BB9005EAC95 /* MyWorShipTests.m */; };
 		9D97717F1ED41BB9005EAC95 /* MyWorShipUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D97717E1ED41BB9005EAC95 /* MyWorShipUITests.m */; };
+		F03DFB4F8BA6C4BBBE633D48 /* libPods-MyWorShip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A10E7D0553C7BC98CFE26DD /* libPods-MyWorShip.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8A10E7D0553C7BC98CFE26DD /* libPods-MyWorShip.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyWorShip.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D9771561ED41BB9005EAC95 /* MyWorShip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWorShip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D97715A1ED41BB9005EAC95 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9D97715C1ED41BB9005EAC95 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -51,6 +53,8 @@
 		9D97717A1ED41BB9005EAC95 /* MyWorShipUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyWorShipUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D97717E1ED41BB9005EAC95 /* MyWorShipUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyWorShipUITests.m; sourceTree = "<group>"; };
 		9D9771801ED41BB9005EAC95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B1F76F225114F462ED6266F6 /* Pods-MyWorShip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWorShip.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyWorShip/Pods-MyWorShip.debug.xcconfig"; sourceTree = "<group>"; };
+		F4C3DF5CDFAB03E9178A1432 /* Pods-MyWorShip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWorShip.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyWorShip/Pods-MyWorShip.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F03DFB4F8BA6C4BBBE633D48 /* libPods-MyWorShip.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +83,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5325F16D1562C456528C6514 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B1F76F225114F462ED6266F6 /* Pods-MyWorShip.debug.xcconfig */,
+				F4C3DF5CDFAB03E9178A1432 /* Pods-MyWorShip.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		595267C30573E96D06F93653 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8A10E7D0553C7BC98CFE26DD /* libPods-MyWorShip.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9D97714D1ED41BB9005EAC95 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +107,8 @@
 				9D9771721ED41BB9005EAC95 /* MyWorShipTests */,
 				9D97717D1ED41BB9005EAC95 /* MyWorShipUITests */,
 				9D9771571ED41BB9005EAC95 /* Products */,
+				5325F16D1562C456528C6514 /* Pods */,
+				595267C30573E96D06F93653 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -147,9 +171,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9D9771831ED41BB9005EAC95 /* Build configuration list for PBXNativeTarget "MyWorShip" */;
 			buildPhases = (
+				1A94B3B1DD45B5E9ADBAC672 /* [CP] Check Pods Manifest.lock */,
 				9D9771521ED41BB9005EAC95 /* Sources */,
 				9D9771531ED41BB9005EAC95 /* Frameworks */,
 				9D9771541ED41BB9005EAC95 /* Resources */,
+				A8FDF4BE44C8505977D14CA7 /* [CP] Embed Pods Frameworks */,
+				25200556E549872BA85A41C8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -270,6 +297,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1A94B3B1DD45B5E9ADBAC672 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		25200556E549872BA85A41C8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MyWorShip/Pods-MyWorShip-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A8FDF4BE44C8505977D14CA7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MyWorShip/Pods-MyWorShip-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9D9771521ED41BB9005EAC95 /* Sources */ = {
@@ -427,24 +502,26 @@
 		};
 		9D9771841ED41BB9005EAC95 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B1F76F225114F462ED6266F6 /* Pods-MyWorShip.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 57H4K7W67N;
 				INFOPLIST_FILE = MyWorShip/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = MyWorShipIsMrHan.MyWorShip;
+				PRODUCT_BUNDLE_IDENTIFIER = MyWorShipIsMrHan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
 		9D9771851ED41BB9005EAC95 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4C3DF5CDFAB03E9178A1432 /* Pods-MyWorShip.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 57H4K7W67N;
 				INFOPLIST_FILE = MyWorShip/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = MyWorShipIsMrHan.MyWorShip;
+				PRODUCT_BUNDLE_IDENTIFIER = MyWorShipIsMrHan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -518,6 +595,7 @@
 				9D9771851ED41BB9005EAC95 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9D9771861ED41BB9005EAC95 /* Build configuration list for PBXNativeTarget "MyWorShipTests" */ = {
 			isa = XCConfigurationList;
@@ -526,6 +604,7 @@
 				9D9771881ED41BB9005EAC95 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9D9771891ED41BB9005EAC95 /* Build configuration list for PBXNativeTarget "MyWorShipUITests" */ = {
 			isa = XCConfigurationList;
@@ -534,6 +613,7 @@
 				9D97718B1ED41BB9005EAC95 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
