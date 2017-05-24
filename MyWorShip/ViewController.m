@@ -16,10 +16,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self CreateAView];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
+-(void)CreateAView{
+    HomeViewController *home=[[HomeViewController alloc]init];
+    UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:home];
+     [[UIApplication sharedApplication].delegate window].rootViewController=nav;
 
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

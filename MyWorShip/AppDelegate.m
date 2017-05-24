@@ -14,9 +14,15 @@
 
 @implementation AppDelegate
 
-
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    //设置状态栏字体颜色
+    return UIStatusBarStyleLightContent;
+}
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+     [AMapServices sharedServices].apiKey = @"1ad633872b5174a9373c4cbc579bf759";
     return YES;
 }
 
