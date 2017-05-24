@@ -64,6 +64,11 @@
 		9D9771F41ED5281D005EAC95 /* tips_youhui@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D9771EB1ED5281D005EAC95 /* tips_youhui@2x.png */; };
 		9D9771F51ED5281D005EAC95 /* tips_youhui@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D9771EC1ED5281D005EAC95 /* tips_youhui@3x.png */; };
 		9D9771F91ED533A8005EAC95 /* ScanningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9771F81ED533A8005EAC95 /* ScanningViewController.m */; };
+		9D9771FD1ED560DF005EAC95 /* SGQRCodeScanningVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9771FC1ED560DF005EAC95 /* SGQRCodeScanningVC.m */; };
+		9D9772021ED5611E005EAC95 /* SGQRCodeScanningView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9771FF1ED5611E005EAC95 /* SGQRCodeScanningView.m */; };
+		9D9772031ED5611E005EAC95 /* SGWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9772011ED5611E005EAC95 /* SGWebView.m */; };
+		9D9772061ED5614D005EAC95 /* SGQRCodeConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9772051ED5614D005EAC95 /* SGQRCodeConst.m */; };
+		9D9772091ED5617F005EAC95 /* UIImage+SGHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9772081ED5617F005EAC95 /* UIImage+SGHelper.m */; };
 		F03DFB4F8BA6C4BBBE633D48 /* libPods-MyWorShip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A10E7D0553C7BC98CFE26DD /* libPods-MyWorShip.a */; };
 /* End PBXBuildFile section */
 
@@ -158,6 +163,16 @@
 		9D9771EC1ED5281D005EAC95 /* tips_youhui@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tips_youhui@3x.png"; path = "../tips_youhui@3x.png"; sourceTree = "<group>"; };
 		9D9771F71ED533A8005EAC95 /* ScanningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanningViewController.h; sourceTree = "<group>"; };
 		9D9771F81ED533A8005EAC95 /* ScanningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanningViewController.m; sourceTree = "<group>"; };
+		9D9771FB1ED560DF005EAC95 /* SGQRCodeScanningVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeScanningVC.h; sourceTree = "<group>"; };
+		9D9771FC1ED560DF005EAC95 /* SGQRCodeScanningVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeScanningVC.m; sourceTree = "<group>"; };
+		9D9771FE1ED5611E005EAC95 /* SGQRCodeScanningView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeScanningView.h; sourceTree = "<group>"; };
+		9D9771FF1ED5611E005EAC95 /* SGQRCodeScanningView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeScanningView.m; sourceTree = "<group>"; };
+		9D9772001ED5611E005EAC95 /* SGWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGWebView.h; sourceTree = "<group>"; };
+		9D9772011ED5611E005EAC95 /* SGWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGWebView.m; sourceTree = "<group>"; };
+		9D9772041ED5614D005EAC95 /* SGQRCodeConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeConst.h; sourceTree = "<group>"; };
+		9D9772051ED5614D005EAC95 /* SGQRCodeConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeConst.m; sourceTree = "<group>"; };
+		9D9772071ED5617F005EAC95 /* UIImage+SGHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+SGHelper.h"; sourceTree = "<group>"; };
+		9D9772081ED5617F005EAC95 /* UIImage+SGHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SGHelper.m"; sourceTree = "<group>"; };
 		B1F76F225114F462ED6266F6 /* Pods-MyWorShip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWorShip.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyWorShip/Pods-MyWorShip.debug.xcconfig"; sourceTree = "<group>"; };
 		F4C3DF5CDFAB03E9178A1432 /* Pods-MyWorShip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWorShip.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyWorShip/Pods-MyWorShip.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -361,8 +376,26 @@
 			children = (
 				9D9771F71ED533A8005EAC95 /* ScanningViewController.h */,
 				9D9771F81ED533A8005EAC95 /* ScanningViewController.m */,
+				9D9771FA1ED560D2005EAC95 /* 第三方扫描 */,
 			);
 			name = "扫描";
+			sourceTree = "<group>";
+		};
+		9D9771FA1ED560D2005EAC95 /* 第三方扫描 */ = {
+			isa = PBXGroup;
+			children = (
+				9D9771FB1ED560DF005EAC95 /* SGQRCodeScanningVC.h */,
+				9D9771FC1ED560DF005EAC95 /* SGQRCodeScanningVC.m */,
+				9D9771FE1ED5611E005EAC95 /* SGQRCodeScanningView.h */,
+				9D9771FF1ED5611E005EAC95 /* SGQRCodeScanningView.m */,
+				9D9772001ED5611E005EAC95 /* SGWebView.h */,
+				9D9772011ED5611E005EAC95 /* SGWebView.m */,
+				9D9772041ED5614D005EAC95 /* SGQRCodeConst.h */,
+				9D9772051ED5614D005EAC95 /* SGQRCodeConst.m */,
+				9D9772071ED5617F005EAC95 /* UIImage+SGHelper.h */,
+				9D9772081ED5617F005EAC95 /* UIImage+SGHelper.m */,
+			);
+			name = "第三方扫描";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -598,8 +631,13 @@
 				9D9771F91ED533A8005EAC95 /* ScanningViewController.m in Sources */,
 				9D97718F1ED42D49005EAC95 /* MyClass.m in Sources */,
 				9D9771611ED41BB9005EAC95 /* ViewController.m in Sources */,
+				9D9772091ED5617F005EAC95 /* UIImage+SGHelper.m in Sources */,
 				9D97715E1ED41BB9005EAC95 /* AppDelegate.m in Sources */,
 				9D9771DD1ED4348B005EAC95 /* MyButton.m in Sources */,
+				9D9772061ED5614D005EAC95 /* SGQRCodeConst.m in Sources */,
+				9D9772031ED5611E005EAC95 /* SGWebView.m in Sources */,
+				9D9771FD1ED560DF005EAC95 /* SGQRCodeScanningVC.m in Sources */,
+				9D9772021ED5611E005EAC95 /* SGQRCodeScanningView.m in Sources */,
 				9D9771931ED42D72005EAC95 /* HomeViewController.m in Sources */,
 				9D9771E31ED43AEA005EAC95 /* MyImage.m in Sources */,
 				9D97715B1ED41BB9005EAC95 /* main.m in Sources */,

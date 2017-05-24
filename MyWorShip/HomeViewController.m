@@ -8,7 +8,7 @@
 
 #import "HomeViewController.h"
 
-@interface HomeViewController ()<MAMapViewDelegate>
+@interface HomeViewController ()<MAMapViewDelegate,SGQRCodeScanningVCDelegate>
 {
     MAMapView *_mapView;
     LocationAnnotationView *_locationAnnotationView;
@@ -148,7 +148,8 @@
 }
 #pragma mark 扫描
 -(void)onScanningClick:(MyButton *)btn{
-    ScanningViewController *Scanning =[[ScanningViewController alloc]init];
+    SGQRCodeScanningVC *Scanning =[[SGQRCodeScanningVC alloc]init];
+    Scanning.delegate=self;
     UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:Scanning];
     nav.modalPresentationStyle = UIModalPresentationOverFullScreen;
     [self presentViewController:nav animated:YES completion:^{
@@ -278,7 +279,14 @@
         _locationAnnotationView.rotateDegree = userLocation.heading.trueHeading - _mapView.rotationDegree;
     }
 }
-
+#pragma mark 扫描结果
+-(void)ScanResults:(NSString *)context{
+    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"扫描结果" message:context preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertAction *alertA = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+    }];
+    [alertC addAction:alertA];
+    [self presentViewController:alertC animated:YES completion:nil];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
