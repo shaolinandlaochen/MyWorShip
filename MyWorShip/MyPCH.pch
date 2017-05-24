@@ -11,6 +11,10 @@
 
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import <ZXingObjC.h>//扫描
+#import <AudioToolbox/AudioToolbox.h>
 #import "HomeViewController.h"//首页
 #import "SDAutoLayout.h"//第三方适配
 #import "SVProgressHUD.h"//正在加载
@@ -27,4 +31,5 @@
 #import "LocationAnnotationView.h"//地图
 #import <AMapFoundationKit/AMapFoundationKit.h>//地图
 #import "MyImage.h"//自定义img
+#import "ScanningViewController.h"//扫描
 #endif /* MyPCH_pch */

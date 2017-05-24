@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface MyButton : UIButton
-
+@property(nonatomic,assign)float longitude;//经度
+@property(nonatomic,assign)float latitude;//维度
 @end

@@ -35,6 +35,9 @@ PODS:
   - SDWebImage/Core (3.7.6)
   - SVProgressHUD (2.0.4)
   - SVPullToRefresh (0.4.1)
+  - ZXingObjC (3.2.1):
+    - ZXingObjC/All (= 3.2.1)
+  - ZXingObjC/All (3.2.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
@@ -50,6 +53,7 @@ DEPENDENCIES:
   - SDWebImage (~> 3.7.6)
   - SVProgressHUD (~> 2.0.3)
   - SVPullToRefresh (~> 0.4.1)
+  - ZXingObjC (~> 3.2)
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -66,7 +70,8 @@ SPEC CHECKSUMS:
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   SVProgressHUD: bfde85ed6c573ea802b9cb37894ed9b629034f1b
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
+  ZXingObjC: bbf7b8f0cf8933fdd33eb4f9f46e22308552869b
 
-PODFILE CHECKSUM: faf0a46063bb88de0dc7e3c73716bcd590e6f3bc
+PODFILE CHECKSUM: 3104eaa218ed5683736bf3b77898dd7558a8be8e
 
 COCOAPODS: 1.2.0

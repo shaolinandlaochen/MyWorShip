@@ -63,6 +63,7 @@
 		9D9771F31ED5281D005EAC95 /* tips_youhui.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D9771EA1ED5281D005EAC95 /* tips_youhui.png */; };
 		9D9771F41ED5281D005EAC95 /* tips_youhui@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D9771EB1ED5281D005EAC95 /* tips_youhui@2x.png */; };
 		9D9771F51ED5281D005EAC95 /* tips_youhui@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D9771EC1ED5281D005EAC95 /* tips_youhui@3x.png */; };
+		9D9771F91ED533A8005EAC95 /* ScanningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9771F81ED533A8005EAC95 /* ScanningViewController.m */; };
 		F03DFB4F8BA6C4BBBE633D48 /* libPods-MyWorShip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A10E7D0553C7BC98CFE26DD /* libPods-MyWorShip.a */; };
 /* End PBXBuildFile section */
 
@@ -155,6 +156,8 @@
 		9D9771EA1ED5281D005EAC95 /* tips_youhui.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tips_youhui.png; path = ../tips_youhui.png; sourceTree = "<group>"; };
 		9D9771EB1ED5281D005EAC95 /* tips_youhui@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tips_youhui@2x.png"; path = "../tips_youhui@2x.png"; sourceTree = "<group>"; };
 		9D9771EC1ED5281D005EAC95 /* tips_youhui@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tips_youhui@3x.png"; path = "../tips_youhui@3x.png"; sourceTree = "<group>"; };
+		9D9771F71ED533A8005EAC95 /* ScanningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanningViewController.h; sourceTree = "<group>"; };
+		9D9771F81ED533A8005EAC95 /* ScanningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanningViewController.m; sourceTree = "<group>"; };
 		B1F76F225114F462ED6266F6 /* Pods-MyWorShip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWorShip.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyWorShip/Pods-MyWorShip.debug.xcconfig"; sourceTree = "<group>"; };
 		F4C3DF5CDFAB03E9178A1432 /* Pods-MyWorShip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWorShip.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyWorShip/Pods-MyWorShip.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -233,6 +236,7 @@
 				9D9771601ED41BB9005EAC95 /* ViewController.m */,
 				9D97718D1ED42D49005EAC95 /* MyClass.h */,
 				9D97718E1ED42D49005EAC95 /* MyClass.m */,
+				9D9771F61ED53381005EAC95 /* 扫描 */,
 				9D9771DA1ED4346E005EAC95 /* 自定义属性 */,
 				9D9771901ED42D59005EAC95 /* 首页 */,
 				9D9771621ED41BB9005EAC95 /* Main.storyboard */,
@@ -350,6 +354,15 @@
 				9D9771E21ED43AEA005EAC95 /* MyImage.m */,
 			);
 			name = "自定义属性";
+			sourceTree = "<group>";
+		};
+		9D9771F61ED53381005EAC95 /* 扫描 */ = {
+			isa = PBXGroup;
+			children = (
+				9D9771F71ED533A8005EAC95 /* ScanningViewController.h */,
+				9D9771F81ED533A8005EAC95 /* ScanningViewController.m */,
+			);
+			name = "扫描";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -582,6 +595,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D9771F91ED533A8005EAC95 /* ScanningViewController.m in Sources */,
 				9D97718F1ED42D49005EAC95 /* MyClass.m in Sources */,
 				9D9771611ED41BB9005EAC95 /* ViewController.m in Sources */,
 				9D97715E1ED41BB9005EAC95 /* AppDelegate.m in Sources */,
@@ -744,6 +758,7 @@
 				DEVELOPMENT_TEAM = 57H4K7W67N;
 				GCC_PREFIX_HEADER = "/Users/a123/Desktop/奇拜/MyWorShip/MyWorShip/MyPCH.pch";
 				INFOPLIST_FILE = MyWorShip/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = MyWorShipIsMrHan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -758,6 +773,7 @@
 				DEVELOPMENT_TEAM = 57H4K7W67N;
 				GCC_PREFIX_HEADER = "/Users/a123/Desktop/奇拜/MyWorShip/MyWorShip/MyPCH.pch";
 				INFOPLIST_FILE = MyWorShip/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = MyWorShipIsMrHan;
 				PRODUCT_NAME = "$(TARGET_NAME)";

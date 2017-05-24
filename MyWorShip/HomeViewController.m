@@ -14,6 +14,7 @@
     LocationAnnotationView *_locationAnnotationView;
     MyImage *_BjImage;
     CGPoint _point;
+    MyButton *_location;
     
 }
 @end
@@ -147,7 +148,12 @@
 }
 #pragma mark 扫描
 -(void)onScanningClick:(MyButton *)btn{
-    
+    ScanningViewController *Scanning =[[ScanningViewController alloc]init];
+    UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:Scanning];
+    nav.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    [self presentViewController:nav animated:YES completion:^{
+        //nav.view.backgroundColor = [[UIColor clearColor] colorWithAlphaComponent:0.5];
+    }];
 }
 #pragma  mark 添加 地图
 -(void)AddAMap{
@@ -156,7 +162,7 @@
     
     ///初始化地图
     _mapView = [[MAMapView alloc] initWithFrame:self.view.bounds];
-    _mapView.zoomLevel=15;//缩放级别
+    _mapView.zoomLevel=17;//缩放级别
     ///把地图添加至view
     [self.view addSubview:_mapView];
     ///如果您需要进入地图就显示定位小蓝点，则需要下面两行代码

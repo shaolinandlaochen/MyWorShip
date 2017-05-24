@@ -13,4 +13,5 @@ pod 'AMap3DMap'
 pod 'AMapSearch'
 pod 'AMapLocation'
 pod 'AMapNavi' 
+pod 'ZXingObjC', '~> 3.2'
 end
