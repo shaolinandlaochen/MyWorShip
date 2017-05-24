@@ -25,7 +25,8 @@
     _tablleView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, 0, 0) style:UITableViewStylePlain];
     _tablleView.delegate=self;
     _tablleView.dataSource=self;
-    _tablleView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+ //   _tablleView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    _tablleView.separatorColor=[UIColor clearColor];
     _tablleView.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:_tablleView];
     _tablleView.sd_layout.leftSpaceToView(self.view, 0).topSpaceToView(self.view, -rectStatus.size.height).bottomSpaceToView(self.view, 0).rightSpaceToView(self.view, 94);

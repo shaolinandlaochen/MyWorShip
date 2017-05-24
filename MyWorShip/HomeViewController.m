@@ -120,11 +120,19 @@
     name.sd_layout.leftSpaceToView(scanning, 0).rightSpaceToView(scanning, 0).topSpaceToView(scanning1, 16).autoHeightRatio(0);
     
     
+    //中心点
+    UIImageView *IMGCentr=[[UIImageView alloc]init];
+    IMGCentr.image=[UIImage imageNamed:@"icon_zuobiao"];
+    [self.view addSubview:IMGCentr];
+    IMGCentr.sd_layout.leftSpaceToView(self.view, (self.view.frame.size.width-25)/2).topSpaceToView(self.view, (self.view.frame.size.height-38)/2).widthIs(25).heightIs(38);
+    
+    
 }
 #pragma mark 点击定位或者反馈
 -(void)PositioningAndFeedback:(MyButton *)btn{
     if (btn.tag==3) {
         //定位
+
     }else{
     //反馈
     }
@@ -203,13 +211,7 @@
     _mapView.userTrackingMode = MAUserTrackingModeFollow;
     
     
-    //扎大头针
-    MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
-    pointAnnotation.coordinate = CLLocationCoordinate2DMake(30.553147, 104.067998);
-    pointAnnotation.title = @"旷世兄弟集团";
-    pointAnnotation.subtitle = @"天府二街,东方希望天祥广场";
-    
-    [_mapView addAnnotation:pointAnnotation];
+
     
 }
 - (MAOverlayRenderer *)mapView:(MAMapView *)mapView rendererForOverlay:(id <MAOverlay>)overlay
@@ -299,6 +301,31 @@
         nav.view.backgroundColor = [[UIColor clearColor] colorWithAlphaComponent:0.5];
     }];
     
+}
+/**
+ * @brief 地图区域改变完成后会调用此接口
+ * @param mapView 地图View
+ * @param animated 是否动画
+ */
+#pragma mark 地图移动结束后获取屏幕中心点,根据区域插入大头针
+- (void)mapView:(MAMapView *)mapView regionDidChangeAnimated:(BOOL)animated{
+    
+    NSLog(@"%f-------%f",mapView.centerCoordinate.latitude,mapView.centerCoordinate.longitude);
+    [mapView removeAnnotations:mapView.annotations];
+    [self MrPin:mapView];
+}
+#pragma mark 插入大头针
+-(void)MrPin:(MAMapView *)mapView{
+    
+
+    
+    //扎大头针
+    MAPointAnnotation *APin = [[MAPointAnnotation alloc] init];
+    APin.coordinate = CLLocationCoordinate2DMake(mapView.centerCoordinate.latitude+0.0005, mapView.centerCoordinate.longitude+0.0003);
+    APin.title = @"旷世兄弟集团";
+    APin.subtitle = @"天府二街,东方希望天祥广场";
+    
+    [_mapView addAnnotation:APin];
 }
 #pragma mark 视图伸缩
 -(void)scaling:(BOOL)isScaling{
