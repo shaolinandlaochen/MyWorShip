@@ -33,4 +33,5 @@
 #import <AMapFoundationKit/AMapFoundationKit.h>//地图
 #import "MyImage.h"//自定义img
 #import "ScanningViewController.h"//扫描
+#import "MyViewController.h"//我的
 #endif /* MyPCH_pch */

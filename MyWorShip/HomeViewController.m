@@ -8,12 +8,11 @@
 
 #import "HomeViewController.h"
 
-@interface HomeViewController ()<MAMapViewDelegate,SGQRCodeScanningVCDelegate>
+@interface HomeViewController ()<MAMapViewDelegate,SGQRCodeScanningVCDelegate,MyViewControllerDelegate>
 {
     MAMapView *_mapView;
     LocationAnnotationView *_locationAnnotationView;
     MyImage *_BjImage;
-    CGPoint _point;
     MyButton *_location;
     
 }
@@ -30,6 +29,7 @@
     [self addLeftItemAndRightItem];
     [self AddAMap];
     [self AddAllViews];
+   
     // Do any additional setup after loading the view.
 }
 #pragma mark 添加左右按钮项
@@ -56,6 +56,7 @@
 -(void)onNavButtonClick:(MyButton *)btn{
     if (btn.tag==1) {
         //左
+         [self ToCreateMyPersonalInformationInterface];
     }else{
     //右
     }
@@ -286,6 +287,22 @@
     }];
     [alertC addAction:alertA];
     [self presentViewController:alertC animated:YES completion:nil];
+}
+#pragma mark 创建我的个人信息界面
+-(void)ToCreateMyPersonalInformationInterface{
+   MyViewController *myViewCtrol=[[MyViewController alloc]init];
+    myViewCtrol.delegate=self;
+    UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:myViewCtrol];
+    nav.modalPresentationStyle = UIModalPresentationOverFullScreen;
+   // myViewCtrol.modalTransitionStyle=UIModalTransitionStylePartialCurl;
+    [self presentViewController:nav animated:YES completion:^{
+        nav.view.backgroundColor = [[UIColor clearColor] colorWithAlphaComponent:0.5];
+    }];
+    
+}
+#pragma mark 视图伸缩
+-(void)scaling:(BOOL)isScaling{
+
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

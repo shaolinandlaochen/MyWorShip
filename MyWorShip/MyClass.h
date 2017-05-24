@@ -11,8 +11,9 @@
 @interface MyClass : UIViewController
 //获取颜色值公用方法
 -(UIColor *)colorWithHexString:(NSString *)color;
++(UIColor *)colorWithHexString:(NSString *)color;
 //文本自适应返回size
--(CGSize)StringHeight:(NSString *)stringStr Lblfont:(float)font heightOfTheMinus:(float)height;
++(CGSize)StringHeight:(NSString *)stringStr Lblfont:(float)font heightOfTheMinus:(float)height;
 //检测网络
 -(BOOL)DoYouHaveAnyNetwork;
 @end
