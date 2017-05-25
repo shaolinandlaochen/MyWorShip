@@ -63,6 +63,8 @@
          [self ToCreateMyPersonalInformationInterface];
     }else{
     //右
+        PreferentialViewController *Preferential=[[PreferentialViewController alloc]init];
+        [self.navigationController pushViewController:Preferential animated:YES];
     }
 
 }
