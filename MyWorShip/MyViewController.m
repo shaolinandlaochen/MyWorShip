@@ -25,6 +25,7 @@
     _tablleView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, 0, 0) style:UITableViewStylePlain];
     _tablleView.delegate=self;
     _tablleView.dataSource=self;
+    _tablleView.scrollEnabled=NO;
  //   _tablleView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     _tablleView.separatorColor=[UIColor clearColor];
     _tablleView.backgroundColor=[UIColor whiteColor];
@@ -40,16 +41,25 @@
     return 52;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    if (section==0) {
+         return 17;
+    }
     return 0;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 125;
+    if (section==0) {
+        return 125;
+    }
+    return 0;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 6;
+    if (section==1) {
+         return 6;
+    }
+    return 0;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
+    return 2;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MyCell *cell=[[MyCell alloc]init];
@@ -101,11 +111,19 @@
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     _view=[[PersonalDataView alloc]init];
-    _view.backgroundColor=[UIColor whiteColor];
-    [_view.iconHead setBackgroundImage:[UIImage imageNamed:@"img_touxiang_home"] forState:UIControlStateNormal];
-    _view.name.text=@"15738811111";
-    _view.money.text=@"钱包余额:200.00";
+    if (section==0) {
+        _view.backgroundColor=[UIColor whiteColor];
+        [_view.iconHead setBackgroundImage:[UIImage imageNamed:@"img_touxiang_home"] forState:UIControlStateNormal];
+        _view.name.text=@"15738811111";
+        _view.money.text=@"钱包余额:200.00";
+    }
+
     return _view;
+}
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIView *view=[[UIView alloc]init];
+    view.backgroundColor=[UIColor whiteColor];
+    return view;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

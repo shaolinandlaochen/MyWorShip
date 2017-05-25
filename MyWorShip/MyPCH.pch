@@ -34,4 +34,5 @@
 #import "MyImage.h"//自定义img
 #import "ScanningViewController.h"//扫描
 #import "MyViewController.h"//我的
+#import "TeasingViewController.h"//吐槽
 #endif /* MyPCH_pch */

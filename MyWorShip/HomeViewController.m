@@ -22,15 +22,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title=@"奇拜";
-    self.view.backgroundColor=[self colorWithHexString:@"f3f5f7"];
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[self colorWithHexString:@"ff4e54"]}];
-    [self.navigationController.navigationBar setBarTintColor:[[UIColor blackColor]colorWithAlphaComponent:0.9]];
+   
     [self addLeftItemAndRightItem];
     [self AddAMap];
     [self AddAllViews];
    
     // Do any additional setup after loading the view.
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.title=@"奇拜";
+    self.view.backgroundColor=[self colorWithHexString:@"f3f5f7"];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[self colorWithHexString:@"ff4e54"]}];
+    [self.navigationController.navigationBar setBarTintColor:[[UIColor blackColor]colorWithAlphaComponent:0.9]];
 }
 #pragma mark 添加左右按钮项
 -(void)addLeftItemAndRightItem{
@@ -135,6 +139,8 @@
 
     }else{
     //反馈
+        TeasingViewController *Teasing=[[TeasingViewController alloc]init];
+        [self.navigationController pushViewController:Teasing animated:YES];
     }
 }
 #pragma mark 收缩或者展开
