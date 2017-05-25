@@ -139,6 +139,10 @@
 		9D9772E11ED6AA08005EAC95 /* img_used@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D9772CF1ED6AA08005EAC95 /* img_used@2x.png */; };
 		9D9772E21ED6AA08005EAC95 /* img_used@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D9772D01ED6AA08005EAC95 /* img_used@3x.png */; };
 		9D9772E51ED6AB2E005EAC95 /* PreferentialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9772E41ED6AB2E005EAC95 /* PreferentialView.m */; };
+		9D9772E81ED6C02B005EAC95 /* MessageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9772E71ED6C02B005EAC95 /* MessageListViewController.m */; };
+		9D9772EC1ED6C3FE005EAC95 /* MessageListHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9772EB1ED6C3FE005EAC95 /* MessageListHeaderView.m */; };
+		9D9772EF1ED6C4A6005EAC95 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9772EE1ED6C4A6005EAC95 /* MessageCell.m */; };
+		9D9772F21ED6C4CB005EAC95 /* AnnouncementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9772F11ED6C4CB005EAC95 /* AnnouncementCell.m */; };
 		F03DFB4F8BA6C4BBBE633D48 /* libPods-MyWorShip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A10E7D0553C7BC98CFE26DD /* libPods-MyWorShip.a */; };
 /* End PBXBuildFile section */
 
@@ -320,6 +324,14 @@
 		9D9772D01ED6AA08005EAC95 /* img_used@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img_used@3x.png"; sourceTree = "<group>"; };
 		9D9772E31ED6AB2E005EAC95 /* PreferentialView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferentialView.h; sourceTree = "<group>"; };
 		9D9772E41ED6AB2E005EAC95 /* PreferentialView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferentialView.m; sourceTree = "<group>"; };
+		9D9772E61ED6C02B005EAC95 /* MessageListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageListViewController.h; sourceTree = "<group>"; };
+		9D9772E71ED6C02B005EAC95 /* MessageListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageListViewController.m; sourceTree = "<group>"; };
+		9D9772EA1ED6C3FE005EAC95 /* MessageListHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageListHeaderView.h; sourceTree = "<group>"; };
+		9D9772EB1ED6C3FE005EAC95 /* MessageListHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageListHeaderView.m; sourceTree = "<group>"; };
+		9D9772ED1ED6C4A6005EAC95 /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
+		9D9772EE1ED6C4A6005EAC95 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
+		9D9772F01ED6C4CB005EAC95 /* AnnouncementCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnouncementCell.h; sourceTree = "<group>"; };
+		9D9772F11ED6C4CB005EAC95 /* AnnouncementCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnouncementCell.m; sourceTree = "<group>"; };
 		B1F76F225114F462ED6266F6 /* Pods-MyWorShip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWorShip.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyWorShip/Pods-MyWorShip.debug.xcconfig"; sourceTree = "<group>"; };
 		F4C3DF5CDFAB03E9178A1432 /* Pods-MyWorShip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWorShip.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyWorShip/Pods-MyWorShip.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -398,6 +410,7 @@
 				9D9771601ED41BB9005EAC95 /* ViewController.m */,
 				9D97718D1ED42D49005EAC95 /* MyClass.h */,
 				9D97718E1ED42D49005EAC95 /* MyClass.m */,
+				9D9772E91ED6C02F005EAC95 /* 消息 */,
 				9D9772B81ED6A315005EAC95 /* 优惠 */,
 				9D9772951ED66868005EAC95 /* 吐槽 */,
 				9D9772491ED570BA005EAC95 /* 个人 */,
@@ -644,6 +657,21 @@
 				9D9772E41ED6AB2E005EAC95 /* PreferentialView.m */,
 			);
 			name = "优惠";
+			sourceTree = "<group>";
+		};
+		9D9772E91ED6C02F005EAC95 /* 消息 */ = {
+			isa = PBXGroup;
+			children = (
+				9D9772E61ED6C02B005EAC95 /* MessageListViewController.h */,
+				9D9772E71ED6C02B005EAC95 /* MessageListViewController.m */,
+				9D9772EA1ED6C3FE005EAC95 /* MessageListHeaderView.h */,
+				9D9772EB1ED6C3FE005EAC95 /* MessageListHeaderView.m */,
+				9D9772ED1ED6C4A6005EAC95 /* MessageCell.h */,
+				9D9772EE1ED6C4A6005EAC95 /* MessageCell.m */,
+				9D9772F01ED6C4CB005EAC95 /* AnnouncementCell.h */,
+				9D9772F11ED6C4CB005EAC95 /* AnnouncementCell.m */,
+			);
+			name = "消息";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -944,6 +972,7 @@
 				9D9771F91ED533A8005EAC95 /* ScanningViewController.m in Sources */,
 				9D97718F1ED42D49005EAC95 /* MyClass.m in Sources */,
 				9D9771611ED41BB9005EAC95 /* ViewController.m in Sources */,
+				9D9772EC1ED6C3FE005EAC95 /* MessageListHeaderView.m in Sources */,
 				9D9772981ED6688D005EAC95 /* TeasingViewController.m in Sources */,
 				9D9772091ED5617F005EAC95 /* UIImage+SGHelper.m in Sources */,
 				9D97715E1ED41BB9005EAC95 /* AppDelegate.m in Sources */,
@@ -951,13 +980,16 @@
 				9D9772BB1ED6A32B005EAC95 /* PreferentialViewController.m in Sources */,
 				9D9772061ED5614D005EAC95 /* SGQRCodeConst.m in Sources */,
 				9D9772031ED5611E005EAC95 /* SGWebView.m in Sources */,
+				9D9772F21ED6C4CB005EAC95 /* AnnouncementCell.m in Sources */,
 				9D9771FD1ED560DF005EAC95 /* SGQRCodeScanningVC.m in Sources */,
 				9D97724F1ED57924005EAC95 /* MyCell.m in Sources */,
+				9D9772E81ED6C02B005EAC95 /* MessageListViewController.m in Sources */,
 				9D97724C1ED570EE005EAC95 /* MyViewController.m in Sources */,
 				9D9772BE1ED6A4DF005EAC95 /* PreferentialCell.m in Sources */,
 				9D9772021ED5611E005EAC95 /* SGQRCodeScanningView.m in Sources */,
 				9D9771931ED42D72005EAC95 /* HomeViewController.m in Sources */,
 				9D9771E31ED43AEA005EAC95 /* MyImage.m in Sources */,
+				9D9772EF1ED6C4A6005EAC95 /* MessageCell.m in Sources */,
 				9D97715B1ED41BB9005EAC95 /* main.m in Sources */,
 				9D9771E01ED437A3005EAC95 /* LocationAnnotationView.m in Sources */,
 			);

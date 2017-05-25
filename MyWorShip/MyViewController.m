@@ -36,6 +36,17 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    switch (indexPath.row) {
+        case 0:
+        {
+            MessageListViewController *MessageList=[[MessageListViewController alloc]init];
+            [self.navigationController pushViewController:MessageList animated:YES];
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 52;

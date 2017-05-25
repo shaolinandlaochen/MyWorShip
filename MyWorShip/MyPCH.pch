@@ -36,6 +36,12 @@
 #import "MyViewController.h"//我的
 #import "TeasingViewController.h"//吐槽
 #import "PreferentialViewController.h"//优惠
+#import "MessageListViewController.h"//我的消息
 #define WIDTH [UIScreen mainScreen].bounds.size.width
 #define HEIGHT [UIScreen mainScreen].bounds.size.height
+#define lfteItemAndColor MyButton *leftCancel=[MyButton buttonWithType:UIButtonTypeCustom]; [leftCancel setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal]; [leftCancel addTarget:self  action:@selector(onCancelClick) forControlEvents:UIControlEventTouchUpInside]; [leftCancel sizeToFit]; UIBarButtonItem *inforItem = [[UIBarButtonItem alloc] initWithCustomView:leftCancel]; self.navigationItem.leftBarButtonItems  = @[inforItem]; self.view.backgroundColor=[self colorWithHexString:@"f3f5f7"]; [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[self colorWithHexString:@"ffffff"]}]; [self.navigationController.navigationBar setBarTintColor:[[UIColor blackColor]colorWithAlphaComponent:0.9]];
+
+#define NAVHEIGHT CGFloat navheight = self.navigationController.navigationBar.frame.size.height;//导航栏目高度
+#define RECTSTATUS CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];//状态栏高度
+#define CANCEL -(void)onCancelClick{ [self.navigationController popViewControllerAnimated:YES]; }
 #endif /* MyPCH_pch */

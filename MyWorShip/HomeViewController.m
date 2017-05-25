@@ -304,11 +304,13 @@
     myViewCtrol.delegate=self;
     UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:myViewCtrol];
     nav.modalPresentationStyle = UIModalPresentationOverFullScreen;
-   // myViewCtrol.modalTransitionStyle=UIModalTransitionStylePartialCurl;
+    nav.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;
+
     [self presentViewController:nav animated:YES completion:^{
         nav.view.backgroundColor = [[UIColor clearColor] colorWithAlphaComponent:0.5];
     }];
-    
+
+
 }
 /**
  * @brief 地图区域改变完成后会调用此接口
