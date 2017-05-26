@@ -215,6 +215,7 @@
 		9D9773901ED82140005EAC95 /* img_smile.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D97738D1ED82140005EAC95 /* img_smile.png */; };
 		9D9773911ED82140005EAC95 /* img_smile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D97738E1ED82140005EAC95 /* img_smile@2x.png */; };
 		9D9773921ED82140005EAC95 /* img_smile@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D97738F1ED82140005EAC95 /* img_smile@3x.png */; };
+		9D9773951ED824E2005EAC95 /* OrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9773941ED824E2005EAC95 /* OrderCell.m */; };
 		F03DFB4F8BA6C4BBBE633D48 /* libPods-MyWorShip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A10E7D0553C7BC98CFE26DD /* libPods-MyWorShip.a */; };
 /* End PBXBuildFile section */
 
@@ -488,6 +489,8 @@
 		9D97738D1ED82140005EAC95 /* img_smile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_smile.png; sourceTree = "<group>"; };
 		9D97738E1ED82140005EAC95 /* img_smile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img_smile@2x.png"; sourceTree = "<group>"; };
 		9D97738F1ED82140005EAC95 /* img_smile@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img_smile@3x.png"; sourceTree = "<group>"; };
+		9D9773931ED824E2005EAC95 /* OrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCell.h; sourceTree = "<group>"; };
+		9D9773941ED824E2005EAC95 /* OrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCell.m; sourceTree = "<group>"; };
 		B1F76F225114F462ED6266F6 /* Pods-MyWorShip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWorShip.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyWorShip/Pods-MyWorShip.debug.xcconfig"; sourceTree = "<group>"; };
 		F4C3DF5CDFAB03E9178A1432 /* Pods-MyWorShip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWorShip.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyWorShip/Pods-MyWorShip.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -922,6 +925,8 @@
 			children = (
 				9D97732E1ED7DB65005EAC95 /* MyOrderViewController.h */,
 				9D97732F1ED7DB65005EAC95 /* MyOrderViewController.m */,
+				9D9773931ED824E2005EAC95 /* OrderCell.h */,
+				9D9773941ED824E2005EAC95 /* OrderCell.m */,
 			);
 			name = "订单";
 			sourceTree = "<group>";
@@ -1327,6 +1332,7 @@
 				9D9772E81ED6C02B005EAC95 /* MessageListViewController.m in Sources */,
 				9D97724C1ED570EE005EAC95 /* MyViewController.m in Sources */,
 				9D9772BE1ED6A4DF005EAC95 /* PreferentialCell.m in Sources */,
+				9D9773951ED824E2005EAC95 /* OrderCell.m in Sources */,
 				9D9773021ED7C19B005EAC95 /* WalletViewController.m in Sources */,
 				9D9772021ED5611E005EAC95 /* SGQRCodeScanningView.m in Sources */,
 				9D9771931ED42D72005EAC95 /* HomeViewController.m in Sources */,
