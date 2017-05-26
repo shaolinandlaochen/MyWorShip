@@ -38,6 +38,9 @@
 #import "PreferentialViewController.h"//优惠
 #import "MessageListViewController.h"//我的消息
 #import "WalletViewController.h"//我的钱包
+#import "MyOrderViewController.h"//我的订单
+#import "AboutUsViewController.h"//关于我们
+#import "InvitationViewController.h"//邀请
 
 
 

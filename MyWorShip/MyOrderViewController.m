@@ -1,0 +1,43 @@
+//
+//  MyOrderViewController.m
+//  MyWorShip
+//
+//  Created by 123 on 2017/5/26.
+//  Copyright © 2017年 123. All rights reserved.
+//
+
+#import "MyOrderViewController.h"
+
+@interface MyOrderViewController ()
+
+@end
+
+@implementation MyOrderViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.title=@"我的订单";
+    lfteItemAndColor
+    // Do any additional setup after loading the view.
+}
+CANCEL
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden=NO;
+}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

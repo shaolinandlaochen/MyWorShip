@@ -30,7 +30,24 @@
     _tableView.separatorColor=[self colorWithHexString:@"d7d7d7"];
     _tableView.backgroundColor=[self colorWithHexString:@"#f3f5f7"];
     [self.view addSubview:_tableView];
+    //[self NULLData];
     // Do any additional setup after loading the view.
+}
+#pragma mark 创建无数据视图
+-(void)NULLData{
+    UIImageView *img=[[UIImageView alloc]init];
+    img.tag=852;
+    img.image=[UIImage imageNamed:@"img_nomingxi"];
+    [self.view addSubview:img];
+    img.sd_layout.leftSpaceToView(self.view, (WIDTH-125)/2).topSpaceToView(self.view, 150).rightSpaceToView(self.view, (WIDTH-125)/2).heightIs(125);
+    UILabel *lbl=[[UILabel alloc]init];
+    lbl.text=@"您还没有进行过交易呢~";
+    lbl.textColor=[self colorWithHexString:@"a3a3a3"];
+    lbl.font=[UIFont systemFontOfSize:14];
+    lbl.textAlignment=NSTextAlignmentCenter;
+    [self.view addSubview:lbl];
+    lbl.sd_layout.leftSpaceToView(self.view, 0).rightSpaceToView(self.view, 0).topSpaceToView(img, 19).autoHeightRatio(0);
+    
 }
 CANCEL
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{

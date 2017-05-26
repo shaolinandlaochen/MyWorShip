@@ -49,6 +49,29 @@
             [self.navigationController pushViewController:Wallet animated:YES];
         }
             break;
+        case 2:
+        {//我的订单
+            MyOrderViewController *MyOrder=[[MyOrderViewController alloc]init];
+            [self.navigationController pushViewController:MyOrder animated:YES];
+        }
+            break;
+        case 3:
+        {//邀请好友
+            InvitationViewController *Invitation=[[InvitationViewController  alloc]init];
+            [self.navigationController pushViewController:Invitation animated:YES];
+        }
+            break;
+        case 4:
+        {//使用指南
+
+        }
+            break;
+        case 5:
+        {//关于我们
+            AboutUsViewController *AboutUs=[[AboutUsViewController alloc]init];
+            [self.navigationController pushViewController:AboutUs animated:YES];
+        }
+            break;
 
             
             
