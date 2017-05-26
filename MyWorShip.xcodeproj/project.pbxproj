@@ -143,6 +143,11 @@
 		9D9772EC1ED6C3FE005EAC95 /* MessageListHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9772EB1ED6C3FE005EAC95 /* MessageListHeaderView.m */; };
 		9D9772EF1ED6C4A6005EAC95 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9772EE1ED6C4A6005EAC95 /* MessageCell.m */; };
 		9D9772F21ED6C4CB005EAC95 /* AnnouncementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9772F11ED6C4CB005EAC95 /* AnnouncementCell.m */; };
+		9D9772F51ED7B789005EAC95 /* MessageForDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9772F41ED7B789005EAC95 /* MessageForDetailsViewController.m */; };
+		9D9772F81ED7B7BA005EAC95 /* AnnouncementOfTheDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9772F71ED7B7BA005EAC95 /* AnnouncementOfTheDetailsViewController.m */; };
+		9D9772FC1ED7BDBC005EAC95 /* img_nomews.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D9772F91ED7BDBC005EAC95 /* img_nomews.png */; };
+		9D9772FD1ED7BDBC005EAC95 /* img_nomews@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D9772FA1ED7BDBC005EAC95 /* img_nomews@2x.png */; };
+		9D9772FE1ED7BDBC005EAC95 /* img_nomews@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D9772FB1ED7BDBC005EAC95 /* img_nomews@3x.png */; };
 		F03DFB4F8BA6C4BBBE633D48 /* libPods-MyWorShip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A10E7D0553C7BC98CFE26DD /* libPods-MyWorShip.a */; };
 /* End PBXBuildFile section */
 
@@ -332,6 +337,13 @@
 		9D9772EE1ED6C4A6005EAC95 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
 		9D9772F01ED6C4CB005EAC95 /* AnnouncementCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnouncementCell.h; sourceTree = "<group>"; };
 		9D9772F11ED6C4CB005EAC95 /* AnnouncementCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnouncementCell.m; sourceTree = "<group>"; };
+		9D9772F31ED7B789005EAC95 /* MessageForDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageForDetailsViewController.h; sourceTree = "<group>"; };
+		9D9772F41ED7B789005EAC95 /* MessageForDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageForDetailsViewController.m; sourceTree = "<group>"; };
+		9D9772F61ED7B7BA005EAC95 /* AnnouncementOfTheDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnouncementOfTheDetailsViewController.h; sourceTree = "<group>"; };
+		9D9772F71ED7B7BA005EAC95 /* AnnouncementOfTheDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnouncementOfTheDetailsViewController.m; sourceTree = "<group>"; };
+		9D9772F91ED7BDBC005EAC95 /* img_nomews.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_nomews.png; sourceTree = "<group>"; };
+		9D9772FA1ED7BDBC005EAC95 /* img_nomews@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img_nomews@2x.png"; sourceTree = "<group>"; };
+		9D9772FB1ED7BDBC005EAC95 /* img_nomews@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img_nomews@3x.png"; sourceTree = "<group>"; };
 		B1F76F225114F462ED6266F6 /* Pods-MyWorShip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWorShip.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyWorShip/Pods-MyWorShip.debug.xcconfig"; sourceTree = "<group>"; };
 		F4C3DF5CDFAB03E9178A1432 /* Pods-MyWorShip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWorShip.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyWorShip/Pods-MyWorShip.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -476,6 +488,9 @@
 		9D9771951ED4331B005EAC95 /* ios */ = {
 			isa = PBXGroup;
 			children = (
+				9D9772F91ED7BDBC005EAC95 /* img_nomews.png */,
+				9D9772FA1ED7BDBC005EAC95 /* img_nomews@2x.png */,
+				9D9772FB1ED7BDBC005EAC95 /* img_nomews@3x.png */,
 				9D9772BF1ED6AA08005EAC95 /* bg_expired.png */,
 				9D9772C01ED6AA08005EAC95 /* bg_expired@2x.png */,
 				9D9772C11ED6AA08005EAC95 /* bg_expired@3x.png */,
@@ -670,6 +685,10 @@
 				9D9772EE1ED6C4A6005EAC95 /* MessageCell.m */,
 				9D9772F01ED6C4CB005EAC95 /* AnnouncementCell.h */,
 				9D9772F11ED6C4CB005EAC95 /* AnnouncementCell.m */,
+				9D9772F31ED7B789005EAC95 /* MessageForDetailsViewController.h */,
+				9D9772F41ED7B789005EAC95 /* MessageForDetailsViewController.m */,
+				9D9772F61ED7B7BA005EAC95 /* AnnouncementOfTheDetailsViewController.h */,
+				9D9772F71ED7B7BA005EAC95 /* AnnouncementOfTheDetailsViewController.m */,
 			);
 			name = "消息";
 			sourceTree = "<group>";
@@ -806,6 +825,7 @@
 				9D9771CF1ED4331B005EAC95 /* icon_saoyisao@3x.png in Resources */,
 				9D9772DE1ED6AA08005EAC95 /* img_noyouhui@2x.png in Resources */,
 				9D9772A51ED66A6E005EAC95 /* btn_camera.png in Resources */,
+				9D9772FE1ED7BDBC005EAC95 /* img_nomews@3x.png in Resources */,
 				9D97728E1ED6685F005EAC95 /* btn_add@3x.png in Resources */,
 				9D9771D81ED4331B005EAC95 /* shape_unfold@3x.png in Resources */,
 				9D9772DA1ED6AA08005EAC95 /* img_expired.png in Resources */,
@@ -854,6 +874,7 @@
 				9D9772AC1ED66A6E005EAC95 /* icon_back@2x.png in Resources */,
 				9D9772901ED6685F005EAC95 /* icon_add@2x.png in Resources */,
 				9D9772AB1ED66A6E005EAC95 /* icon_back.png in Resources */,
+				9D9772FD1ED7BDBC005EAC95 /* img_nomews@2x.png in Resources */,
 				9D9771C51ED4331B005EAC95 /* icon_location@2x.png in Resources */,
 				9D9771EE1ED5281D005EAC95 /* icon_up@2x.png in Resources */,
 				9D9771D41ED4331B005EAC95 /* icon_zuobiao@2x.png in Resources */,
@@ -874,6 +895,7 @@
 				9D97726B1ED5802C005EAC95 /* icon_invite.png in Resources */,
 				9D9772A61ED66A6E005EAC95 /* btn_camera@2x.png in Resources */,
 				9D9771CA1ED4331B005EAC95 /* icon_place.png in Resources */,
+				9D9772FC1ED7BDBC005EAC95 /* img_nomews.png in Resources */,
 				9D9772921ED6685F005EAC95 /* icon_delete.png in Resources */,
 				9D9772931ED6685F005EAC95 /* icon_delete@2x.png in Resources */,
 				9D9771C11ED4331B005EAC95 /* icon_fankui.png in Resources */,
@@ -972,10 +994,12 @@
 				9D9771F91ED533A8005EAC95 /* ScanningViewController.m in Sources */,
 				9D97718F1ED42D49005EAC95 /* MyClass.m in Sources */,
 				9D9771611ED41BB9005EAC95 /* ViewController.m in Sources */,
+				9D9772F81ED7B7BA005EAC95 /* AnnouncementOfTheDetailsViewController.m in Sources */,
 				9D9772EC1ED6C3FE005EAC95 /* MessageListHeaderView.m in Sources */,
 				9D9772981ED6688D005EAC95 /* TeasingViewController.m in Sources */,
 				9D9772091ED5617F005EAC95 /* UIImage+SGHelper.m in Sources */,
 				9D97715E1ED41BB9005EAC95 /* AppDelegate.m in Sources */,
+				9D9772F51ED7B789005EAC95 /* MessageForDetailsViewController.m in Sources */,
 				9D9771DD1ED4348B005EAC95 /* MyButton.m in Sources */,
 				9D9772BB1ED6A32B005EAC95 /* PreferentialViewController.m in Sources */,
 				9D9772061ED5614D005EAC95 /* SGQRCodeConst.m in Sources */,

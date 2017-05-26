@@ -10,6 +10,8 @@
 #import "MessageListHeaderView.h"
 #import "MessageCell.h"
 #import "AnnouncementCell.h"
+#import "MessageForDetailsViewController.h"//消息详情
+#import "AnnouncementOfTheDetailsViewController.h"//公告详情
 @interface MessageListViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     UITableView *_tableView;
@@ -35,9 +37,26 @@
     [self.view addSubview:_tableView];
     _tableView.sd_layout.leftSpaceToView(self.view, 0).topSpaceToView(self.view, 0).rightSpaceToView(self.view, 0).bottomSpaceToView(self.view, 0);
 
+   // [self NULLData];
     // Do any additional setup after loading the view.
 }
+#pragma mark 无数据
+-(void)NULLData{
 
+    UIImageView *img=[[UIImageView alloc]init];
+    img.tag=852;
+    img.image=[UIImage imageNamed:@"img_nomews"];
+    [self.view addSubview:img];
+    img.sd_layout.leftSpaceToView(self.view, (WIDTH-125)/2).topSpaceToView(self.view, 150).rightSpaceToView(self.view, (WIDTH-125)/2).heightIs(125);
+    UILabel *lbl=[[UILabel alloc]init];
+    lbl.text=@"还没有什么大事发生哦~";
+    lbl.textColor=[self colorWithHexString:@"a3a3a3"];
+    lbl.font=[UIFont systemFontOfSize:14];
+    lbl.textAlignment=NSTextAlignmentCenter;
+    [self.view addSubview:lbl];
+    lbl.sd_layout.leftSpaceToView(self.view, 0).rightSpaceToView(self.view, 0).topSpaceToView(img, 19).autoHeightRatio(0);
+    
+}
 #pragma mark 点击筛选按钮执行该方法
 -(void)onConditionsForScreeningClick:(MyButton *)btn{
     index=btn.tag-1;
@@ -74,7 +93,14 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+    AnnouncementOfTheDetailsViewController *AnnouncementOfTheDetails=[[AnnouncementOfTheDetailsViewController alloc]init];
+    if (index==0) {//消息详情
+     AnnouncementOfTheDetails.titleString=@"消息详情";
+    }else{//公告详情
+     AnnouncementOfTheDetails.titleString=@"公告详情";
+
+    }
+    [self.navigationController pushViewController:AnnouncementOfTheDetails animated:YES];
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (section==0) {
