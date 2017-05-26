@@ -41,6 +41,7 @@
 #import "MyOrderViewController.h"//我的订单
 #import "AboutUsViewController.h"//关于我们
 #import "InvitationViewController.h"//邀请
+#import "GoodsViewController.h"//商品
 
 
 

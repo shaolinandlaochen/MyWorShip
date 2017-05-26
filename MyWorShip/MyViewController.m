@@ -57,6 +57,8 @@
             break;
         case 3:
         {//奇拜商品
+            GoodsViewController *Goods=[[GoodsViewController alloc]init];
+            [self.navigationController pushViewController:Goods animated:YES];
 
         }
             break;

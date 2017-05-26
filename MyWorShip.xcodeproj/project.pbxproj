@@ -216,6 +216,7 @@
 		9D9773911ED82140005EAC95 /* img_smile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D97738E1ED82140005EAC95 /* img_smile@2x.png */; };
 		9D9773921ED82140005EAC95 /* img_smile@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D97738F1ED82140005EAC95 /* img_smile@3x.png */; };
 		9D9773951ED824E2005EAC95 /* OrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9773941ED824E2005EAC95 /* OrderCell.m */; };
+		9D9773991ED82E17005EAC95 /* GoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9773981ED82E17005EAC95 /* GoodsViewController.m */; };
 		F03DFB4F8BA6C4BBBE633D48 /* libPods-MyWorShip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A10E7D0553C7BC98CFE26DD /* libPods-MyWorShip.a */; };
 /* End PBXBuildFile section */
 
@@ -491,6 +492,8 @@
 		9D97738F1ED82140005EAC95 /* img_smile@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img_smile@3x.png"; sourceTree = "<group>"; };
 		9D9773931ED824E2005EAC95 /* OrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCell.h; sourceTree = "<group>"; };
 		9D9773941ED824E2005EAC95 /* OrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCell.m; sourceTree = "<group>"; };
+		9D9773971ED82E17005EAC95 /* GoodsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsViewController.h; sourceTree = "<group>"; };
+		9D9773981ED82E17005EAC95 /* GoodsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsViewController.m; sourceTree = "<group>"; };
 		B1F76F225114F462ED6266F6 /* Pods-MyWorShip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWorShip.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyWorShip/Pods-MyWorShip.debug.xcconfig"; sourceTree = "<group>"; };
 		F4C3DF5CDFAB03E9178A1432 /* Pods-MyWorShip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWorShip.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyWorShip/Pods-MyWorShip.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -569,6 +572,7 @@
 				9D9771601ED41BB9005EAC95 /* ViewController.m */,
 				9D97718D1ED42D49005EAC95 /* MyClass.h */,
 				9D97718E1ED42D49005EAC95 /* MyClass.m */,
+				9D9773961ED82DE3005EAC95 /* 商品 */,
 				9D97733E1ED7F545005EAC95 /* 邀请 */,
 				9D9773311ED7DC76005EAC95 /* 关于 */,
 				9D97732D1ED7DB2A005EAC95 /* 订单 */,
@@ -951,6 +955,15 @@
 			name = "邀请";
 			sourceTree = "<group>";
 		};
+		9D9773961ED82DE3005EAC95 /* 商品 */ = {
+			isa = PBXGroup;
+			children = (
+				9D9773971ED82E17005EAC95 /* GoodsViewController.h */,
+				9D9773981ED82E17005EAC95 /* GoodsViewController.m */,
+			);
+			name = "商品";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1305,6 +1318,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D9772E51ED6AB2E005EAC95 /* PreferentialView.m in Sources */,
+				9D9773991ED82E17005EAC95 /* GoodsViewController.m in Sources */,
 				9D97738C1ED820B1005EAC95 /* TopUpResultsViewController.m in Sources */,
 				9D9773231ED7D016005EAC95 /* TransactionDetailsViewController.m in Sources */,
 				9D9772821ED582F1005EAC95 /* PersonalDataView.m in Sources */,
