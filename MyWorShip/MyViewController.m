@@ -9,7 +9,7 @@
 #import "MyViewController.h"
 #import "MyCell.h"
 #import "PersonalDataView.h"
-@interface MyViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface MyViewController ()<UITableViewDelegate,UITableViewDataSource,InvitationDelegate>
 {
     UITableView *_tablleView;
     PersonalDataView *_view;
@@ -56,17 +56,23 @@
         }
             break;
         case 3:
-        {//邀请好友
-            InvitationViewController *Invitation=[[InvitationViewController  alloc]init];
-            [self.navigationController pushViewController:Invitation animated:YES];
+        {//奇拜商品
+
         }
             break;
         case 4:
+        {//邀请好友
+            InvitationViewController *Invitation=[[InvitationViewController  alloc]init];
+            Invitation.delegate=self;
+            [self.navigationController pushViewController:Invitation animated:YES];
+        }
+            break;
+        case 5:
         {//使用指南
 
         }
             break;
-        case 5:
+        case 6:
         {//关于我们
             AboutUsViewController *AboutUs=[[AboutUsViewController alloc]init];
             [self.navigationController pushViewController:AboutUs animated:YES];
@@ -96,7 +102,7 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section==1) {
-         return 6;
+         return 7;
     }
     return 0;
 }
@@ -128,17 +134,23 @@
             break;
         case 3:
         {
+            cell.img.image=[UIImage imageNamed:@"icon_goods"];
+            cell.name.text=@"奇拜商品";
+        }
+            break;
+        case 4:
+        {
             cell.img.image=[UIImage imageNamed:@"icon_invite"];
             cell.name.text=@"邀请好友";
         }
             break;
-        case 4:
+        case 5:
         {
             cell.img.image=[UIImage imageNamed:@"icon_zhinan"];
             cell.name.text=@"使用指南";
         }
             break;
-        case 5:
+        case 6:
         {
             cell.img.image=[UIImage imageNamed:@"icon_guanyu"];
             cell.name.text=@"关于我们";
@@ -174,6 +186,12 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden=YES;
+}
+#pragma mark 接收代理方法通知回到首页
+-(void)dismiss{
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
 [self dismissViewControllerAnimated:YES completion:^{

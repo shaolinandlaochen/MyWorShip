@@ -304,7 +304,7 @@
     myViewCtrol.delegate=self;
     UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:myViewCtrol];
     nav.modalPresentationStyle = UIModalPresentationOverFullScreen;
-    nav.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;
+    nav.modalTransitionStyle=UIModalTransitionStyleCrossDissolve;
 
     [self presentViewController:nav animated:YES completion:^{
         nav.view.backgroundColor = [[UIColor clearColor] colorWithAlphaComponent:0.5];
