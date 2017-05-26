@@ -38,11 +38,19 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     switch (indexPath.row) {
         case 0:
-        {
+        {//我的消息
             MessageListViewController *MessageList=[[MessageListViewController alloc]init];
             [self.navigationController pushViewController:MessageList animated:YES];
         }
             break;
+        case 1:
+        {//我的钱包
+            WalletViewController *Wallet=[[WalletViewController alloc]init];
+            [self.navigationController pushViewController:Wallet animated:YES];
+        }
+            break;
+
+            
             
         default:
             break;
