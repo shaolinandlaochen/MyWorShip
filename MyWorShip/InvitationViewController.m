@@ -9,7 +9,9 @@
 #import "InvitationViewController.h"
 
 @interface InvitationViewController ()
-
+{
+    UIScrollView *_scrollView;
+}
 @end
 
 @implementation InvitationViewController
