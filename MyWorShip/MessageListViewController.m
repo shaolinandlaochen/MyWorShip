@@ -148,7 +148,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (index==0) {
         MessageCell *cell=[[MessageCell alloc]init];
-        cell.backgroundColor=[self colorWithHexString:@"f3f5f7"];
+        cell.backgroundColor=[self colorWithHexString:@"ffffff"];
         cell.nameTXT=@"我是名字";
         cell.redTXT=@"a";
         cell.timeTXT=@"2016-02-98";

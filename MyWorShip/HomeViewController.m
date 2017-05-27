@@ -239,7 +239,7 @@
     
     MAUserLocationRepresentation *r = [[MAUserLocationRepresentation alloc] init];
     //精度圈是否显示：
-    r.showsAccuracyRing = YES;///精度圈是否显示，默认YES
+    r.showsAccuracyRing = NO;///精度圈是否显示，默认YES
     //是否显示蓝点方向指向：
     r.showsHeadingIndicator = YES;///是否显示方向指示(MAUserTrackingModeFollowWithHeading模式开启)。默认为YES
     //调整精度圈填充颜色：
