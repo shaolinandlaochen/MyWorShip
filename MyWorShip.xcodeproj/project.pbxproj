@@ -254,6 +254,10 @@
 		9D9773ED1ED96BCD005EAC95 /* icon_zhifubao.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D9773E11ED96BCD005EAC95 /* icon_zhifubao.png */; };
 		9D9773EE1ED96BCD005EAC95 /* icon_zhifubao@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D9773E21ED96BCD005EAC95 /* icon_zhifubao@2x.png */; };
 		9D9773EF1ED96BCD005EAC95 /* icon_zhifubao@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D9773E31ED96BCD005EAC95 /* icon_zhifubao@3x.png */; };
+		9D9773F31ED97703005EAC95 /* initial_page@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D9773F01ED97703005EAC95 /* initial_page@3x.png */; };
+		9D9773F41ED97703005EAC95 /* initial_page@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D9773F11ED97703005EAC95 /* initial_page@2x.png */; };
+		9D9773F51ED97703005EAC95 /* initial_page.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D9773F21ED97703005EAC95 /* initial_page.png */; };
+		9D9773F71ED977D9005EAC95 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D9773F61ED977D9005EAC95 /* Images.xcassets */; };
 		F03DFB4F8BA6C4BBBE633D48 /* libPods-MyWorShip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A10E7D0553C7BC98CFE26DD /* libPods-MyWorShip.a */; };
 /* End PBXBuildFile section */
 
@@ -575,6 +579,10 @@
 		9D9773E11ED96BCD005EAC95 /* icon_zhifubao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_zhifubao.png; sourceTree = "<group>"; };
 		9D9773E21ED96BCD005EAC95 /* icon_zhifubao@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_zhifubao@2x.png"; sourceTree = "<group>"; };
 		9D9773E31ED96BCD005EAC95 /* icon_zhifubao@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_zhifubao@3x.png"; sourceTree = "<group>"; };
+		9D9773F01ED97703005EAC95 /* initial_page@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "initial_page@3x.png"; sourceTree = "<group>"; };
+		9D9773F11ED97703005EAC95 /* initial_page@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "initial_page@2x.png"; sourceTree = "<group>"; };
+		9D9773F21ED97703005EAC95 /* initial_page.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = initial_page.png; sourceTree = "<group>"; };
+		9D9773F61ED977D9005EAC95 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B1F76F225114F462ED6266F6 /* Pods-MyWorShip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWorShip.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyWorShip/Pods-MyWorShip.debug.xcconfig"; sourceTree = "<group>"; };
 		F4C3DF5CDFAB03E9178A1432 /* Pods-MyWorShip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWorShip.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyWorShip/Pods-MyWorShip.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -674,6 +682,7 @@
 				9D9771591ED41BB9005EAC95 /* Supporting Files */,
 				9D97718C1ED42989005EAC95 /* MyPCH.pch */,
 				9D9771941ED4330F005EAC95 /* imgs */,
+				9D9773F61ED977D9005EAC95 /* Images.xcassets */,
 			);
 			path = MyWorShip;
 			sourceTree = "<group>";
@@ -726,6 +735,9 @@
 		9D9771951ED4331B005EAC95 /* ios */ = {
 			isa = PBXGroup;
 			children = (
+				9D9773F01ED97703005EAC95 /* initial_page@3x.png */,
+				9D9773F11ED97703005EAC95 /* initial_page@2x.png */,
+				9D9773F21ED97703005EAC95 /* initial_page.png */,
 				9D9773D81ED96BCD005EAC95 /* circle_select.png */,
 				9D9773D91ED96BCD005EAC95 /* circle_select@2x.png */,
 				9D9773DA1ED96BCD005EAC95 /* circle_select@3x.png */,
@@ -1224,6 +1236,7 @@
 				9D9772A81ED66A6E005EAC95 /* btn_kk.png in Resources */,
 				9D9771BD1ED4331B005EAC95 /* icon_dingwei@3x.png in Resources */,
 				9D9773EB1ED96BCD005EAC95 /* icon_weixinpay@2x.png in Resources */,
+				9D9773F31ED97703005EAC95 /* initial_page@3x.png in Resources */,
 				9D9772681ED5802C005EAC95 /* icon_guanyu.png in Resources */,
 				9D9773691ED7F61B005EAC95 /* img_huodong_02.png in Resources */,
 				9D9773601ED7F61B005EAC95 /* icon_close.png in Resources */,
@@ -1339,6 +1352,7 @@
 				9D97736C1ED7F61B005EAC95 /* img_huodong_03.png in Resources */,
 				9D97737A1ED7F61B005EAC95 /* img_huodong_07@3x.png in Resources */,
 				9D9773911ED82140005EAC95 /* img_smile@2x.png in Resources */,
+				9D9773F51ED97703005EAC95 /* initial_page.png in Resources */,
 				9D9773681ED7F61B005EAC95 /* img_huodong_01@3x.png in Resources */,
 				9D9772AC1ED66A6E005EAC95 /* icon_back@2x.png in Resources */,
 				9D9772901ED6685F005EAC95 /* icon_add@2x.png in Resources */,
@@ -1357,6 +1371,7 @@
 				9D97737D1ED7F61B005EAC95 /* img_huodong_08@3x.png in Resources */,
 				9D9772D81ED6AA08005EAC95 /* bg_used@2x.png in Resources */,
 				9D9771BA1ED4331B005EAC95 /* btn_scan@3x.png in Resources */,
+				9D9773F71ED977D9005EAC95 /* Images.xcassets in Resources */,
 				9D9772E11ED6AA08005EAC95 /* img_used@2x.png in Resources */,
 				9D9771F01ED5281D005EAC95 /* shape_fold.png in Resources */,
 				9D9771661ED41BB9005EAC95 /* Assets.xcassets in Resources */,
@@ -1383,6 +1398,7 @@
 				9D97736A1ED7F61B005EAC95 /* img_huodong_02@2x.png in Resources */,
 				9D9772931ED6685F005EAC95 /* icon_delete@2x.png in Resources */,
 				9D9771C11ED4331B005EAC95 /* icon_fankui.png in Resources */,
+				9D9773F41ED97703005EAC95 /* initial_page@2x.png in Resources */,
 				9D9773771ED7F61B005EAC95 /* img_huodong_06@3x.png in Resources */,
 				9D9771F51ED5281D005EAC95 /* tips_youhui@3x.png in Resources */,
 				9D9771BF1ED4331B005EAC95 /* icon_down@2x.png in Resources */,
@@ -1685,6 +1701,7 @@
 			baseConfigurationReference = B1F76F225114F462ED6266F6 /* Pods-MyWorShip.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = 57H4K7W67N;
 				GCC_PREFIX_HEADER = "/Users/a123/Desktop/奇拜/MyWorShip/MyWorShip/MyPCH.pch";
 				INFOPLIST_FILE = MyWorShip/Info.plist;
@@ -1700,6 +1717,7 @@
 			baseConfigurationReference = F4C3DF5CDFAB03E9178A1432 /* Pods-MyWorShip.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = 57H4K7W67N;
 				GCC_PREFIX_HEADER = "/Users/a123/Desktop/奇拜/MyWorShip/MyWorShip/MyPCH.pch";
 				INFOPLIST_FILE = MyWorShip/Info.plist;
