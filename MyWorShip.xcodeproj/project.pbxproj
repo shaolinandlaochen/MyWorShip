@@ -241,6 +241,7 @@
 		9D9773D21ED9230F005EAC95 /* logo_login.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D9773C91ED9230F005EAC95 /* logo_login.png */; };
 		9D9773D31ED9230F005EAC95 /* logo_login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D9773CA1ED9230F005EAC95 /* logo_login@2x.png */; };
 		9D9773D41ED9230F005EAC95 /* logo_login@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D9773CB1ED9230F005EAC95 /* logo_login@3x.png */; };
+		9D9773D71ED9509E005EAC95 /* TopUpAmountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9773D61ED9509E005EAC95 /* TopUpAmountViewController.m */; };
 		F03DFB4F8BA6C4BBBE633D48 /* libPods-MyWorShip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A10E7D0553C7BC98CFE26DD /* libPods-MyWorShip.a */; };
 /* End PBXBuildFile section */
 
@@ -548,6 +549,8 @@
 		9D9773C91ED9230F005EAC95 /* logo_login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_login.png; sourceTree = "<group>"; };
 		9D9773CA1ED9230F005EAC95 /* logo_login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_login@2x.png"; sourceTree = "<group>"; };
 		9D9773CB1ED9230F005EAC95 /* logo_login@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_login@3x.png"; sourceTree = "<group>"; };
+		9D9773D51ED9509E005EAC95 /* TopUpAmountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopUpAmountViewController.h; sourceTree = "<group>"; };
+		9D9773D61ED9509E005EAC95 /* TopUpAmountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopUpAmountViewController.m; sourceTree = "<group>"; };
 		B1F76F225114F462ED6266F6 /* Pods-MyWorShip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWorShip.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyWorShip/Pods-MyWorShip.debug.xcconfig"; sourceTree = "<group>"; };
 		F4C3DF5CDFAB03E9178A1432 /* Pods-MyWorShip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWorShip.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyWorShip/Pods-MyWorShip.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -994,6 +997,8 @@
 				9D9773251ED7D20E005EAC95 /* TransactionDetailsCell.m */,
 				9D97738A1ED820B1005EAC95 /* TopUpResultsViewController.h */,
 				9D97738B1ED820B1005EAC95 /* TopUpResultsViewController.m */,
+				9D9773D51ED9509E005EAC95 /* TopUpAmountViewController.h */,
+				9D9773D61ED9509E005EAC95 /* TopUpAmountViewController.m */,
 			);
 			name = "钱包";
 			sourceTree = "<group>";
@@ -1458,6 +1463,7 @@
 				9D9772F51ED7B789005EAC95 /* MessageForDetailsViewController.m in Sources */,
 				9D9771DD1ED4348B005EAC95 /* MyButton.m in Sources */,
 				9D9772BB1ED6A32B005EAC95 /* PreferentialViewController.m in Sources */,
+				9D9773D71ED9509E005EAC95 /* TopUpAmountViewController.m in Sources */,
 				9D9772061ED5614D005EAC95 /* SGQRCodeConst.m in Sources */,
 				9D9772031ED5611E005EAC95 /* SGWebView.m in Sources */,
 				9D9773B21ED90E53005EAC95 /* UseGuideViewController.m in Sources */,

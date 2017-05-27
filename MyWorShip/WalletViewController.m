@@ -11,6 +11,7 @@
 #import "WalletOtherCell.h"
 #import "TransactionDetailsViewController.h"
 #import "TopUpResultsViewController.h"
+#import "TopUpAmountViewController.h"
 @interface WalletViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     UITableView *_tableView;
@@ -109,8 +110,12 @@ CANCEL
 }
 #pragma mark 充值
 -(void)onAddMoneyClick{
-    TopUpResultsViewController *TopUpResults=[[TopUpResultsViewController alloc]init];
-    [self.navigationController pushViewController:TopUpResults animated:YES];
+    TopUpAmountViewController *TopUpAmount=[[TopUpAmountViewController alloc]init];
+    [self.navigationController pushViewController:TopUpAmount animated:YES];
+    
+    
+//    TopUpResultsViewController *TopUpResults=[[TopUpResultsViewController alloc]init];
+//    [self.navigationController pushViewController:TopUpResults animated:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

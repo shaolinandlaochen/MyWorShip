@@ -94,36 +94,32 @@ CANCEL
         case 0:
         {
             GuideTheContent.stringName=@"注册";
+            
         }
             break;
         case 1:
         {//邀请好友
-            InvitationViewController *Invitation=[[InvitationViewController alloc]init];
-            [self.navigationController pushViewController:Invitation animated:YES];
+            GuideTheContent.stringName=@"邀请好友";
         }
             break;
         case 2:
         {
             GuideTheContent.stringName=@"优惠券问题";
-            [self.navigationController pushViewController:GuideTheContent animated:YES];
         }
             break;
         case 3:
         {
             GuideTheContent.stringName=@"联系我们";
-            [self.navigationController pushViewController:GuideTheContent animated:YES];
         }
             break;
         case 4:
         {
             GuideTheContent.stringName=@"联系我们";
-            [self.navigationController pushViewController:GuideTheContent animated:YES];
         }
             break;
         case 5:
         {//关于奇拜
-            AboutUsViewController *AboutUs=[[AboutUsViewController alloc]init];
-            [self.navigationController pushViewController:AboutUs animated:YES];
+            GuideTheContent.stringName=@"关于我们";
         }
             break;
         case 6:
@@ -136,7 +132,7 @@ CANCEL
         default:
             break;
     }
-
+   [self.navigationController pushViewController:GuideTheContent animated:YES];
     
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
