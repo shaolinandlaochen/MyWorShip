@@ -45,7 +45,11 @@
     // Do any additional setup after loading the view.
 }
 -(void)onButtonClick{
-    [self.navigationController popViewControllerAnimated:YES];
+    for (UIViewController *controller in self.navigationController.viewControllers) {
+        if ([controller isKindOfClass:[WalletViewController class]]) {
+            [self.navigationController popToViewController:controller animated:YES];
+        }
+    }
 }
 CANCEL
 - (void)didReceiveMemoryWarning {
