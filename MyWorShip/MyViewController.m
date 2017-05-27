@@ -71,6 +71,8 @@
             break;
         case 5:
         {//使用指南
+            UseGuideViewController *UseGuide=[[UseGuideViewController alloc]init];
+            [self.navigationController pushViewController:UseGuide animated:YES];
 
         }
             break;

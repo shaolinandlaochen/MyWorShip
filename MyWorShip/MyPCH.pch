@@ -42,6 +42,7 @@
 #import "AboutUsViewController.h"//关于我们
 #import "InvitationViewController.h"//邀请
 #import "GoodsViewController.h"//商品
+#import "UseGuideViewController.h"//使用指南
 
 
 
