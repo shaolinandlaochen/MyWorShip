@@ -9,7 +9,7 @@
 #import "MyViewController.h"
 #import "MyCell.h"
 #import "PersonalDataView.h"
-@interface MyViewController ()<UITableViewDelegate,UITableViewDataSource,InvitationDelegate>
+@interface MyViewController ()<UITableViewDelegate,UITableViewDataSource,InvitationDelegate,LoginDelegate>
 {
     UITableView *_tablleView;
     PersonalDataView *_view;
@@ -172,6 +172,7 @@
     if (section==0) {
         _view.backgroundColor=[UIColor whiteColor];
         [_view.iconHead setBackgroundImage:[UIImage imageNamed:@"img_touxiang_home"] forState:UIControlStateNormal];
+        [_view.iconHead addTarget:self action:@selector(onGoLoginClick) forControlEvents:UIControlEventTouchUpInside];
         _view.name.text=@"15738811111";
         _view.money.text=@"钱包余额:200.00";
     }
@@ -201,6 +202,19 @@
 [self dismissViewControllerAnimated:YES completion:^{
     
 }];
+}
+#pragma mark 登录
+-(void)onGoLoginClick{
+    LoginViewController *Login =[[LoginViewController alloc]init];
+    Login.delegate=self;
+    UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:Login];
+    [self presentViewController:nav animated:YES completion:^{
+        //nav.view.backgroundColor = [[UIColor clearColor] colorWithAlphaComponent:0.5];
+    }];
+}
+#pragma mark 登陆成功代理
+-(void)LoginSuccessful{
+
 }
 /*
 #pragma mark - Navigation
