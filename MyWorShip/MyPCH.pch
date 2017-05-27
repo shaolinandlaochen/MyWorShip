@@ -51,7 +51,31 @@
 
 #define WIDTH [UIScreen mainScreen].bounds.size.width
 #define HEIGHT [UIScreen mainScreen].bounds.size.height
+#define SCREENHEIGHT [UIScreen mainScreen].bounds.size.height
+#define SCREENWIDTH [UIScreen mainScreen].bounds.size.width
 
+#define autoSize float autoSizeScaleX;\
+float autoSizeScaleY;\
+if (SCREENHEIGHT == 480)\
+{\
+autoSizeScaleX = SCREENWIDTH / 750;\
+autoSizeScaleY = SCREENHEIGHT / 1334;\
+}\
+else if (SCREENHEIGHT == 568)\
+{\
+autoSizeScaleX = SCREENWIDTH / 750;\
+autoSizeScaleY = SCREENHEIGHT / 1334;\
+}\
+else if (SCREENHEIGHT == 667)\
+{\
+autoSizeScaleX = SCREENWIDTH/750;\
+autoSizeScaleY = SCREENHEIGHT/1334;\
+}\
+else\
+{\
+autoSizeScaleX = SCREENWIDTH/750;\
+autoSizeScaleY = SCREENHEIGHT/1334;\
+}
 
 
 #define lfteItemAndColor MyButton *leftCancel=[MyButton buttonWithType:UIButtonTypeCustom]; [leftCancel setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal]; [leftCancel addTarget:self  action:@selector(onCancelClick) forControlEvents:UIControlEventTouchUpInside]; [leftCancel sizeToFit]; UIBarButtonItem *inforItem = [[UIBarButtonItem alloc] initWithCustomView:leftCancel]; self.navigationItem.leftBarButtonItems  = @[inforItem]; self.view.backgroundColor=[self colorWithHexString:@"f3f5f7"]; [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[self colorWithHexString:@"ffffff"]}]; [self.navigationController.navigationBar setBarTintColor:[[UIColor blackColor]colorWithAlphaComponent:0.9]];

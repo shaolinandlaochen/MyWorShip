@@ -10,7 +10,6 @@
 
 @interface LoginViewController ()
 {
-    UIScrollView *_scrollView;
     UITextField *_phoneNmuber;//手机号码
     UITextField *_codeNmuber;//验证码
     MyButton *_codeButton;//获取验证码
@@ -23,42 +22,38 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    RECTSTATUS
+    autoSize
     self.view.backgroundColor=[self colorWithHexString:@"ffffff"];
-    _scrollView=[[UIScrollView alloc]init];
-    _scrollView.backgroundColor=[self colorWithHexString:@"ffffff"];
-    [self.view addSubview:_scrollView];
-    _scrollView.sd_layout.leftSpaceToView(self.view, 0).topSpaceToView(self.view, -rectStatus.size.height).rightSpaceToView(self.view, 0).bottomSpaceToView(self.view, 0);
-    _scrollView.contentSize=CGSizeMake(0, 667);
+
     
     UIView *view=[[UIView alloc]init];
     view.backgroundColor=[self colorWithHexString:@"ff5763"];
-    [_scrollView addSubview:view];
-    view.sd_layout.leftSpaceToView(_scrollView, 0).topSpaceToView(_scrollView, 0).rightSpaceToView(_scrollView, 0).heightIs(364);
+    [self.view addSubview:view];
+    view.sd_layout.leftSpaceToView(self.view, 0).topSpaceToView(self.view, 0).rightSpaceToView(self.view, 0).bottomSpaceToView(self.view, 605*autoSizeScaleY);
     
     UILabel *lblTitle=[[UILabel alloc]init];
     lblTitle.textColor=[UIColor whiteColor];
     lblTitle.text=@"登录";
     lblTitle.textAlignment=NSTextAlignmentCenter;
     lblTitle.font=[UIFont systemFontOfSize:17];
-    [_scrollView addSubview:lblTitle];
-    lblTitle.sd_layout.leftSpaceToView(_scrollView, 0).topSpaceToView(_scrollView, 34.5).rightSpaceToView(_scrollView, 0).heightIs(16);
+    [self.view addSubview:lblTitle];
+    lblTitle.sd_layout.leftSpaceToView(self.view, 0).topSpaceToView(self.view, 69*autoSizeScaleY).rightSpaceToView(self.view, 0).heightIs(32*autoSizeScaleY);
     
     UIImageView *imgA=[[UIImageView alloc]init];
     imgA.image=[UIImage imageNamed:@"logo_login"];
-    [_scrollView addSubview:imgA];
-    imgA.sd_layout.leftSpaceToView(_scrollView, (WIDTH-127)/2).topSpaceToView(lblTitle, 40).rightSpaceToView(_scrollView, (WIDTH-127)/2).heightIs(96);
+    [self.view addSubview:imgA];
+    imgA.sd_layout.leftSpaceToView(self.view, 248*autoSizeScaleX).topSpaceToView(lblTitle, 80*autoSizeScaleY).rightSpaceToView(self.view, 248*autoSizeScaleX).heightIs(192*autoSizeScaleY);
     
     UIImageView *imgB=[[UIImageView alloc]init];
     imgB.image=[UIImage imageNamed:@"img_login"];
-    [_scrollView addSubview:imgB];
-    imgB.sd_layout.leftSpaceToView(_scrollView, (WIDTH-151)/2).topSpaceToView(imgA, 28).rightSpaceToView(_scrollView, (WIDTH-151)/2).heightIs(151);
+    [self.view addSubview:imgB];
+    imgB.sd_layout.leftSpaceToView(self.view, (WIDTH-151)/2).bottomSpaceToView(self.view, 603*autoSizeScaleY).rightSpaceToView(self.view, (WIDTH-151)/2).heightIs(151);
     
     UIImageView *imgC=[[UIImageView alloc]init];
     imgC.image=[UIImage imageNamed:@"kk_login"];
     imgC.userInteractionEnabled=YES;
-    [_scrollView addSubview:imgC];
-    imgC.sd_layout.leftSpaceToView(_scrollView, 30.5).topSpaceToView(imgB, 30.5).rightSpaceToView(_scrollView, 30.5).heightIs(112);
+    [self.view addSubview:imgC];
+    imgC.sd_layout.leftSpaceToView(self.view, 30.5).topSpaceToView(imgB, 61*autoSizeScaleY).rightSpaceToView(self.view, 30.5).heightIs(112);
     
     _phoneNmuber=[[UITextField alloc]init];
     _phoneNmuber.textColor=[self colorWithHexString:@"000000"];
@@ -108,8 +103,8 @@
     _GoLoginBtn.layer.cornerRadius=22;
     _GoLoginBtn.backgroundColor=[self colorWithHexString:@"d8d8d8"];
     [_GoLoginBtn addTarget:self action:@selector(onLoginClick) forControlEvents:UIControlEventTouchUpInside];
-    [_scrollView addSubview:_GoLoginBtn];
-    _GoLoginBtn.sd_layout.leftSpaceToView(_scrollView, 30).topSpaceToView(imgC, 33).rightSpaceToView(_scrollView, 30).heightIs(45);
+    [self.view addSubview:_GoLoginBtn];
+    _GoLoginBtn.sd_layout.leftSpaceToView(self.view, 30).topSpaceToView(imgC, 67*autoSizeScaleY).rightSpaceToView(self.view, 30).heightIs(45);
     
     
     NSMutableAttributedString *strString = [[NSMutableAttributedString alloc] initWithString:@"点击开始即表示您同意<<奇拜使用条款>>"];
@@ -119,8 +114,8 @@
     [termsBtn setAttributedTitle:strString forState:UIControlStateNormal];
     termsBtn.titleLabel.font=[UIFont systemFontOfSize:13];
     [termsBtn addTarget:self action:@selector(onTermsClick) forControlEvents:UIControlEventTouchUpInside];
-    [_scrollView addSubview:termsBtn];
-    termsBtn.sd_layout.leftSpaceToView(_scrollView, 20).rightSpaceToView(_scrollView, 20).topSpaceToView(_GoLoginBtn, 11).heightIs(15);
+    [self.view addSubview:termsBtn];
+    termsBtn.sd_layout.leftSpaceToView(self.view, 20).rightSpaceToView(self.view, 20).topSpaceToView(_GoLoginBtn, 11).heightIs(15);
     
     
     // Do any additional setup after loading the view.
