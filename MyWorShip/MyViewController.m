@@ -21,8 +21,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];//状态栏高度
-    _tablleView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, 0, 0) style:UITableViewStylePlain];
+   //  CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];//状态栏高度
+    _tablleView=[[UITableView alloc]initWithFrame:CGRectMake(-(self.view.frame.size.width-94), 0, self.view.frame.size.width-94, self.view.frame.size.height) style:UITableViewStylePlain];
     _tablleView.delegate=self;
     _tablleView.dataSource=self;
     _tablleView.scrollEnabled=NO;
@@ -30,9 +30,15 @@
     _tablleView.separatorColor=[UIColor clearColor];
     _tablleView.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:_tablleView];
-    _tablleView.sd_layout.leftSpaceToView(self.view, 0).topSpaceToView(self.view, -rectStatus.size.height).bottomSpaceToView(self.view, 0).rightSpaceToView(self.view, 94);
-
+    [self AnimationDisplay];
     // Do any additional setup after loading the view.
+}
+#pragma mark 动画
+-(void)AnimationDisplay{
+[UIView animateWithDuration:0.3 animations:^{
+    _tablleView.frame=CGRectMake(0, 0, self.view.frame.size.width-94, self.view.frame.size.height);
+    self.view.backgroundColor=[[UIColor clearColor]colorWithAlphaComponent:0.5];
+}];
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -199,9 +205,14 @@
     }];
 }
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-[self dismissViewControllerAnimated:YES completion:^{
-    
-}];
+    [UIView animateWithDuration:0.3 animations:^{
+        _tablleView.frame=CGRectMake(-(self.view.frame.size.width-94), 0, self.view.frame.size.width-94, self.view.frame.size.height);
+        self.view.backgroundColor=[[UIColor clearColor]colorWithAlphaComponent:0];
+        [self dismissViewControllerAnimated:YES completion:^{
+            
+        }];
+    }];
+
 }
 #pragma mark 登录 (点击头像执行该方法)
 -(void)onGoLoginClick{

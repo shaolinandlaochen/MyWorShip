@@ -355,10 +355,8 @@
     nav.modalTransitionStyle=UIModalTransitionStyleCrossDissolve;
 
     [self presentViewController:nav animated:YES completion:^{
-        nav.view.backgroundColor = [[UIColor clearColor] colorWithAlphaComponent:0.5];
+        nav.view.backgroundColor = [[UIColor clearColor] colorWithAlphaComponent:0.0];
     }];
-
-
 }
 /**
  * @brief 地图区域改变完成后会调用此接口
