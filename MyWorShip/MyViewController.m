@@ -203,7 +203,7 @@
     
 }];
 }
-#pragma mark 登录
+#pragma mark 登录 (点击头像执行该方法)
 -(void)onGoLoginClick{
     LoginViewController *Login =[[LoginViewController alloc]init];
     Login.delegate=self;

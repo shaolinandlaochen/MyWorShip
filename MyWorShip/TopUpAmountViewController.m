@@ -8,6 +8,7 @@
 
 #import "TopUpAmountViewController.h"
 #import "TopUpResultsViewController.h"
+#import "GuideTheContentViewController.h"
 @interface TopUpAmountViewController ()
 
 @end
@@ -235,7 +236,9 @@
 }
 #pragma mark 点击协议执行该方法
 -(void)onChargeBackToActiveProtocolClick{
-
+    GuideTheContentViewController *GuideTheContent=[[GuideTheContentViewController alloc]init];
+    GuideTheContent.stringName=@"充返活动协议";
+    [self.navigationController pushViewController:GuideTheContent animated:YES];
 }
 CANCEL
 -(void)viewWillAppear:(BOOL)animated{

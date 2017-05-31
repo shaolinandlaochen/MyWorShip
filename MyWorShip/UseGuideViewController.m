@@ -124,7 +124,7 @@ CANCEL
             break;
         case 6:
         {
-            GuideTheContent.stringName=@"用户协议";
+            GuideTheContent.stringName=@"用户服务协议";
         }
             break;
             

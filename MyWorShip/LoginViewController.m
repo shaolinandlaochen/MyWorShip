@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "GuideTheContentViewController.h"
 
 @interface LoginViewController ()
 {
@@ -166,6 +167,10 @@
 }
 #pragma  mark 点击条款执行该方法
 -(void)onTermsClick{
+    GuideTheContentViewController *GuideTheContent=[[GuideTheContentViewController alloc]init];
+    GuideTheContent.stringName=@"用户服务协议";
+    [self.navigationController pushViewController:GuideTheContent animated:YES];
+    
 
 }
 - (void)didReceiveMemoryWarning {
