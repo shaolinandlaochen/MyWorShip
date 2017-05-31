@@ -14,7 +14,6 @@
     LocationAnnotationView *_locationAnnotationView;
     MyImage *_BjImage;
     MyButton *_location;
-    
 }
 @end
 
@@ -26,8 +25,16 @@
     [self addLeftItemAndRightItem];
     [self AddAMap];
     [self AddAllViews];
-   
     // Do any additional setup after loading the view.
+}
+
+#pragma mark 点击大头针执行该方法
+- (void)mapView:(MAMapView *)mapView didSelectAnnotationView:(MAAnnotationView *)view
+{
+    CLLocationCoordinate2D coorinate = [view.annotation coordinate];
+    
+    NSLog(@"点击大头针执行该方法 = {%f, %f}", coorinate.latitude, coorinate.longitude);
+    
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -134,11 +141,13 @@
     
     
 }
-#pragma mark 点击定位或者反馈
+#pragma mark 点击定位回到初始位置或者反馈
 -(void)PositioningAndFeedback:(MyButton *)btn{
     if (btn.tag==3) {
         //定位
-
+        if(_mapView.userLocation.updating && _mapView.userLocation.location) {
+            [_mapView setCenterCoordinate:_mapView.userLocation.location.coordinate animated:YES];
+        }
     }else{
     //反馈
         TeasingViewController *Teasing=[[TeasingViewController alloc]init];
@@ -372,9 +381,7 @@
 }
 #pragma mark 插入大头针
 -(void)MrPin:(MAMapView *)mapView{
-    
 
-    
     //扎大头针
     MAPointAnnotation *APin = [[MAPointAnnotation alloc] init];
     APin.coordinate = CLLocationCoordinate2DMake(mapView.centerCoordinate.latitude+0.0005, mapView.centerCoordinate.longitude+0.0003);
@@ -383,10 +390,9 @@
     
     [_mapView addAnnotation:APin];
 }
-#pragma mark 视图伸缩
--(void)scaling:(BOOL)isScaling{
 
-}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
