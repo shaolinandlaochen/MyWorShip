@@ -248,7 +248,7 @@
     AudioServicesPlaySystemSound(soundID); // 播放音效
 }
 -(void)bofang{
-    SystemSoundID soundID = 1024;//具体参数详情下面贴出来
+    SystemSoundID soundID = 1055;//具体参数详情下面贴出来
     //播放声音
     AudioServicesPlaySystemSound(soundID);
 }
