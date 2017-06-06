@@ -8,7 +8,7 @@
 
 #import "LoginViewController.h"
 #import "GuideTheContentViewController.h"
-
+#import "LoginRequest.h"
 @interface LoginViewController ()
 {
     UITextField *_phoneNmuber;//手机号码
@@ -16,6 +16,7 @@
     MyButton *_codeButton;//获取验证码
     MyButton *_GoLoginBtn;//登录按钮
     NSTimer *timer;
+    int index;
 }
 @end
 
@@ -26,7 +27,7 @@
     autoSize
     self.view.backgroundColor=[self colorWithHexString:@"ffffff"];
 
-    
+    index=0;
     UIView *view=[[UIView alloc]init];
     view.backgroundColor=[self colorWithHexString:@"ff5763"];
     [self.view addSubview:view];
@@ -102,6 +103,7 @@
     _GoLoginBtn.titleLabel.font=[UIFont systemFontOfSize:17];
     _GoLoginBtn.layer.masksToBounds=22;
     _GoLoginBtn.layer.cornerRadius=22;
+    _GoLoginBtn.userInteractionEnabled=NO;
     _GoLoginBtn.backgroundColor=[self colorWithHexString:@"d8d8d8"];
     [_GoLoginBtn addTarget:self action:@selector(onLoginClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_GoLoginBtn];
@@ -123,22 +125,36 @@
 }
 #pragma mark 获取短信验证码
 -(void)onCodeCkick{
+    if ([_phoneNmuber.text length]==11) {
+        [SVProgressHUD showWithStatus:loading];
+        [LoginRequest TheCode:_phoneNmuber.text block:^(NSDictionary *dic) {
+            CodeIsBaseClass *class=[[CodeIsBaseClass alloc]initWithDictionary:[self deleteEmpty:dic]];
+            if ([class.code isEqualToString:@"1"]) {
+                //获取验证码成功
+                [timer invalidate];
+                timer = nil;
+                index=class.time;
+                timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(action) userInfo:nil repeats:YES];
+            }else{
+            [SVProgressHUD showErrorWithStatus:class.msg];
+            }
+        }];
+    }else{
+        [SVProgressHUD showErrorWithStatus:@"请正确输入手机号码"];
+    }
     
-    //获取验证码成功
-    [timer invalidate];
-    timer = nil;
-    timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(action) userInfo:nil repeats:YES];
+    
+
 }
 #pragma mark 定时器方法
 -(void)action{
-    NSLog(@"sssssss");
-    static int i=60;
-    if (i>0) {
-        i-=1;
-        NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%ds",i]];
+    
+    if (index>0) {
+        index-=1;
+        NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%ds",index]];
         [_codeButton setAttributedTitle:str forState:UIControlStateNormal];
     }else{
-        i=60;
+        index=0;
         NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"点击获取验证码"];
         NSRange strRange = {0,[str length]};
         [str addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:strRange];
@@ -151,17 +167,35 @@
 }
 #pragma mark 登录
 -(void)onLoginClick{
-[self dismissViewControllerAnimated:YES completion:^{
+    [SVProgressHUD showWithStatus:loading];
+    [LoginRequest TheLoginRequestPhone:_phoneNmuber.text code:_codeNmuber.text block:^(NSDictionary *dic) {
+        LoginsIsBaseClass *class=[[LoginsIsBaseClass alloc]initWithDictionary:[self deleteEmpty:dic]];
+        if ([class.code isEqualToString:@"2"]) {
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:class.token forKey:@"token"];
+            //同步数据
+            [defaults synchronize];
+            [self dismissViewControllerAnimated:YES completion:^{
+                [_delegate LoginSuccessful];
+            }];
+             [SVProgressHUD showErrorWithStatus:class.msg];
+        }else{
+            [SVProgressHUD showErrorWithStatus:class.msg];
+        }
+       
+    }];
     
-}];
+
 }
 #pragma mark 捕捉输入框输入内容
 -(void)textChange:(UITextField *)tf{
 
     if ([_codeNmuber.text length]>0&&[_phoneNmuber.text length]==11) {
         _GoLoginBtn.backgroundColor=[self colorWithHexString:@"ff5763"];
+        _GoLoginBtn.userInteractionEnabled=YES;
     }else{
-    _GoLoginBtn.backgroundColor=[self colorWithHexString:@"d8d8d8"];
+        _GoLoginBtn.backgroundColor=[self colorWithHexString:@"d8d8d8"];
+        _GoLoginBtn.userInteractionEnabled=NO;
     }
     
 }
@@ -177,11 +211,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-[self dismissViewControllerAnimated:YES completion:^{
-    
-}];
-}
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden=YES;

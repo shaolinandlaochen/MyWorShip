@@ -9,6 +9,7 @@
 #import "MyViewController.h"
 #import "MyCell.h"
 #import "PersonalDataView.h"
+#import "MyRequest.h"
 @interface MyViewController ()<UITableViewDelegate,UITableViewDataSource,InvitationDelegate,LoginDelegate>
 {
     UITableView *_tablleView;
@@ -176,11 +177,17 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     _view=[[PersonalDataView alloc]init];
     if (section==0) {
+       
+       
         _view.backgroundColor=[UIColor whiteColor];
         [_view.iconHead setBackgroundImage:[UIImage imageNamed:@"img_touxiang_home"] forState:UIControlStateNormal];
         [_view.iconHead addTarget:self action:@selector(onGoLoginClick) forControlEvents:UIControlEventTouchUpInside];
-        _view.name.text=@"15738811111";
-        _view.money.text=@"钱包余额:200.00";
+        if (self.dataDic!=nil) {
+             BasicInformationBaseClass *class=[[BasicInformationBaseClass alloc]initWithDictionary:[self deleteEmpty:self.dataDic]];
+            _view.name.text=[NSString stringWithFormat:@"%@",class.info.basePhone];
+            _view.money.text=@"钱包余额:200.00";
+        }
+       
     }
 
     return _view;
@@ -197,6 +204,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden=YES;
+    [self LoginSuccessful];
 }
 #pragma mark 接收代理方法通知回到首页
 -(void)dismiss{
@@ -226,7 +234,17 @@
 #pragma mark 登陆成功代理
 -(void)LoginSuccessful{
 
+    [MyRequest AccessToEssentialInformationBLOCK:^(NSDictionary *dic) {
+        BasicInformationBaseClass *class=[[BasicInformationBaseClass alloc]initWithDictionary:[self deleteEmpty:dic]];
+        if ([class.code isEqualToString:@"10"]) {
+            self.dataDic=[self deleteEmpty:dic];
+            [_tablleView reloadData];
+        }else{
+            [SVProgressHUD showErrorWithStatus:class.msg];
+        }
+    }];
 }
+
 /*
 #pragma mark - Navigation
 

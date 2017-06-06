@@ -7,7 +7,7 @@
 //
 
 #import "MyClass.h"
-
+#import <CommonCrypto/CommonCrypto.h>
 @interface MyClass ()
 
 @end
@@ -74,7 +74,7 @@
 }
 
 #pragma mark 检测网络
--(BOOL)DoYouHaveAnyNetwork{
++(BOOL)DoYouHaveAnyNetwork{
     NSString *State=@"没有网";
     UIApplication *app = [UIApplication sharedApplication];
     NSArray *children = [[[app valueForKeyPath:@"statusBar"]valueForKeyPath:@"foregroundView"]subviews];
@@ -113,10 +113,141 @@
         return YES;
     }
 }
+#pragma mark -登录
++(void)theLogin{
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"MonitorTheLoginNotifications" object:nil];
+    
+}
+
+//下面是MD5加密
+
+#pragma mark - 32位 小写
++(NSString *)MD5ForLower32Bate:(NSString *)str{
+    
+    //要进行UTF8的转码
+    const char* input = [str UTF8String];
+    unsigned char result[CC_MD5_DIGEST_LENGTH];
+    CC_MD5(input, (CC_LONG)strlen(input), result);
+    
+    NSMutableString *digest = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
+    for (NSInteger i = 0; i < CC_MD5_DIGEST_LENGTH; i++) {
+        [digest appendFormat:@"%02x", result[i]];
+    }
+    
+    return digest;
+}
+
+
+#pragma mark - 签名键值对排序
++(NSString *)TheKeyValueSequence:(NSDictionary *)dic{
+    
+    NSArray *keysArray = [dic allKeys];//获取所有键存到数组
+    NSArray *sortedArray = [keysArray sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2){
+        return [obj1 compare:obj2 options:NSNumericSearch];
+    }];//由于allKeys返回的是无序数组，这里我们要排列它们的顺序
+    NSMutableArray *keysNameArray=[NSMutableArray arrayWithCapacity:0];
+    for (NSString *key in sortedArray) {
+        // NSString *value = [dic objectForKey: key];
+        // NSLog(@"排列的值:%@",value);
+        [keysNameArray addObject:key];
+    }
+    
+    NSString *url;
+    for (int i=0; i<keysNameArray.count; i++) {
+        NSString *keys=keysNameArray[i];
+        
+        if (i==0) {
+            url=[NSString stringWithFormat:@"%@=%@",keys,[dic objectForKey:keys]];
+        }else{
+            url=[NSString stringWithFormat:@"%@&%@=%@",url,keys,[dic objectForKey:keys]];
+        }
+    }
+    
+    NSString *stringSurl=[NSString stringWithFormat:@"%@*SHOP*",url];
+    NSLog(@"拼接好的字符串%@",stringSurl);
+    return stringSurl;
+}
+#pragma mark - //获取时间戳
++(NSInteger)timeStamp{
+    //时间戳
+    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval a=[dat timeIntervalSince1970]*1000;
+    NSString *timeString = [NSString stringWithFormat:@"%f", a];
+    
+    return [timeString integerValue];
+}
+#pragma mark - 传入字典添加数据返回完整的数据
++(NSDictionary *)ReceiveTheOriginalData:(NSDictionary *)dic{
+     
+    NSArray *keysArray = [dic allKeys];
+    NSMutableDictionary *dataDic=[[NSMutableDictionary alloc]init];
+    if ([MyClass DoYouHaveAnyNetwork]) {//检测一下网络
+        [dataDic setObject:@([MyClass timeStamp]) forKey:@"timestamp"];//添加时间戳
+        if ([tokenString length]>0) {
+            [dataDic setObject:tokenString forKey:@"token"];
+        }
+        for (int i=0; i<keysArray.count; i++) {
+            NSString *key=[NSString stringWithFormat:@"%@",keysArray[i]];
+            [dataDic setObject:[dic objectForKey:key] forKey:key];
+        }
+        
+        NSString *string=[MyClass TheKeyValueSequence:dataDic];//去排序
+        NSString *sign=[MyClass MD5ForLower32Bate:string];//签名
+        [dataDic setObject:sign forKey:@"sign"];
+        
+
+    }else{
+        [SVProgressHUD dismiss];
+        [SVProgressHUD showErrorWithStatus:@"网络连接错误"];
+    }
+    return dataDic;//返回添加完毕数据也签名完毕的数据
+    
+}
+#pragma mark 单纯的排序
++(NSString *)SimpleSorting:(NSDictionary *)dataDic{
+    
+    NSArray *keysArray = [dataDic allKeys];//获取所有键存到数组
+    NSArray *sortedArray = [keysArray sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2){
+        return [obj1 compare:obj2 options:NSNumericSearch];
+    }];//由于allKeys返回的是无序数组，这里我们要排列它们的顺序
+    NSMutableArray *keysNameArray=[NSMutableArray arrayWithCapacity:0];
+    for (NSString *key in sortedArray) {
+        // NSString *value = [dic objectForKey: key];
+        // NSLog(@"排列的值:%@",value);
+        [keysNameArray addObject:key];
+    }
+    
+    NSString *url;
+    for (int i=0; i<keysNameArray.count; i++) {
+        NSString *keys=keysNameArray[i];
+        
+        if (i==0) {
+            url=[NSString stringWithFormat:@"%@=%@",keys,[dataDic objectForKey:keys]];
+        }else{
+            url=[NSString stringWithFormat:@"%@&%@=%@",url,keys,[dataDic objectForKey:keys]];
+        }
+    }
+    
+    
+    return url;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+//需要重新登录
++(void)YouNeedToLogIn:(NSString *)message{
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:@"" forKey:@"token"];
+    //同步数据
+    [defaults synchronize];
+    [SVProgressHUD showErrorWithStatus:@"请您先去登录"];
+}
+
+
+
+
 
 /*
 #pragma mark - Navigation

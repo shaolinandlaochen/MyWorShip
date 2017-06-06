@@ -18,4 +18,5 @@
 @end
 @interface MyViewController : MyClass
 @property(nonatomic,assign)id delegate;
+@property(nonatomic,strong)NSDictionary *dataDic;
 @end

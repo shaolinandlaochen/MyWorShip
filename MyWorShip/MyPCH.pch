@@ -44,7 +44,16 @@
 #import "GoodsViewController.h"//商品
 #import "UseGuideViewController.h"//使用指南
 #import "LoginViewController.h"//登录
+#import "RequestClass.h"//请求
+#import "NSObject+DeleteArrOrDeleteDicBothNull.h"//空数据过滤
+#import "DataModels.h"//模型类
 
+
+#define RequestUrl @"http://192.168.88.18:8080//yb_app/"//api
+//宏定义token
+#define tokenString [[NSUserDefaults standardUserDefaults]valueForKey:@"token"]
+//正在加载你
+#define loading @"正在加载"
 
 #define SGQRCodeLog(...) NSLog(__VA_ARGS__)
 
