@@ -38,7 +38,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.title=@"奇拜";
+    self.title=@"月拜";
     self.view.backgroundColor=[self colorWithHexString:@"f3f5f7"];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[self colorWithHexString:@"ff4e54"]}];
     [self.navigationController.navigationBar setBarTintColor:[[UIColor blackColor]colorWithAlphaComponent:0.9]];
@@ -128,7 +128,7 @@
     name.textColor=[UIColor whiteColor];
     name.font=[UIFont systemFontOfSize:20];
     name.textAlignment=NSTextAlignmentCenter;
-    name.text=@"扫描奇拜";
+    name.text=@"扫描月拜";
     [scanning addSubview:name];
     name.sd_layout.leftSpaceToView(scanning, 0).rightSpaceToView(scanning, 0).topSpaceToView(scanning1, 16).autoHeightRatio(0);
     
@@ -202,7 +202,7 @@
             SGQRCodeScanningVC *vc = [[SGQRCodeScanningVC alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
         } else if (status == AVAuthorizationStatusDenied) { // 用户拒绝当前应用访问相机
-            UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"⚠️ 警告" message:@"请去-> [设置 - 隐私 - 相机 - 奇拜] 打开访问开关" preferredStyle:(UIAlertControllerStyleAlert)];
+            UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"⚠️ 警告" message:@"请去-> [设置 - 隐私 - 相机 - 月拜] 打开访问开关" preferredStyle:(UIAlertControllerStyleAlert)];
             UIAlertAction *alertA = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
                 
             }];

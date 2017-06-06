@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title=@"关于奇拜";
+    self.title=@"关于月拜";
     lfteItemAndColor
     UIImageView *img=[[UIImageView alloc]init];
     img.image=[UIImage imageNamed:@"logo_guanyu"];
@@ -25,7 +25,7 @@
     UILabel *lbl=[[UILabel alloc]init];
     lbl.textColor=[self colorWithHexString:@"000000"];
     lbl.font=[UIFont systemFontOfSize:14];
-    lbl.text=@"奇拜共享是全球第一个共享厕所平台,首创'厕所共享'模式,用户只需在微信服务号或者APP搜索,即可导航至厕所.";
+    lbl.text=@"月拜共享是全球第一个共享厕所平台,首创'厕所共享'模式,用户只需在微信服务号或者APP搜索,即可导航至厕所.";
     lbl.numberOfLines=0;
     [self.view addSubview:lbl];
     lbl.sd_layout.leftSpaceToView(self.view, 19).topSpaceToView(img, 6.5).rightSpaceToView(self.view, 19).autoHeightRatio(0);

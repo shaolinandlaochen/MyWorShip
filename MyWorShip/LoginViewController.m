@@ -110,7 +110,7 @@
     _GoLoginBtn.sd_layout.leftSpaceToView(self.view, 30).topSpaceToView(imgC, 67*autoSizeScaleY).rightSpaceToView(self.view, 30).heightIs(45);
     
     
-    NSMutableAttributedString *strString = [[NSMutableAttributedString alloc] initWithString:@"点击开始即表示您同意<<奇拜使用条款>>"];
+    NSMutableAttributedString *strString = [[NSMutableAttributedString alloc] initWithString:@"点击开始即表示您同意<<月拜使用条款>>"];
      [strString addAttribute:NSForegroundColorAttributeName value:[self colorWithHexString:@"3a3a3a"] range:NSMakeRange(0,10)];
      [strString addAttribute:NSForegroundColorAttributeName value:[self colorWithHexString:@"ff4c59"] range:NSMakeRange(10,10)];
     UIButton *termsBtn=[UIButton buttonWithType:UIButtonTypeCustom];

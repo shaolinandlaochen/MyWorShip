@@ -19,7 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title=@"奇拜商品";
+    self.title=@"月拜商品";
     lfteItemAndColor
     _tableView=[[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
     _tableView.backgroundColor=[self colorWithHexString:@"f3f5f7"];

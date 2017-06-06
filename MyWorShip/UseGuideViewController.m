@@ -118,7 +118,7 @@ CANCEL
         }
             break;
         case 5:
-        {//关于奇拜
+        {//关于月拜
             GuideTheContent.stringName=@"关于我们";
         }
             break;
@@ -211,7 +211,7 @@ CANCEL
                 break;
             case 5:
             {
-                cell.context.text=@"关于奇拜";
+                cell.context.text=@"关于月拜";
             }
                 break;
             case 6:

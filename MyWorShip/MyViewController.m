@@ -63,7 +63,7 @@
         }
             break;
         case 3:
-        {//奇拜商品
+        {//月拜商品
             GoodsViewController *Goods=[[GoodsViewController alloc]init];
             [self.navigationController pushViewController:Goods animated:YES];
 
@@ -146,7 +146,7 @@
         case 3:
         {
             cell.img.image=[UIImage imageNamed:@"icon_goods"];
-            cell.name.text=@"奇拜商品";
+            cell.name.text=@"月拜商品";
         }
             break;
         case 4:
