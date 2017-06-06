@@ -216,7 +216,8 @@
     } else {
         UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"未检测到您的摄像头" preferredStyle:(UIAlertControllerStyleAlert)];
         UIAlertAction *alertA = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
-            
+            ListOfGoodsViewController *ListOfGoods=[[ListOfGoodsViewController alloc]init];
+            [self.navigationController pushViewController:ListOfGoods animated:YES];
         }];
         
         [alertC addAction:alertA];

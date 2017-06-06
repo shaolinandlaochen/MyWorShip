@@ -1,5 +1,5 @@
 //
-//  BasicInformationBaseClass.h
+//  Top_up_detailBaseClass.h
 //
 //  Created by   on 2017/6/6
 //  Copyright (c) 2017 __MyCompanyName__. All rights reserved.
@@ -7,16 +7,15 @@
 
 #import <Foundation/Foundation.h>
 
-@class BasicInformationInfo;
+@class Top_up_detailPagingList;
 
-@interface BasicInformationBaseClass : NSObject <NSCoding, NSCopying>
+@interface Top_up_detailBaseClass : NSObject <NSCoding, NSCopying>
 
-@property (nonatomic, assign) double nomessageread;
-@property (nonatomic, strong) NSString *imgSrc;
 @property (nonatomic, strong) NSString *code;
+@property (nonatomic, strong) NSString *endProperty;
 @property (nonatomic, strong) NSString *msg;
-@property (nonatomic, strong) BasicInformationInfo *info;
-@property (nonatomic, assign) double remain;
+@property (nonatomic, strong) Top_up_detailPagingList *pagingList;
+@property (nonatomic, strong) NSString *start;
 
 + (instancetype)modelObjectWithDictionary:(NSDictionary *)dict;
 - (instancetype)initWithDictionary:(NSDictionary *)dict;

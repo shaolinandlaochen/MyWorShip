@@ -9,10 +9,12 @@
 #import "BasicInformationInfo.h"
 
 
-NSString *const kBasicInformationBaseClassCode = @"code";
+NSString *const kBasicInformationBaseClassNomessageread = @"nomessageread";
 NSString *const kBasicInformationBaseClassImgSrc = @"imgSrc";
-NSString *const kBasicInformationBaseClassInfo = @"info";
+NSString *const kBasicInformationBaseClassCode = @"code";
 NSString *const kBasicInformationBaseClassMsg = @"msg";
+NSString *const kBasicInformationBaseClassInfo = @"info";
+NSString *const kBasicInformationBaseClassRemain = @"remain";
 
 
 @interface BasicInformationBaseClass ()
@@ -23,10 +25,12 @@ NSString *const kBasicInformationBaseClassMsg = @"msg";
 
 @implementation BasicInformationBaseClass
 
-@synthesize code = _code;
+@synthesize nomessageread = _nomessageread;
 @synthesize imgSrc = _imgSrc;
-@synthesize info = _info;
+@synthesize code = _code;
 @synthesize msg = _msg;
+@synthesize info = _info;
+@synthesize remain = _remain;
 
 
 + (instancetype)modelObjectWithDictionary:(NSDictionary *)dict {
@@ -39,10 +43,12 @@ NSString *const kBasicInformationBaseClassMsg = @"msg";
     // This check serves to make sure that a non-NSDictionary object
     // passed into the model class doesn't break the parsing.
     if (self && [dict isKindOfClass:[NSDictionary class]]) {
-            self.code = [self objectOrNilForKey:kBasicInformationBaseClassCode fromDictionary:dict];
+            self.nomessageread = [[self objectOrNilForKey:kBasicInformationBaseClassNomessageread fromDictionary:dict] doubleValue];
             self.imgSrc = [self objectOrNilForKey:kBasicInformationBaseClassImgSrc fromDictionary:dict];
-            self.info = [BasicInformationInfo modelObjectWithDictionary:[dict objectForKey:kBasicInformationBaseClassInfo]];
+            self.code = [self objectOrNilForKey:kBasicInformationBaseClassCode fromDictionary:dict];
             self.msg = [self objectOrNilForKey:kBasicInformationBaseClassMsg fromDictionary:dict];
+            self.info = [BasicInformationInfo modelObjectWithDictionary:[dict objectForKey:kBasicInformationBaseClassInfo]];
+            self.remain = [[self objectOrNilForKey:kBasicInformationBaseClassRemain fromDictionary:dict] doubleValue];
 
     }
     
@@ -52,10 +58,12 @@ NSString *const kBasicInformationBaseClassMsg = @"msg";
 
 - (NSDictionary *)dictionaryRepresentation {
     NSMutableDictionary *mutableDict = [NSMutableDictionary dictionary];
-    [mutableDict setValue:self.code forKey:kBasicInformationBaseClassCode];
+    [mutableDict setValue:[NSNumber numberWithDouble:self.nomessageread] forKey:kBasicInformationBaseClassNomessageread];
     [mutableDict setValue:self.imgSrc forKey:kBasicInformationBaseClassImgSrc];
-    [mutableDict setValue:[self.info dictionaryRepresentation] forKey:kBasicInformationBaseClassInfo];
+    [mutableDict setValue:self.code forKey:kBasicInformationBaseClassCode];
     [mutableDict setValue:self.msg forKey:kBasicInformationBaseClassMsg];
+    [mutableDict setValue:[self.info dictionaryRepresentation] forKey:kBasicInformationBaseClassInfo];
+    [mutableDict setValue:[NSNumber numberWithDouble:self.remain] forKey:kBasicInformationBaseClassRemain];
 
     return [NSDictionary dictionaryWithDictionary:mutableDict];
 }
@@ -76,20 +84,24 @@ NSString *const kBasicInformationBaseClassMsg = @"msg";
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super init];
 
-    self.code = [aDecoder decodeObjectForKey:kBasicInformationBaseClassCode];
+    self.nomessageread = [aDecoder decodeDoubleForKey:kBasicInformationBaseClassNomessageread];
     self.imgSrc = [aDecoder decodeObjectForKey:kBasicInformationBaseClassImgSrc];
-    self.info = [aDecoder decodeObjectForKey:kBasicInformationBaseClassInfo];
+    self.code = [aDecoder decodeObjectForKey:kBasicInformationBaseClassCode];
     self.msg = [aDecoder decodeObjectForKey:kBasicInformationBaseClassMsg];
+    self.info = [aDecoder decodeObjectForKey:kBasicInformationBaseClassInfo];
+    self.remain = [aDecoder decodeDoubleForKey:kBasicInformationBaseClassRemain];
     return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
 
-    [aCoder encodeObject:_code forKey:kBasicInformationBaseClassCode];
+    [aCoder encodeDouble:_nomessageread forKey:kBasicInformationBaseClassNomessageread];
     [aCoder encodeObject:_imgSrc forKey:kBasicInformationBaseClassImgSrc];
-    [aCoder encodeObject:_info forKey:kBasicInformationBaseClassInfo];
+    [aCoder encodeObject:_code forKey:kBasicInformationBaseClassCode];
     [aCoder encodeObject:_msg forKey:kBasicInformationBaseClassMsg];
+    [aCoder encodeObject:_info forKey:kBasicInformationBaseClassInfo];
+    [aCoder encodeDouble:_remain forKey:kBasicInformationBaseClassRemain];
 }
 
 - (id)copyWithZone:(NSZone *)zone {
@@ -99,10 +111,12 @@ NSString *const kBasicInformationBaseClassMsg = @"msg";
     
     if (copy) {
 
-        copy.code = [self.code copyWithZone:zone];
+        copy.nomessageread = self.nomessageread;
         copy.imgSrc = [self.imgSrc copyWithZone:zone];
-        copy.info = [self.info copyWithZone:zone];
+        copy.code = [self.code copyWithZone:zone];
         copy.msg = [self.msg copyWithZone:zone];
+        copy.info = [self.info copyWithZone:zone];
+        copy.remain = self.remain;
     }
     
     return copy;

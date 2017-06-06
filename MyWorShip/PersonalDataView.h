@@ -12,4 +12,5 @@
 @property(nonatomic,strong)MyButton *iconHead;//头像
 @property(nonatomic,strong)UILabel *name;//用户名
 @property(nonatomic,strong)UILabel *money;//账户余额
+@property(nonatomic,strong)UIImageView *vipImage;//是否是VIP
 @end

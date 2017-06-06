@@ -48,26 +48,24 @@
 }
 
 
--(void)setNameTXT:(NSString *)nameTXT{
-    _name.text=nameTXT;
+-(void)setModel:(MyMessageListResultList *)model{
+    _name.text=[NSString stringWithFormat:@"%@",model.messageTitle];
     _name.sd_layout.leftSpaceToView(self.contentView, 35).topSpaceToView(self.contentView, 18).widthIs(65).autoHeightRatio(0);
-}
--(void)setRedTXT:(NSString *)redTXT{
-    _red.backgroundColor=[UIColor redColor];
-}
--(void)setTimeTXT:(NSString *)timeTXT{
-    _time.text=timeTXT;
-    _time.sd_layout.rightSpaceToView(self.contentView, 17).topSpaceToView(self.contentView, 20).leftSpaceToView(_name, 10).autoHeightRatio(0);
-}
--(void)setContextTXT:(NSString *)contextTXT{
-    _context.text=contextTXT;
-    CGSize size=[MyClass StringHeight:contextTXT Lblfont:13 heightOfTheMinus:65];
-    if (size.height>13) {
-           _context.sd_layout.leftSpaceToView(self.contentView, 35).topSpaceToView(_name, 8.5).rightSpaceToView(self.contentView, 30).bottomSpaceToView(self.contentView, 8.5);
-    }else{
-       _context.sd_layout.leftSpaceToView(self.contentView, 35).topSpaceToView(_name, 8.5).rightSpaceToView(self.contentView, 30).autoHeightRatio(0);
+    if (model.readState==0) {
+        _red.backgroundColor=[UIColor redColor];
     }
-
+    
+    _time.text=[NSString stringWithFormat:@"%@",model.messageTime];
+    _time.sd_layout.rightSpaceToView(self.contentView, 17).topSpaceToView(self.contentView, 20).leftSpaceToView(_name, 10).autoHeightRatio(0);
+    _context.text=model.messageText;
+    CGSize size=[MyClass StringHeight:_context.text Lblfont:13 heightOfTheMinus:65];
+    if (size.height<16) {
+        _context.sd_layout.leftSpaceToView(self.contentView, 35).topSpaceToView(_name, 8.5).rightSpaceToView(self.contentView, 30).autoHeightRatio(0);
+    }else{
+        _context.sd_layout.leftSpaceToView(self.contentView, 35).topSpaceToView(_name, 8.5).rightSpaceToView(self.contentView, 30).heightIs(32);
+    
+    }
+     [self setupAutoHeightWithBottomView:_context bottomMargin:16];
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

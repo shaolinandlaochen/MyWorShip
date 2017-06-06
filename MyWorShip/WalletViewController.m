@@ -12,6 +12,7 @@
 #import "TransactionDetailsViewController.h"
 #import "TopUpResultsViewController.h"
 #import "TopUpAmountViewController.h"
+#import "MoneyRequest.h"
 @interface WalletViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     UITableView *_tableView;
@@ -32,7 +33,21 @@
     _tableView.separatorColor=[self colorWithHexString:@"d7d7d7"];
     _tableView.backgroundColor=[self colorWithHexString:@"#f3f5f7"];
     [self.view addSubview:_tableView];
+    TheDrop_downRefresh(_tableView, @selector(RequestData))
     // Do any additional setup after loading the view.
+}
+#pragma mark 请求数据
+-(void)RequestData{
+[MoneyRequest TheWalletBalanceQueryBlock:^(NSDictionary *dic) {
+    WalletBalanceBaseClass *class=[[WalletBalanceBaseClass alloc]initWithDictionary:[self deleteEmpty:dic]];
+    self.dataDic=[self deleteEmpty:dic];
+    if ([stringFormat(class.code) isEqualToString:@"3"]) {
+        [_tableView reloadData];
+    }else{
+        [SVProgressHUD showErrorWithStatus:class.msg];
+    }
+     [_tableView.mj_header endRefreshing];
+}];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -95,7 +110,9 @@ CANCEL
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0) {
+        WalletBalanceBaseClass *class=[[WalletBalanceBaseClass alloc]initWithDictionary:self.dataDic];
         WalletMoneyCell *cell=[[WalletMoneyCell alloc]init];
+        cell.money.text=[NSString stringWithFormat:@"%.2f",class.cremain];
         return cell;
     }else{
         WalletOtherCell *cell=[[WalletOtherCell alloc]init];

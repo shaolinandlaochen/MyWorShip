@@ -12,7 +12,8 @@
 #import "AnnouncementCell.h"
 #import "MessageForDetailsViewController.h"//消息详情
 #import "AnnouncementOfTheDetailsViewController.h"//公告详情
-@interface MessageListViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "MyMessageRequest.h"
+@interface MessageListViewController ()<UITableViewDelegate,UITableViewDataSource,AnnouncementOfTheDetailsDelegate>
 {
     UITableView *_tableView;
     NSInteger index;
@@ -36,9 +37,44 @@
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self.view addSubview:_tableView];
     _tableView.sd_layout.leftSpaceToView(self.view, 0).topSpaceToView(self.view, 0).rightSpaceToView(self.view, 0).bottomSpaceToView(self.view, 0);
+    TheDrop_downRefresh(_tableView, @selector(CaretDatas))
 
    // [self NULLData];
+
     // Do any additional setup after loading the view.
+}
+#pragma mark 获取数据
+-(void)CaretDatas{
+    if (index==0) {//消息列表
+        [MyMessageRequest TheMessageListpage:1 pageSize:10 block:^(NSDictionary *dic) {
+            
+            MyMessageListBaseClass *class=[[MyMessageListBaseClass alloc]initWithDictionary:[self deleteEmpty:dic]];
+            if ([class.code isEqualToString:@"3"]) {
+                self.MessageDataDic=[self deleteEmpty:dic];
+                [_tableView reloadData];
+                if (class.data.resultList.count<1) {
+                    [self NULLData];
+                }else{
+                    [[self.view viewWithTag:852]removeFromSuperview];
+                    [[self.view viewWithTag:753]removeFromSuperview];
+                    
+                }
+            }else{
+                [SVProgressHUD showErrorWithStatus:class.msg];
+            }
+              [_tableView.mj_header endRefreshing];
+            
+        }];
+    }else if (index==1){//公告列表
+    
+    }
+   
+
+}
+
+#pragma mark消息已读
+-(void)TheMessageHasBeenRead{
+    [self CaretDatas];
 }
 #pragma mark 无数据
 -(void)NULLData{
@@ -52,6 +88,7 @@
     lbl.text=@"还没有什么大事发生哦~";
     lbl.textColor=[self colorWithHexString:@"a3a3a3"];
     lbl.font=[UIFont systemFontOfSize:14];
+    lbl.tag=753;
     lbl.textAlignment=NSTextAlignmentCenter;
     [self.view addSubview:lbl];
     lbl.sd_layout.leftSpaceToView(self.view, 0).rightSpaceToView(self.view, 0).topSpaceToView(img, 19).autoHeightRatio(0);
@@ -64,7 +101,13 @@
 
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 10;
+    if (index==0) {
+    MyMessageListBaseClass *class=[[MyMessageListBaseClass alloc]initWithDictionary:self.MessageDataDic];
+        return class.data.resultList.count+1;
+    }else if (index==1){
+        return 10;
+    }
+    return 0;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section>0) {
@@ -75,8 +118,12 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (index==1) {
         return 157;
+    }else if (index==0){
+        MyMessageListBaseClass *class=[[MyMessageListBaseClass alloc]initWithDictionary:self.MessageDataDic];
+        MyMessageListResultList *list=class.data.resultList[indexPath.section-1];
+        return [tableView cellHeightForIndexPath:indexPath model:list keyPath:@"model" cellClass:[MessageCell class] contentViewWidth:self.view.frame.size.width];
     }
-    return 90;
+    return 0;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0;
@@ -94,8 +141,13 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     AnnouncementOfTheDetailsViewController *AnnouncementOfTheDetails=[[AnnouncementOfTheDetailsViewController alloc]init];
+    AnnouncementOfTheDetails.delegate=self;
     if (index==0) {//消息详情
      AnnouncementOfTheDetails.titleString=@"消息详情";
+        MyMessageListBaseClass *class=[[MyMessageListBaseClass alloc]initWithDictionary:self.MessageDataDic];
+        MyMessageListResultList *list=class.data.resultList[indexPath.section-1];
+        AnnouncementOfTheDetails.model=list;
+        
     }else{//公告详情
      AnnouncementOfTheDetails.titleString=@"公告详情";
 
@@ -147,12 +199,16 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (index==0) {
-        MessageCell *cell=[[MessageCell alloc]init];
+        static NSString *string=@"indexpath";
+        MessageCell *cell=[tableView dequeueReusableCellWithIdentifier:string];
+        if (!cell) {
+            cell=[[MessageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:string];
+        }
+        MyMessageListBaseClass *class=[[MyMessageListBaseClass alloc]initWithDictionary:self.MessageDataDic];
+        MyMessageListResultList *list=class.data.resultList[indexPath.section-1];
+        cell.model=list;
         cell.backgroundColor=[self colorWithHexString:@"ffffff"];
-        cell.nameTXT=@"我是名字";
-        cell.redTXT=@"a";
-        cell.timeTXT=@"2016-02-98";
-        cell.contextTXT=@"时光飞逝不放假舒服不舒服更深刻收款返款尖峰时刻刷卡缴费时快捷方式看见分公司快捷回复";
+
         return cell;
     }else{
         AnnouncementCell *cell=[[AnnouncementCell alloc]init];

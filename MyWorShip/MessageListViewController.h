@@ -9,5 +9,6 @@
 #import "MyClass.h"
 
 @interface MessageListViewController : MyClass
-
+@property(nonatomic,strong)NSDictionary *MessageDataDic;
+@property(nonatomic,strong)NSDictionary *AnnouncementDataDic;
 @end

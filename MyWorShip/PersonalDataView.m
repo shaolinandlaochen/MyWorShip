@@ -28,7 +28,13 @@
         _name.font=[UIFont systemFontOfSize:17];
         _name.textColor=[MyClass colorWithHexString:@"000000"];
         [self addSubview:_name];
-        _name.sd_layout.leftSpaceToView(_iconHead, 20).topSpaceToView(self, 45).rightSpaceToView(self, 0).autoHeightRatio(0);
+        CGSize size=[MyClass StringHeight:@"15738803030" Lblfont:17 heightOfTheMinus:0];
+        
+        _name.sd_layout.leftSpaceToView(_iconHead, 20).topSpaceToView(self, 45).widthIs(size.width).autoHeightRatio(0);
+        
+        _vipImage=[[UIImageView alloc]init];
+        [self addSubview:_vipImage];
+        _vipImage.sd_layout.leftSpaceToView(_name, 2).topSpaceToView(self, 47).widthIs(15.5).heightIs(15.5);
         
         _money=[[UILabel alloc]init];
         _money.textColor=[MyClass colorWithHexString:@"a3a3a3"];

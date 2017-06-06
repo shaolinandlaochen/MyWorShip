@@ -8,6 +8,7 @@
 
 #import "TransactionDetailsViewController.h"
 #import "TransactionDetailsCell.h"
+#import "MoneyRequest.h"
 @interface TransactionDetailsViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     UITableView *_tableView;
@@ -30,8 +31,32 @@
     _tableView.separatorColor=[self colorWithHexString:@"d7d7d7"];
     _tableView.backgroundColor=[self colorWithHexString:@"#f3f5f7"];
     [self.view addSubview:_tableView];
+    TheDrop_downRefresh(_tableView, @selector(QuerastData))
     //[self NULLData];
     // Do any additional setup after loading the view.
+}
+#pragma mark 请求获取数据
+-(void)QuerastData{
+    NSString *url=@"";
+    if (index==0) {//消费明细
+      url=@"querycdetail";
+    }else{//充值明细
+        url=@"querycrecharge";
+    }
+    [MoneyRequest Top_upDetail_url:url Page:@"1" pageSize:@"1000" start:@"2017-06-01" end:@"2077-06-01" Block:^(NSDictionary *dic) {
+        self.dataDic=[self deleteEmpty:dic];
+        Top_up_detailBaseClass *class=[[Top_up_detailBaseClass alloc]initWithDictionary:self.dataDic];
+        if ([stringFormat(class.code) isEqualToString:@"3"]) {
+            
+        }else{
+            [SVProgressHUD showErrorWithStatus:class.msg];
+        }
+        [_tableView reloadData];
+        [_tableView.mj_header endRefreshing];
+        [SVProgressHUD dismiss];
+    }];
+
+
 }
 #pragma mark 创建无数据视图
 -(void)NULLData{
@@ -54,7 +79,14 @@ CANCEL
     return 1;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    if (index==0) {
+        StatementBaseClass *class=[[StatementBaseClass alloc]initWithDictionary:self.dataDic];
+         return class.pagingList.resultList.count;
+    }else{
+    Top_up_detailBaseClass *class=[[Top_up_detailBaseClass alloc]initWithDictionary:self.dataDic];
+        return class.pagingList.resultList.count;
+    }
+   
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 65;
@@ -108,15 +140,33 @@ CANCEL
     return view;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    TransactionDetailsCell *cell=[[TransactionDetailsCell alloc]init];
-    cell.title.text=@"我是充值送的";
-    cell.time.text=@"2020-02-20 12:12";
-    cell.money.text=@"+200.00元";
+    static NSString *string=@"indexpath";
+    
+    TransactionDetailsCell *cell=[tableView dequeueReusableCellWithIdentifier:string];
+    if (!cell) {
+        cell=[[TransactionDetailsCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:string];
+    }
+    if (index==0) {
+        StatementBaseClass *class=[[StatementBaseClass alloc]initWithDictionary:self.dataDic];
+        StatementResultList *list=class.pagingList.resultList[indexPath.row];
+        cell.title.text=stringFormat(list.remark);
+        cell.time.text=stringFormat(list.cwalletTime);
+        cell.money.text=[NSString stringWithFormat:@"-%.2f元",list.cwalletAmount];
+    }else{
+        Top_up_detailBaseClass *class=[[Top_up_detailBaseClass alloc]initWithDictionary:self.dataDic];
+        Top_up_detailResultList *list=class.pagingList.resultList[indexPath.row];
+        cell.title.text=stringFormat(list.rechargeDescribe);
+        cell.time.text=stringFormat(list.rechargeTime);
+        cell.money.text=[NSString stringWithFormat:@"+%.2f元",list.rechargeAmount];
+    }
+
+
     return cell;
 }
 -(void)onbtnClick:(MyButton *)btn{
     index=btn.tag-1;
-    [_tableView reloadData];
+    [SVProgressHUD showWithStatus:loading];
+    [self QuerastData];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -13,8 +13,5 @@
 @property(nonatomic,strong)UILabel *time;
 @property(nonatomic,strong)UILabel *context;
 @property(nonatomic,strong)UILabel *red;
-@property(nonatomic,copy)NSString *nameTXT;
-@property(nonatomic,copy)NSString *timeTXT;
-@property(nonatomic,copy)NSString *contextTXT;
-@property(nonatomic,copy)NSString *redTXT;
+@property(nonatomic,strong)MyMessageListResultList *model;
 @end

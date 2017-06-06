@@ -27,7 +27,6 @@
         
         
         _money=[[UILabel alloc]init];
-        _money.text=@"68.00";
         _money.textAlignment=NSTextAlignmentCenter;
         _money.font=[UIFont systemFontOfSize:45];
         _money.textColor=[MyClass colorWithHexString:@"000000"];

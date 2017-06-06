@@ -9,5 +9,5 @@
 #import "MyClass.h"
 
 @interface TransactionDetailsViewController : MyClass
-
+@property(nonatomic,strong)NSDictionary *dataDic;
 @end

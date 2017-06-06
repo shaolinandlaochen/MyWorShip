@@ -70,20 +70,25 @@
         }
             break;
         case 4:
+        {//会员
+            
+        }
+            break;
+        case 5:
         {//邀请好友
             InvitationViewController *Invitation=[[InvitationViewController  alloc]init];
             Invitation.delegate=self;
             [self.navigationController pushViewController:Invitation animated:YES];
         }
             break;
-        case 5:
+        case 6:
         {//使用指南
             UseGuideViewController *UseGuide=[[UseGuideViewController alloc]init];
             [self.navigationController pushViewController:UseGuide animated:YES];
 
         }
             break;
-        case 6:
+        case 7:
         {//关于我们
             AboutUsViewController *AboutUs=[[AboutUsViewController alloc]init];
             [self.navigationController pushViewController:AboutUs animated:YES];
@@ -113,7 +118,7 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section==1) {
-         return 7;
+         return 8;
     }
     return 0;
 }
@@ -128,7 +133,11 @@
         {
             cell.img.image=[UIImage imageNamed:@"icon_news"];
             cell.name.text=@"我的消息";
-            cell.view.backgroundColor=[UIColor redColor];
+            BasicInformationBaseClass *class=[[BasicInformationBaseClass alloc]initWithDictionary:[self deleteEmpty:self.dataDic]];
+            if (class.nomessageread>0) {
+                cell.view.backgroundColor=[UIColor redColor];
+            }
+            
         }
             break;
         case 1:
@@ -151,17 +160,28 @@
             break;
         case 4:
         {
+            cell.img.image=[UIImage imageNamed:@"icon_vip"];
+            cell.name.text=@"我的VIP";
+            UIImageView *cellImage=[[UIImageView alloc]init];
+            cellImage.image=[UIImage imageNamed:@"img_hot"];
+            [cell.contentView addSubview:cellImage];
+            cellImage.sd_layout.leftSpaceToView(cell.name, 0).topSpaceToView(cell.contentView, 17).bottomSpaceToView(cell.contentView, 17).widthIs(17);
+        
+        }
+            break;
+        case 5:
+        {
             cell.img.image=[UIImage imageNamed:@"icon_invite"];
             cell.name.text=@"邀请好友";
         }
             break;
-        case 5:
+        case 6:
         {
             cell.img.image=[UIImage imageNamed:@"icon_zhinan"];
             cell.name.text=@"使用指南";
         }
             break;
-        case 6:
+        case 7:
         {
             cell.img.image=[UIImage imageNamed:@"icon_guanyu"];
             cell.name.text=@"关于我们";
@@ -185,7 +205,15 @@
         if (self.dataDic!=nil) {
              BasicInformationBaseClass *class=[[BasicInformationBaseClass alloc]initWithDictionary:[self deleteEmpty:self.dataDic]];
             _view.name.text=[NSString stringWithFormat:@"%@",class.info.basePhone];
-            _view.money.text=@"钱包余额:200.00";
+            _view.money.text=[NSString stringWithFormat:@"钱包余额:%.2f",class.remain];
+            
+            if (class.info.baseIsVip==0) {//不是VIP也没有开通过,
+                
+            }else if (class.info.baseIsVip==1){//是VIP
+            _view.vipImage.image=[UIImage imageNamed:@"img_vip"];
+            }else{//VIP已过期
+            
+            }
         }
        
     }
@@ -236,11 +264,11 @@
 
     [MyRequest AccessToEssentialInformationBLOCK:^(NSDictionary *dic) {
         BasicInformationBaseClass *class=[[BasicInformationBaseClass alloc]initWithDictionary:[self deleteEmpty:dic]];
-        if ([class.code isEqualToString:@"10"]) {
+        if ([class.code isEqualToString:@"3"]) {
             self.dataDic=[self deleteEmpty:dic];
             [_tablleView reloadData];
         }else{
-            [SVProgressHUD showErrorWithStatus:class.msg];
+            
         }
     }];
 }
