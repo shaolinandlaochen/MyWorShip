@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor=[self colorWithHexString:@"f3f5f7"];
+    
     // Do any additional setup after loading the view.
 }
 #pragma mark -颜色值

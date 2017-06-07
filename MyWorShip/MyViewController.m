@@ -263,25 +263,28 @@
     
    
     if ([tokenString length]>0) {//已登录进入个人信息
-         BasicInformationBaseClass *class=[[BasicInformationBaseClass alloc]initWithDictionary:[self deleteEmpty:self.dataDic]];
-        PersonalCenterViewController *PersonalCenter=[[PersonalCenterViewController alloc]init];
-        if ([class.info.baseNickname length]>0) {//用户昵称
-            PersonalCenter.nickname=class.info.baseNickname;
-        }
-        if (class.info.baseIsSex!=0) {//用户性别
-            if (class.info.baseSex==0) {
-            PersonalCenter.gender=@"男";
-            }else{
-            PersonalCenter.gender=@"女";
+        if (self.dataDic!=nil) {
+            BasicInformationBaseClass *class=[[BasicInformationBaseClass alloc]initWithDictionary:[self deleteEmpty:self.dataDic]];
+            PersonalCenterViewController *PersonalCenter=[[PersonalCenterViewController alloc]init];
+            if ([class.info.baseNickname length]>0) {//用户昵称
+                PersonalCenter.nickname=class.info.baseNickname;
             }
+            if (class.info.baseIsSex!=0) {//用户性别
+                if (class.info.baseSex==0) {
+                    PersonalCenter.gender=@"男";
+                }else{
+                    PersonalCenter.gender=@"女";
+                }
+            }
+            if (class.info.baseIsPerioddate!=0) {///用户生理期
+                PersonalCenter.time=stringFormat(class.info.basePeriodDate);
+            }
+            if ([stringFormat(class.info.basePhone) length]>0) {
+                PersonalCenter.phone=stringFormat(class.info.basePhone);
+            }
+            [self.navigationController pushViewController:PersonalCenter animated:YES];
         }
-        if (class.info.baseIsPerioddate!=0) {///用户生理期
-            PersonalCenter.time=class.info.basePeriodDate;
-        }
-        if ([class.info.basePhone length]>0) {
-            PersonalCenter.phone=class.info.basePhone;
-        }
-        [self.navigationController pushViewController:PersonalCenter animated:YES];
+
     }else{//去登陆
         LoginViewController *Login =[[LoginViewController alloc]init];
         Login.delegate=self;

@@ -10,6 +10,12 @@
 		9D4200621EE7904400425D5D /* PersonalCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4200611EE7904400425D5D /* PersonalCenterViewController.m */; };
 		9D4200651EE796ED00425D5D /* PersonalCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4200641EE796ED00425D5D /* PersonalCenterCell.m */; };
 		9D4200681EE7A35900425D5D /* ModifyThNicknameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4200671EE7A35900425D5D /* ModifyThNicknameViewController.m */; };
+		9D42006C1EE7D57B00425D5D /* 扫描月拜.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D4200691EE7D57A00425D5D /* 扫描月拜.png */; };
+		9D42006D1EE7D57B00425D5D /* 扫描月拜@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D42006A1EE7D57A00425D5D /* 扫描月拜@2x.png */; };
+		9D42006E1EE7D57B00425D5D /* 扫描月拜@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D42006B1EE7D57B00425D5D /* 扫描月拜@3x.png */; };
+		9D4200711EE7D95100425D5D /* SelectADateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4200701EE7D95100425D5D /* SelectADateViewController.m */; };
+		9D4200741EE7E5A100425D5D /* VerifyTheMobilePhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4200731EE7E5A100425D5D /* VerifyTheMobilePhoneViewController.m */; };
+		9D4200771EE7F54600425D5D /* ChangeAPhoneNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4200761EE7F54600425D5D /* ChangeAPhoneNumberViewController.m */; };
 		9D6BBE6A1EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6BBE691EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.m */; };
 		9D6BBE6D1EE63E9A008A9F23 /* RequestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6BBE6C1EE63E9A008A9F23 /* RequestClass.m */; };
 		9D6BBE711EE6404C008A9F23 /* LoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6BBE701EE6404C008A9F23 /* LoginRequest.m */; };
@@ -320,6 +326,15 @@
 		9D4200641EE796ED00425D5D /* PersonalCenterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterCell.m; sourceTree = "<group>"; };
 		9D4200661EE7A35900425D5D /* ModifyThNicknameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyThNicknameViewController.h; sourceTree = "<group>"; };
 		9D4200671EE7A35900425D5D /* ModifyThNicknameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyThNicknameViewController.m; sourceTree = "<group>"; };
+		9D4200691EE7D57A00425D5D /* 扫描月拜.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "扫描月拜.png"; sourceTree = "<group>"; };
+		9D42006A1EE7D57A00425D5D /* 扫描月拜@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "扫描月拜@2x.png"; sourceTree = "<group>"; };
+		9D42006B1EE7D57B00425D5D /* 扫描月拜@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "扫描月拜@3x.png"; sourceTree = "<group>"; };
+		9D42006F1EE7D95100425D5D /* SelectADateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectADateViewController.h; sourceTree = "<group>"; };
+		9D4200701EE7D95100425D5D /* SelectADateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectADateViewController.m; sourceTree = "<group>"; };
+		9D4200721EE7E5A100425D5D /* VerifyTheMobilePhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyTheMobilePhoneViewController.h; sourceTree = "<group>"; };
+		9D4200731EE7E5A100425D5D /* VerifyTheMobilePhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyTheMobilePhoneViewController.m; sourceTree = "<group>"; };
+		9D4200751EE7F54600425D5D /* ChangeAPhoneNumberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeAPhoneNumberViewController.h; sourceTree = "<group>"; };
+		9D4200761EE7F54600425D5D /* ChangeAPhoneNumberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeAPhoneNumberViewController.m; sourceTree = "<group>"; };
 		9D6BBE681EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DeleteArrOrDeleteDicBothNull.h"; sourceTree = "<group>"; };
 		9D6BBE691EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DeleteArrOrDeleteDicBothNull.m"; sourceTree = "<group>"; };
 		9D6BBE6B1EE63E9A008A9F23 /* RequestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestClass.h; sourceTree = "<group>"; };
@@ -904,6 +919,9 @@
 		9D9771951ED4331B005EAC95 /* ios */ = {
 			isa = PBXGroup;
 			children = (
+				9D4200691EE7D57A00425D5D /* 扫描月拜.png */,
+				9D42006A1EE7D57A00425D5D /* 扫描月拜@2x.png */,
+				9D42006B1EE7D57B00425D5D /* 扫描月拜@3x.png */,
 				9D6BBE941EE67333008A9F23 /* img_vip.png */,
 				9D6BBE951EE67333008A9F23 /* img_vip@2x.png */,
 				9D6BBE961EE67333008A9F23 /* img_vip@3x.png */,
@@ -1169,6 +1187,12 @@
 				9D4200641EE796ED00425D5D /* PersonalCenterCell.m */,
 				9D4200661EE7A35900425D5D /* ModifyThNicknameViewController.h */,
 				9D4200671EE7A35900425D5D /* ModifyThNicknameViewController.m */,
+				9D42006F1EE7D95100425D5D /* SelectADateViewController.h */,
+				9D4200701EE7D95100425D5D /* SelectADateViewController.m */,
+				9D4200721EE7E5A100425D5D /* VerifyTheMobilePhoneViewController.h */,
+				9D4200731EE7E5A100425D5D /* VerifyTheMobilePhoneViewController.m */,
+				9D4200751EE7F54600425D5D /* ChangeAPhoneNumberViewController.h */,
+				9D4200761EE7F54600425D5D /* ChangeAPhoneNumberViewController.m */,
 				9D6BBE7E1EE64E42008A9F23 /* 请求 */,
 				9D6BBE7D1EE64E39008A9F23 /* model */,
 			);
@@ -1479,6 +1503,7 @@
 				9D9771D01ED4331B005EAC95 /* icon_youhui.png in Resources */,
 				9D9773EA1ED96BCD005EAC95 /* icon_weixinpay.png in Resources */,
 				9D9771D51ED4331B005EAC95 /* icon_zuobiao@3x.png in Resources */,
+				9D42006C1EE7D57B00425D5D /* 扫描月拜.png in Resources */,
 				9D9773921ED82140005EAC95 /* img_smile@3x.png in Resources */,
 				9D6BBE8E1EE6562B008A9F23 /* icon_vip.png in Resources */,
 				9D9773801ED7F61B005EAC95 /* img_huodong@3x.png in Resources */,
@@ -1486,6 +1511,7 @@
 				9D9772911ED6685F005EAC95 /* icon_add@3x.png in Resources */,
 				9D9771691ED41BB9005EAC95 /* LaunchScreen.storyboard in Resources */,
 				9D9771CF1ED4331B005EAC95 /* icon_saoyisao@3x.png in Resources */,
+				9D42006D1EE7D57B00425D5D /* 扫描月拜@2x.png in Resources */,
 				9D6BBE991EE67333008A9F23 /* img_vip@3x.png in Resources */,
 				9D97730E1ED7CE31005EAC95 /* img_nomingxi@3x.png in Resources */,
 				9D9773201ED7CE5B005EAC95 /* img_touxiang_gerenxinxi@3x.png in Resources */,
@@ -1562,6 +1588,7 @@
 				9D9772AA1ED66A6E005EAC95 /* btn_kk@3x.png in Resources */,
 				9D9772D21ED6AA08005EAC95 /* bg_expired@2x.png in Resources */,
 				9D97727F1ED5802C005EAC95 /* tips_news@3x.png in Resources */,
+				9D42006E1EE7D57B00425D5D /* 扫描月拜@3x.png in Resources */,
 				9D9773CD1ED9230F005EAC95 /* img_login@2x.png in Resources */,
 				9D97737E1ED7F61B005EAC95 /* img_huodong.png in Resources */,
 				9D97728C1ED6685F005EAC95 /* btn_add.png in Resources */,
@@ -1741,6 +1768,7 @@
 			files = (
 				9D6BBE9E1EE675BF008A9F23 /* MyMessageRequest.m in Sources */,
 				9DD5017D1EE69D9900278600 /* ScanTheGoodsDetailsCell.m in Sources */,
+				9D4200771EE7F54600425D5D /* ChangeAPhoneNumberViewController.m in Sources */,
 				9D9772E51ED6AB2E005EAC95 /* PreferentialView.m in Sources */,
 				9DD5017A1EE69C3D00278600 /* ListOfGoodsViewController.m in Sources */,
 				9D9773991ED82E17005EAC95 /* GoodsViewController.m in Sources */,
@@ -1770,11 +1798,13 @@
 				9D97715E1ED41BB9005EAC95 /* AppDelegate.m in Sources */,
 				9D9772F51ED7B789005EAC95 /* MessageForDetailsViewController.m in Sources */,
 				9D9771DD1ED4348B005EAC95 /* MyButton.m in Sources */,
+				9D4200741EE7E5A100425D5D /* VerifyTheMobilePhoneViewController.m in Sources */,
 				9D9772BB1ED6A32B005EAC95 /* PreferentialViewController.m in Sources */,
 				9D6BBEA51EE6777C008A9F23 /* MyMessageListBaseClass.m in Sources */,
 				9D9773D71ED9509E005EAC95 /* TopUpAmountViewController.m in Sources */,
 				9D9772061ED5614D005EAC95 /* SGQRCodeConst.m in Sources */,
 				9D9772031ED5611E005EAC95 /* SGWebView.m in Sources */,
+				9D4200711EE7D95100425D5D /* SelectADateViewController.m in Sources */,
 				9D6BBE7C1EE64ABC008A9F23 /* LoginsIsBaseClass.m in Sources */,
 				9D9773B21ED90E53005EAC95 /* UseGuideViewController.m in Sources */,
 				9D9772F21ED6C4CB005EAC95 /* AnnouncementCell.m in Sources */,

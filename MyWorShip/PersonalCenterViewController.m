@@ -10,7 +10,8 @@
 #import "PersonalCenterCell.h"
 #import "ModifyThNicknameViewController.h"
 #import "MyRequest.h"
-@interface PersonalCenterViewController ()<UITableViewDelegate,UITableViewDataSource,ModifyThNicknameDelegate>
+#import "VerifyTheMobilePhoneViewController.h"
+@interface PersonalCenterViewController ()<UITableViewDelegate,UITableViewDataSource,ModifyThNicknameDelegate,SelectADateDelegate>
 {
     UITableView *_tableView;
     UIImageView *img;
@@ -23,10 +24,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(onPhoneClick:) name:@"phoneStringNotification" object:nil];
     
     [self CreatViews];
     // Do any additional setup after loading the view.
+}
+-(void)onPhoneClick:(NSNotification *)not{
+    self.phone=(NSString *)not.object;
+    [_tableView reloadData];
 }
 #pragma mark 创建视图
 -(void)CreatViews{
@@ -137,6 +142,19 @@
         [self.navigationController pushViewController:ModifyThNickname animated:YES];
     }else if (indexPath.section==0&&indexPath.row==1){
         [self SetUpTheSet];//设置性别
+    }else if (indexPath.section==0&&indexPath.row==2){//选择姨妈时间
+        SelectADateViewController *SelectADate=[[SelectADateViewController alloc]init];
+        SelectADate.delegate=self;
+        SelectADate.modalPresentationStyle = UIModalPresentationOverFullScreen;
+        [self presentViewController:SelectADate animated:YES completion:^{
+            SelectADate.view.backgroundColor = [[UIColor clearColor] colorWithAlphaComponent:0.5];
+        }];
+    }else if (indexPath.section==1){//更换手机号码
+    
+        VerifyTheMobilePhoneViewController *VerifyTheMobilePhone=[[VerifyTheMobilePhoneViewController alloc]init];
+        VerifyTheMobilePhone.phoneString=self.phone;
+        [self.navigationController pushViewController:VerifyTheMobilePhone animated:YES];
+        
     }
     
 }
@@ -199,12 +217,26 @@
     [defaults synchronize];
     [self.navigationController popViewControllerAnimated:YES];
 }
-#define mark 修改昵称成功
-
+#pragma mark 修改昵称成功
 -(void)ModifyTheNicknameSuccess:(NSString *)nickName{
     ((UILabel *)[img viewWithTag:789654]).text=nickName;
     self.nickname=nickName;
     [_tableView reloadData];
+}
+#pragma mark 选择生理期时间完毕的代理通知
+-(void)selectTime:(NSString *)timeString{
+    
+    [SVProgressHUD showWithStatus:loading];
+    [MyRequest PhysiologicalPeriodOfTime:timeString BLOCK:^(NSDictionary *dic) {
+        LoginsIsBaseClass *class=[[LoginsIsBaseClass alloc]initWithDictionary:[self deleteEmpty:dic]];
+        if ([stringFormat(class.code) isEqualToString:@"5"]) {
+            self.time=timeString;
+            [SVProgressHUD showSuccessWithStatus:class.msg];
+            [_tableView reloadData];
+        }else{
+            [SVProgressHUD showErrorWithStatus:class.msg];
+        }
+    }];
 }
 #pragma mark 设置性别
 -(void)SetUpTheSet{

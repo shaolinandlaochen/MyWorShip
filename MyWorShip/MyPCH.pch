@@ -52,6 +52,7 @@
 #import <MJRefresh.h>
 #import "ListOfGoodsViewController.h"//商品详情
 #import "PersonalCenterViewController.h"//个人中心
+#import "SelectADateViewController.h"//选择日期
 
 
 #define RequestUrl @"http://192.168.88.18:8080//yb_app/"//api
@@ -70,6 +71,8 @@
 //下拉刷新
 #define TheDrop_downRefresh(view,selector)  MJRefreshNormalHeader*  header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:selector];[header setTitle:@"快来拉我刷新" forState:MJRefreshStateIdle];[header setTitle:@"松开即可刷新" forState:MJRefreshStatePulling];[header setTitle:@"正在刷新" forState:MJRefreshStateRefreshing];header.stateLabel.font = [UIFont systemFontOfSize:15];header.lastUpdatedTimeLabel.font = [UIFont systemFontOfSize:14];header.stateLabel.textColor = [UIColor grayColor];header.lastUpdatedTimeLabel.textColor = [UIColor grayColor];NSDate *date=[[NSDate alloc]init];[header.lastUpdatedTime laterDate:date];[header beginRefreshing];view.mj_header = header;
 
+//返回指定控制器
+#define ReturnToSpecifyTheController(MyViewController)  for (UIViewController *controller in self.navigationController.viewControllers) {if ([controller isKindOfClass:[MyViewController class]]) {[self.navigationController popToViewController:controller animated:YES];}}
 
 #define WIDTH [UIScreen mainScreen].bounds.size.width
 #define HEIGHT [UIScreen mainScreen].bounds.size.height

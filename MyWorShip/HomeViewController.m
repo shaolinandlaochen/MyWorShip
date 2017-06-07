@@ -27,7 +27,10 @@
     [self AddAllViews];
     // Do any additional setup after loading the view.
 }
+#pragma mark 视图伸缩
+-(void)scaling:(BOOL)isScaling{
 
+}
 #pragma mark 点击大头针执行该方法
 - (void)mapView:(MAMapView *)mapView didSelectAnnotationView:(MAAnnotationView *)view
 {
@@ -77,61 +80,29 @@
 }
 #pragma mark 添加扫描等按钮
 -(void)AddAllViews{
-    //背景图片
-    _BjImage=[[MyImage alloc]init];
-    _BjImage.image=[UIImage imageNamed:@"shape_unfold"];
-    float y=self.view.frame.size.height-225;
-    _BjImage.userInteractionEnabled=YES;
-    _BjImage.frame=CGRectMake(0, y, self.view.frame.size.width, 225);
-    [self.view addSubview:_BjImage];
-    //上下箭头
-    MyButton *UpAndDown=[MyButton buttonWithType:UIButtonTypeCustom];
-    [UpAndDown setImage:[UIImage imageNamed:@"icon_up"] forState:UIControlStateNormal];
-    [UpAndDown setImage:[UIImage imageNamed:@"icon_down"] forState:UIControlStateSelected];
-    UpAndDown.selected=YES;
-    [UpAndDown addTarget:self action:@selector(onUpAndDownClick:) forControlEvents:UIControlEventTouchUpInside];
-    [_BjImage addSubview:UpAndDown];
-    UpAndDown.sd_layout.leftSpaceToView(_BjImage, (self.view.frame.size.width-32)/2).topSpaceToView(_BjImage, 18).widthIs(32).heightIs(32);
-    //底部定位按钮
-    MyButton *positioning=[MyButton buttonWithType:UIButtonTypeCustom];
-    positioning.tag=3;
-    [positioning setImage:[UIImage imageNamed:@"icon_dingwei"] forState:UIControlStateNormal];
-    [positioning addTarget:self action:@selector(PositioningAndFeedback:) forControlEvents:UIControlEventTouchUpInside];
-    [_BjImage addSubview:positioning];
-    positioning.sd_layout.leftSpaceToView(_BjImage, 22).bottomSpaceToView(_BjImage, 18).widthIs(27).heightIs(27);
+    //定位
+    MyButton *positioningBtn=[MyButton buttonWithType:UIButtonTypeCustom];
+    positioningBtn.tag=3;
+    [positioningBtn setBackgroundImage:[UIImage imageNamed:@"icon_dingwei"] forState:UIControlStateNormal];
+    [positioningBtn addTarget:self action:@selector(PositioningAndFeedback:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view  addSubview:positioningBtn];
+    positioningBtn.sd_layout.leftSpaceToView(self.view, 15.5).bottomSpaceToView(self.view, 13.5).widthIs(41).heightIs(41);
     
-    //lamp
-    //底部反馈按钮
-    MyButton *Feedback=[MyButton buttonWithType:UIButtonTypeCustom];
-    Feedback.tag=4;
-    [Feedback setImage:[UIImage imageNamed:@"icon_fankui"] forState:UIControlStateNormal];
-    [Feedback addTarget:self action:@selector(PositioningAndFeedback:) forControlEvents:UIControlEventTouchUpInside];
-    [_BjImage addSubview:Feedback];
-    Feedback.sd_layout.rightSpaceToView(_BjImage, 22).bottomSpaceToView(_BjImage, 18).widthIs(27).heightIs(27);
+    //反馈
+    MyButton *feedbackBtn=[MyButton buttonWithType:UIButtonTypeCustom];
+    feedbackBtn.tag=4;
+    [feedbackBtn setBackgroundImage:[UIImage imageNamed:@"icon_fankui"] forState:UIControlStateNormal];
+    [feedbackBtn addTarget:self action:@selector(PositioningAndFeedback:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view  addSubview:feedbackBtn];
+    feedbackBtn.sd_layout.rightSpaceToView(self.view, 15.5).bottomSpaceToView(self.view, 13.5).widthIs(41).heightIs(41);
     
-    //扫描按钮
-    MyButton *scanning=[MyButton buttonWithType:UIButtonTypeCustom];
-    [scanning setBackgroundImage:[UIImage imageNamed:@"btn_scan"] forState:UIControlStateNormal];
-    [scanning addTarget:self action:@selector(onScanningClick:) forControlEvents:UIControlEventTouchUpInside];
-    [_BjImage addSubview:scanning];
-    float orgerY=self.view.frame.size.width-150;
-    scanning.sd_layout.leftSpaceToView(_BjImage, orgerY/2).rightSpaceToView(_BjImage, orgerY/2).topSpaceToView(_BjImage, 50).heightIs(150);
-    
-    MyButton *scanning1=[MyButton buttonWithType:UIButtonTypeCustom];
-    [scanning1 setBackgroundImage:[UIImage imageNamed:@"icon_saoyisao"] forState:UIControlStateNormal];
-    [scanning1 addTarget:self action:@selector(onScanningClick:) forControlEvents:UIControlEventTouchUpInside];
-    [scanning addSubview:scanning1];
-    float orgerY1=150-30;
-    scanning1.sd_layout.leftSpaceToView(scanning, orgerY1/2).rightSpaceToView(scanning, orgerY1/2).topSpaceToView(scanning, 40).heightIs(30);
-    
-    UILabel *name=[[UILabel alloc]init];
-    name.textColor=[UIColor whiteColor];
-    name.font=[UIFont systemFontOfSize:20];
-    name.textAlignment=NSTextAlignmentCenter;
-    name.text=@"扫描月拜";
-    [scanning addSubview:name];
-    name.sd_layout.leftSpaceToView(scanning, 0).rightSpaceToView(scanning, 0).topSpaceToView(scanning1, 16).autoHeightRatio(0);
-    
+    //扫描
+    MyButton *scanningBtn=[MyButton buttonWithType:UIButtonTypeCustom];
+    scanningBtn.tag=4;
+    [scanningBtn setBackgroundImage:[UIImage imageNamed:@"扫描月拜"] forState:UIControlStateNormal];
+    [scanningBtn addTarget:self action:@selector(onScanningClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view  addSubview:scanningBtn];
+    scanningBtn.sd_layout.rightSpaceToView(self.view, (self.view.frame.size.width-134)/2).leftSpaceToView(self.view, (self.view.frame.size.width-134)/2).bottomSpaceToView(self.view, 10).heightIs(52);
     
     //中心点
     UIImageView *IMGCentr=[[UIImageView alloc]init];
@@ -139,8 +110,8 @@
     [self.view addSubview:IMGCentr];
     IMGCentr.sd_layout.leftSpaceToView(self.view, (self.view.frame.size.width-25)/2).topSpaceToView(self.view, (self.view.frame.size.height-38)/2).widthIs(25).heightIs(38);
     
-    
 }
+
 #pragma mark 点击定位回到初始位置或者反馈
 -(void)PositioningAndFeedback:(MyButton *)btn{
     if (btn.tag==3) {
@@ -154,24 +125,7 @@
         [self.navigationController pushViewController:Teasing animated:YES];
     }
 }
-#pragma mark 收缩或者展开
--(void)onUpAndDownClick:(MyButton *)btn{
-   
-    if (btn.selected) {
-        
-        float y=self.view.frame.size.height-65;
-        [UIView animateWithDuration:0.5 animations:^{
-            _BjImage.frame=CGRectMake(0, y, self.view.frame.size.width, 225);
-        }];
-    }else{
-       
-    [UIView animateWithDuration:0.5 animations:^{
-        float y=self.view.frame.size.height-225;
-        _BjImage.frame=CGRectMake(0, y, self.view.frame.size.width, 225);
-    }];
-    }
-     btn.selected=!btn.selected;
-}
+
 #pragma mark 扫描
 -(void)onScanningClick:(MyButton *)btn{
     // 1、 获取摄像设备

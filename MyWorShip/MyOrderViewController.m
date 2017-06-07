@@ -31,8 +31,10 @@
     [self.view addSubview:_tableView];
     _tableView.sd_layout.leftSpaceToView(self.view, 12).topSpaceToView(self.view, 0).rightSpaceToView(self.view, 12).bottomSpaceToView(self.view, 0);
 
+
     // Do any additional setup after loading the view.
 }
+
 CANCEL
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];

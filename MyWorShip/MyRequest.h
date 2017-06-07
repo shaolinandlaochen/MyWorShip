@@ -21,4 +21,24 @@
  *设置性别
  */
 +(void)setSex_base_sex:(NSInteger)base_sex BLOCK:(void(^)(NSDictionary *dic))block;
+/*
+ *设置生理期的时间
+ */
++(void)PhysiologicalPeriodOfTime:(NSString *)base_period_date BLOCK:(void(^)(NSDictionary *dic))block;
+/*
+ *发送旧手机验证码
+ */
++(void)SendTheOldPhoneVerificationCodeBLOCK:(void(^)(NSDictionary *dic))block;
+/*
+ *验证旧手机验证码
+ */
++(void)VerifyTheOldCellPhoneVerificationCode:(NSString *)validateCode BLOCK:(void(^)(NSDictionary *dic))block;
+/*
+ *发送新手机验证码
+ */
++(void)SendTheNewPhoneVerificationCode:(NSString *)phone BLOCK:(void(^)(NSDictionary *dic))block;
+/*
+ *更换新手机号码
+ */
++(void)ChangeTheNewPhoneNumber_phone:(NSString *)phone validateCode:(NSString *)validateCode BLOCK:(void(^)(NSDictionary *dic))block;
 @end
