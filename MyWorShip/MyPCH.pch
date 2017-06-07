@@ -51,6 +51,7 @@
 //下拉刷新
 #import <MJRefresh.h>
 #import "ListOfGoodsViewController.h"//商品详情
+#import "PersonalCenterViewController.h"//个人中心
 
 
 #define RequestUrl @"http://192.168.88.18:8080//yb_app/"//api

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D4200621EE7904400425D5D /* PersonalCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4200611EE7904400425D5D /* PersonalCenterViewController.m */; };
+		9D4200651EE796ED00425D5D /* PersonalCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4200641EE796ED00425D5D /* PersonalCenterCell.m */; };
 		9D6BBE6A1EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6BBE691EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.m */; };
 		9D6BBE6D1EE63E9A008A9F23 /* RequestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6BBE6C1EE63E9A008A9F23 /* RequestClass.m */; };
 		9D6BBE711EE6404C008A9F23 /* LoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6BBE701EE6404C008A9F23 /* LoginRequest.m */; };
@@ -311,6 +313,10 @@
 
 /* Begin PBXFileReference section */
 		8A10E7D0553C7BC98CFE26DD /* libPods-MyWorShip.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyWorShip.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D4200601EE7904400425D5D /* PersonalCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterViewController.h; sourceTree = "<group>"; };
+		9D4200611EE7904400425D5D /* PersonalCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterViewController.m; sourceTree = "<group>"; };
+		9D4200631EE796ED00425D5D /* PersonalCenterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterCell.h; sourceTree = "<group>"; };
+		9D4200641EE796ED00425D5D /* PersonalCenterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterCell.m; sourceTree = "<group>"; };
 		9D6BBE681EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DeleteArrOrDeleteDicBothNull.h"; sourceTree = "<group>"; };
 		9D6BBE691EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DeleteArrOrDeleteDicBothNull.m"; sourceTree = "<group>"; };
 		9D6BBE6B1EE63E9A008A9F23 /* RequestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestClass.h; sourceTree = "<group>"; };
@@ -1154,6 +1160,10 @@
 				9D97724E1ED57924005EAC95 /* MyCell.m */,
 				9D9772801ED582F1005EAC95 /* PersonalDataView.h */,
 				9D9772811ED582F1005EAC95 /* PersonalDataView.m */,
+				9D4200601EE7904400425D5D /* PersonalCenterViewController.h */,
+				9D4200611EE7904400425D5D /* PersonalCenterViewController.m */,
+				9D4200631EE796ED00425D5D /* PersonalCenterCell.h */,
+				9D4200641EE796ED00425D5D /* PersonalCenterCell.m */,
 				9D6BBE7E1EE64E42008A9F23 /* 请求 */,
 				9D6BBE7D1EE64E39008A9F23 /* model */,
 			);
@@ -1772,6 +1782,7 @@
 				9D9772E81ED6C02B005EAC95 /* MessageListViewController.m in Sources */,
 				9D97724C1ED570EE005EAC95 /* MyViewController.m in Sources */,
 				9D6BBE871EE651B7008A9F23 /* BasicInformationInfo.m in Sources */,
+				9D4200651EE796ED00425D5D /* PersonalCenterCell.m in Sources */,
 				9D6BBE6A1EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.m in Sources */,
 				9D9772BE1ED6A4DF005EAC95 /* PreferentialCell.m in Sources */,
 				9D9773951ED824E2005EAC95 /* OrderCell.m in Sources */,
@@ -1781,6 +1792,7 @@
 				9DD501741EE6902B00278600 /* Top_up_detailPagingList.m in Sources */,
 				9D9773021ED7C19B005EAC95 /* WalletViewController.m in Sources */,
 				9D9772021ED5611E005EAC95 /* SGQRCodeScanningView.m in Sources */,
+				9D4200621EE7904400425D5D /* PersonalCenterViewController.m in Sources */,
 				9DD501771EE696D000278600 /* Top_up_detailResultList.m in Sources */,
 				9D9771931ED42D72005EAC95 /* HomeViewController.m in Sources */,
 				9D9771E31ED43AEA005EAC95 /* MyImage.m in Sources */,

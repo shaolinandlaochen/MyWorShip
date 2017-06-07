@@ -232,7 +232,10 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden=YES;
-    [self LoginSuccessful];
+    if ([tokenString length]>0) {
+        [self LoginSuccessful];
+    }
+    
 }
 #pragma mark 接收代理方法通知回到首页
 -(void)dismiss{
@@ -252,12 +255,39 @@
 }
 #pragma mark 登录 (点击头像执行该方法)
 -(void)onGoLoginClick{
-    LoginViewController *Login =[[LoginViewController alloc]init];
-    Login.delegate=self;
-    UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:Login];
-    [self presentViewController:nav animated:YES completion:^{
-        //nav.view.backgroundColor = [[UIColor clearColor] colorWithAlphaComponent:0.5];
-    }];
+    
+   
+    if ([tokenString length]>0) {//已登录进入个人信息
+         BasicInformationBaseClass *class=[[BasicInformationBaseClass alloc]initWithDictionary:[self deleteEmpty:self.dataDic]];
+        PersonalCenterViewController *PersonalCenter=[[PersonalCenterViewController alloc]init];
+        if ([class.info.baseNickname length]>0) {//用户昵称
+            PersonalCenter.nickname=class.info.baseNickname;
+        }
+        if (class.info.baseIsSex!=0) {//用户性别
+            if (class.info.baseSex==0) {
+            PersonalCenter.gender=@"男";
+            }else{
+            PersonalCenter.gender=@"女";
+            }
+        }
+        if (class.info.baseIsPerioddate!=0) {///用户生理期
+            PersonalCenter.time=class.info.basePeriodDate;
+        }
+        if ([class.info.basePhone length]>0) {
+            PersonalCenter.phone=class.info.basePhone;
+        }
+        [self.navigationController pushViewController:PersonalCenter animated:YES];
+    }else{//去登陆
+        LoginViewController *Login =[[LoginViewController alloc]init];
+        Login.delegate=self;
+        UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:Login];
+        [self presentViewController:nav animated:YES completion:^{
+            //nav.view.backgroundColor = [[UIColor clearColor] colorWithAlphaComponent:0.5];
+        }];
+    }
+    
+    
+    
 }
 #pragma mark 登陆成功代理
 -(void)LoginSuccessful{
