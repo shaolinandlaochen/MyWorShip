@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9D4200621EE7904400425D5D /* PersonalCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4200611EE7904400425D5D /* PersonalCenterViewController.m */; };
 		9D4200651EE796ED00425D5D /* PersonalCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4200641EE796ED00425D5D /* PersonalCenterCell.m */; };
+		9D4200681EE7A35900425D5D /* ModifyThNicknameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4200671EE7A35900425D5D /* ModifyThNicknameViewController.m */; };
 		9D6BBE6A1EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6BBE691EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.m */; };
 		9D6BBE6D1EE63E9A008A9F23 /* RequestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6BBE6C1EE63E9A008A9F23 /* RequestClass.m */; };
 		9D6BBE711EE6404C008A9F23 /* LoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6BBE701EE6404C008A9F23 /* LoginRequest.m */; };
@@ -317,6 +318,8 @@
 		9D4200611EE7904400425D5D /* PersonalCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterViewController.m; sourceTree = "<group>"; };
 		9D4200631EE796ED00425D5D /* PersonalCenterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterCell.h; sourceTree = "<group>"; };
 		9D4200641EE796ED00425D5D /* PersonalCenterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterCell.m; sourceTree = "<group>"; };
+		9D4200661EE7A35900425D5D /* ModifyThNicknameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyThNicknameViewController.h; sourceTree = "<group>"; };
+		9D4200671EE7A35900425D5D /* ModifyThNicknameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyThNicknameViewController.m; sourceTree = "<group>"; };
 		9D6BBE681EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DeleteArrOrDeleteDicBothNull.h"; sourceTree = "<group>"; };
 		9D6BBE691EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DeleteArrOrDeleteDicBothNull.m"; sourceTree = "<group>"; };
 		9D6BBE6B1EE63E9A008A9F23 /* RequestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestClass.h; sourceTree = "<group>"; };
@@ -1164,6 +1167,8 @@
 				9D4200611EE7904400425D5D /* PersonalCenterViewController.m */,
 				9D4200631EE796ED00425D5D /* PersonalCenterCell.h */,
 				9D4200641EE796ED00425D5D /* PersonalCenterCell.m */,
+				9D4200661EE7A35900425D5D /* ModifyThNicknameViewController.h */,
+				9D4200671EE7A35900425D5D /* ModifyThNicknameViewController.m */,
 				9D6BBE7E1EE64E42008A9F23 /* 请求 */,
 				9D6BBE7D1EE64E39008A9F23 /* model */,
 			);
@@ -1775,6 +1780,7 @@
 				9D9772F21ED6C4CB005EAC95 /* AnnouncementCell.m in Sources */,
 				9D9771FD1ED560DF005EAC95 /* SGQRCodeScanningVC.m in Sources */,
 				9DD501861EE6A77A00278600 /* StatementResultList.m in Sources */,
+				9D4200681EE7A35900425D5D /* ModifyThNicknameViewController.m in Sources */,
 				9D9773BB1ED916E6005EAC95 /* GuideTheContentViewController.m in Sources */,
 				9D97724F1ED57924005EAC95 /* MyCell.m in Sources */,
 				9D9773051ED7C4F5005EAC95 /* WalletMoneyCell.m in Sources */,

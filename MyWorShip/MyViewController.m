@@ -204,7 +204,12 @@
         [_view.iconHead addTarget:self action:@selector(onGoLoginClick) forControlEvents:UIControlEventTouchUpInside];
         if (self.dataDic!=nil) {
              BasicInformationBaseClass *class=[[BasicInformationBaseClass alloc]initWithDictionary:[self deleteEmpty:self.dataDic]];
-            _view.name.text=[NSString stringWithFormat:@"%@",class.info.basePhone];
+            if ([stringFormat(class.info.baseNickname) length]>0) {
+                _view.name.text=[NSString stringWithFormat:@"%@",class.info.baseNickname];
+            }else{
+                _view.name.text=[NSString stringWithFormat:@"%@",class.info.basePhone];
+            }
+            
             _view.money.text=[NSString stringWithFormat:@"钱包余额:%.2f",class.remain];
             
             if (class.info.baseIsVip==0) {//不是VIP也没有开通过,

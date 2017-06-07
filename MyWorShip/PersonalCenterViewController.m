@@ -8,9 +8,12 @@
 
 #import "PersonalCenterViewController.h"
 #import "PersonalCenterCell.h"
-@interface PersonalCenterViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "ModifyThNicknameViewController.h"
+#import "MyRequest.h"
+@interface PersonalCenterViewController ()<UITableViewDelegate,UITableViewDataSource,ModifyThNicknameDelegate>
 {
     UITableView *_tableView;
+    UIImageView *img;
 }
 
 @end
@@ -28,7 +31,7 @@
 #pragma mark 创建视图
 -(void)CreatViews{
     //背景
-    UIImageView *img=[[UIImageView alloc]init];
+    img=[[UIImageView alloc]init];
     img.image=[UIImage imageNamed:@"bg_gerenxinxi"];
     img.userInteractionEnabled=YES;
     [self.view addSubview:img];
@@ -58,6 +61,7 @@
     name.textAlignment=NSTextAlignmentCenter;
     name.textColor=[UIColor whiteColor];
     name.font=[UIFont systemFontOfSize:17];
+    name.tag=789654;
     [img addSubview:name];
     name.text=self.nickname;
     name.sd_layout.leftSpaceToView(img, 10).rightSpaceToView(img, 10).topSpaceToView(imgHeadr, 7).autoHeightRatio(0);
@@ -127,6 +131,13 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section==0&&indexPath.row==0) {//修改昵称
+        ModifyThNicknameViewController *ModifyThNickname=[[ModifyThNicknameViewController alloc]init];
+        ModifyThNickname.delegate=self;
+        [self.navigationController pushViewController:ModifyThNickname animated:YES];
+    }else if (indexPath.section==0&&indexPath.row==1){
+        [self SetUpTheSet];//设置性别
+    }
     
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -142,9 +153,9 @@
     }
     if (indexPath.section==0) {
         if (indexPath.row==0) {
-            cell.name.text=@"姓名";
-            if (self.name!=nil) {
-                cell.context.text=self.name;
+            cell.name.text=@"昵称";
+            if (self.nickname!=nil) {
+                cell.context.text=self.nickname;
             }else{
                 cell.context.text=@"未设置";
             }
@@ -188,6 +199,53 @@
     [defaults synchronize];
     [self.navigationController popViewControllerAnimated:YES];
 }
+#define mark 修改昵称成功
+
+-(void)ModifyTheNicknameSuccess:(NSString *)nickName{
+    ((UILabel *)[img viewWithTag:789654]).text=nickName;
+    self.nickname=nickName;
+    [_tableView reloadData];
+}
+#pragma mark 设置性别
+-(void)SetUpTheSet{
+    UIAlertController *alert=[UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请选择您的性别" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action1=[UIAlertAction actionWithTitle:@"男" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [SVProgressHUD showWithStatus:@"正在加载"];
+        [MyRequest setSex_base_sex:0 BLOCK:^(NSDictionary *dic) {
+            LoginsIsBaseClass *class=[[LoginsIsBaseClass alloc]initWithDictionary:[self deleteEmpty:dic]];
+            if ([stringFormat(class.code) isEqualToString:@"5"]) {
+                self.gender=@"男";
+                [SVProgressHUD showSuccessWithStatus:class.msg];
+                [_tableView reloadData];
+            }else{
+                [SVProgressHUD showErrorWithStatus:class.msg];
+            }
+            
+        }];
+    }];
+    UIAlertAction *action2=[UIAlertAction actionWithTitle:@"女" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [SVProgressHUD showWithStatus:@"正在加载"];
+        [MyRequest setSex_base_sex:1 BLOCK:^(NSDictionary *dic) {
+            LoginsIsBaseClass *class=[[LoginsIsBaseClass alloc]initWithDictionary:[self deleteEmpty:dic]];
+            if ([stringFormat(class.code) isEqualToString:@"5"]) {
+                self.gender=@"女";
+                [SVProgressHUD showSuccessWithStatus:class.msg];
+                 [_tableView reloadData];
+            }else{
+                [SVProgressHUD showErrorWithStatus:class.msg];
+            }
+        }];
+    }];
+    UIAlertAction *action3=[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [alert addAction:action1];
+    [alert addAction:action2];
+    [alert addAction:action3];
+    [self presentViewController:alert animated:YES completion:nil];
+    
+}
+
 /*
 #pragma mark - Navigation
 

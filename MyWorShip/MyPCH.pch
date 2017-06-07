@@ -63,6 +63,9 @@
 #define stringFormat(context) [NSString stringWithFormat:@"%@",context]
 
 #define SGQRCodeLog(...) NSLog(__VA_ARGS__)
+//弹框提示
+#define AlertView(context)  UIAlertView *alter = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:context delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil];\
+    [alter show];
 
 //下拉刷新
 #define TheDrop_downRefresh(view,selector)  MJRefreshNormalHeader*  header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:selector];[header setTitle:@"快来拉我刷新" forState:MJRefreshStateIdle];[header setTitle:@"松开即可刷新" forState:MJRefreshStatePulling];[header setTitle:@"正在刷新" forState:MJRefreshStateRefreshing];header.stateLabel.font = [UIFont systemFontOfSize:15];header.lastUpdatedTimeLabel.font = [UIFont systemFontOfSize:14];header.stateLabel.textColor = [UIColor grayColor];header.lastUpdatedTimeLabel.textColor = [UIColor grayColor];NSDate *date=[[NSDate alloc]init];[header.lastUpdatedTime laterDate:date];[header beginRefreshing];view.mj_header = header;
@@ -114,4 +117,19 @@ autoSizeScaleY = SCREENHEIGHT/1334;\
 /*
  //_tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
  _tableView.separatorColor=[UIColor clearColor];
+ 
+ UIAlertController *alert=[UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请选择您的性别" preferredStyle:UIAlertControllerStyleAlert];
+ UIAlertAction *action1=[UIAlertAction actionWithTitle:@"男" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+ NSLog(@"正常");
+ }];
+ UIAlertAction *action2=[UIAlertAction actionWithTitle:@"女" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+ NSLog(@"红色");
+ }];
+ UIAlertAction *action3=[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+ NSLog(@"加粗(取消)");
+ }];
+ [alert addAction:action1];
+ [alert addAction:action2];
+ [alert addAction:action3];
+ [self presentViewController:alert animated:YES completion:nil];
  */
