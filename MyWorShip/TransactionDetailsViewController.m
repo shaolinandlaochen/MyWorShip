@@ -149,14 +149,27 @@ CANCEL
     if (index==0) {
         StatementBaseClass *class=[[StatementBaseClass alloc]initWithDictionary:self.dataDic];
         StatementResultList *list=class.pagingList.resultList[indexPath.row];
-        cell.title.text=stringFormat(list.remark);
+        NSString *Str=@"";
+        if ([stringFormat(list.cwalletType) isEqualToString:@"Refund"]) {
+            Str=@"退款";
+        }else if ([stringFormat(list.cwalletType) isEqualToString:@"Buy"]){
+            Str=@"购买";
+        }
+        else if ([stringFormat(list.cwalletType) isEqualToString:@"Recharge"]){
+            Str=@"充值";
+        }
+        cell.title.text=Str;
         cell.time.text=stringFormat(list.cwalletTime);
-        cell.money.text=[NSString stringWithFormat:@"-%.2f元",list.cwalletAmount];
+        cell.money.text=[NSString stringWithFormat:@""];
+        cell.ConsumptionAmount.text=[NSString stringWithFormat:@"%.0f",list.cwalletAmount];
+        cell.use.text=stringFormat(list.remark);
     }else{
         Top_up_detailBaseClass *class=[[Top_up_detailBaseClass alloc]initWithDictionary:self.dataDic];
         Top_up_detailResultList *list=class.pagingList.resultList[indexPath.row];
         cell.title.text=stringFormat(list.rechargeDescribe);
         cell.time.text=stringFormat(list.rechargeTime);
+        cell.ConsumptionAmount.text=@"";
+        cell.use.text=@"";
         cell.money.text=[NSString stringWithFormat:@"+%.2f元",list.rechargeAmount];
     }
 

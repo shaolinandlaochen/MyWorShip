@@ -12,4 +12,6 @@
 @property(nonatomic,strong)UILabel *title;
 @property(nonatomic,strong)UILabel *time;
 @property(nonatomic,strong)UILabel *money;
+@property(nonatomic,strong)UILabel *ConsumptionAmount;//消费金额
+@property(nonatomic,strong)UILabel *use;
 @end

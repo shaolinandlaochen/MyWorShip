@@ -36,6 +36,21 @@
         [self.contentView addSubview:_money];
         _money.sd_layout.rightSpaceToView(self.contentView, 19).topSpaceToView(self.contentView, 0).bottomSpaceToView(self.contentView, 0).leftSpaceToView(self.contentView, 220);
         
+        
+        _ConsumptionAmount=[[UILabel alloc]init];
+        _ConsumptionAmount.textColor=[MyClass colorWithHexString:@"010101"];
+        _ConsumptionAmount.font=[UIFont systemFontOfSize:17];
+        _ConsumptionAmount.textAlignment=NSTextAlignmentRight;
+        [self.contentView addSubview:_ConsumptionAmount];
+        _ConsumptionAmount.sd_layout.rightSpaceToView(self.contentView, 13).topSpaceToView(self.contentView, 15).widthIs(150).heightIs(14);
+        
+        _use=[[UILabel alloc]init];
+        _use.textColor=[MyClass colorWithHexString:@"a3a3a3"];
+        _use.font=[UIFont systemFontOfSize:13];
+        _use.textAlignment=NSTextAlignmentRight;
+        [self.contentView addSubview:_use];
+        _use.sd_layout.rightSpaceToView(self.contentView, 13).topSpaceToView(_ConsumptionAmount, 6).widthIs(150).heightIs(14);
+        
     }
     return self;
 }

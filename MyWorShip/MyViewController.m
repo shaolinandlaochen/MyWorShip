@@ -210,11 +210,9 @@
         if (self.dataDic!=nil) {
              BasicInformationBaseClass *class=[[BasicInformationBaseClass alloc]initWithDictionary:[self deleteEmpty:self.dataDic]];
             if ([stringFormat(class.info.baseNickname) length]>0) {
-                _view.name.text=[NSString stringWithFormat:@"%@",class.info.baseNickname];
+                _view.title=[NSString stringWithFormat:@"%@",class.info.baseNickname];
             }else if ([stringFormat(class.info.basePhone) length]>0){
-                _view.name.text=[NSString stringWithFormat:@"%@",class.info.basePhone];
-            }else{
-                _view.name.text=@"点我登录";
+                _view.title=[NSString stringWithFormat:@"%@",class.info.basePhone];
             }
             
             if ([stringFormat(class.info.baseNickname) length]>0||[stringFormat(class.info.basePhone) length]>0) {
@@ -228,6 +226,11 @@
             }else{//VIP已过期
             
             }
+        }else{
+            _view.name.text=@"点我登录";
+        }
+        if ([tokenString length]<1) {
+            _view.name.text=@"点我登录";
         }
        
     }

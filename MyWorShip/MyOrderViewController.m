@@ -51,6 +51,17 @@
         [btn addTarget:self action:@selector(onButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btn];
         btn.sd_layout.leftSpaceToView(self.view, (WIDTH/4)*i).widthIs(WIDTH/4).topSpaceToView(self.view, navheight+rectStatus.size.height).heightIs(43);
+        
+        
+        UILabel *line=[[UILabel alloc]init];
+        line.tag=10+i;
+        if (i==0) {
+            line.backgroundColor=[MyClass colorWithHexString:@"ff4c59"];
+        }else{
+            line.backgroundColor=[UIColor clearColor];
+        }
+        [self.view addSubview:line];
+        line.sd_layout.leftSpaceToView(self.view, (WIDTH/4)*i).widthIs(WIDTH/4).topSpaceToView(self.view, navheight+rectStatus.size.height+43).heightIs(2);
     }
 
     // Do any additional setup after loading the view.
@@ -105,8 +116,10 @@ CANCEL
     index=btn.tag-1;
     for (int i=0; i<4; i++) {
         [((UIButton *)[self.view viewWithTag:i+1]) setTitleColor:[MyClass colorWithHexString:@"000000"] forState:UIControlStateNormal];
+        ((UILabel *)[self.view viewWithTag:i+10]).backgroundColor=[UIColor clearColor];
     }
     [((UIButton *)[self.view viewWithTag:index+1]) setTitleColor:[MyClass colorWithHexString:@"ff4c59"] forState:UIControlStateNormal];
+    ((UILabel *)[self.view viewWithTag:btn.tag+9]).backgroundColor=[MyClass colorWithHexString:@"ff4c59"];
     
     
 }
