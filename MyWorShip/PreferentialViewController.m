@@ -93,6 +93,7 @@
         cell.name.textColor=[self colorWithHexString:@"000000"];
         cell.time.textColor=[self colorWithHexString:@"000000"];
         cell.money.textColor=[self colorWithHexString:@"ff4c59"];
+        cell.conditions.text=@"慢200可用哦哦哦";
     }else if (index==1){
         cell.bjImage.image=[UIImage imageNamed:@"bg_used"];
         cell.typeImage.image=[UIImage imageNamed:@"img_used"];

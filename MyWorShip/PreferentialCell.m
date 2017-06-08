@@ -28,6 +28,12 @@
         [self.contentView addSubview:_money];
         _money.sd_layout.leftSpaceToView(self.contentView, 22.5).topSpaceToView(self.contentView, 47).widthIs(100).bottomSpaceToView(self.contentView, 29);
         
+        _conditions=[[UILabel alloc]init];
+        _conditions.textColor=[MyClass colorWithHexString:@"a3a3a3"];
+        _conditions.font=[UIFont systemFontOfSize:12];
+        [self.contentView addSubview:_conditions];
+        _conditions.sd_layout.leftEqualToView(_money).topSpaceToView(_money, 5).widthIs(200).heightIs(13);
+        
         _name=[[UILabel alloc]init];
         _name.textAlignment=NSTextAlignmentRight;
         _name.font=[UIFont systemFontOfSize:18];
