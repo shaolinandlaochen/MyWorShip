@@ -99,7 +99,7 @@
     //扫描
     MyButton *scanningBtn=[MyButton buttonWithType:UIButtonTypeCustom];
     scanningBtn.tag=4;
-    [scanningBtn setBackgroundImage:[UIImage imageNamed:@"扫描月拜"] forState:UIControlStateNormal];
+    [scanningBtn setBackgroundImage:[UIImage imageNamed:@"btn_scan"] forState:UIControlStateNormal];
     [scanningBtn addTarget:self action:@selector(onScanningClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view  addSubview:scanningBtn];
     scanningBtn.sd_layout.rightSpaceToView(self.view, (self.view.frame.size.width-134)/2).leftSpaceToView(self.view, (self.view.frame.size.width-134)/2).bottomSpaceToView(self.view, 10).heightIs(52);
