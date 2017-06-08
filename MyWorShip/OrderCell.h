@@ -12,4 +12,6 @@
 @property(nonatomic,strong)UILabel *time;
 @property(nonatomic,strong)UILabel *money;
 @property(nonatomic,strong)UILabel *location;
+@property(nonatomic,strong)UIImageView *imgRight;
+@property(nonatomic,strong)UILabel *state;
 @end

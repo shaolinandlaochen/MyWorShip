@@ -17,6 +17,8 @@
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if ([super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
+
+        
         UIImageView *imgTimeIcon=[[UIImageView alloc]init];
         imgTimeIcon.image=[UIImage imageNamed:@"icon_time"];
         [self.contentView addSubview:imgTimeIcon];
@@ -46,7 +48,15 @@
         [self.contentView addSubview:_location];
         _location.sd_layout.leftSpaceToView(_money, 10).topEqualToView(lbl1).rightSpaceToView(self.contentView, 10).heightIs(12);
         
+        _imgRight=[[UIImageView alloc]init];
+        [self.contentView addSubview:_imgRight];
+        _imgRight.sd_layout.rightSpaceToView(self.contentView, 18.5).topSpaceToView(self.contentView, 24).bottomSpaceToView(self.contentView, 24).widthIs(22);
         
+        _state=[[UILabel alloc]init];
+        _state.textAlignment=NSTextAlignmentRight;
+        _state.font=[UIFont systemFontOfSize:12];
+        [self.contentView addSubview:_state];
+        _state.sd_layout.rightSpaceToView(_imgRight, 1).topEqualToView(_imgRight).bottomEqualToView(_imgRight).widthIs(55);
         
     }
     return self;

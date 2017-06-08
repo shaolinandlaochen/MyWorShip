@@ -69,10 +69,16 @@
     name.tag=789654;
     [img addSubview:name];
     name.text=self.nickname;
-    name.sd_layout.leftSpaceToView(img, 10).rightSpaceToView(img, 10).topSpaceToView(imgHeadr, 7).autoHeightRatio(0);
+    CGSize nameSize=[MyClass StringHeight:name.text Lblfont:17 heightOfTheMinus:0];
+    name.sd_layout.leftSpaceToView(img, (self.view.frame.size.width-nameSize.width)/2).rightSpaceToView(img, (self.view.frame.size.width-nameSize.width)/2).topSpaceToView(imgHeadr, 7).autoHeightRatio(0);
     
+    UIImageView *vipImage=[[UIImageView alloc]init];
     
-    
+    [img addSubview:vipImage];
+    vipImage.sd_layout.leftSpaceToView(name, 2).topSpaceToView(imgHeadr, 8).heightIs(16).widthIs(16);
+    if (self.isVip==1) {
+        vipImage.image=[UIImage imageNamed:@"img_vip"];
+    }
     
     
     //退出登录按钮

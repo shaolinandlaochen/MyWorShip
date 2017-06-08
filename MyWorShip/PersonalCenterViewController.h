@@ -14,4 +14,5 @@
 @property(nonatomic,copy)NSString *phone;
 @property(nonatomic,copy)NSString *gender;
 @property(nonatomic,copy)NSString *nickname;
+@property(nonatomic,assign)NSInteger isVip;
 @end

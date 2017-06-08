@@ -10,7 +10,7 @@
 #import "MyCell.h"
 #import "PersonalDataView.h"
 #import "MyRequest.h"
-@interface MyViewController ()<UITableViewDelegate,UITableViewDataSource,InvitationDelegate,LoginDelegate>
+@interface MyViewController ()<UITableViewDelegate,UITableViewDataSource,InvitationDelegate,LoginDelegate,UIGestureRecognizerDelegate>
 {
     UITableView *_tablleView;
     PersonalDataView *_view;
@@ -197,7 +197,12 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     _view=[[PersonalDataView alloc]init];
     if (section==0) {
-       
+        UITapGestureRecognizer * PrivateLetterTap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(onGoLoginClick)];
+        PrivateLetterTap.numberOfTouchesRequired = 1; //手指数
+        PrivateLetterTap.numberOfTapsRequired = 1; //tap次数
+        PrivateLetterTap.delegate= self;
+        _view.contentMode = UIViewContentModeScaleToFill;
+        [_view addGestureRecognizer:PrivateLetterTap];
        
         _view.backgroundColor=[UIColor whiteColor];
         [_view.iconHead setBackgroundImage:[UIImage imageNamed:@"img_touxiang_home"] forState:UIControlStateNormal];
@@ -206,11 +211,15 @@
              BasicInformationBaseClass *class=[[BasicInformationBaseClass alloc]initWithDictionary:[self deleteEmpty:self.dataDic]];
             if ([stringFormat(class.info.baseNickname) length]>0) {
                 _view.name.text=[NSString stringWithFormat:@"%@",class.info.baseNickname];
-            }else{
+            }else if ([stringFormat(class.info.basePhone) length]>0){
                 _view.name.text=[NSString stringWithFormat:@"%@",class.info.basePhone];
+            }else{
+                _view.name.text=@"点我登录";
             }
             
-            _view.money.text=[NSString stringWithFormat:@"钱包余额:%.2f",class.remain];
+            if ([stringFormat(class.info.baseNickname) length]>0||[stringFormat(class.info.basePhone) length]>0) {
+                _view.money.text=[NSString stringWithFormat:@"钱包余额:%.2f",class.remain];
+            }
             
             if (class.info.baseIsVip==0) {//不是VIP也没有开通过,
                 
@@ -279,6 +288,7 @@
             if (class.info.baseIsPerioddate!=0) {///用户生理期
                 PersonalCenter.time=stringFormat(class.info.basePeriodDate);
             }
+            PersonalCenter.isVip=class.info.baseIsVip;
             if ([stringFormat(class.info.basePhone) length]>0) {
                 PersonalCenter.phone=stringFormat(class.info.basePhone);
             }
