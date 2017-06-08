@@ -17,4 +17,8 @@
  *设置消已读
  */
 +(void)TheMessageDetailsmessage_id:(NSInteger)message_id block:(void(^)(NSDictionary *dic))block;
+/*
+ *获取公告列表
+ */
++(void)ToObtainAListAnnouncement_page:(NSInteger)page  pageSize:(NSInteger)pageSize block:(void(^)(NSDictionary *dic))block;
 @end

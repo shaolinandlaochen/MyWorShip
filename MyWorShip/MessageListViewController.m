@@ -66,7 +66,23 @@
             
         }];
     }else if (index==1){//公告列表
-    
+    [MyMessageRequest ToObtainAListAnnouncement_page:1 pageSize:500 block:^(NSDictionary *dic) {
+        AnnouncementListBaseClass *class=[[AnnouncementListBaseClass alloc]initWithDictionary:[self deleteEmpty:dic]];
+        if ([class.code isEqualToString:@"3"]) {
+            self.AnnouncementDataDic=[self deleteEmpty:dic];
+            [_tableView reloadData];
+            if (class.data.resultList.count<1) {
+                [self NULLData];
+            }else{
+                [[self.view viewWithTag:852]removeFromSuperview];
+                [[self.view viewWithTag:753]removeFromSuperview];
+                
+            }
+        }else{
+            [SVProgressHUD showErrorWithStatus:class.msg];
+        }
+        [_tableView.mj_header endRefreshing];
+    }];
     }
    
 
@@ -97,7 +113,8 @@
 #pragma mark 点击筛选按钮执行该方法
 -(void)onConditionsForScreeningClick:(MyButton *)btn{
     index=btn.tag-1;
-    [_tableView reloadData];
+    [SVProgressHUD showWithStatus:loading];
+    [self CaretDatas];
 
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -105,7 +122,8 @@
     MyMessageListBaseClass *class=[[MyMessageListBaseClass alloc]initWithDictionary:self.MessageDataDic];
         return class.data.resultList.count+1;
     }else if (index==1){
-        return 10;
+        AnnouncementListBaseClass *class=[[AnnouncementListBaseClass alloc]initWithDictionary:[self deleteEmpty:self.AnnouncementDataDic]];
+        return class.data.resultList.count+1;
     }
     return 0;
 }
@@ -117,6 +135,9 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (index==1) {
+        AnnouncementListBaseClass *class=[[AnnouncementListBaseClass alloc]initWithDictionary:[self deleteEmpty:self.AnnouncementDataDic]];
+        AnnouncementListResultList *list=class.data.resultList[indexPath.section-1];
+        return [tableView cellHeightForIndexPath:indexPath model:list keyPath:@"model" cellClass:[AnnouncementCell class] contentViewWidth:self.view.frame.size.width];
         return 157;
     }else if (index==0){
         MyMessageListBaseClass *class=[[MyMessageListBaseClass alloc]initWithDictionary:self.MessageDataDic];
@@ -150,6 +171,9 @@
         
     }else{//公告详情
      AnnouncementOfTheDetails.titleString=@"公告详情";
+        AnnouncementListBaseClass *class=[[AnnouncementListBaseClass alloc]initWithDictionary:[self deleteEmpty:self.AnnouncementDataDic]];
+        AnnouncementListResultList *list=class.data.resultList[indexPath.section-1];
+        AnnouncementOfTheDetails.annModel=list;
 
     }
     [self.navigationController pushViewController:AnnouncementOfTheDetails animated:YES];
@@ -191,7 +215,9 @@
     }else{
         MessageListHeaderView *HeaderView=[[MessageListHeaderView alloc]init];
         if (index==1) {
-            HeaderView.time.text=@"2016-02-03 12:20";
+            AnnouncementListBaseClass *class=[[AnnouncementListBaseClass alloc]initWithDictionary:[self deleteEmpty:self.AnnouncementDataDic]];
+            AnnouncementListResultList *list=class.data.resultList[section-1];
+            HeaderView.timeString=stringFormat(list.noticeTime);
         }
         return HeaderView;
     }
@@ -211,9 +237,10 @@
 
         return cell;
     }else{
+        AnnouncementListBaseClass *class=[[AnnouncementListBaseClass alloc]initWithDictionary:[self deleteEmpty:self.AnnouncementDataDic]];
+        AnnouncementListResultList *list=class.data.resultList[indexPath.section-1];
         AnnouncementCell *cell=[[AnnouncementCell alloc]init];
-        cell.nameString=@"哈哈哈哈哈哈哈";
-        cell.contextString=@"is覅素钙蛋白的噶比大股东嘎嘣第八大不大看似简单不付款时间发布时间开放第三方不都看世界杯刷卡机交封不杀会计法吧空间吧看到祭敖包刷卡缴费靠近岸边";
+        cell.model=list;
         return cell;
     }
 }

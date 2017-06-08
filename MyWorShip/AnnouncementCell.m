@@ -38,6 +38,13 @@
     _context.text=contextString;
     _context.sd_layout.leftSpaceToView(self.contentView, 20).topSpaceToView(_name, 25).rightSpaceToView(self.contentView, 20).bottomSpaceToView(self.contentView, 29);
 }
+-(void)setModel:(AnnouncementListResultList *)model{
+    _name.text=stringFormat(model.noticeTitle);
+    _name.sd_layout.leftSpaceToView(self.contentView, 20).topSpaceToView(self.contentView, 26).rightSpaceToView(self.contentView, 20).heightIs(16);
+    _context.text=stringFormat(model.noticeContent);
+    _context.sd_layout.leftSpaceToView(self.contentView, 20).topSpaceToView(_name, 25).rightSpaceToView(self.contentView, 20).autoHeightRatio(0);
+    [self setupAutoHeightWithBottomView:_context bottomMargin:25];
+}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

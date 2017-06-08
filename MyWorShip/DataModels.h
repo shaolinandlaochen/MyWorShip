@@ -19,3 +19,6 @@
 #import "StatementBaseClass.h"
 #import "StatementResultList.h"
 #import "StatementPagingList.h"
+#import "AnnouncementListBaseClass.h"
+#import "AnnouncementListResultList.h"
+#import "AnnouncementListData.h"

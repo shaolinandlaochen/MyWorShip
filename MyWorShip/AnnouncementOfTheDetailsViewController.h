@@ -21,4 +21,5 @@
 @property(nonatomic,assign)id delegate;
 @property(nonatomic,assign)NSInteger ID;
 @property(nonatomic,strong)MyMessageListResultList *model;
+@property(nonatomic,strong)AnnouncementListResultList *annModel;
 @end

@@ -13,4 +13,5 @@
 @property(nonatomic,strong)UILabel *context;
 @property(nonatomic,copy)NSString *nameString;
 @property(nonatomic,copy)NSString *contextString;
+@property(nonatomic,strong)AnnouncementListResultList *model;
 @end

@@ -10,4 +10,5 @@
 
 @interface MessageListHeaderView : UIView
 @property(nonatomic,strong)UILabel *time;
+@property(nonatomic,copy)NSString *timeString;
 @end

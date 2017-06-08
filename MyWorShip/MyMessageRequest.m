@@ -33,4 +33,18 @@
         
     }];
 }
+/*
+ *获取公告列表
+ */
++(void)ToObtainAListAnnouncement_page:(NSInteger)page  pageSize:(NSInteger)pageSize block:(void(^)(NSDictionary *dic))block{
+    NSMutableDictionary *dic=[[NSMutableDictionary alloc]init];
+    [dic setObject:@(page) forKey:@"page"];
+    [dic setObject:@(pageSize) forKey:@"pageSize"];
+    NSDictionary *dataDic=[MyClass ReceiveTheOriginalData:dic];//去添加时间戳等数据然后返回签名后的数据
+    [RequestClass getUrl:@"notice" Dic:dataDic block:^(NSDictionary *dic) {
+        NSLog(@"获取公告列表:%@",dic);
+        block(dic);
+        
+    }];
+}
 @end

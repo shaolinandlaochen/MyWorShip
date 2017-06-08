@@ -28,8 +28,12 @@
         _time.textColor=[MyClass colorWithHexString:@"a3a3a3"];
         _time.font=[UIFont systemFontOfSize:12];
         [self addSubview:_time];
-        _time.sd_layout.leftSpaceToView(self, (WIDTH-114)/2).topSpaceToView(self, 10).rightSpaceToView(self, (WIDTH-114)/2).bottomSpaceToView(self, 9.5);
     }
     return self;
+}
+-(void)setTimeString:(NSString *)timeString{
+    _time.text=timeString;
+    CGSize size=[MyClass StringHeight:timeString Lblfont:12 heightOfTheMinus:0];
+    _time.sd_layout.leftSpaceToView(self, (WIDTH-size.width-10)/2).topSpaceToView(self, 10).rightSpaceToView(self, (WIDTH-size.width-10)/2).bottomSpaceToView(self, 9.5);
 }
 @end
