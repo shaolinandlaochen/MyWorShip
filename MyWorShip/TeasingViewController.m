@@ -271,6 +271,37 @@
 }
 #pragma mark 提交
 -(void)onGoBtnClick{
+    NSString *IDStr=@"";
+    for (int i=0; i<_typeArray.count; i++) {
+        
+        if (((MyButton *)[self.view viewWithTag:i+1]).selected) {
+            if ([IDStr isEqualToString:@""]) {
+                IDStr=[NSString stringWithFormat:@"%d",i];
+            }else{
+            IDStr=[NSString stringWithFormat:@"%d,%@",i,IDStr];
+            }
+        }
+        
+    }
+    NSString *imgPathString=@"";
+    for (int i=0; i<self.imgPath.count; i++) {
+        if ([imgPathString length]<1) {
+            imgPathString=[NSString stringWithFormat:@"%@",self.imgPath[i]];
+        }else{
+        imgPathString=[NSString stringWithFormat:@"%@,%@",self.imgPath[i],imgPathString];
+        }
+    }
+    [SVProgressHUD showWithStatus:loading];
+    [FeedbackRequest FeedbackToSubmit:_note.text feedback_type:IDStr equipment_uuid:@"123" feedback_image:imgPathString block:^(NSDictionary *dic) {
+        LoginsIsBaseClass *class=[[LoginsIsBaseClass alloc]initWithDictionary:[self deleteEmpty:dic]];
+        if ([stringFormat(class.code) isEqualToString:@"8"]) {
+            [self.navigationController popViewControllerAnimated:YES];
+            [SVProgressHUD showSuccessWithStatus:class.msg];
+        }else{
+            [SVProgressHUD showErrorWithStatus:class.msg];
+        }
+        
+    }];
 
 }
 #pragma mark 返回

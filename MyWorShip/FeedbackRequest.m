@@ -12,8 +12,18 @@
 /*
  *意见反馈提交
  */
-+(void)FeedbackToSubmit:(NSString *)feedback_content feedback_type:(NSInteger)feedback_type equipment_uuid:(NSString *)equipment_uuid feedback_image:(NSString *)feedback_image block:(void(^)(NSDictionary *dic))block{
-
++(void)FeedbackToSubmit:(NSString *)feedback_content feedback_type:(NSString *)feedback_type equipment_uuid:(NSString *)equipment_uuid feedback_image:(NSString *)feedback_image block:(void(^)(NSDictionary *dic))block{
+    NSMutableDictionary *dic=[[NSMutableDictionary alloc]init];
+    [dic setObject:feedback_content forKey:@"feedback_content"];
+    [dic setObject:feedback_type forKey:@"feedback_type"];
+    [dic setObject:equipment_uuid forKey:@"equipment_uuid"];
+    [dic setObject:feedback_image forKey:@"feedback_image"];
+    NSDictionary *dataDic=[MyClass ReceiveTheOriginalData:dic];//去添加时间戳等数据然后返回签名后的数据
+    [RequestClass getUrl:@"feedback" Dic:dataDic block:^(NSDictionary *dic) {
+        NSLog(@"意见反馈提交:%@",dic);
+        block(dic);
+        
+    }];
 }
 /*
  *上传图片

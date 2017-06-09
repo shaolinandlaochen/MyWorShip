@@ -132,18 +132,22 @@
         cell.time.textColor=[self colorWithHexString:@"cdc7c7"];
         cell.money.textColor=[self colorWithHexString:@"cdc7c7"];
     }
-    
+    NSString *coupon_subtract_amount=@"";
     if (list.couponType==0) {
     cell.name.text=@"月拜共享·满减券";
+        coupon_subtract_amount=[NSString stringWithFormat:@"%.0f元",list.couponSubtractAmount];
     }else if (list.couponType==1){
     cell.name.text=@"月拜共享·折扣券";
+        coupon_subtract_amount=[NSString stringWithFormat:@"%.1f折",list.couponSubtractAmount];
     }else if (list.couponType==2){
     cell.name.text=@"月拜共享·抵用券";
+        coupon_subtract_amount=[NSString stringWithFormat:@"%.0f元",list.couponSubtractAmount];
     }
     
-    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%.1f",list.couponDiscount]];
-     [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"Arial-BoldItalicMT" size:14] range:NSMakeRange(1, 2)];
-    [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"Arial-BoldItalicMT" size:45] range:NSMakeRange(0, 3)];
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@",coupon_subtract_amount]];
+    [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:45] range:NSMakeRange(0, [coupon_subtract_amount length]-1)];
+    [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:NSMakeRange([coupon_subtract_amount length]-1, 1)];
+   
     cell.money.attributedText=str;
     
     cell.time.text=stringFormat(list.couponExpireTime);
