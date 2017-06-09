@@ -43,62 +43,104 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    switch (indexPath.row) {
-        case 0:
-        {//我的消息
-            MessageListViewController *MessageList=[[MessageListViewController alloc]init];
-            [self.navigationController pushViewController:MessageList animated:YES];
+    if ([tokenString length]>0) {
+        switch (indexPath.row) {
+            case 0:
+            {//我的消息
+                MessageListViewController *MessageList=[[MessageListViewController alloc]init];
+                [self.navigationController pushViewController:MessageList animated:YES];
+            }
+                break;
+            case 1:
+            {//我的钱包
+                WalletViewController *Wallet=[[WalletViewController alloc]init];
+                [self.navigationController pushViewController:Wallet animated:YES];
+            }
+                break;
+            case 2:
+            {//我的订单
+                MyOrderViewController *MyOrder=[[MyOrderViewController alloc]init];
+                [self.navigationController pushViewController:MyOrder animated:YES];
+            }
+                break;
+            case 3:
+            {//月拜商品
+                GoodsViewController *Goods=[[GoodsViewController alloc]init];
+                [self.navigationController pushViewController:Goods animated:YES];
+                
+            }
+                break;
+            case 4:
+            {//会员
+                
+                BasicInformationBaseClass *class=[[BasicInformationBaseClass alloc]initWithDictionary:[self deleteEmpty:self.dataDic]];
+                if (class.info.baseIsVip==1) {//是vip
+                    MyVIPViewController *vip=[[MyVIPViewController alloc]init];
+                    [self.navigationController pushViewController:vip animated:YES];
+                }else{//不是VIP去开通
+                    OpenTheVIPViewController *OpenTheVIP=[[OpenTheVIPViewController alloc]init];
+                    OpenTheVIP.isvip=0;
+                    [self.navigationController pushViewController:OpenTheVIP animated:YES];
+                }
+                
+            }
+                break;
+            case 5:
+            {//邀请好友
+                InvitationViewController *Invitation=[[InvitationViewController  alloc]init];
+                Invitation.delegate=self;
+                [self.navigationController pushViewController:Invitation animated:YES];
+            }
+                break;
+            case 6:
+            {//使用指南
+                UseGuideViewController *UseGuide=[[UseGuideViewController alloc]init];
+                [self.navigationController pushViewController:UseGuide animated:YES];
+                
+            }
+                break;
+            case 7:
+            {//关于我们
+                AboutUsViewController *AboutUs=[[AboutUsViewController alloc]init];
+                [self.navigationController pushViewController:AboutUs animated:YES];
+            }
+                break;
+                
+                
+                
+            default:
+                break;
         }
-            break;
-        case 1:
-        {//我的钱包
-            WalletViewController *Wallet=[[WalletViewController alloc]init];
-            [self.navigationController pushViewController:Wallet animated:YES];
-        }
-            break;
-        case 2:
-        {//我的订单
-            MyOrderViewController *MyOrder=[[MyOrderViewController alloc]init];
-            [self.navigationController pushViewController:MyOrder animated:YES];
-        }
-            break;
-        case 3:
-        {//月拜商品
-            GoodsViewController *Goods=[[GoodsViewController alloc]init];
-            [self.navigationController pushViewController:Goods animated:YES];
 
+    }else{
+        switch (indexPath.row) {
+                       case 5:
+            {//邀请好友
+                InvitationViewController *Invitation=[[InvitationViewController  alloc]init];
+                Invitation.delegate=self;
+                [self.navigationController pushViewController:Invitation animated:YES];
+            }
+                break;
+            case 6:
+            {//使用指南
+                UseGuideViewController *UseGuide=[[UseGuideViewController alloc]init];
+                [self.navigationController pushViewController:UseGuide animated:YES];
+                
+            }
+                break;
+            case 7:
+            {//关于我们
+                AboutUsViewController *AboutUs=[[AboutUsViewController alloc]init];
+                [self.navigationController pushViewController:AboutUs animated:YES];
+            }
+                break;
+                
+                
+                
+            default:
+                break;
         }
-            break;
-        case 4:
-        {//会员
-            
-        }
-            break;
-        case 5:
-        {//邀请好友
-            InvitationViewController *Invitation=[[InvitationViewController  alloc]init];
-            Invitation.delegate=self;
-            [self.navigationController pushViewController:Invitation animated:YES];
-        }
-            break;
-        case 6:
-        {//使用指南
-            UseGuideViewController *UseGuide=[[UseGuideViewController alloc]init];
-            [self.navigationController pushViewController:UseGuide animated:YES];
 
-        }
-            break;
-        case 7:
-        {//关于我们
-            AboutUsViewController *AboutUs=[[AboutUsViewController alloc]init];
-            [self.navigationController pushViewController:AboutUs animated:YES];
-        }
-            break;
-
-            
-            
-        default:
-            break;
     }
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
