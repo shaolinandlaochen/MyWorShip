@@ -22,3 +22,6 @@
 #import "AnnouncementListBaseClass.h"
 #import "AnnouncementListResultList.h"
 #import "AnnouncementListData.h"
+#import "CouponsListBaseClass.h"
+#import "CouponsListResultList.h"
+#import "CouponsListPagingList.h"

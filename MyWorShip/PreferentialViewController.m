@@ -9,6 +9,7 @@
 #import "PreferentialViewController.h"
 #import "PreferentialCell.h"
 #import "PreferentialView.h"
+#import "CouponsRequest.h"
 @interface PreferentialViewController ()<UITableViewDelegate,UITableViewDataSource,PreferentiaDelegate>
 {
     UITableView *_tableView;
@@ -39,8 +40,29 @@
     //_tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     _tableView.separatorColor=[UIColor clearColor];
     [self.view addSubview:_tableView];
+    TheDrop_downRefresh(_tableView, @selector(onCreatData))
     //[self NULLData];
     // Do any additional setup after loading the view.
+}
+-(void)onCreatData{
+
+    [CouponsRequest ToObtainCouponsList_page:1 pageSize:200 coupon_state:index block:^(NSDictionary *dic) {
+        CouponsListBaseClass *class=[[CouponsListBaseClass alloc]initWithDictionary:[self deleteEmpty:dic]];
+        if ([stringFormat(class.code) isEqualToString:@"3"]) {
+            if (class.pagingList.resultList.count<1) {
+                [self NULLData];
+            }else{
+                [[self.view viewWithTag:999]removeFromSuperview];
+                [[self.view viewWithTag:888]removeFromSuperview];
+            }
+        }else{
+        [SVProgressHUD showInfoWithStatus:class.msg];
+        }
+        self.dataDic=[self deleteEmpty:dic];
+        [_tableView reloadData];
+        [_tableView.mj_header endRefreshing];
+        [SVProgressHUD dismiss];
+    }];
 }
 #pragma mark 无数据
 -(void)NULLData{
@@ -64,7 +86,8 @@
     return 1;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    CouponsListBaseClass *class=[[CouponsListBaseClass alloc]initWithDictionary:[self deleteEmpty:self.dataDic]];
+    return class.pagingList.resultList.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 110;
@@ -88,12 +111,14 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     PreferentialCell *cell=[[PreferentialCell alloc]init];
+    CouponsListBaseClass *class=[[CouponsListBaseClass alloc]initWithDictionary:[self deleteEmpty:self.dataDic]];
+    CouponsListResultList *list=class.pagingList.resultList[indexPath.row];
     if (index==0) {
         cell.bjImage.image=[UIImage imageNamed:@"bg_unused"];
         cell.name.textColor=[self colorWithHexString:@"000000"];
         cell.time.textColor=[self colorWithHexString:@"000000"];
         cell.money.textColor=[self colorWithHexString:@"ff4c59"];
-        cell.conditions.text=@"慢200可用哦哦哦";
+        cell.conditions.text=stringFormat(list.couponName);
     }else if (index==1){
         cell.bjImage.image=[UIImage imageNamed:@"bg_used"];
         cell.typeImage.image=[UIImage imageNamed:@"img_used"];
@@ -108,14 +133,20 @@
         cell.money.textColor=[self colorWithHexString:@"cdc7c7"];
     }
     
+    if (list.couponType==0) {
+    cell.name.text=@"月拜共享·满减券";
+    }else if (list.couponType==1){
+    cell.name.text=@"月拜共享·折扣券";
+    }else if (list.couponType==2){
+    cell.name.text=@"月拜共享·抵用券";
+    }
     
-    cell.name.text=@"买苹果送美女";
-    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"9.9折"];
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%.1f",list.couponDiscount]];
      [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"Arial-BoldItalicMT" size:14] range:NSMakeRange(1, 2)];
     [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"Arial-BoldItalicMT" size:45] range:NSMakeRange(0, 3)];
     cell.money.attributedText=str;
     
-    cell.time.text=@"有效期2016-02-02";
+    cell.time.text=stringFormat(list.couponExpireTime);
     cell.backgroundColor=[self colorWithHexString:@"f3f5f7"];
     return cell;
 }
@@ -126,7 +157,8 @@
 #pragma mark 点击筛选按钮执行该方法
 -(void)state:(NSInteger)idx{
     index=idx;
-    [_tableView reloadData];
+    [SVProgressHUD showWithStatus:loading];
+    [self onCreatData];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

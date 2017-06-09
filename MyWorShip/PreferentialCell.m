@@ -44,7 +44,7 @@
         _time.textAlignment=NSTextAlignmentRight;
         _time.font=[UIFont systemFontOfSize:12];
         [self.contentView addSubview:_time];
-        _time.sd_layout.rightSpaceToView(self.contentView, 36).topSpaceToView(_name, 8.5).bottomSpaceToView(self.contentView, 30).leftEqualToView(_name);
+        _time.sd_layout.rightSpaceToView(self.contentView, 36).topSpaceToView(_name, 8.5).bottomSpaceToView(self.contentView, 25).leftEqualToView(_name);
         
     }
     return self;

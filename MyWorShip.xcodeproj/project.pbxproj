@@ -49,6 +49,10 @@
 		9D4200FF1EE9492A00425D5D /* AnnouncementListBaseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4200FA1EE9492A00425D5D /* AnnouncementListBaseClass.m */; };
 		9D4201001EE9492A00425D5D /* AnnouncementListData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4200FC1EE9492A00425D5D /* AnnouncementListData.m */; };
 		9D4201011EE9492A00425D5D /* AnnouncementListResultList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4200FE1EE9492A00425D5D /* AnnouncementListResultList.m */; };
+		9D4201061EEA2DAF00425D5D /* CouponsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4201051EEA2DAF00425D5D /* CouponsRequest.m */; };
+		9D42010D1EEA2F7A00425D5D /* CouponsListBaseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4201081EEA2F7A00425D5D /* CouponsListBaseClass.m */; };
+		9D42010E1EEA2F7A00425D5D /* CouponsListPagingList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D42010A1EEA2F7A00425D5D /* CouponsListPagingList.m */; };
+		9D42010F1EEA2F7A00425D5D /* CouponsListResultList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D42010C1EEA2F7A00425D5D /* CouponsListResultList.m */; };
 		9D6BBE6A1EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6BBE691EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.m */; };
 		9D6BBE6D1EE63E9A008A9F23 /* RequestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6BBE6C1EE63E9A008A9F23 /* RequestClass.m */; };
 		9D6BBE711EE6404C008A9F23 /* LoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6BBE701EE6404C008A9F23 /* LoginRequest.m */; };
@@ -407,6 +411,14 @@
 		9D4200FC1EE9492A00425D5D /* AnnouncementListData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnouncementListData.m; sourceTree = "<group>"; };
 		9D4200FD1EE9492A00425D5D /* AnnouncementListResultList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnouncementListResultList.h; sourceTree = "<group>"; };
 		9D4200FE1EE9492A00425D5D /* AnnouncementListResultList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnouncementListResultList.m; sourceTree = "<group>"; };
+		9D4201041EEA2DAF00425D5D /* CouponsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponsRequest.h; sourceTree = "<group>"; };
+		9D4201051EEA2DAF00425D5D /* CouponsRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponsRequest.m; sourceTree = "<group>"; };
+		9D4201071EEA2F7A00425D5D /* CouponsListBaseClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponsListBaseClass.h; sourceTree = "<group>"; };
+		9D4201081EEA2F7A00425D5D /* CouponsListBaseClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponsListBaseClass.m; sourceTree = "<group>"; };
+		9D4201091EEA2F7A00425D5D /* CouponsListPagingList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponsListPagingList.h; sourceTree = "<group>"; };
+		9D42010A1EEA2F7A00425D5D /* CouponsListPagingList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponsListPagingList.m; sourceTree = "<group>"; };
+		9D42010B1EEA2F7A00425D5D /* CouponsListResultList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponsListResultList.h; sourceTree = "<group>"; };
+		9D42010C1EEA2F7A00425D5D /* CouponsListResultList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponsListResultList.m; sourceTree = "<group>"; };
 		9D6BBE681EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DeleteArrOrDeleteDicBothNull.h"; sourceTree = "<group>"; };
 		9D6BBE691EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DeleteArrOrDeleteDicBothNull.m"; sourceTree = "<group>"; };
 		9D6BBE6B1EE63E9A008A9F23 /* RequestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestClass.h; sourceTree = "<group>"; };
@@ -806,6 +818,28 @@
 				8A10E7D0553C7BC98CFE26DD /* libPods-MyWorShip.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9D4201021EEA2D7D00425D5D /* model */ = {
+			isa = PBXGroup;
+			children = (
+				9D4201071EEA2F7A00425D5D /* CouponsListBaseClass.h */,
+				9D4201081EEA2F7A00425D5D /* CouponsListBaseClass.m */,
+				9D4201091EEA2F7A00425D5D /* CouponsListPagingList.h */,
+				9D42010A1EEA2F7A00425D5D /* CouponsListPagingList.m */,
+				9D42010B1EEA2F7A00425D5D /* CouponsListResultList.h */,
+				9D42010C1EEA2F7A00425D5D /* CouponsListResultList.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		9D4201031EEA2D8600425D5D /* 请求 */ = {
+			isa = PBXGroup;
+			children = (
+				9D4201041EEA2DAF00425D5D /* CouponsRequest.h */,
+				9D4201051EEA2DAF00425D5D /* CouponsRequest.m */,
+			);
+			name = "请求";
 			sourceTree = "<group>";
 		};
 		9D6BBE671EE63C97008A9F23 /* 请求 */ = {
@@ -1313,6 +1347,8 @@
 				9D9772BD1ED6A4DF005EAC95 /* PreferentialCell.m */,
 				9D9772E31ED6AB2E005EAC95 /* PreferentialView.h */,
 				9D9772E41ED6AB2E005EAC95 /* PreferentialView.m */,
+				9D4201031EEA2D8600425D5D /* 请求 */,
+				9D4201021EEA2D7D00425D5D /* model */,
 			);
 			name = "优惠";
 			sourceTree = "<group>";
@@ -1902,10 +1938,12 @@
 				9DD5017A1EE69C3D00278600 /* ListOfGoodsViewController.m in Sources */,
 				9D9773991ED82E17005EAC95 /* GoodsViewController.m in Sources */,
 				9D97738C1ED820B1005EAC95 /* TopUpResultsViewController.m in Sources */,
+				9D4201061EEA2DAF00425D5D /* CouponsRequest.m in Sources */,
 				9D9773231ED7D016005EAC95 /* TransactionDetailsViewController.m in Sources */,
 				9D9772821ED582F1005EAC95 /* PersonalDataView.m in Sources */,
 				9D97733D1ED7F541005EAC95 /* InvitationViewController.m in Sources */,
 				9D9771F91ED533A8005EAC95 /* ScanningViewController.m in Sources */,
+				9D42010D1EEA2F7A00425D5D /* CouponsListBaseClass.m in Sources */,
 				9D6BBEA71EE6777C008A9F23 /* MyMessageListResultList.m in Sources */,
 				9D9773341ED7DC85005EAC95 /* AboutUsViewController.m in Sources */,
 				9D6BBE6D1EE63E9A008A9F23 /* RequestClass.m in Sources */,
@@ -1930,6 +1968,7 @@
 				9D97715E1ED41BB9005EAC95 /* AppDelegate.m in Sources */,
 				9D9772F51ED7B789005EAC95 /* MessageForDetailsViewController.m in Sources */,
 				9D9771DD1ED4348B005EAC95 /* MyButton.m in Sources */,
+				9D42010E1EEA2F7A00425D5D /* CouponsListPagingList.m in Sources */,
 				9D4200741EE7E5A100425D5D /* VerifyTheMobilePhoneViewController.m in Sources */,
 				9D9772BB1ED6A32B005EAC95 /* PreferentialViewController.m in Sources */,
 				9D6BBEA51EE6777C008A9F23 /* MyMessageListBaseClass.m in Sources */,
@@ -1971,6 +2010,7 @@
 				9D9771E31ED43AEA005EAC95 /* MyImage.m in Sources */,
 				9D9772EF1ED6C4A6005EAC95 /* MessageCell.m in Sources */,
 				9D97715B1ED41BB9005EAC95 /* main.m in Sources */,
+				9D42010F1EEA2F7A00425D5D /* CouponsListResultList.m in Sources */,
 				9DD5016B1EE68B4F00278600 /* MoneyRequest.m in Sources */,
 				9D9773B81ED91022005EAC95 /* UseGuideContextTableViewCell.m in Sources */,
 				9D42007D1EE8E04200425D5D /* GoodsDetailsCell.m in Sources */,
