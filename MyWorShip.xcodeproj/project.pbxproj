@@ -80,6 +80,9 @@
 		9D4201511EEA935200425D5D /* banner_vip.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D42014E1EEA935200425D5D /* banner_vip.png */; };
 		9D4201521EEA935200425D5D /* banner_vip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D42014F1EEA935200425D5D /* banner_vip@2x.png */; };
 		9D4201531EEA935200425D5D /* banner_vip@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D4201501EEA935200425D5D /* banner_vip@3x.png */; };
+		9D42015A1EEA9F3000425D5D /* GoodsDetilBaseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4201551EEA9F3000425D5D /* GoodsDetilBaseClass.m */; };
+		9D42015B1EEA9F3000425D5D /* GoodsDetilComm.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4201571EEA9F3000425D5D /* GoodsDetilComm.m */; };
+		9D42015C1EEA9F3000425D5D /* GoodsDetilListComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4201591EEA9F3000425D5D /* GoodsDetilListComment.m */; };
 		9D6BBE6A1EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6BBE691EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.m */; };
 		9D6BBE6D1EE63E9A008A9F23 /* RequestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6BBE6C1EE63E9A008A9F23 /* RequestClass.m */; };
 		9D6BBE711EE6404C008A9F23 /* LoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6BBE701EE6404C008A9F23 /* LoginRequest.m */; };
@@ -482,6 +485,12 @@
 		9D42014E1EEA935200425D5D /* banner_vip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = banner_vip.png; sourceTree = "<group>"; };
 		9D42014F1EEA935200425D5D /* banner_vip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banner_vip@2x.png"; sourceTree = "<group>"; };
 		9D4201501EEA935200425D5D /* banner_vip@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banner_vip@3x.png"; sourceTree = "<group>"; };
+		9D4201541EEA9F3000425D5D /* GoodsDetilBaseClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsDetilBaseClass.h; sourceTree = "<group>"; };
+		9D4201551EEA9F3000425D5D /* GoodsDetilBaseClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsDetilBaseClass.m; sourceTree = "<group>"; };
+		9D4201561EEA9F3000425D5D /* GoodsDetilComm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsDetilComm.h; sourceTree = "<group>"; };
+		9D4201571EEA9F3000425D5D /* GoodsDetilComm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsDetilComm.m; sourceTree = "<group>"; };
+		9D4201581EEA9F3000425D5D /* GoodsDetilListComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsDetilListComment.h; sourceTree = "<group>"; };
+		9D4201591EEA9F3000425D5D /* GoodsDetilListComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsDetilListComment.m; sourceTree = "<group>"; };
 		9D6BBE681EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DeleteArrOrDeleteDicBothNull.h"; sourceTree = "<group>"; };
 		9D6BBE691EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DeleteArrOrDeleteDicBothNull.m"; sourceTree = "<group>"; };
 		9D6BBE6B1EE63E9A008A9F23 /* RequestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestClass.h; sourceTree = "<group>"; };
@@ -937,6 +946,12 @@
 				9D42011B1EEA723E00425D5D /* MonthsThanksGoodsBaseClass.m */,
 				9D42011C1EEA723E00425D5D /* MonthsThanksGoodsCommodityall.h */,
 				9D42011D1EEA723E00425D5D /* MonthsThanksGoodsCommodityall.m */,
+				9D4201541EEA9F3000425D5D /* GoodsDetilBaseClass.h */,
+				9D4201551EEA9F3000425D5D /* GoodsDetilBaseClass.m */,
+				9D4201561EEA9F3000425D5D /* GoodsDetilComm.h */,
+				9D4201571EEA9F3000425D5D /* GoodsDetilComm.m */,
+				9D4201581EEA9F3000425D5D /* GoodsDetilListComment.h */,
+				9D4201591EEA9F3000425D5D /* GoodsDetilListComment.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -2113,8 +2128,10 @@
 				9D9771611ED41BB9005EAC95 /* ViewController.m in Sources */,
 				9D4200F81EE91C9200425D5D /* AllCommentsViewController.m in Sources */,
 				9D6BBE711EE6404C008A9F23 /* LoginRequest.m in Sources */,
+				9D42015B1EEA9F3000425D5D /* GoodsDetilComm.m in Sources */,
 				9DD501851EE6A77A00278600 /* StatementPagingList.m in Sources */,
 				9D9772F81ED7B7BA005EAC95 /* AnnouncementOfTheDetailsViewController.m in Sources */,
+				9D42015A1EEA9F3000425D5D /* GoodsDetilBaseClass.m in Sources */,
 				9D4201011EE9492A00425D5D /* AnnouncementListResultList.m in Sources */,
 				9D9773BF1ED919DA005EAC95 /* LoginViewController.m in Sources */,
 				9DD501731EE6902B00278600 /* Top_up_detailBaseClass.m in Sources */,
@@ -2151,6 +2168,7 @@
 				9D9773051ED7C4F5005EAC95 /* WalletMoneyCell.m in Sources */,
 				9D6BBE861EE651B7008A9F23 /* BasicInformationBaseClass.m in Sources */,
 				9D4201141EEA353F00425D5D /* FeedbackRequest.m in Sources */,
+				9D42015C1EEA9F3000425D5D /* GoodsDetilListComment.m in Sources */,
 				9D4201001EE9492A00425D5D /* AnnouncementListData.m in Sources */,
 				9D9772E81ED6C02B005EAC95 /* MessageListViewController.m in Sources */,
 				9D97724C1ED570EE005EAC95 /* MyViewController.m in Sources */,

@@ -12,6 +12,7 @@
 #import "GoodsContextCell.h"
 #import "CommentsCell.h"
 #import "AllCommentsViewController.h"
+#import "GoodsRequest.h"
 @interface GoodsDetailsViewController ()<UITableViewDelegate,UITableViewDataSource,ScrollViewCellDelegate>
 {
     UITableView *_tableView;
@@ -32,15 +33,20 @@
     _tableView.separatorColor=[self colorWithHexString:@"d7d7d7"];
     _tableView.backgroundColor=[self colorWithHexString:@"#f3f5f7"];
     [self.view addSubview:_tableView];
-    _tableView.sd_layout.leftSpaceToView(self.view, 0).topSpaceToView(self.view, 0).rightSpaceToView(self.view, 0).bottomSpaceToView(self.view, 50);
-    UIButton *buyBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    [buyBtn setTitle:@"立即购买" forState:UIControlStateNormal];
-    [buyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    buyBtn.backgroundColor=[MyClass colorWithHexString:@"ff4c59"];
-    buyBtn.titleLabel.font=[UIFont systemFontOfSize:18];
-    [buyBtn addTarget:self action:@selector(onBuyClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:buyBtn];
-    buyBtn.sd_layout.leftSpaceToView(self.view, 0).rightSpaceToView(self.view, 0).bottomSpaceToView(self.view, 0).heightIs(50);
+    if (self.why!=nil) {
+        _tableView.sd_layout.leftSpaceToView(self.view, 0).topSpaceToView(self.view, 0).rightSpaceToView(self.view, 0).bottomSpaceToView(self.view, 50);
+        UIButton *buyBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+        [buyBtn setTitle:@"立即购买" forState:UIControlStateNormal];
+        [buyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        buyBtn.backgroundColor=[MyClass colorWithHexString:@"ff4c59"];
+        buyBtn.titleLabel.font=[UIFont systemFontOfSize:18];
+        [buyBtn addTarget:self action:@selector(onBuyClick) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:buyBtn];
+        buyBtn.sd_layout.leftSpaceToView(self.view, 0).rightSpaceToView(self.view, 0).bottomSpaceToView(self.view, 0).heightIs(50);
+    }else{
+    _tableView.sd_layout.leftSpaceToView(self.view, 0).topSpaceToView(self.view, 0).rightSpaceToView(self.view, 0).bottomSpaceToView(self.view, 0);
+    }
+
     
     TheDrop_downRefresh(_tableView, @selector(RequestData))
     // Do any additional setup after loading the view.
@@ -178,7 +184,15 @@
 }
 #pragma mark 获取商品详情
 -(void)RequestData{
- [_tableView.mj_header endRefreshing];
+    if (self.goodsID!=nil) {
+        [GoodsRequest GetProductDetails:self.goodsID block:^(NSDictionary *dic) {
+            
+            [_tableView.mj_header endRefreshing];
+        }];
+    }
+    
+    
+
 }
 #pragma mark 查看全部评论
 -(void)onCommentsClick{

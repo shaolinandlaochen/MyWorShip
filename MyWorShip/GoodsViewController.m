@@ -9,6 +9,7 @@
 #import "GoodsViewController.h"
 #import "GoodsCell.h"
 #import "GoodsRequest.h"
+#import "GoodsDetailsViewController.h"
 @interface GoodsViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     UITableView *_tableView;
@@ -67,6 +68,11 @@ CANCEL
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    MonthsThanksGoodsBaseClass *class=[[MonthsThanksGoodsBaseClass alloc]initWithDictionary:[self deleteEmpty:self.dataDic]];
+    MonthsThanksGoodsCommodityall *Commodityall=class.commodityall[indexPath.row];
+    GoodsDetailsViewController *GoodsDetails=[[GoodsDetailsViewController alloc]init];
+    GoodsDetails.goodsID=[NSString stringWithFormat:@"%.0f",Commodityall.commoditySerial];
+    [self.navigationController pushViewController:GoodsDetails animated:YES];
     
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{

@@ -21,4 +21,17 @@
         
     }];
 }
+/*
+ *获取商品详情
+ */
++(void)GetProductDetails:(NSString *)c block:(void(^)(NSDictionary *dic))bolck{
+    NSMutableDictionary *dic=[[NSMutableDictionary alloc]init];
+    [dic setObject:c forKey:@"c"];
+    NSDictionary *dataDic=[MyClass ReceiveTheOriginalData:dic];//去添加时间戳等数据然后返回签名后的数据
+    [RequestClass getUrl:@"querycommdetail" Dic:dataDic block:^(NSDictionary *dic) {
+        NSLog(@"获取商品详情:%@",dic);
+        bolck(dic);
+        
+    }];
+}
 @end

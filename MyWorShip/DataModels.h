@@ -27,4 +27,7 @@
 #import "CouponsListPagingList.h"
 #import "MonthsThanksGoodsBaseClass.h"
 #import "MonthsThanksGoodsCommodityall.h"
+#import "GoodsDetilComm.h"
+#import "GoodsDetilListComment.h"
+#import "GoodsDetilBaseClass.h"
 

@@ -54,6 +54,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     GoodsDetailsViewController *GoodsDetails=[[GoodsDetailsViewController alloc]init];
+    GoodsDetails.why=@"a";
     [self.navigationController pushViewController:GoodsDetails animated:YES];
     
 }

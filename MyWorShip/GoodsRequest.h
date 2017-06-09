@@ -13,4 +13,8 @@
  *获取月拜商品
  */
 +(void)GetOnGoods:(void(^)(NSDictionary *dic))bolck;
+/*
+ *获取商品详情
+ */
++(void)GetProductDetails:(NSString *)c block:(void(^)(NSDictionary *dic))bolck;
 @end

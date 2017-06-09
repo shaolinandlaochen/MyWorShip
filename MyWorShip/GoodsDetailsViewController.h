@@ -9,5 +9,6 @@
 #import "MyClass.h"
 
 @interface GoodsDetailsViewController : MyClass
-
+@property(nonatomic,copy)NSString *goodsID;
+@property(nonatomic,copy)NSString *why;
 @end
