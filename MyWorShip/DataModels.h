@@ -25,3 +25,6 @@
 #import "CouponsListBaseClass.h"
 #import "CouponsListResultList.h"
 #import "CouponsListPagingList.h"
+#import "MonthsThanksGoodsBaseClass.h"
+#import "MonthsThanksGoodsCommodityall.h"
+

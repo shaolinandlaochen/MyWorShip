@@ -9,5 +9,6 @@
 #import "MyClass.h"
 
 @interface GoodsViewController : MyClass
+@property(nonatomic,strong)NSDictionary *dataDic;
 
 @end

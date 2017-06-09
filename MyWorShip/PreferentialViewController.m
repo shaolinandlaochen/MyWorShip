@@ -138,7 +138,7 @@
         coupon_subtract_amount=[NSString stringWithFormat:@"%.0f元",list.couponSubtractAmount];
     }else if (list.couponType==1){
     cell.name.text=@"月拜共享·折扣券";
-        coupon_subtract_amount=[NSString stringWithFormat:@"%.1f折",list.couponSubtractAmount];
+        coupon_subtract_amount=[NSString stringWithFormat:@"%.1f折",list.couponDiscount];
     }else if (list.couponType==2){
     cell.name.text=@"月拜共享·抵用券";
         coupon_subtract_amount=[NSString stringWithFormat:@"%.0f元",list.couponSubtractAmount];

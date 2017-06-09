@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface GoodsCell : UITableViewCell
-@property(nonatomic,strong)UILabel *name;
-@property(nonatomic,strong)UILabel *money;
-@property(nonatomic,strong)UIImageView *img;
+@property(nonatomic,strong)UILabel *name;//商品名称
+@property(nonatomic,strong)UILabel *money;//商品价格
+@property(nonatomic,strong)UILabel *listMoney;//市场价格
+@property(nonatomic,strong)UIImageView *img;//商品图片
+@property(nonatomic,strong)MonthsThanksGoodsCommodityall *model;
 @end

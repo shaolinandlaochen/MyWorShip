@@ -8,6 +8,7 @@
 
 #import "GoodsViewController.h"
 #import "GoodsCell.h"
+#import "GoodsRequest.h"
 @interface GoodsViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     UITableView *_tableView;
@@ -29,17 +30,34 @@
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     _tableView.separatorColor=[self colorWithHexString:@"d7d7d7"];
     [self.view addSubview:_tableView];
+    TheDrop_downRefresh(_tableView, @selector(onCreatGoods))
     // Do any additional setup after loading the view.
+}
+#pragma mark 获取月拜商品
+-(void)onCreatGoods{
+
+    [GoodsRequest GetOnGoods:^(NSDictionary *dic) {
+        MonthsThanksGoodsBaseClass *class=[[MonthsThanksGoodsBaseClass alloc]initWithDictionary:[self deleteEmpty:dic]];
+        if ([stringFormat(class.code) isEqualToString:@"3"]) {
+            self.dataDic=[self deleteEmpty:dic];
+            [_tableView reloadData];
+        }else{
+            [SVProgressHUD showErrorWithStatus:class.msg];
+        }
+        [_tableView.mj_header endRefreshing];
+    }];
+    
 }
 CANCEL
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+    MonthsThanksGoodsBaseClass *class=[[MonthsThanksGoodsBaseClass alloc]initWithDictionary:[self deleteEmpty:self.dataDic]];
+    return class.commodityall.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 44;
+    return 110;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0;
@@ -58,22 +76,15 @@ CANCEL
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    GoodsCell *cell=[[GoodsCell alloc]init];
-    
-    if (indexPath.row==0) {
-        cell.img.image=[UIImage imageNamed:@"img_zhi"];
-        cell.name.text=@"卫生纸";
-        cell.money.text=@"2.00元/包";
-    }else if (indexPath.row==1){
-        cell.img.image=[UIImage imageNamed:@"img_pads"];
-        cell.name.text=@"卫生巾";
-        cell.money.text=@"20.00元/包";
-    }else if (indexPath.row==2){
-        cell.img.image=[UIImage imageNamed:@"img_fire"];
-        cell.name.text=@"打火机";
-        cell.money.text=@"5.00元/包";
+    static NSString *string=@"indexPath";
+    GoodsCell *cell=[tableView dequeueReusableCellWithIdentifier:string];
+    if (!cell) {
+        cell=[[GoodsCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:string];
     }
-    
+    MonthsThanksGoodsBaseClass *class=[[MonthsThanksGoodsBaseClass alloc]initWithDictionary:[self deleteEmpty:self.dataDic]];
+    MonthsThanksGoodsCommodityall *Commodityall=class.commodityall[indexPath.row];
+    cell.model=class.commodityall[indexPath.row];
+    [cell.img sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",class.imgSrc,Commodityall.commodityImagesPath,Commodityall.commodityCoverImage]]];
     return cell;
 }
 -(void)viewWillAppear:(BOOL)animated{

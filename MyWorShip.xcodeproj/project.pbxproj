@@ -54,6 +54,9 @@
 		9D42010E1EEA2F7A00425D5D /* CouponsListPagingList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D42010A1EEA2F7A00425D5D /* CouponsListPagingList.m */; };
 		9D42010F1EEA2F7A00425D5D /* CouponsListResultList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D42010C1EEA2F7A00425D5D /* CouponsListResultList.m */; };
 		9D4201141EEA353F00425D5D /* FeedbackRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4201131EEA353F00425D5D /* FeedbackRequest.m */; };
+		9D4201191EEA70E300425D5D /* GoodsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4201181EEA70E300425D5D /* GoodsRequest.m */; };
+		9D42011E1EEA723E00425D5D /* MonthsThanksGoodsBaseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D42011B1EEA723E00425D5D /* MonthsThanksGoodsBaseClass.m */; };
+		9D42011F1EEA723E00425D5D /* MonthsThanksGoodsCommodityall.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D42011D1EEA723E00425D5D /* MonthsThanksGoodsCommodityall.m */; };
 		9D6BBE6A1EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6BBE691EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.m */; };
 		9D6BBE6D1EE63E9A008A9F23 /* RequestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6BBE6C1EE63E9A008A9F23 /* RequestClass.m */; };
 		9D6BBE711EE6404C008A9F23 /* LoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6BBE701EE6404C008A9F23 /* LoginRequest.m */; };
@@ -422,6 +425,12 @@
 		9D42010C1EEA2F7A00425D5D /* CouponsListResultList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponsListResultList.m; sourceTree = "<group>"; };
 		9D4201121EEA353F00425D5D /* FeedbackRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackRequest.h; sourceTree = "<group>"; };
 		9D4201131EEA353F00425D5D /* FeedbackRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackRequest.m; sourceTree = "<group>"; };
+		9D4201171EEA70E300425D5D /* GoodsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsRequest.h; sourceTree = "<group>"; };
+		9D4201181EEA70E300425D5D /* GoodsRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsRequest.m; sourceTree = "<group>"; };
+		9D42011A1EEA723E00425D5D /* MonthsThanksGoodsBaseClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthsThanksGoodsBaseClass.h; sourceTree = "<group>"; };
+		9D42011B1EEA723E00425D5D /* MonthsThanksGoodsBaseClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthsThanksGoodsBaseClass.m; sourceTree = "<group>"; };
+		9D42011C1EEA723E00425D5D /* MonthsThanksGoodsCommodityall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthsThanksGoodsCommodityall.h; sourceTree = "<group>"; };
+		9D42011D1EEA723E00425D5D /* MonthsThanksGoodsCommodityall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthsThanksGoodsCommodityall.m; sourceTree = "<group>"; };
 		9D6BBE681EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DeleteArrOrDeleteDicBothNull.h"; sourceTree = "<group>"; };
 		9D6BBE691EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DeleteArrOrDeleteDicBothNull.m"; sourceTree = "<group>"; };
 		9D6BBE6B1EE63E9A008A9F23 /* RequestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestClass.h; sourceTree = "<group>"; };
@@ -857,6 +866,26 @@
 		9D4201111EEA351A00425D5D /* model */ = {
 			isa = PBXGroup;
 			children = (
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		9D4201151EEA70B200425D5D /* 请求 */ = {
+			isa = PBXGroup;
+			children = (
+				9D4201171EEA70E300425D5D /* GoodsRequest.h */,
+				9D4201181EEA70E300425D5D /* GoodsRequest.m */,
+			);
+			name = "请求";
+			sourceTree = "<group>";
+		};
+		9D4201161EEA70BE00425D5D /* model */ = {
+			isa = PBXGroup;
+			children = (
+				9D42011A1EEA723E00425D5D /* MonthsThanksGoodsBaseClass.h */,
+				9D42011B1EEA723E00425D5D /* MonthsThanksGoodsBaseClass.m */,
+				9D42011C1EEA723E00425D5D /* MonthsThanksGoodsCommodityall.h */,
+				9D42011D1EEA723E00425D5D /* MonthsThanksGoodsCommodityall.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -1472,6 +1501,8 @@
 				9D4200CA1EE8F60F00425D5D /* CommentsCell.m */,
 				9D4200F61EE91C9200425D5D /* AllCommentsViewController.h */,
 				9D4200F71EE91C9200425D5D /* AllCommentsViewController.m */,
+				9D4201161EEA70BE00425D5D /* model */,
+				9D4201151EEA70B200425D5D /* 请求 */,
 			);
 			name = "商品";
 			sourceTree = "<group>";
@@ -1968,6 +1999,7 @@
 				9D6BBEA71EE6777C008A9F23 /* MyMessageListResultList.m in Sources */,
 				9D9773341ED7DC85005EAC95 /* AboutUsViewController.m in Sources */,
 				9D6BBE6D1EE63E9A008A9F23 /* RequestClass.m in Sources */,
+				9D42011F1EEA723E00425D5D /* MonthsThanksGoodsCommodityall.m in Sources */,
 				9D9773081ED7C534005EAC95 /* WalletOtherCell.m in Sources */,
 				9D97718F1ED42D49005EAC95 /* MyClass.m in Sources */,
 				9D97739C1ED909B6005EAC95 /* GoodsCell.m in Sources */,
@@ -1982,6 +2014,7 @@
 				9D9773BF1ED919DA005EAC95 /* LoginViewController.m in Sources */,
 				9DD501731EE6902B00278600 /* Top_up_detailBaseClass.m in Sources */,
 				9D9772EC1ED6C3FE005EAC95 /* MessageListHeaderView.m in Sources */,
+				9D42011E1EEA723E00425D5D /* MonthsThanksGoodsBaseClass.m in Sources */,
 				9D9773B51ED90FEF005EAC95 /* UseGuideNameTableViewCell.m in Sources */,
 				9D9772981ED6688D005EAC95 /* TeasingViewController.m in Sources */,
 				9D6BBE761EE644A2008A9F23 /* CodeIsBaseClass.m in Sources */,
@@ -1992,6 +2025,7 @@
 				9D42010E1EEA2F7A00425D5D /* CouponsListPagingList.m in Sources */,
 				9D4200741EE7E5A100425D5D /* VerifyTheMobilePhoneViewController.m in Sources */,
 				9D9772BB1ED6A32B005EAC95 /* PreferentialViewController.m in Sources */,
+				9D4201191EEA70E300425D5D /* GoodsRequest.m in Sources */,
 				9D6BBEA51EE6777C008A9F23 /* MyMessageListBaseClass.m in Sources */,
 				9D9773D71ED9509E005EAC95 /* TopUpAmountViewController.m in Sources */,
 				9D9772061ED5614D005EAC95 /* SGQRCodeConst.m in Sources */,

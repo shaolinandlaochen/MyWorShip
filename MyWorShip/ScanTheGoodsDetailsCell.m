@@ -33,7 +33,13 @@
         _money.textColor=[MyClass colorWithHexString:@"ff4c59"];
         _money.font=[UIFont systemFontOfSize:17];
         [self.contentView addSubview:_money];
-        _money.sd_layout.leftSpaceToView(_image, 7).topSpaceToView(_name, 9).widthIs(200).heightIs(14);
+        _money.sd_layout.leftSpaceToView(_image, 7).topSpaceToView(_name, 9);
+        
+        _VIPmoney=[[UILabel alloc]init];
+        _VIPmoney.textColor=[MyClass colorWithHexString:@"808080"];
+        _VIPmoney.font=[UIFont systemFontOfSize:14];
+        [self.contentView addSubview:_VIPmoney];
+        _VIPmoney.sd_layout.leftSpaceToView(_money, 7).bottomEqualToView(_money);
         
         _context=[[UILabel alloc]init];
         _context.textColor=[MyClass colorWithHexString:@"a3a3a3"];
@@ -61,6 +67,10 @@
     [_image sd_setImageWithURL:[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1496752170468&di=2d491f8a1ae70e14a05666650c448502&imgtype=0&src=http%3A%2F%2Ftp.welao.com%2Fpc%2F8478-1F5150TP4.jpg"]];
     _name.text=@"安达市大大所大所大所大所大奥所大所多奥术大师大所多";
     _money.text=@"¥200.00元";
+    CGSize moneySize=[MyClass StringHeight:_money.text Lblfont:17 heightOfTheMinus:0];
+    _money.sd_layout.widthIs(moneySize.width).autoHeightRatio(0);
+    _VIPmoney.text=@"VIP:¥2.00元";
+    _VIPmoney.sd_layout.widthIs(moneySize.width).autoHeightRatio(0);
     _context.text=@"已售:3 剩余:10";
     
     
