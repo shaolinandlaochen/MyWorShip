@@ -9,5 +9,6 @@
 #import "MyClass.h"
 
 @interface TeasingViewController : MyClass
-
+@property(nonatomic,strong)NSMutableArray *imgPath;
+@property(nonatomic,strong)NSDictionary *dic;
 @end

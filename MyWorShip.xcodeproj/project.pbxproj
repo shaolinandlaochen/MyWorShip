@@ -53,6 +53,7 @@
 		9D42010D1EEA2F7A00425D5D /* CouponsListBaseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4201081EEA2F7A00425D5D /* CouponsListBaseClass.m */; };
 		9D42010E1EEA2F7A00425D5D /* CouponsListPagingList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D42010A1EEA2F7A00425D5D /* CouponsListPagingList.m */; };
 		9D42010F1EEA2F7A00425D5D /* CouponsListResultList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D42010C1EEA2F7A00425D5D /* CouponsListResultList.m */; };
+		9D4201141EEA353F00425D5D /* FeedbackRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4201131EEA353F00425D5D /* FeedbackRequest.m */; };
 		9D6BBE6A1EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6BBE691EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.m */; };
 		9D6BBE6D1EE63E9A008A9F23 /* RequestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6BBE6C1EE63E9A008A9F23 /* RequestClass.m */; };
 		9D6BBE711EE6404C008A9F23 /* LoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6BBE701EE6404C008A9F23 /* LoginRequest.m */; };
@@ -419,6 +420,8 @@
 		9D42010A1EEA2F7A00425D5D /* CouponsListPagingList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponsListPagingList.m; sourceTree = "<group>"; };
 		9D42010B1EEA2F7A00425D5D /* CouponsListResultList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponsListResultList.h; sourceTree = "<group>"; };
 		9D42010C1EEA2F7A00425D5D /* CouponsListResultList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponsListResultList.m; sourceTree = "<group>"; };
+		9D4201121EEA353F00425D5D /* FeedbackRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackRequest.h; sourceTree = "<group>"; };
+		9D4201131EEA353F00425D5D /* FeedbackRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackRequest.m; sourceTree = "<group>"; };
 		9D6BBE681EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DeleteArrOrDeleteDicBothNull.h"; sourceTree = "<group>"; };
 		9D6BBE691EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DeleteArrOrDeleteDicBothNull.m"; sourceTree = "<group>"; };
 		9D6BBE6B1EE63E9A008A9F23 /* RequestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestClass.h; sourceTree = "<group>"; };
@@ -840,6 +843,22 @@
 				9D4201051EEA2DAF00425D5D /* CouponsRequest.m */,
 			);
 			name = "请求";
+			sourceTree = "<group>";
+		};
+		9D4201101EEA351200425D5D /* 请求 */ = {
+			isa = PBXGroup;
+			children = (
+				9D4201121EEA353F00425D5D /* FeedbackRequest.h */,
+				9D4201131EEA353F00425D5D /* FeedbackRequest.m */,
+			);
+			name = "请求";
+			sourceTree = "<group>";
+		};
+		9D4201111EEA351A00425D5D /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = model;
 			sourceTree = "<group>";
 		};
 		9D6BBE671EE63C97008A9F23 /* 请求 */ = {
@@ -1334,6 +1353,8 @@
 			children = (
 				9D9772961ED6688D005EAC95 /* TeasingViewController.h */,
 				9D9772971ED6688D005EAC95 /* TeasingViewController.m */,
+				9D4201111EEA351A00425D5D /* model */,
+				9D4201101EEA351200425D5D /* 请求 */,
 			);
 			name = "吐槽";
 			sourceTree = "<group>";
@@ -1989,6 +2010,7 @@
 				9D4200FF1EE9492A00425D5D /* AnnouncementListBaseClass.m in Sources */,
 				9D9773051ED7C4F5005EAC95 /* WalletMoneyCell.m in Sources */,
 				9D6BBE861EE651B7008A9F23 /* BasicInformationBaseClass.m in Sources */,
+				9D4201141EEA353F00425D5D /* FeedbackRequest.m in Sources */,
 				9D4201001EE9492A00425D5D /* AnnouncementListData.m in Sources */,
 				9D9772E81ED6C02B005EAC95 /* MessageListViewController.m in Sources */,
 				9D97724C1ED570EE005EAC95 /* MyViewController.m in Sources */,

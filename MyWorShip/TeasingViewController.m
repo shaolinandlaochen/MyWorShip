@@ -7,7 +7,7 @@
 //
 
 #import "TeasingViewController.h"
-
+#import "FeedbackRequest.h"
 @interface TeasingViewController ()<UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
     NSArray *_typeArray;//放置名字的数组
@@ -26,6 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title=@"吐槽";
+    self.imgPath=[[NSMutableArray alloc]init];
     self.view.backgroundColor=[self colorWithHexString:@"f3f5f7"];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[self colorWithHexString:@"ffffff"]}];
     [self.navigationController.navigationBar setBarTintColor:[[UIColor blackColor]colorWithAlphaComponent:0.9]];
@@ -205,6 +206,7 @@
         [picker.presentingViewController dismissViewControllerAnimated:YES completion:nil];
         [_imgArray addObject:image];
         [self layoutOfTheUserSelectedImages];
+        [self ToUploadPictures:image];
 
         
     }
@@ -274,6 +276,20 @@
 #pragma mark 返回
 -(void)onCancelClick{
     [self.navigationController popViewControllerAnimated:YES];
+}
+#pragma mark 上传图片
+-(void)ToUploadPictures:(UIImage *)img{
+    [SVProgressHUD showWithStatus:@"正在加载图片"];
+    NSData *data = UIImageJPEGRepresentation(img, 0.3);
+    [FeedbackRequest ToUploadPictures_feedback_image:data block:^(NSDictionary *dic) {
+        self.dic=[self deleteEmpty:dic];
+        if ([self.dic objectForKey:@"feedback_image"]!=nil&&![[self.dic objectForKey:@"feedback_image"] isEqual:[NSNull null]]) {
+            [self.imgPath addObject:[NSString stringWithFormat:@"%@",[self.dic objectForKey:@"feedback_image"]]];
+        }
+        
+        [SVProgressHUD dismiss];
+    }];
+
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
