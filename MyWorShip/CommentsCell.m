@@ -66,22 +66,37 @@
     return self;
 }
 
--(void)setModel:(MyMessageListResultList *)model{
+-(void)setModel:(GoodsDetilListComment *)model{
 
-    _name.text=@"我是民资";
+    _name.text=stringFormat(model.baseNickname);
     CGSize size=[MyClass StringHeight:_name.text Lblfont:17 heightOfTheMinus:0];
     _name.sd_layout.autoHeightRatio(0).widthIs(size.width);
     ((UIImageView *)[self.contentView viewWithTag:1994]).sd_layout.leftSpaceToView(_name, 5).topSpaceToView(self.contentView, 18).widthIs(15.5).heightIs(15.5);
-    _time.text=@"2016-02-02 18:05:04";
+    _time.text=stringFormat(model.commentTime);
     CGSize timeSize=[MyClass StringHeight:_time.text Lblfont:13 heightOfTheMinus:0];
     _time.sd_layout.widthIs(timeSize.width).heightIs(timeSize.height);
-    _context.text=@"说得对分布式的开发商的爆发式的福克斯山东地方收到了丰盛的复合函数啥都懂if还是地方还是东方红是山东地发挥施蒂利克发还是山东地发挥施蒂利克富华大厦老客户独立思考哈佛收到货佛山店";
+    _context.text=stringFormat(model.commentContent);
     _context.sd_layout.autoHeightRatio(0);
     [self setupAutoHeightWithBottomView:_context bottomMargin:16];
-    for (int i=0; i<3; i++) {
+    for (int i=0; i<model.commentGrade; i++) {
         ((UIImageView *)[self.contentView viewWithTag:i+1]).image=[UIImage imageNamed:@"star_solid"];
     }
     
     
+}
+-(void)setList:(EvaluationListResultList *)list{
+    _name.text=stringFormat(list.baseNickname);
+    CGSize size=[MyClass StringHeight:_name.text Lblfont:17 heightOfTheMinus:0];
+    _name.sd_layout.autoHeightRatio(0).widthIs(size.width);
+    ((UIImageView *)[self.contentView viewWithTag:1994]).sd_layout.leftSpaceToView(_name, 5).topSpaceToView(self.contentView, 18).widthIs(15.5).heightIs(15.5);
+    _time.text=stringFormat(list.commentTime);
+    CGSize timeSize=[MyClass StringHeight:_time.text Lblfont:13 heightOfTheMinus:0];
+    _time.sd_layout.widthIs(timeSize.width).heightIs(timeSize.height);
+    _context.text=stringFormat(list.commentContent);
+    _context.sd_layout.autoHeightRatio(0);
+    [self setupAutoHeightWithBottomView:_context bottomMargin:16];
+    for (int i=0; i<list.commentGrade; i++) {
+        ((UIImageView *)[self.contentView viewWithTag:i+1]).image=[UIImage imageNamed:@"star_solid"];
+    }
 }
 @end

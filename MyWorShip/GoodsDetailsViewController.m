@@ -13,9 +13,11 @@
 #import "CommentsCell.h"
 #import "AllCommentsViewController.h"
 #import "GoodsRequest.h"
-@interface GoodsDetailsViewController ()<UITableViewDelegate,UITableViewDataSource,ScrollViewCellDelegate>
+#import "HTMLCell.h"
+@interface GoodsDetailsViewController ()<UITableViewDelegate,UITableViewDataSource,ScrollViewCellDelegate,HTMLContextDelegate>
 {
     UITableView *_tableView;
+    CGFloat HTMLheight;
 }
 
 @end
@@ -26,6 +28,7 @@
     [super viewDidLoad];
     self.title=@"商品详情";
     lfteItemAndColor
+    HTMLheight=0;
     _tableView=[[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
     _tableView.dataSource=self;
     _tableView.delegate=self;
@@ -51,14 +54,42 @@
     TheDrop_downRefresh(_tableView, @selector(RequestData))
     // Do any additional setup after loading the view.
 }
+#pragma mark 获取商品详情
+-(void)RequestData{
+    if (self.goodsID!=nil) {
+        [GoodsRequest GetProductDetails:self.goodsID block:^(NSDictionary *dic) {
+            GoodsDetilBaseClass *class=[[GoodsDetilBaseClass alloc]initWithDictionary:[self deleteEmpty:dic]];
+            if ([stringFormat(class.code) isEqualToString:@"3"]) {
+                self.dataDic=[self deleteEmpty:dic];
+                [_tableView reloadData];
+            }else{
+                [SVProgressHUD showErrorWithStatus:class.msg];
+            }
+            
+            [_tableView.mj_header endRefreshing];
+        }];
+    }
+    
+}
+#pragma mark 接收富文本缓存高度
+-(void)htmlHeight:(float)height{
+    if (height>HTMLheight) {
+        HTMLheight=height;
+        FormToUpdate(2, _tableView)
+    }
+}
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 3;
+    if (self.dataDic!=nil) {
+        return 3;
+    }
+    return 0;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section==0) {
         return 2;
     }else if (section==1){
-        return 2;
+        GoodsDetilBaseClass *class=[[GoodsDetilBaseClass alloc]initWithDictionary:self.dataDic];
+        return class.listComment.count;
     }else{
         return 1;
     }
@@ -69,40 +100,51 @@
     }else if (indexPath.section==0&&indexPath.row==1){
         return 112;
     }else if (indexPath.section==1){
-    MyMessageListResultList *list=[[MyMessageListResultList alloc]init];
-    return [tableView cellHeightForIndexPath:indexPath model:list keyPath:@"model" cellClass:[CommentsCell class] contentViewWidth:self.view.frame.size.width];
+        GoodsDetilBaseClass *class=[[GoodsDetilBaseClass alloc]initWithDictionary:self.dataDic];
+        GoodsDetilListComment *model=class.listComment[indexPath.row];
+        return [tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[CommentsCell class] contentViewWidth:self.view.frame.size.width];
+    }else if (indexPath.section==2){
+        return HTMLheight;
     }
-    return 130;
+    return 0;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     if (section==1) {
-        return 55;
+        GoodsDetilBaseClass *class=[[GoodsDetilBaseClass alloc]initWithDictionary:self.dataDic];
+        if (class.listComment.count>0) {
+            return 55;
+        }
     }
     return 10;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section==1) {
-        return 40;
+        GoodsDetilBaseClass *class=[[GoodsDetilBaseClass alloc]initWithDictionary:self.dataDic];
+        if (class.listComment.count>0) {
+            return 40;
+        }
     }
     return 0;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    GoodsDetailsViewController *GoodsDetails=[[GoodsDetailsViewController alloc]init];
-    [self.navigationController pushViewController:GoodsDetails animated:YES];
-    
+
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *view=[[UIView alloc]init];
     view.backgroundColor=[self colorWithHexString:@"f3f5f7"];
     if (section==1) {
-        view.backgroundColor=[self colorWithHexString:@"ffffff"];
-        UILabel *lbl=[[UILabel alloc]init];
-        lbl.textColor=[MyClass colorWithHexString:@"a3a3a3"];
-        lbl.font=[UIFont systemFontOfSize:14];
-        lbl.text=@"(评价123)";
-        [view addSubview:lbl];
-        lbl.sd_layout.leftSpaceToView(view, 12).topSpaceToView(view, 0).bottomSpaceToView(view, 0).widthIs(200);
+        GoodsDetilBaseClass *class=[[GoodsDetilBaseClass alloc]initWithDictionary:self.dataDic];
+        if (class.listComment.count>0) {
+            view.backgroundColor=[self colorWithHexString:@"ffffff"];
+            UILabel *lbl=[[UILabel alloc]init];
+            lbl.textColor=[MyClass colorWithHexString:@"a3a3a3"];
+            lbl.font=[UIFont systemFontOfSize:14];
+            lbl.text=[NSString stringWithFormat:@"(评价:%ld)",class.listComment.count];
+            [view addSubview:lbl];
+            lbl.sd_layout.leftSpaceToView(view, 12).topSpaceToView(view, 0).bottomSpaceToView(view, 0).widthIs(200);
+        }
+        
     }
     return view;
 }
@@ -110,24 +152,28 @@
     UIView *view=[[UIView alloc]init];
     view.backgroundColor=[self colorWithHexString:@"f3f5f7"];
     if (section==1) {
-        view.backgroundColor=[self colorWithHexString:@"ffffff"];
-        UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setTitle:@"全部评论:123" forState:UIControlStateNormal];
-        [btn setTitleColor:[MyClass colorWithHexString:@"a3a3a3"] forState:UIControlStateNormal];
-        btn.titleLabel.font=[UIFont systemFontOfSize:14];
-        [btn.layer setBorderColor:[MyClass colorWithHexString:@"#d7d7d7"].CGColor];
-        [btn.layer setBorderWidth:1];
-        [btn.layer setMasksToBounds:YES];
-        btn.layer.cornerRadius = 6;
-        btn.layer.masksToBounds = 6;
-        [btn addTarget:self action:@selector(onCommentsClick) forControlEvents:UIControlEventTouchUpInside];
-        [view addSubview:btn];
-        btn.sd_layout.leftSpaceToView(view, 12.5).topSpaceToView(view, 10).rightSpaceToView(view, 12.5).bottomSpaceToView(view, 10);
+        GoodsDetilBaseClass *class=[[GoodsDetilBaseClass alloc]initWithDictionary:self.dataDic];
+        if (class.listComment.count>0) {
+            view.backgroundColor=[self colorWithHexString:@"ffffff"];
+            UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
+            [btn setTitle:[NSString stringWithFormat:@"全部评论:%ld",class.listComment.count] forState:UIControlStateNormal];
+            [btn setTitleColor:[MyClass colorWithHexString:@"a3a3a3"] forState:UIControlStateNormal];
+            btn.titleLabel.font=[UIFont systemFontOfSize:14];
+            [btn.layer setBorderColor:[MyClass colorWithHexString:@"#d7d7d7"].CGColor];
+            [btn.layer setBorderWidth:1];
+            [btn.layer setMasksToBounds:YES];
+            btn.layer.cornerRadius = 6;
+            btn.layer.masksToBounds = 6;
+            [btn addTarget:self action:@selector(onCommentsClick) forControlEvents:UIControlEventTouchUpInside];
+            [view addSubview:btn];
+            btn.sd_layout.leftSpaceToView(view, 12.5).topSpaceToView(view, 10).rightSpaceToView(view, 12.5).bottomSpaceToView(view, 10);
+        }
+        
     }
     return view;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    GoodsDetilBaseClass *class=[[GoodsDetilBaseClass alloc]initWithDictionary:self.dataDic];
     if (indexPath.section==0&&indexPath.row==0) {//滚动视图
         
         static NSString *string=@"indexPath1";
@@ -136,23 +182,20 @@
             cell=[[ScrollViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:string];
             
         }
+        cell.model=class;
         cell.delegate=self;
-        cell.imgUrlArray=@[@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1496896212505&di=b8d93bfa2af4e893fd33d2826644c612&imgtype=0&src=http%3A%2F%2Fimg.67.com%2Fupload%2Fimages%2F2016%2F03%2F27%2F1459048283_1466410327.jpg",@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1496896212503&di=1e0fe3f6f1f6bd7b8b107804c66ee844&imgtype=0&src=http%3A%2F%2Fimg.mp.sohu.com%2Fupload%2F20170519%2F8c6d7f2b3816486aa995f71f226c19ac_th.png"];
         return cell;
     }else if (indexPath.section==0&&indexPath.row==1){//商品描述和价格
-        static NSString *string=@"indexPath2";
-        GoodsContextCell *cell=[tableView dequeueReusableCellWithIdentifier:string];
-        if (!cell) {
-            cell=[[GoodsContextCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:string];
-        }
-        cell.name.text=@"司法不是滴地方环保的司法部的司法不少地方不少地方不是史蒂夫的司法";
-        cell.price.text=@"¥200.00元";
+        
+        CELLINIT(@"indexPath2", GoodsContextCell)
+        cell.name.text=class.comm.commodityName;
+        cell.price.text=[NSString stringWithFormat:@"¥%.2f元",class.comm.commoditySellprice];
 
-        NSString *stringContext=@"¥200.00元";
+        NSString *stringContext=[NSString stringWithFormat:@"¥%.2f元",class.comm.commodityMarketprice];
         NSMutableAttributedString *attributeMarket = [[NSMutableAttributedString alloc] initWithString:stringContext];
         [attributeMarket setAttributes:@{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle], NSBaselineOffsetAttributeName : @(NSUnderlineStyleSingle)} range:NSMakeRange(0,stringContext.length)];
         cell.listPrice.attributedText=attributeMarket;
-        cell.contextNumber.text=@"已售10 剩余20";
+        cell.contextNumber.text=[NSString stringWithFormat:@"已售%.0f 剩余%.0f",class.comm.commoditySales,class.comm.commodityReserves];
         return cell;
     }else if (indexPath.section==1){//商品评价
         static NSString *string=@"indexPath3";
@@ -160,19 +203,15 @@
         if (!cell) {
             cell=[[CommentsCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:string];
         }
-         MyMessageListResultList *list=[[MyMessageListResultList alloc]init];
-        cell.model=list;
+         GoodsDetilListComment *model=class.listComment[indexPath.row];
+        cell.model=model;
         return cell;
     
-    }
-    
-    else{
-        
-        static NSString *string=@"indexPath4";
-        GoodsDetailsCell *cell=[tableView dequeueReusableCellWithIdentifier:string];
-        if (!cell) {
-            cell=[[GoodsDetailsCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:string];
-        }
+    }else{
+      
+        CELLINIT(@"indexPath4", GoodsDetailsCell)
+        cell.delegate=self;
+        cell.commodity_desc=class.comm.commodityDesc;
         return cell;
     }
     
@@ -182,21 +221,12 @@
 -(void)cycleScrollView_didSelectItemAtIndex:(NSInteger)index{
     NSLog(@"%ld",index);
 }
-#pragma mark 获取商品详情
--(void)RequestData{
-    if (self.goodsID!=nil) {
-        [GoodsRequest GetProductDetails:self.goodsID block:^(NSDictionary *dic) {
-            
-            [_tableView.mj_header endRefreshing];
-        }];
-    }
-    
-    
 
-}
 #pragma mark 查看全部评论
 -(void)onCommentsClick{
+    GoodsDetilBaseClass *class=[[GoodsDetilBaseClass alloc]initWithDictionary:self.dataDic];
     AllCommentsViewController *AllComments=[[AllCommentsViewController alloc]init];
+    AllComments.serial=[NSString stringWithFormat:@"%.0f",class.comm.commoditySerial];
     [self.navigationController pushViewController:AllComments animated:YES];
 }
 #pragma mark 立即购买

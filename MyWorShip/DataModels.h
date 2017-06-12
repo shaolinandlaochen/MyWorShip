@@ -30,4 +30,7 @@
 #import "GoodsDetilComm.h"
 #import "GoodsDetilListComment.h"
 #import "GoodsDetilBaseClass.h"
+#import "EvaluationListBaseClass.h"
+#import "EvaluationListResultList.h"
+#import "EvaluationListListComment.h"
 

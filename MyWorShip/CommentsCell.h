@@ -13,6 +13,8 @@
 @property(nonatomic,strong)UILabel *time;
 @property(nonatomic,strong)UILabel *context;
 @property(nonatomic,assign)NSInteger xingIdex;
-@property(nonatomic,strong)MyMessageListResultList *model;
+@property(nonatomic,strong)GoodsDetilListComment *model;
+@property(nonatomic,strong)EvaluationListResultList *list;
+
 
 @end

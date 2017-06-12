@@ -17,7 +17,8 @@
 
 @end
 @interface ScrollViewCell : UITableViewCell<SDCycleScrollViewDelegate>
-@property(nonatomic,strong)NSArray *imgUrlArray;
+@property(nonatomic,strong)NSMutableArray *imgUrlArray;
 @property(nonatomic,strong)SDCycleScrollView *scrollView;
+@property(nonatomic,strong)GoodsDetilBaseClass *model;
 @property(nonatomic,assign)id delegate;
 @end

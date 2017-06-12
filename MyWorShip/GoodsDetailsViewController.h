@@ -11,4 +11,5 @@
 @interface GoodsDetailsViewController : MyClass
 @property(nonatomic,copy)NSString *goodsID;
 @property(nonatomic,copy)NSString *why;
+@property(nonatomic,strong)NSDictionary *dataDic;//接收数据
 @end

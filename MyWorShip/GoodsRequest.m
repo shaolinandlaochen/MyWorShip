@@ -34,4 +34,19 @@
         
     }];
 }
+/*
+ *获取商品全部评价
+ */
++(void)QueryEvaluationOfAllCommodities_serial:(NSString *)serial page:(NSString *)page pageSize:(NSString *)pageSize block:(void(^)(NSDictionary *dic))bolck{
+    NSMutableDictionary *dic=[[NSMutableDictionary alloc]init];
+    [dic setObject:serial forKey:@"serial"];
+    [dic setObject:page forKey:@"page"];
+    [dic setObject:pageSize forKey:@"pageSize"];
+    NSDictionary *dataDic=[MyClass ReceiveTheOriginalData:dic];//去添加时间戳等数据然后返回签名后的数据
+    [RequestClass getUrl:@"querycomment" Dic:dataDic block:^(NSDictionary *dic) {
+        NSLog(@"获取商品全部评价:%@",dic);
+        bolck(dic);
+        
+    }];
+}
 @end

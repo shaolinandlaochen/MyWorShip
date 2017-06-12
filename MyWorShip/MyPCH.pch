@@ -69,6 +69,8 @@
 //弹框提示
 #define AlertView(context)  UIAlertView *alter = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:context delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil];\
     [alter show];
+//刷新
+#define FormToUpdate(section,UITableView) NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:section];[UITableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
 
 //下拉刷新
 #define TheDrop_downRefresh(view,selector)  MJRefreshNormalHeader*  header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:selector];[header setTitle:@"快来拉我刷新" forState:MJRefreshStateIdle];[header setTitle:@"松开即可刷新" forState:MJRefreshStatePulling];[header setTitle:@"正在刷新" forState:MJRefreshStateRefreshing];header.stateLabel.font = [UIFont systemFontOfSize:15];header.lastUpdatedTimeLabel.font = [UIFont systemFontOfSize:14];header.stateLabel.textColor = [UIColor grayColor];header.lastUpdatedTimeLabel.textColor = [UIColor grayColor];NSDate *date=[[NSDate alloc]init];[header.lastUpdatedTime laterDate:date];[header beginRefreshing];view.mj_header = header;
@@ -104,6 +106,11 @@ autoSizeScaleX = SCREENWIDTH/750;\
 autoSizeScaleY = SCREENHEIGHT/1334;\
 }
 
+#define CELLINIT(identifier,cellObject) static NSString *string=identifier;\
+cellObject *cell=[tableView dequeueReusableCellWithIdentifier:string];\
+if (!cell) {\
+    cell=[[cellObject alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:string];\
+}
 
 #define lfteItemAndColor MyButton *leftCancel=[MyButton buttonWithType:UIButtonTypeCustom]; [leftCancel setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal]; [leftCancel addTarget:self  action:@selector(onCancelClick) forControlEvents:UIControlEventTouchUpInside]; [leftCancel sizeToFit]; UIBarButtonItem *inforItem = [[UIBarButtonItem alloc] initWithCustomView:leftCancel]; self.navigationItem.leftBarButtonItems  = @[inforItem]; self.view.backgroundColor=[self colorWithHexString:@"f3f5f7"]; [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[self colorWithHexString:@"ffffff"]}]; [self.navigationController.navigationBar setBarTintColor:[[UIColor blackColor]colorWithAlphaComponent:0.9]];
 

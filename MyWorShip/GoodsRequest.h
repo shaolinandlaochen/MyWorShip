@@ -17,4 +17,8 @@
  *获取商品详情
  */
 +(void)GetProductDetails:(NSString *)c block:(void(^)(NSDictionary *dic))bolck;
+/*
+ *获取商品全部评价
+ */
++(void)QueryEvaluationOfAllCommodities_serial:(NSString *)serial page:(NSString *)page pageSize:(NSString *)pageSize block:(void(^)(NSDictionary *dic))bolck;
 @end

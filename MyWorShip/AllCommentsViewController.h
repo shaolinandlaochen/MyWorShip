@@ -9,5 +9,6 @@
 #import "MyClass.h"
 
 @interface AllCommentsViewController : MyClass
-
+@property(nonatomic,copy)NSString *serial;
+@property(nonatomic,strong)NSDictionary *dataDic;
 @end

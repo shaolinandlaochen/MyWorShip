@@ -33,8 +33,17 @@
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
     [_delegate cycleScrollView_didSelectItemAtIndex:index];
 }
--(void)setImgUrlArray:(NSArray *)imgUrlArray{
-    _scrollView.imageURLStringsGroup=imgUrlArray;
+
+-(void)setModel:(GoodsDetilBaseClass *)model{
+
+    NSArray *imgPath=[stringFormat(model.comm.commodityImages) componentsSeparatedByString:@","];
+    _imgUrlArray=[[NSMutableArray alloc]init];
+    for (int i=0; i<imgPath.count; i++) {
+        [_imgUrlArray addObject:[NSString stringWithFormat:@"%@%@%@",model.imgSrc,model.comm.commodityImagesPath,imgPath[i]]];
+    }
+    _scrollView.imageURLStringsGroup=_imgUrlArray;
+    
+    
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

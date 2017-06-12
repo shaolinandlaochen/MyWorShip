@@ -29,13 +29,13 @@
         _price.textColor=[MyClass colorWithHexString:@"ff4c59"];
         _price.font=[UIFont systemFontOfSize:22];
         [self.contentView addSubview:_price];
-        _price.sd_layout.leftEqualToView(_name).topSpaceToView(_name, 20).widthIs(120).heightIs(17);
+        _price.sd_layout.leftEqualToView(_name).topSpaceToView(_name, 20).widthIs(110).heightIs(17);
         
         _listPrice=[[UILabel alloc]init];
         _listPrice.textColor=[MyClass colorWithHexString:@"a3a3a3"];
         _listPrice.font=[UIFont systemFontOfSize:17];
         [self.contentView addSubview:_listPrice];
-        _listPrice.sd_layout.leftSpaceToView(_price, 5).topEqualToView(_price).heightIs(17).widthIs(90);
+        _listPrice.sd_layout.leftSpaceToView(_price, 0).bottomEqualToView(_price).heightIs(13).widthIs(90);
 
         
         _contextNumber=[[UILabel alloc]init];
