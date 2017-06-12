@@ -7,13 +7,14 @@
 //
 
 #import "HomeViewController.h"
-
-@interface HomeViewController ()<MAMapViewDelegate,SGQRCodeScanningVCDelegate,MyViewControllerDelegate>
+#import "SelectableOverlay.h"
+@interface HomeViewController ()<MAMapViewDelegate,SGQRCodeScanningVCDelegate,MyViewControllerDelegate,AMapNaviWalkManagerDelegate>
 {
     MAMapView *_mapView;
     LocationAnnotationView *_locationAnnotationView;
     MyImage *_BjImage;
     MyButton *_location;
+    BOOL state;//地图状态:yes表示正在导航(推荐路线中) no表示常规状态
 }
 @end
 
@@ -25,19 +26,33 @@
     [self addLeftItemAndRightItem];
     [self AddAMap];
     [self AddAllViews];
+    [self initWalkManager];
     // Do any additional setup after loading the view.
 }
 #pragma mark 视图伸缩
 -(void)scaling:(BOOL)isScaling{
 
 }
+#pragma mark 用户进行步行路线规划
+- (void)initProperties
+{
+
+    self.routeIndicatorInfoArray = [NSMutableArray array];
+    
+    CLLocationCoordinate2D oldCoordinate = _mapView.userLocation.coordinate;//获取用户当前位置信息
+    self.startPoint = [AMapNaviPoint locationWithLatitude:oldCoordinate.latitude longitude:oldCoordinate.longitude];
+    NSLog(@"startPoint===%@-----",self.startPoint);
+    NSLog(@"endPoint=====%@-----",self.endPoint);
+    [self.walkManager calculateWalkRouteWithStartPoints:@[self.startPoint]
+                                              endPoints:@[self.endPoint]];
+}
 #pragma mark 点击大头针执行该方法
 - (void)mapView:(MAMapView *)mapView didSelectAnnotationView:(MAAnnotationView *)view
 {
     CLLocationCoordinate2D coorinate = [view.annotation coordinate];
-    
+    self.endPoint=[AMapNaviPoint locationWithLatitude:coorinate.latitude longitude:coorinate.longitude];
     NSLog(@"点击大头针执行该方法 = {%f, %f}", coorinate.latitude, coorinate.longitude);
-    
+    [self initProperties];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -117,6 +132,7 @@
     if (btn.tag==3) {
         //定位
         if(_mapView.userLocation.updating && _mapView.userLocation.location) {
+            state=NO;
             [_mapView setCenterCoordinate:_mapView.userLocation.location.coordinate animated:YES];
         }
     }else{
@@ -224,6 +240,24 @@
     [_mapView updateUserLocationRepresentation:r];
 
 }
+#pragma mark 3）初始化 AMapNaviWalkManager。
+- (void)initWalkManager
+{
+    if (self.walkManager == nil)
+    {
+        self.walkManager = [[AMapNaviWalkManager alloc] init];
+        [self.walkManager setDelegate:self];
+    }
+}
+
+/**
+ * @brief 定位失败后，会调用此函数
+ * @param mapView 地图View
+ * @param error 错误号，参考CLError.h中定义的错误号
+ */
+- (void)mapView:(MAMapView *)mapView didFailToLocateUserWithError:(NSError *)error{
+    [SVProgressHUD showErrorWithStatus:@"定位失败,请检查您当前网络状态或者查看设置是否打开定位设置"];
+}
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -246,6 +280,19 @@
         accuracyCircleRenderer.fillColor    = [UIColor colorWithRed:1 green:0 blue:0 alpha:.3];
         
         return accuracyCircleRenderer;
+    }
+    if ([overlay isKindOfClass:[SelectableOverlay class]])
+    {
+        //路线规划线路展示
+        SelectableOverlay * selectableOverlay = (SelectableOverlay *)overlay;
+        id<MAOverlay> actualOverlay = selectableOverlay.overlay;
+        
+        MAPolylineRenderer *polylineRenderer = [[MAPolylineRenderer alloc] initWithPolyline:actualOverlay];
+        
+        polylineRenderer.lineWidth = 8.f;
+        polylineRenderer.strokeColor = selectableOverlay.isSelected ? selectableOverlay.selectedColor : selectableOverlay.regularColor;
+        
+        return polylineRenderer;
     }
     
     return nil;
@@ -270,6 +317,7 @@
         _locationAnnotationView = (LocationAnnotationView *)annotationView;
         [_locationAnnotationView updateImage:[UIImage imageNamed:@"icon_location"]];
         
+
         return annotationView;
     }
     
@@ -294,13 +342,25 @@
     return nil;
 }
 
+/**
+ * @brief 位置或者设备方向更新后，会调用此函数
+ * @param mapView 地图View
+ * @param userLocation 用户定位信息(包括位置与设备方向等数据)
+ * @param updatingLocation 标示是否是location数据更新, YES:location数据更新 NO:heading数据更新
+ */
 
 - (void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation
 {
     if (!updatingLocation && _locationAnnotationView != nil)
     {
         _locationAnnotationView.rotateDegree = userLocation.heading.trueHeading - _mapView.rotationDegree;
+        
     }
+   
+    if (userLocation.location!=nil) {//获取用户当前位置信息
+        self.startPoint = [AMapNaviPoint locationWithLatitude:userLocation.location.altitude longitude:userLocation.location.altitude];
+    }
+    
 }
 #pragma mark 扫描结果
 -(void)ScanResults:(NSString *)context{
@@ -330,24 +390,96 @@
 #pragma mark 地图移动结束后获取屏幕中心点,根据区域插入大头针
 - (void)mapView:(MAMapView *)mapView regionDidChangeAnimated:(BOOL)animated{
     
-    NSLog(@"%f-------%f",mapView.centerCoordinate.latitude,mapView.centerCoordinate.longitude);
-    [mapView removeAnnotations:mapView.annotations];
-    [self MrPin:mapView];
+    NSLog(@"%f---屏幕中心----%f",mapView.centerCoordinate.latitude,mapView.centerCoordinate.longitude);
+    if (!state) {//非导航状态
+        MAPointAnnotation *APin = [[MAPointAnnotation alloc] init];
+        APin.coordinate = CLLocationCoordinate2DMake(mapView.centerCoordinate.latitude+0.001, mapView.centerCoordinate.longitude+0.0010);
+        [mapView removeAnnotations:mapView.annotations];
+        [self MrPin:mapView];
+    }
+    
 }
 #pragma mark 插入大头针
 -(void)MrPin:(MAMapView *)mapView{
 
     //扎大头针
     MAPointAnnotation *APin = [[MAPointAnnotation alloc] init];
-    APin.coordinate = CLLocationCoordinate2DMake(mapView.centerCoordinate.latitude+0.0005, mapView.centerCoordinate.longitude+0.0003);
+    APin.coordinate = CLLocationCoordinate2DMake(mapView.centerCoordinate.latitude+0.001, mapView.centerCoordinate.longitude+0.0010);
     APin.title = @"旷世兄弟集团";
     APin.subtitle = @"天府二街,东方希望天祥广场";
     
     [_mapView addAnnotation:APin];
 }
 
+/**
+ * @brief 发生错误时,会调用代理的此方法
+ * @param walkManager 步行导航管理类
+ * @param error 错误信息
+ */
+- (void)walkManager:(AMapNaviWalkManager *)walkManager error:(NSError *)error{
+    [SVProgressHUD showErrorWithStatus:error.domain];
+    NSLog(@"步行路径规划失败1");
+}
+/**
+ * @brief 步行路径规划成功后的回调函数
+ * @param walkManager 步行导航管理类
+ */
+- (void)walkManagerOnCalculateRouteSuccess:(AMapNaviWalkManager *)walkManager{
+    NSLog(@"步行路径规划成功");
+    state=YES;
+    [self showNaviRoutes];
+}
 
-
+/**
+ * @brief 步行路径规划失败后的回调函数
+ * @param walkManager 步行导航管理类
+ * @param error 错误信息,error.code参照AMapNaviCalcRouteState
+ */
+- (void)walkManager:(AMapNaviWalkManager *)walkManager onCalculateRouteFailure:(NSError *)error{
+[SVProgressHUD showErrorWithStatus:error.domain];
+    NSString *str=[NSString stringWithFormat:@"%@",error];
+    NSLog(@"步行路径规划失败2----%@",str);
+    
+}
+#pragma mark 显示路径
+- (void)showNaviRoutes
+{
+    if (self.walkManager.naviRoute == nil)
+    {
+        return;
+    }
+    
+    [_mapView removeOverlays:_mapView.overlays];
+    [self.routeIndicatorInfoArray removeAllObjects];
+    
+    //将路径显示到地图上
+    AMapNaviRoute *aRoute = self.walkManager.naviRoute;
+    int count = (int)[[aRoute routeCoordinates] count];
+    
+    //添加路径Polyline
+    CLLocationCoordinate2D *coords = (CLLocationCoordinate2D *)malloc(count * sizeof(CLLocationCoordinate2D));
+    for (int i = 0; i < count; i++)
+    {
+        AMapNaviPoint *coordinate = [[aRoute routeCoordinates] objectAtIndex:i];
+        coords[i].latitude = [coordinate latitude];
+        coords[i].longitude = [coordinate longitude];
+    }
+    MAPolyline *polyline = [MAPolyline polylineWithCoordinates:coords count:count];
+    
+    SelectableOverlay *selectablePolyline = [[SelectableOverlay alloc] initWithOverlay:polyline];
+    
+    [_mapView addOverlay:selectablePolyline];
+    free(coords);
+//
+//    //更新CollectonView的信息
+//    RouteCollectionViewInfo *info = [[RouteCollectionViewInfo alloc] init];
+//    info.title = [NSString stringWithFormat:@"路径信息:"];
+//    info.subtitle = [NSString stringWithFormat:@"长度:%ld米 | 预估时间:%ld秒 | 分段数:%ld", (long)aRoute.routeLength, (long)aRoute.routeTime, (long)aRoute.routeSegments.count];
+//    
+//    [self.routeIndicatorInfoArray addObject:info];
+    
+    [_mapView showAnnotations:_mapView.annotations animated:NO];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

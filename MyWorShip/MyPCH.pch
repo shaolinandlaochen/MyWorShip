@@ -27,10 +27,18 @@
 #import "UIKit+AFNetworking.h"//af封装的一些关于ui方面的请求操作
 #import <SVPullToRefresh.h>//第三方下拉刷新
 #import "MyButton.h"//自定义button
+
+
+
 #import <AMapFoundationKit/AMapFoundationKit.h>//地图
 #import <MAMapKit/MAMapKit.h>//地图
 #import "LocationAnnotationView.h"//地图
 #import <AMapFoundationKit/AMapFoundationKit.h>//地图
+
+
+
+
+
 #import "MyImage.h"//自定义img
 #import "ScanningViewController.h"//扫描
 #import "MyViewController.h"//我的

@@ -11,6 +11,7 @@
 		9D0C763D1EEE3D73006AF814 /* EvaluationListBaseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0C76381EEE3D73006AF814 /* EvaluationListBaseClass.m */; };
 		9D0C763E1EEE3D73006AF814 /* EvaluationListListComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0C763A1EEE3D73006AF814 /* EvaluationListListComment.m */; };
 		9D0C763F1EEE3D73006AF814 /* EvaluationListResultList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0C763C1EEE3D73006AF814 /* EvaluationListResultList.m */; };
+		9D0C76461EEE7C61006AF814 /* SelectableOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0C76451EEE7C61006AF814 /* SelectableOverlay.m */; };
 		9D4200621EE7904400425D5D /* PersonalCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4200611EE7904400425D5D /* PersonalCenterViewController.m */; };
 		9D4200651EE796ED00425D5D /* PersonalCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4200641EE796ED00425D5D /* PersonalCenterCell.m */; };
 		9D4200681EE7A35900425D5D /* ModifyThNicknameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4200671EE7A35900425D5D /* ModifyThNicknameViewController.m */; };
@@ -396,6 +397,8 @@
 		9D0C763A1EEE3D73006AF814 /* EvaluationListListComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvaluationListListComment.m; sourceTree = "<group>"; };
 		9D0C763B1EEE3D73006AF814 /* EvaluationListResultList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvaluationListResultList.h; sourceTree = "<group>"; };
 		9D0C763C1EEE3D73006AF814 /* EvaluationListResultList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvaluationListResultList.m; sourceTree = "<group>"; };
+		9D0C76441EEE7C61006AF814 /* SelectableOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectableOverlay.h; sourceTree = "<group>"; };
+		9D0C76451EEE7C61006AF814 /* SelectableOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectableOverlay.m; sourceTree = "<group>"; };
 		9D4200601EE7904400425D5D /* PersonalCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterViewController.h; sourceTree = "<group>"; };
 		9D4200611EE7904400425D5D /* PersonalCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterViewController.m; sourceTree = "<group>"; };
 		9D4200631EE796ED00425D5D /* PersonalCenterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterCell.h; sourceTree = "<group>"; };
@@ -904,6 +907,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9D0C76401EEE7BCD006AF814 /* 路线规划 */ = {
+			isa = PBXGroup;
+			children = (
+				9D0C76441EEE7C61006AF814 /* SelectableOverlay.h */,
+				9D0C76451EEE7C61006AF814 /* SelectableOverlay.m */,
+			);
+			name = "路线规划";
+			sourceTree = "<group>";
+		};
 		9D4201021EEA2D7D00425D5D /* model */ = {
 			isa = PBXGroup;
 			children = (
@@ -1103,6 +1115,7 @@
 				9D97718E1ED42D49005EAC95 /* MyClass.m */,
 				9D6BBE681EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.h */,
 				9D6BBE691EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.m */,
+				9D0C76401EEE7BCD006AF814 /* 路线规划 */,
 				9D4201201EEA7C6E00425D5D /* 我的VIP */,
 				9D6BBE671EE63C97008A9F23 /* 请求 */,
 				9D9773BC1ED919BD005EAC95 /* 登录注册 */,
@@ -2191,6 +2204,7 @@
 				9D6BBE861EE651B7008A9F23 /* BasicInformationBaseClass.m in Sources */,
 				9D0C763D1EEE3D73006AF814 /* EvaluationListBaseClass.m in Sources */,
 				9D4201141EEA353F00425D5D /* FeedbackRequest.m in Sources */,
+				9D0C76461EEE7C61006AF814 /* SelectableOverlay.m in Sources */,
 				9D42015C1EEA9F3000425D5D /* GoodsDetilListComment.m in Sources */,
 				9D4201001EE9492A00425D5D /* AnnouncementListData.m in Sources */,
 				9D9772E81ED6C02B005EAC95 /* MessageListViewController.m in Sources */,
