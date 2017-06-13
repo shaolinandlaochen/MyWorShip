@@ -44,10 +44,10 @@
     UIImageView *imgA=[[UIImageView alloc]init];
     imgA.image=[UIImage imageNamed:@"logo_login"];
     [self.view addSubview:imgA];
-    imgA.sd_layout.leftSpaceToView(self.view, 248*autoSizeScaleX).topSpaceToView(lblTitle, 80*autoSizeScaleY).rightSpaceToView(self.view, 248*autoSizeScaleX).heightIs(192*autoSizeScaleY);
+    imgA.sd_layout.leftSpaceToView(self.view, 160*autoSizeScaleX).topSpaceToView(lblTitle, 70*autoSizeScaleY).rightSpaceToView(self.view, 160*autoSizeScaleX).heightIs(160*autoSizeScaleY);
     
     UIImageView *imgB=[[UIImageView alloc]init];
-    imgB.image=[UIImage imageNamed:@"img_login"];
+    imgB.image=[UIImage imageNamed:@"gezi"];
     [self.view addSubview:imgB];
     imgB.sd_layout.leftSpaceToView(self.view, (WIDTH-151)/2).bottomSpaceToView(self.view, 603*autoSizeScaleY).rightSpaceToView(self.view, (WIDTH-151)/2).heightIs(151);
     
