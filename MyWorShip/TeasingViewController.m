@@ -8,6 +8,7 @@
 
 #import "TeasingViewController.h"
 #import "FeedbackRequest.h"
+#import "FeedbackTheResultViewController.h"
 @interface TeasingViewController ()<UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
     NSArray *_typeArray;//放置名字的数组
@@ -295,13 +296,15 @@
     [FeedbackRequest FeedbackToSubmit:_note.text feedback_type:IDStr equipment_uuid:@"123" feedback_image:imgPathString block:^(NSDictionary *dic) {
         LoginsIsBaseClass *class=[[LoginsIsBaseClass alloc]initWithDictionary:[self deleteEmpty:dic]];
         if ([stringFormat(class.code) isEqualToString:@"8"]) {
-            [self.navigationController popViewControllerAnimated:YES];
-            [SVProgressHUD showSuccessWithStatus:class.msg];
+            FeedbackTheResultViewController *FeedbackTheResult=[[FeedbackTheResultViewController alloc]init];
+            [self.navigationController pushViewController:FeedbackTheResult animated:YES];
+            
         }else{
             [SVProgressHUD showErrorWithStatus:class.msg];
         }
         
     }];
+
 
 }
 #pragma mark 返回

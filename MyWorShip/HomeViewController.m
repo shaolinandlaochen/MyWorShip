@@ -133,7 +133,8 @@
         //定位
         if(_mapView.userLocation.updating && _mapView.userLocation.location) {
             state=NO;
-            [_mapView setCenterCoordinate:_mapView.userLocation.location.coordinate animated:YES];
+            [_mapView removeOverlays:_mapView.overlays];//移除所有推荐线路
+            [_mapView setCenterCoordinate:_mapView.userLocation.location.coordinate animated:YES];//把屏幕中心点回到当前位置
         }
     }else{
     //反馈
@@ -386,14 +387,15 @@
  * @brief 地图区域改变完成后会调用此接口
  * @param mapView 地图View
  * @param animated 是否动画
+ *  mapView.annotations里面有很多标注点包括用户位置和大头针MAPointAnnotation是大头针,MAUserLocation是用户位置
  */
 #pragma mark 地图移动结束后获取屏幕中心点,根据区域插入大头针
 - (void)mapView:(MAMapView *)mapView regionDidChangeAnimated:(BOOL)animated{
     
-    NSLog(@"%f---屏幕中心----%f",mapView.centerCoordinate.latitude,mapView.centerCoordinate.longitude);
+   // NSLog(@"%f---屏幕中心----%f",mapView.centerCoordinate.latitude,mapView.centerCoordinate.longitude);
     if (!state) {//非导航状态
-        MAPointAnnotation *APin = [[MAPointAnnotation alloc] init];
-        APin.coordinate = CLLocationCoordinate2DMake(mapView.centerCoordinate.latitude+0.001, mapView.centerCoordinate.longitude+0.0010);
+        NSLog(@"mapView_is_annotations===%@",mapView.annotations);
+     
         [mapView removeAnnotations:mapView.annotations];
         [self MrPin:mapView];
     }
