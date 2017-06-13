@@ -1,7 +1,7 @@
 //
 //  EvaluationListResultList.m
 //
-//  Created by   on 2017/6/12
+//  Created by   on 2017/6/13
 //  Copyright (c) 2017 __MyCompanyName__. All rights reserved.
 //
 
@@ -12,9 +12,10 @@ NSString *const kEvaluationListResultListBaseNickname = @"base_nickname";
 NSString *const kEvaluationListResultListCommoditySerial = @"commodity_serial";
 NSString *const kEvaluationListResultListId = @"id";
 NSString *const kEvaluationListResultListOrderSerial = @"order_serial";
-NSString *const kEvaluationListResultListCommentReply = @"comment_reply";
+NSString *const kEvaluationListResultListBaseIsVip = @"base_is_vip";
 NSString *const kEvaluationListResultListCommentContent = @"comment_content";
 NSString *const kEvaluationListResultListCommentGrade = @"comment_grade";
+NSString *const kEvaluationListResultListCommentReply = @"comment_reply";
 NSString *const kEvaluationListResultListCommentTime = @"comment_time";
 NSString *const kEvaluationListResultListCommentReplyTime = @"comment_reply_time";
 
@@ -31,9 +32,10 @@ NSString *const kEvaluationListResultListCommentReplyTime = @"comment_reply_time
 @synthesize commoditySerial = _commoditySerial;
 @synthesize resultListIdentifier = _resultListIdentifier;
 @synthesize orderSerial = _orderSerial;
-@synthesize commentReply = _commentReply;
+@synthesize baseIsVip = _baseIsVip;
 @synthesize commentContent = _commentContent;
 @synthesize commentGrade = _commentGrade;
+@synthesize commentReply = _commentReply;
 @synthesize commentTime = _commentTime;
 @synthesize commentReplyTime = _commentReplyTime;
 
@@ -52,9 +54,10 @@ NSString *const kEvaluationListResultListCommentReplyTime = @"comment_reply_time
             self.commoditySerial = [[self objectOrNilForKey:kEvaluationListResultListCommoditySerial fromDictionary:dict] doubleValue];
             self.resultListIdentifier = [[self objectOrNilForKey:kEvaluationListResultListId fromDictionary:dict] doubleValue];
             self.orderSerial = [[self objectOrNilForKey:kEvaluationListResultListOrderSerial fromDictionary:dict] doubleValue];
-            self.commentReply = [self objectOrNilForKey:kEvaluationListResultListCommentReply fromDictionary:dict];
+            self.baseIsVip = [[self objectOrNilForKey:kEvaluationListResultListBaseIsVip fromDictionary:dict] doubleValue];
             self.commentContent = [self objectOrNilForKey:kEvaluationListResultListCommentContent fromDictionary:dict];
             self.commentGrade = [[self objectOrNilForKey:kEvaluationListResultListCommentGrade fromDictionary:dict] doubleValue];
+            self.commentReply = [self objectOrNilForKey:kEvaluationListResultListCommentReply fromDictionary:dict];
             self.commentTime = [self objectOrNilForKey:kEvaluationListResultListCommentTime fromDictionary:dict];
             self.commentReplyTime = [self objectOrNilForKey:kEvaluationListResultListCommentReplyTime fromDictionary:dict];
 
@@ -70,9 +73,10 @@ NSString *const kEvaluationListResultListCommentReplyTime = @"comment_reply_time
     [mutableDict setValue:[NSNumber numberWithDouble:self.commoditySerial] forKey:kEvaluationListResultListCommoditySerial];
     [mutableDict setValue:[NSNumber numberWithDouble:self.resultListIdentifier] forKey:kEvaluationListResultListId];
     [mutableDict setValue:[NSNumber numberWithDouble:self.orderSerial] forKey:kEvaluationListResultListOrderSerial];
-    [mutableDict setValue:self.commentReply forKey:kEvaluationListResultListCommentReply];
+    [mutableDict setValue:[NSNumber numberWithDouble:self.baseIsVip] forKey:kEvaluationListResultListBaseIsVip];
     [mutableDict setValue:self.commentContent forKey:kEvaluationListResultListCommentContent];
     [mutableDict setValue:[NSNumber numberWithDouble:self.commentGrade] forKey:kEvaluationListResultListCommentGrade];
+    [mutableDict setValue:self.commentReply forKey:kEvaluationListResultListCommentReply];
     [mutableDict setValue:self.commentTime forKey:kEvaluationListResultListCommentTime];
     [mutableDict setValue:self.commentReplyTime forKey:kEvaluationListResultListCommentReplyTime];
 
@@ -99,9 +103,10 @@ NSString *const kEvaluationListResultListCommentReplyTime = @"comment_reply_time
     self.commoditySerial = [aDecoder decodeDoubleForKey:kEvaluationListResultListCommoditySerial];
     self.resultListIdentifier = [aDecoder decodeDoubleForKey:kEvaluationListResultListId];
     self.orderSerial = [aDecoder decodeDoubleForKey:kEvaluationListResultListOrderSerial];
-    self.commentReply = [aDecoder decodeObjectForKey:kEvaluationListResultListCommentReply];
+    self.baseIsVip = [aDecoder decodeDoubleForKey:kEvaluationListResultListBaseIsVip];
     self.commentContent = [aDecoder decodeObjectForKey:kEvaluationListResultListCommentContent];
     self.commentGrade = [aDecoder decodeDoubleForKey:kEvaluationListResultListCommentGrade];
+    self.commentReply = [aDecoder decodeObjectForKey:kEvaluationListResultListCommentReply];
     self.commentTime = [aDecoder decodeObjectForKey:kEvaluationListResultListCommentTime];
     self.commentReplyTime = [aDecoder decodeObjectForKey:kEvaluationListResultListCommentReplyTime];
     return self;
@@ -114,9 +119,10 @@ NSString *const kEvaluationListResultListCommentReplyTime = @"comment_reply_time
     [aCoder encodeDouble:_commoditySerial forKey:kEvaluationListResultListCommoditySerial];
     [aCoder encodeDouble:_resultListIdentifier forKey:kEvaluationListResultListId];
     [aCoder encodeDouble:_orderSerial forKey:kEvaluationListResultListOrderSerial];
-    [aCoder encodeObject:_commentReply forKey:kEvaluationListResultListCommentReply];
+    [aCoder encodeDouble:_baseIsVip forKey:kEvaluationListResultListBaseIsVip];
     [aCoder encodeObject:_commentContent forKey:kEvaluationListResultListCommentContent];
     [aCoder encodeDouble:_commentGrade forKey:kEvaluationListResultListCommentGrade];
+    [aCoder encodeObject:_commentReply forKey:kEvaluationListResultListCommentReply];
     [aCoder encodeObject:_commentTime forKey:kEvaluationListResultListCommentTime];
     [aCoder encodeObject:_commentReplyTime forKey:kEvaluationListResultListCommentReplyTime];
 }
@@ -132,9 +138,10 @@ NSString *const kEvaluationListResultListCommentReplyTime = @"comment_reply_time
         copy.commoditySerial = self.commoditySerial;
         copy.resultListIdentifier = self.resultListIdentifier;
         copy.orderSerial = self.orderSerial;
-        copy.commentReply = [self.commentReply copyWithZone:zone];
+        copy.baseIsVip = self.baseIsVip;
         copy.commentContent = [self.commentContent copyWithZone:zone];
         copy.commentGrade = self.commentGrade;
+        copy.commentReply = [self.commentReply copyWithZone:zone];
         copy.commentTime = [self.commentTime copyWithZone:zone];
         copy.commentReplyTime = [self.commentReplyTime copyWithZone:zone];
     }

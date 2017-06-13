@@ -37,7 +37,6 @@
         
         UIImageView *imgVip=[[UIImageView alloc]init];
         imgVip.tag=1994;
-        imgVip.image=[UIImage imageNamed:@"img_vip"];
         [self.contentView addSubview:imgVip];
         
         _time=[[UILabel alloc]init];
@@ -75,6 +74,13 @@
     _time.text=stringFormat(model.commentTime);
     CGSize timeSize=[MyClass StringHeight:_time.text Lblfont:13 heightOfTheMinus:0];
     _time.sd_layout.widthIs(timeSize.width).heightIs(timeSize.height);
+    
+    if (model.baseIsVip==1) {
+        ((UIImageView *)[self.contentView viewWithTag:1994]).image=[UIImage imageNamed:@"img_vip"];
+    }
+    
+    
+    
     _context.text=stringFormat(model.commentContent);
     _context.sd_layout.autoHeightRatio(0);
     [self setupAutoHeightWithBottomView:_context bottomMargin:16];
@@ -92,6 +98,9 @@
     _time.text=stringFormat(list.commentTime);
     CGSize timeSize=[MyClass StringHeight:_time.text Lblfont:13 heightOfTheMinus:0];
     _time.sd_layout.widthIs(timeSize.width).heightIs(timeSize.height);
+    if (list.baseIsVip==1) {
+        ((UIImageView *)[self.contentView viewWithTag:1994]).image=[UIImage imageNamed:@"img_vip"];
+    }
     _context.text=stringFormat(list.commentContent);
     _context.sd_layout.autoHeightRatio(0);
     [self setupAutoHeightWithBottomView:_context bottomMargin:16];

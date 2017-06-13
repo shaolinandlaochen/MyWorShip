@@ -1,7 +1,7 @@
 //
 //  GoodsDetilListComment.m
 //
-//  Created by   on 2017/6/9
+//  Created by   on 2017/6/13
 //  Copyright (c) 2017 __MyCompanyName__. All rights reserved.
 //
 
@@ -12,9 +12,10 @@ NSString *const kGoodsDetilListCommentBaseNickname = @"base_nickname";
 NSString *const kGoodsDetilListCommentCommoditySerial = @"commodity_serial";
 NSString *const kGoodsDetilListCommentId = @"id";
 NSString *const kGoodsDetilListCommentOrderSerial = @"order_serial";
-NSString *const kGoodsDetilListCommentCommentReply = @"comment_reply";
+NSString *const kGoodsDetilListCommentBaseIsVip = @"base_is_vip";
 NSString *const kGoodsDetilListCommentCommentContent = @"comment_content";
 NSString *const kGoodsDetilListCommentCommentGrade = @"comment_grade";
+NSString *const kGoodsDetilListCommentCommentReply = @"comment_reply";
 NSString *const kGoodsDetilListCommentCommentTime = @"comment_time";
 NSString *const kGoodsDetilListCommentCommentReplyTime = @"comment_reply_time";
 
@@ -31,9 +32,10 @@ NSString *const kGoodsDetilListCommentCommentReplyTime = @"comment_reply_time";
 @synthesize commoditySerial = _commoditySerial;
 @synthesize listCommentIdentifier = _listCommentIdentifier;
 @synthesize orderSerial = _orderSerial;
-@synthesize commentReply = _commentReply;
+@synthesize baseIsVip = _baseIsVip;
 @synthesize commentContent = _commentContent;
 @synthesize commentGrade = _commentGrade;
+@synthesize commentReply = _commentReply;
 @synthesize commentTime = _commentTime;
 @synthesize commentReplyTime = _commentReplyTime;
 
@@ -52,9 +54,10 @@ NSString *const kGoodsDetilListCommentCommentReplyTime = @"comment_reply_time";
             self.commoditySerial = [[self objectOrNilForKey:kGoodsDetilListCommentCommoditySerial fromDictionary:dict] doubleValue];
             self.listCommentIdentifier = [[self objectOrNilForKey:kGoodsDetilListCommentId fromDictionary:dict] doubleValue];
             self.orderSerial = [[self objectOrNilForKey:kGoodsDetilListCommentOrderSerial fromDictionary:dict] doubleValue];
-            self.commentReply = [self objectOrNilForKey:kGoodsDetilListCommentCommentReply fromDictionary:dict];
+            self.baseIsVip = [[self objectOrNilForKey:kGoodsDetilListCommentBaseIsVip fromDictionary:dict] doubleValue];
             self.commentContent = [self objectOrNilForKey:kGoodsDetilListCommentCommentContent fromDictionary:dict];
             self.commentGrade = [[self objectOrNilForKey:kGoodsDetilListCommentCommentGrade fromDictionary:dict] doubleValue];
+            self.commentReply = [self objectOrNilForKey:kGoodsDetilListCommentCommentReply fromDictionary:dict];
             self.commentTime = [self objectOrNilForKey:kGoodsDetilListCommentCommentTime fromDictionary:dict];
             self.commentReplyTime = [self objectOrNilForKey:kGoodsDetilListCommentCommentReplyTime fromDictionary:dict];
 
@@ -70,9 +73,10 @@ NSString *const kGoodsDetilListCommentCommentReplyTime = @"comment_reply_time";
     [mutableDict setValue:[NSNumber numberWithDouble:self.commoditySerial] forKey:kGoodsDetilListCommentCommoditySerial];
     [mutableDict setValue:[NSNumber numberWithDouble:self.listCommentIdentifier] forKey:kGoodsDetilListCommentId];
     [mutableDict setValue:[NSNumber numberWithDouble:self.orderSerial] forKey:kGoodsDetilListCommentOrderSerial];
-    [mutableDict setValue:self.commentReply forKey:kGoodsDetilListCommentCommentReply];
+    [mutableDict setValue:[NSNumber numberWithDouble:self.baseIsVip] forKey:kGoodsDetilListCommentBaseIsVip];
     [mutableDict setValue:self.commentContent forKey:kGoodsDetilListCommentCommentContent];
     [mutableDict setValue:[NSNumber numberWithDouble:self.commentGrade] forKey:kGoodsDetilListCommentCommentGrade];
+    [mutableDict setValue:self.commentReply forKey:kGoodsDetilListCommentCommentReply];
     [mutableDict setValue:self.commentTime forKey:kGoodsDetilListCommentCommentTime];
     [mutableDict setValue:self.commentReplyTime forKey:kGoodsDetilListCommentCommentReplyTime];
 
@@ -99,9 +103,10 @@ NSString *const kGoodsDetilListCommentCommentReplyTime = @"comment_reply_time";
     self.commoditySerial = [aDecoder decodeDoubleForKey:kGoodsDetilListCommentCommoditySerial];
     self.listCommentIdentifier = [aDecoder decodeDoubleForKey:kGoodsDetilListCommentId];
     self.orderSerial = [aDecoder decodeDoubleForKey:kGoodsDetilListCommentOrderSerial];
-    self.commentReply = [aDecoder decodeObjectForKey:kGoodsDetilListCommentCommentReply];
+    self.baseIsVip = [aDecoder decodeDoubleForKey:kGoodsDetilListCommentBaseIsVip];
     self.commentContent = [aDecoder decodeObjectForKey:kGoodsDetilListCommentCommentContent];
     self.commentGrade = [aDecoder decodeDoubleForKey:kGoodsDetilListCommentCommentGrade];
+    self.commentReply = [aDecoder decodeObjectForKey:kGoodsDetilListCommentCommentReply];
     self.commentTime = [aDecoder decodeObjectForKey:kGoodsDetilListCommentCommentTime];
     self.commentReplyTime = [aDecoder decodeObjectForKey:kGoodsDetilListCommentCommentReplyTime];
     return self;
@@ -114,9 +119,10 @@ NSString *const kGoodsDetilListCommentCommentReplyTime = @"comment_reply_time";
     [aCoder encodeDouble:_commoditySerial forKey:kGoodsDetilListCommentCommoditySerial];
     [aCoder encodeDouble:_listCommentIdentifier forKey:kGoodsDetilListCommentId];
     [aCoder encodeDouble:_orderSerial forKey:kGoodsDetilListCommentOrderSerial];
-    [aCoder encodeObject:_commentReply forKey:kGoodsDetilListCommentCommentReply];
+    [aCoder encodeDouble:_baseIsVip forKey:kGoodsDetilListCommentBaseIsVip];
     [aCoder encodeObject:_commentContent forKey:kGoodsDetilListCommentCommentContent];
     [aCoder encodeDouble:_commentGrade forKey:kGoodsDetilListCommentCommentGrade];
+    [aCoder encodeObject:_commentReply forKey:kGoodsDetilListCommentCommentReply];
     [aCoder encodeObject:_commentTime forKey:kGoodsDetilListCommentCommentTime];
     [aCoder encodeObject:_commentReplyTime forKey:kGoodsDetilListCommentCommentReplyTime];
 }
@@ -132,9 +138,10 @@ NSString *const kGoodsDetilListCommentCommentReplyTime = @"comment_reply_time";
         copy.commoditySerial = self.commoditySerial;
         copy.listCommentIdentifier = self.listCommentIdentifier;
         copy.orderSerial = self.orderSerial;
-        copy.commentReply = [self.commentReply copyWithZone:zone];
+        copy.baseIsVip = self.baseIsVip;
         copy.commentContent = [self.commentContent copyWithZone:zone];
         copy.commentGrade = self.commentGrade;
+        copy.commentReply = [self.commentReply copyWithZone:zone];
         copy.commentTime = [self.commentTime copyWithZone:zone];
         copy.commentReplyTime = [self.commentReplyTime copyWithZone:zone];
     }
