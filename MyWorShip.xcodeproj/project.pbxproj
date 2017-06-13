@@ -33,7 +33,7 @@
 		9D0C76731EEF9303006AF814 /* star_pinglun_solid.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D0C76641EEF9303006AF814 /* star_pinglun_solid.png */; };
 		9D0C76741EEF9303006AF814 /* star_pinglun_solid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D0C76651EEF9303006AF814 /* star_pinglun_solid@2x.png */; };
 		9D0C76751EEF9303006AF814 /* star_pinglun_solid@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D0C76661EEF9303006AF814 /* star_pinglun_solid@3x.png */; };
-		9D0C76781EEF954B006AF814 /* EvaluationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0C76771EEF954B006AF814 /* EvaluationViewController.m */; };
+		9D0C767A1EEFB732006AF814 /* EvaluationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0C76791EEFB732006AF814 /* EvaluationViewController.m */; };
 		9D4200621EE7904400425D5D /* PersonalCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4200611EE7904400425D5D /* PersonalCenterViewController.m */; };
 		9D4200651EE796ED00425D5D /* PersonalCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4200641EE796ED00425D5D /* PersonalCenterCell.m */; };
 		9D4200681EE7A35900425D5D /* ModifyThNicknameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4200671EE7A35900425D5D /* ModifyThNicknameViewController.m */; };
@@ -446,7 +446,7 @@
 		9D0C76651EEF9303006AF814 /* star_pinglun_solid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star_pinglun_solid@2x.png"; sourceTree = "<group>"; };
 		9D0C76661EEF9303006AF814 /* star_pinglun_solid@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star_pinglun_solid@3x.png"; sourceTree = "<group>"; };
 		9D0C76761EEF954B006AF814 /* EvaluationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvaluationViewController.h; sourceTree = "<group>"; };
-		9D0C76771EEF954B006AF814 /* EvaluationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvaluationViewController.m; sourceTree = "<group>"; };
+		9D0C76791EEFB732006AF814 /* EvaluationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvaluationViewController.m; sourceTree = "<group>"; };
 		9D4200601EE7904400425D5D /* PersonalCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterViewController.h; sourceTree = "<group>"; };
 		9D4200611EE7904400425D5D /* PersonalCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterViewController.m; sourceTree = "<group>"; };
 		9D4200631EE796ED00425D5D /* PersonalCenterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterCell.h; sourceTree = "<group>"; };
@@ -979,7 +979,7 @@
 				9D0C76551EEF91D2006AF814 /* ShipmentViewController.h */,
 				9D0C76561EEF91D2006AF814 /* ShipmentViewController.m */,
 				9D0C76761EEF954B006AF814 /* EvaluationViewController.h */,
-				9D0C76771EEF954B006AF814 /* EvaluationViewController.m */,
+				9D0C76791EEFB732006AF814 /* EvaluationViewController.m */,
 			);
 			name = "出货";
 			sourceTree = "<group>";
@@ -2300,7 +2300,7 @@
 				9D9772031ED5611E005EAC95 /* SGWebView.m in Sources */,
 				9D4200711EE7D95100425D5D /* SelectADateViewController.m in Sources */,
 				9D6BBE7C1EE64ABC008A9F23 /* LoginsIsBaseClass.m in Sources */,
-				9D0C76781EEF954B006AF814 /* EvaluationViewController.m in Sources */,
+				9D0C767A1EEFB732006AF814 /* EvaluationViewController.m in Sources */,
 				9D9773B21ED90E53005EAC95 /* UseGuideViewController.m in Sources */,
 				9D9772F21ED6C4CB005EAC95 /* AnnouncementCell.m in Sources */,
 				9D9771FD1ED560DF005EAC95 /* SGQRCodeScanningVC.m in Sources */,
