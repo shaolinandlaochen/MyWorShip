@@ -14,6 +14,7 @@
 #import "AllCommentsViewController.h"
 #import "GoodsRequest.h"
 #import "HTMLCell.h"
+#import "PayViewController.h"
 @interface GoodsDetailsViewController ()<UITableViewDelegate,UITableViewDataSource,ScrollViewCellDelegate,HTMLContextDelegate>
 {
     UITableView *_tableView;
@@ -231,7 +232,8 @@
 }
 #pragma mark 立即购买
 -(void)onBuyClick{
-
+    PayViewController *Pay=[[PayViewController alloc]init];
+    [self.navigationController pushViewController:Pay animated:YES];
 }
 CANCEL
 - (void)didReceiveMemoryWarning {

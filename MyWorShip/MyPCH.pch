@@ -63,6 +63,7 @@
 #import "SelectADateViewController.h"//选择日期
 #import "MyVIPViewController.h"//我的vip
 #import "OpenTheVIPViewController.h"//开通VIP
+#import "EvaluationViewController.h"//评价
 
 
 #define RequestUrl @"http://192.168.88.18:8080//yb_app/"//api
