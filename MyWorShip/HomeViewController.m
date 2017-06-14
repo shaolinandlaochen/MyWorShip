@@ -135,7 +135,7 @@
         //定位
         if(_mapView.userLocation.updating && _mapView.userLocation.location) {
             state=NO;
-            [_mapView removeOverlays:_mapView.overlays];//移除所有推荐线路
+           
             [_mapView setCenterCoordinate:_mapView.userLocation.location.coordinate animated:YES];//把屏幕中心点回到当前位置
         }
     }else{
@@ -211,7 +211,7 @@
     
     ///初始化地图
     _mapView = [[MAMapView alloc] initWithFrame:self.view.bounds];
-    _mapView.zoomLevel=17;//缩放级别
+    _mapView.zoomLevel=15;//缩放级别
     ///把地图添加至view
     [self.view addSubview:_mapView];
     ///如果您需要进入地图就显示定位小蓝点，则需要下面两行代码
@@ -396,7 +396,7 @@
     
    // NSLog(@"%f---屏幕中心----%f",mapView.centerCoordinate.latitude,mapView.centerCoordinate.longitude);
     if (!state) {//非导航状态
-        NSLog(@"mapView_is_annotations===%@",mapView.annotations);
+        //NSLog(@"mapView_is_annotations===%@",mapView.annotations);
         if (point.x==0) {//如果等于0 就表示刚进来
             point=MAMapPointForCoordinate(CLLocationCoordinate2DMake(mapView.centerCoordinate.latitude,mapView.centerCoordinate.longitude));
         }else{
@@ -404,8 +404,10 @@
             MAMapPoint point2=MAMapPointForCoordinate(CLLocationCoordinate2DMake(mapView.centerCoordinate.latitude,mapView.centerCoordinate.longitude));
             //那当前的位置和上次移动的距离比较
             CLLocationDistance distance = MAMetersBetweenMapPoints(point,point2);
-            if (distance>5000) {//超过五公里就重新加载
+            NSLog(@"距离上次移动距离为%f",distance);
+            if (distance>50000) {//超过五公里就重新加载
                 point=MAMapPointForCoordinate(CLLocationCoordinate2DMake(mapView.centerCoordinate.latitude,mapView.centerCoordinate.longitude));
+                 [_mapView removeOverlays:_mapView.overlays];//移除所有推荐线路
                 [self QueryEquipmentNear:mapView];
             }
             
@@ -420,7 +422,7 @@
 - (void)QueryEquipmentNear:(MAMapView *)mapView{
     if (_mapView.userLocation.location!=nil) {
          CLLocationCoordinate2D oldCoordinate = _mapView.userLocation.coordinate;//获取用户当前位置信息
-        [SVProgressHUD showWithStatus:loading];
+        [SVProgressHUD showWithStatus:@"正在查找附近的设备,请稍后..."];
         [HomeRequest TheDeviceNearTheQuery_equipment_longitude:[NSString stringWithFormat:@"%f",oldCoordinate.longitude] equipment_latitude:[NSString stringWithFormat:@"%f",oldCoordinate.latitude] block:^(NSDictionary *dic) {
             NearTheEquipmentBaseClass *class=[[NearTheEquipmentBaseClass alloc]initWithDictionary:[self deleteEmpty:dic]];
             self.dataLatitudeAndLongitude=[self deleteEmpty:dic];
@@ -436,13 +438,13 @@
 -(void)MrPin:(MAMapView *)mapView{
 
     NearTheEquipmentBaseClass *class=[[NearTheEquipmentBaseClass alloc]initWithDictionary:self.dataLatitudeAndLongitude];
-    for (int i=0; i<class.equipmentall.count; i++) {
-        NearTheEquipmentEquipmentall *equipmentall=class.equipmentall[i];
+    for (int i=0; i<class.equipment.count; i++) {
+        NearTheEquipmentEquipment *equipment=class.equipment[i];
         //扎大头针
         MAPointAnnotation *APin = [[MAPointAnnotation alloc] init];
-        APin.coordinate = CLLocationCoordinate2DMake([stringFormat(equipmentall.equipmentLatitude) floatValue], [stringFormat(equipmentall.equipmentLongitude) floatValue]);
-        APin.title = stringFormat(equipmentall.equipmentName);
-        APin.subtitle = stringFormat(equipmentall.equipmentAddress);
+        APin.coordinate = CLLocationCoordinate2DMake([stringFormat(equipment.equipmentLatitude) floatValue], [stringFormat(equipment.equipmentLongitude) floatValue]);
+        APin.title = stringFormat(equipment.equipmentName);
+        APin.subtitle = stringFormat(equipment.equipmentAddress);
         
         [_mapView addAnnotation:APin];
     }
@@ -508,13 +510,7 @@
     
     [_mapView addOverlay:selectablePolyline];
     free(coords);
-//
-//    //更新CollectonView的信息
-//    RouteCollectionViewInfo *info = [[RouteCollectionViewInfo alloc] init];
-//    info.title = [NSString stringWithFormat:@"路径信息:"];
-//    info.subtitle = [NSString stringWithFormat:@"长度:%ld米 | 预估时间:%ld秒 | 分段数:%ld", (long)aRoute.routeLength, (long)aRoute.routeTime, (long)aRoute.routeSegments.count];
-//    
-//    [self.routeIndicatorInfoArray addObject:info];
+
     
     [_mapView showAnnotations:_mapView.annotations animated:NO];
 }

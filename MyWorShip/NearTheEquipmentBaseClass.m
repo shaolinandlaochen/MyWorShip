@@ -6,11 +6,11 @@
 //
 
 #import "NearTheEquipmentBaseClass.h"
-#import "NearTheEquipmentEquipmentall.h"
+#import "NearTheEquipmentEquipment.h"
 
 
 NSString *const kNearTheEquipmentBaseClassMsg = @"msg";
-NSString *const kNearTheEquipmentBaseClassEquipmentall = @"equipmentall";
+NSString *const kNearTheEquipmentBaseClassEquipment = @"equipment";
 NSString *const kNearTheEquipmentBaseClassCode = @"code";
 
 
@@ -23,7 +23,7 @@ NSString *const kNearTheEquipmentBaseClassCode = @"code";
 @implementation NearTheEquipmentBaseClass
 
 @synthesize msg = _msg;
-@synthesize equipmentall = _equipmentall;
+@synthesize equipment = _equipment;
 @synthesize code = _code;
 
 
@@ -38,20 +38,20 @@ NSString *const kNearTheEquipmentBaseClassCode = @"code";
     // passed into the model class doesn't break the parsing.
     if (self && [dict isKindOfClass:[NSDictionary class]]) {
             self.msg = [self objectOrNilForKey:kNearTheEquipmentBaseClassMsg fromDictionary:dict];
-    NSObject *receivedNearTheEquipmentEquipmentall = [dict objectForKey:kNearTheEquipmentBaseClassEquipmentall];
-    NSMutableArray *parsedNearTheEquipmentEquipmentall = [NSMutableArray array];
+    NSObject *receivedNearTheEquipmentEquipment = [dict objectForKey:kNearTheEquipmentBaseClassEquipment];
+    NSMutableArray *parsedNearTheEquipmentEquipment = [NSMutableArray array];
     
-    if ([receivedNearTheEquipmentEquipmentall isKindOfClass:[NSArray class]]) {
-        for (NSDictionary *item in (NSArray *)receivedNearTheEquipmentEquipmentall) {
+    if ([receivedNearTheEquipmentEquipment isKindOfClass:[NSArray class]]) {
+        for (NSDictionary *item in (NSArray *)receivedNearTheEquipmentEquipment) {
             if ([item isKindOfClass:[NSDictionary class]]) {
-                [parsedNearTheEquipmentEquipmentall addObject:[NearTheEquipmentEquipmentall modelObjectWithDictionary:item]];
+                [parsedNearTheEquipmentEquipment addObject:[NearTheEquipmentEquipment modelObjectWithDictionary:item]];
             }
        }
-    } else if ([receivedNearTheEquipmentEquipmentall isKindOfClass:[NSDictionary class]]) {
-       [parsedNearTheEquipmentEquipmentall addObject:[NearTheEquipmentEquipmentall modelObjectWithDictionary:(NSDictionary *)receivedNearTheEquipmentEquipmentall]];
+    } else if ([receivedNearTheEquipmentEquipment isKindOfClass:[NSDictionary class]]) {
+       [parsedNearTheEquipmentEquipment addObject:[NearTheEquipmentEquipment modelObjectWithDictionary:(NSDictionary *)receivedNearTheEquipmentEquipment]];
     }
 
-    self.equipmentall = [NSArray arrayWithArray:parsedNearTheEquipmentEquipmentall];
+    self.equipment = [NSArray arrayWithArray:parsedNearTheEquipmentEquipment];
             self.code = [self objectOrNilForKey:kNearTheEquipmentBaseClassCode fromDictionary:dict];
 
     }
@@ -63,18 +63,18 @@ NSString *const kNearTheEquipmentBaseClassCode = @"code";
 - (NSDictionary *)dictionaryRepresentation {
     NSMutableDictionary *mutableDict = [NSMutableDictionary dictionary];
     [mutableDict setValue:self.msg forKey:kNearTheEquipmentBaseClassMsg];
-    NSMutableArray *tempArrayForEquipmentall = [NSMutableArray array];
+    NSMutableArray *tempArrayForEquipment = [NSMutableArray array];
     
-    for (NSObject *subArrayObject in self.equipmentall) {
+    for (NSObject *subArrayObject in self.equipment) {
         if ([subArrayObject respondsToSelector:@selector(dictionaryRepresentation)]) {
             // This class is a model object
-            [tempArrayForEquipmentall addObject:[subArrayObject performSelector:@selector(dictionaryRepresentation)]];
+            [tempArrayForEquipment addObject:[subArrayObject performSelector:@selector(dictionaryRepresentation)]];
         } else {
             // Generic object
-            [tempArrayForEquipmentall addObject:subArrayObject];
+            [tempArrayForEquipment addObject:subArrayObject];
         }
     }
-    [mutableDict setValue:[NSArray arrayWithArray:tempArrayForEquipmentall] forKey:kNearTheEquipmentBaseClassEquipmentall];
+    [mutableDict setValue:[NSArray arrayWithArray:tempArrayForEquipment] forKey:kNearTheEquipmentBaseClassEquipment];
     [mutableDict setValue:self.code forKey:kNearTheEquipmentBaseClassCode];
 
     return [NSDictionary dictionaryWithDictionary:mutableDict];
@@ -97,7 +97,7 @@ NSString *const kNearTheEquipmentBaseClassCode = @"code";
     self = [super init];
 
     self.msg = [aDecoder decodeObjectForKey:kNearTheEquipmentBaseClassMsg];
-    self.equipmentall = [aDecoder decodeObjectForKey:kNearTheEquipmentBaseClassEquipmentall];
+    self.equipment = [aDecoder decodeObjectForKey:kNearTheEquipmentBaseClassEquipment];
     self.code = [aDecoder decodeObjectForKey:kNearTheEquipmentBaseClassCode];
     return self;
 }
@@ -106,7 +106,7 @@ NSString *const kNearTheEquipmentBaseClassCode = @"code";
 {
 
     [aCoder encodeObject:_msg forKey:kNearTheEquipmentBaseClassMsg];
-    [aCoder encodeObject:_equipmentall forKey:kNearTheEquipmentBaseClassEquipmentall];
+    [aCoder encodeObject:_equipment forKey:kNearTheEquipmentBaseClassEquipment];
     [aCoder encodeObject:_code forKey:kNearTheEquipmentBaseClassCode];
 }
 
@@ -118,7 +118,7 @@ NSString *const kNearTheEquipmentBaseClassCode = @"code";
     if (copy) {
 
         copy.msg = [self.msg copyWithZone:zone];
-        copy.equipmentall = [self.equipmentall copyWithZone:zone];
+        copy.equipment = [self.equipment copyWithZone:zone];
         copy.code = [self.code copyWithZone:zone];
     }
     

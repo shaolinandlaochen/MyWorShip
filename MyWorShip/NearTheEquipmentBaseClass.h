@@ -12,7 +12,7 @@
 @interface NearTheEquipmentBaseClass : NSObject <NSCoding, NSCopying>
 
 @property (nonatomic, strong) NSString *msg;
-@property (nonatomic, strong) NSArray *equipmentall;
+@property (nonatomic, strong) NSArray *equipment;
 @property (nonatomic, strong) NSString *code;
 
 + (instancetype)modelObjectWithDictionary:(NSDictionary *)dict;

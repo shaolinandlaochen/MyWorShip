@@ -33,6 +33,6 @@
 #import "EvaluationListBaseClass.h"
 #import "EvaluationListResultList.h"
 #import "EvaluationListListComment.h"
-#import "NearTheEquipmentEquipmentall.h"
+#import "NearTheEquipmentEquipment.h"
 #import "NearTheEquipmentBaseClass.h"
 

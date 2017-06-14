@@ -394,7 +394,7 @@
 		9DD501861EE6A77A00278600 /* StatementResultList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DD501831EE6A77A00278600 /* StatementResultList.m */; };
 		9DF855AB1EF0E60F00E8D250 /* HomeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF855AA1EF0E60F00E8D250 /* HomeRequest.m */; };
 		9DF855B01EF1070800E8D250 /* NearTheEquipmentBaseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF855AD1EF1070800E8D250 /* NearTheEquipmentBaseClass.m */; };
-		9DF855B11EF1070800E8D250 /* NearTheEquipmentEquipmentall.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF855AF1EF1070800E8D250 /* NearTheEquipmentEquipmentall.m */; };
+		9DF855B41EF1192700E8D250 /* NearTheEquipmentEquipment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF855B31EF1192700E8D250 /* NearTheEquipmentEquipment.m */; };
 		F03DFB4F8BA6C4BBBE633D48 /* libPods-MyWorShip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A10E7D0553C7BC98CFE26DD /* libPods-MyWorShip.a */; };
 /* End PBXBuildFile section */
 
@@ -921,8 +921,8 @@
 		9DF855AA1EF0E60F00E8D250 /* HomeRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeRequest.m; sourceTree = "<group>"; };
 		9DF855AC1EF1070800E8D250 /* NearTheEquipmentBaseClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearTheEquipmentBaseClass.h; sourceTree = "<group>"; };
 		9DF855AD1EF1070800E8D250 /* NearTheEquipmentBaseClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearTheEquipmentBaseClass.m; sourceTree = "<group>"; };
-		9DF855AE1EF1070800E8D250 /* NearTheEquipmentEquipmentall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearTheEquipmentEquipmentall.h; sourceTree = "<group>"; };
-		9DF855AF1EF1070800E8D250 /* NearTheEquipmentEquipmentall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearTheEquipmentEquipmentall.m; sourceTree = "<group>"; };
+		9DF855B21EF1192700E8D250 /* NearTheEquipmentEquipment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearTheEquipmentEquipment.h; sourceTree = "<group>"; };
+		9DF855B31EF1192700E8D250 /* NearTheEquipmentEquipment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearTheEquipmentEquipment.m; sourceTree = "<group>"; };
 		B1F76F225114F462ED6266F6 /* Pods-MyWorShip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWorShip.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyWorShip/Pods-MyWorShip.debug.xcconfig"; sourceTree = "<group>"; };
 		F4C3DF5CDFAB03E9178A1432 /* Pods-MyWorShip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWorShip.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyWorShip/Pods-MyWorShip.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1822,8 +1822,8 @@
 			children = (
 				9DF855AC1EF1070800E8D250 /* NearTheEquipmentBaseClass.h */,
 				9DF855AD1EF1070800E8D250 /* NearTheEquipmentBaseClass.m */,
-				9DF855AE1EF1070800E8D250 /* NearTheEquipmentEquipmentall.h */,
-				9DF855AF1EF1070800E8D250 /* NearTheEquipmentEquipmentall.m */,
+				9DF855B21EF1192700E8D250 /* NearTheEquipmentEquipment.h */,
+				9DF855B31EF1192700E8D250 /* NearTheEquipmentEquipment.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -2296,6 +2296,7 @@
 				9D97738C1ED820B1005EAC95 /* TopUpResultsViewController.m in Sources */,
 				9D4201061EEA2DAF00425D5D /* CouponsRequest.m in Sources */,
 				9D9773231ED7D016005EAC95 /* TransactionDetailsViewController.m in Sources */,
+				9DF855B41EF1192700E8D250 /* NearTheEquipmentEquipment.m in Sources */,
 				9D9772821ED582F1005EAC95 /* PersonalDataView.m in Sources */,
 				9D0C76361EEE30F9006AF814 /* HTMLCell.m in Sources */,
 				9D97733D1ED7F541005EAC95 /* InvitationViewController.m in Sources */,
@@ -2323,7 +2324,6 @@
 				9D9773BF1ED919DA005EAC95 /* LoginViewController.m in Sources */,
 				9DD501731EE6902B00278600 /* Top_up_detailBaseClass.m in Sources */,
 				9D9772EC1ED6C3FE005EAC95 /* MessageListHeaderView.m in Sources */,
-				9DF855B11EF1070800E8D250 /* NearTheEquipmentEquipmentall.m in Sources */,
 				9D42011E1EEA723E00425D5D /* MonthsThanksGoodsBaseClass.m in Sources */,
 				9D9773B51ED90FEF005EAC95 /* UseGuideNameTableViewCell.m in Sources */,
 				9D9772981ED6688D005EAC95 /* TeasingViewController.m in Sources */,
