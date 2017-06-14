@@ -37,7 +37,7 @@
 #pragma mark 获取月拜商品
 -(void)onCreatGoods{
 
-    [GoodsRequest GetOnGoods:^(NSDictionary *dic) {
+    [GoodsRequest GetOnGoods_page:1 pageSize:200 block:^(NSDictionary *dic) {
         MonthsThanksGoodsBaseClass *class=[[MonthsThanksGoodsBaseClass alloc]initWithDictionary:[self deleteEmpty:dic]];
         if ([stringFormat(class.code) isEqualToString:@"3"]) {
             self.dataDic=[self deleteEmpty:dic];
@@ -55,7 +55,7 @@ CANCEL
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     MonthsThanksGoodsBaseClass *class=[[MonthsThanksGoodsBaseClass alloc]initWithDictionary:[self deleteEmpty:self.dataDic]];
-    return class.commodityall.count;
+    return class.pagingList.resultList.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 110;
@@ -69,9 +69,9 @@ CANCEL
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     MonthsThanksGoodsBaseClass *class=[[MonthsThanksGoodsBaseClass alloc]initWithDictionary:[self deleteEmpty:self.dataDic]];
-    MonthsThanksGoodsCommodityall *Commodityall=class.commodityall[indexPath.row];
+    MonthsThanksGoodsResultList *ResultList=class.pagingList.resultList[indexPath.row];
     GoodsDetailsViewController *GoodsDetails=[[GoodsDetailsViewController alloc]init];
-    GoodsDetails.goodsID=[NSString stringWithFormat:@"%.0f",Commodityall.commoditySerial];
+    GoodsDetails.goodsID=[NSString stringWithFormat:@"%.0f",ResultList.commoditySerial];
     [self.navigationController pushViewController:GoodsDetails animated:YES];
     
 }
@@ -88,9 +88,9 @@ CANCEL
         cell=[[GoodsCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:string];
     }
     MonthsThanksGoodsBaseClass *class=[[MonthsThanksGoodsBaseClass alloc]initWithDictionary:[self deleteEmpty:self.dataDic]];
-    MonthsThanksGoodsCommodityall *Commodityall=class.commodityall[indexPath.row];
-    cell.model=class.commodityall[indexPath.row];
-    [cell.img sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",class.imgSrc,Commodityall.commodityImagesPath,Commodityall.commodityCoverImage]]];
+    MonthsThanksGoodsResultList *ResultList=class.pagingList.resultList[indexPath.row];
+    cell.model=ResultList;
+    [cell.img sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",class.imgSrc,ResultList.commodityImagesPath,ResultList.commodityCoverImage]]];
     return cell;
 }
 -(void)viewWillAppear:(BOOL)animated{

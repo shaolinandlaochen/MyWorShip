@@ -12,8 +12,10 @@
 /*
  *获取月拜商品
  */
-+(void)GetOnGoods:(void(^)(NSDictionary *dic))bolck{
++(void)GetOnGoods_page:(int)page pageSize:(int)pageSize block:(void(^)(NSDictionary *dic))bolck{
     NSMutableDictionary *dic=[[NSMutableDictionary alloc]init];
+    [dic setObject:@(page) forKey:@"page"];
+    [dic setObject:@(pageSize) forKey:@"pageSize"];
     NSDictionary *dataDic=[MyClass ReceiveTheOriginalData:dic];//去添加时间戳等数据然后返回签名后的数据
     [RequestClass getUrl:@"commodityall" Dic:dataDic block:^(NSDictionary *dic) {
         NSLog(@"获取月拜商品:%@",dic);

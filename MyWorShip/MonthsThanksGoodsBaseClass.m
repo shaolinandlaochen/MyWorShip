@@ -1,18 +1,18 @@
 //
 //  MonthsThanksGoodsBaseClass.m
 //
-//  Created by   on 2017/6/9
+//  Created by   on 2017/6/14
 //  Copyright (c) 2017 __MyCompanyName__. All rights reserved.
 //
 
 #import "MonthsThanksGoodsBaseClass.h"
-#import "MonthsThanksGoodsCommodityall.h"
+#import "MonthsThanksGoodsPagingList.h"
 
 
 NSString *const kMonthsThanksGoodsBaseClassCode = @"code";
 NSString *const kMonthsThanksGoodsBaseClassImgSrc = @"imgSrc";
-NSString *const kMonthsThanksGoodsBaseClassCommodityall = @"commodityall";
 NSString *const kMonthsThanksGoodsBaseClassMsg = @"msg";
+NSString *const kMonthsThanksGoodsBaseClassPagingList = @"pagingList";
 
 
 @interface MonthsThanksGoodsBaseClass ()
@@ -25,8 +25,8 @@ NSString *const kMonthsThanksGoodsBaseClassMsg = @"msg";
 
 @synthesize code = _code;
 @synthesize imgSrc = _imgSrc;
-@synthesize commodityall = _commodityall;
 @synthesize msg = _msg;
+@synthesize pagingList = _pagingList;
 
 
 + (instancetype)modelObjectWithDictionary:(NSDictionary *)dict {
@@ -41,21 +41,8 @@ NSString *const kMonthsThanksGoodsBaseClassMsg = @"msg";
     if (self && [dict isKindOfClass:[NSDictionary class]]) {
             self.code = [self objectOrNilForKey:kMonthsThanksGoodsBaseClassCode fromDictionary:dict];
             self.imgSrc = [self objectOrNilForKey:kMonthsThanksGoodsBaseClassImgSrc fromDictionary:dict];
-    NSObject *receivedMonthsThanksGoodsCommodityall = [dict objectForKey:kMonthsThanksGoodsBaseClassCommodityall];
-    NSMutableArray *parsedMonthsThanksGoodsCommodityall = [NSMutableArray array];
-    
-    if ([receivedMonthsThanksGoodsCommodityall isKindOfClass:[NSArray class]]) {
-        for (NSDictionary *item in (NSArray *)receivedMonthsThanksGoodsCommodityall) {
-            if ([item isKindOfClass:[NSDictionary class]]) {
-                [parsedMonthsThanksGoodsCommodityall addObject:[MonthsThanksGoodsCommodityall modelObjectWithDictionary:item]];
-            }
-       }
-    } else if ([receivedMonthsThanksGoodsCommodityall isKindOfClass:[NSDictionary class]]) {
-       [parsedMonthsThanksGoodsCommodityall addObject:[MonthsThanksGoodsCommodityall modelObjectWithDictionary:(NSDictionary *)receivedMonthsThanksGoodsCommodityall]];
-    }
-
-    self.commodityall = [NSArray arrayWithArray:parsedMonthsThanksGoodsCommodityall];
             self.msg = [self objectOrNilForKey:kMonthsThanksGoodsBaseClassMsg fromDictionary:dict];
+            self.pagingList = [MonthsThanksGoodsPagingList modelObjectWithDictionary:[dict objectForKey:kMonthsThanksGoodsBaseClassPagingList]];
 
     }
     
@@ -67,19 +54,8 @@ NSString *const kMonthsThanksGoodsBaseClassMsg = @"msg";
     NSMutableDictionary *mutableDict = [NSMutableDictionary dictionary];
     [mutableDict setValue:self.code forKey:kMonthsThanksGoodsBaseClassCode];
     [mutableDict setValue:self.imgSrc forKey:kMonthsThanksGoodsBaseClassImgSrc];
-    NSMutableArray *tempArrayForCommodityall = [NSMutableArray array];
-    
-    for (NSObject *subArrayObject in self.commodityall) {
-        if ([subArrayObject respondsToSelector:@selector(dictionaryRepresentation)]) {
-            // This class is a model object
-            [tempArrayForCommodityall addObject:[subArrayObject performSelector:@selector(dictionaryRepresentation)]];
-        } else {
-            // Generic object
-            [tempArrayForCommodityall addObject:subArrayObject];
-        }
-    }
-    [mutableDict setValue:[NSArray arrayWithArray:tempArrayForCommodityall] forKey:kMonthsThanksGoodsBaseClassCommodityall];
     [mutableDict setValue:self.msg forKey:kMonthsThanksGoodsBaseClassMsg];
+    [mutableDict setValue:[self.pagingList dictionaryRepresentation] forKey:kMonthsThanksGoodsBaseClassPagingList];
 
     return [NSDictionary dictionaryWithDictionary:mutableDict];
 }
@@ -102,8 +78,8 @@ NSString *const kMonthsThanksGoodsBaseClassMsg = @"msg";
 
     self.code = [aDecoder decodeObjectForKey:kMonthsThanksGoodsBaseClassCode];
     self.imgSrc = [aDecoder decodeObjectForKey:kMonthsThanksGoodsBaseClassImgSrc];
-    self.commodityall = [aDecoder decodeObjectForKey:kMonthsThanksGoodsBaseClassCommodityall];
     self.msg = [aDecoder decodeObjectForKey:kMonthsThanksGoodsBaseClassMsg];
+    self.pagingList = [aDecoder decodeObjectForKey:kMonthsThanksGoodsBaseClassPagingList];
     return self;
 }
 
@@ -112,8 +88,8 @@ NSString *const kMonthsThanksGoodsBaseClassMsg = @"msg";
 
     [aCoder encodeObject:_code forKey:kMonthsThanksGoodsBaseClassCode];
     [aCoder encodeObject:_imgSrc forKey:kMonthsThanksGoodsBaseClassImgSrc];
-    [aCoder encodeObject:_commodityall forKey:kMonthsThanksGoodsBaseClassCommodityall];
     [aCoder encodeObject:_msg forKey:kMonthsThanksGoodsBaseClassMsg];
+    [aCoder encodeObject:_pagingList forKey:kMonthsThanksGoodsBaseClassPagingList];
 }
 
 - (id)copyWithZone:(NSZone *)zone {
@@ -125,8 +101,8 @@ NSString *const kMonthsThanksGoodsBaseClassMsg = @"msg";
 
         copy.code = [self.code copyWithZone:zone];
         copy.imgSrc = [self.imgSrc copyWithZone:zone];
-        copy.commodityall = [self.commodityall copyWithZone:zone];
         copy.msg = [self.msg copyWithZone:zone];
+        copy.pagingList = [self.pagingList copyWithZone:zone];
     }
     
     return copy;

@@ -12,7 +12,7 @@
 /*
  *获取月拜商品
  */
-+(void)GetOnGoods:(void(^)(NSDictionary *dic))bolck;
++(void)GetOnGoods_page:(int)page pageSize:(int)pageSize block:(void(^)(NSDictionary *dic))bolck;
 /*
  *获取商品详情
  */

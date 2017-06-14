@@ -13,5 +13,5 @@
 @property(nonatomic,strong)UILabel *money;//商品价格
 @property(nonatomic,strong)UILabel *listMoney;//市场价格
 @property(nonatomic,strong)UIImageView *img;//商品图片
-@property(nonatomic,strong)MonthsThanksGoodsCommodityall *model;
+@property(nonatomic,strong)MonthsThanksGoodsResultList *model;
 @end

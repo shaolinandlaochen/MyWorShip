@@ -44,7 +44,7 @@
     return self;
 }
 
--(void)setModel:(MonthsThanksGoodsCommodityall *)model{
+-(void)setModel:(MonthsThanksGoodsResultList *)model{
     _name.text=stringFormat(model.commodityName);
     _name.sd_layout.autoHeightRatio(0);
     
