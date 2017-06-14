@@ -293,6 +293,9 @@
     self.navigationController.navigationBarHidden=YES;
     if ([tokenString length]>0) {
         [self LoginSuccessful];
+    }else{
+        self.dataDic=nil;
+        FormToUpdate(0, _tablleView)
     }
     
 }

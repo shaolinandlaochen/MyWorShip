@@ -14,4 +14,5 @@
 @property (nonatomic, strong) AMapNaviPoint *endPoint;//步行路线规划终点
 @property (nonatomic, strong) AMapNaviPoint *myCenterPoint;//用户当前经纬度
 @property (nonatomic, strong) NSMutableArray *routeIndicatorInfoArray;
+@property(nonatomic,strong)NSDictionary *dataLatitudeAndLongitude;//请求到的经纬度
 @end

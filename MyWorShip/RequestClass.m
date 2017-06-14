@@ -76,13 +76,13 @@
                 [SVProgressHUD dismiss];
                  block(Dictionary);
             });
-//            LoginBaseClass *class=[[LoginBaseClass alloc]initWithDictionary:[self deleteEmpty:Dictionary]];
-//            if ([class.code isEqualToString:@"401"]) {//登录失效
-//                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//                [defaults setObject:@"" forKey:@"token"];
-//                //同步数据
-//                [defaults synchronize];
-//            }
+            LoginsIsBaseClass *class=[[LoginsIsBaseClass alloc]initWithDictionary:[self deleteEmpty:Dictionary]];
+            if ([class.code isEqualToString:@"401"]) {//登录失效
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                [defaults setObject:@"" forKey:@"token"];
+                //同步数据
+                [defaults synchronize];
+            }
             
            
             

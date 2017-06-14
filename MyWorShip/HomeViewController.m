@@ -8,6 +8,7 @@
 
 #import "HomeViewController.h"
 #import "SelectableOverlay.h"
+#import "HomeRequest.h"
 @interface HomeViewController ()<MAMapViewDelegate,SGQRCodeScanningVCDelegate,MyViewControllerDelegate,AMapNaviWalkManagerDelegate>
 {
     MAMapView *_mapView;
@@ -15,6 +16,7 @@
     MyImage *_BjImage;
     MyButton *_location;
     BOOL state;//地图状态:yes表示正在导航(推荐路线中) no表示常规状态
+    MAMapPoint point;
 }
 @end
 
@@ -22,7 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+   point=MAMapPointForCoordinate(CLLocationCoordinate2DMake(0,0));
     [self addLeftItemAndRightItem];
     [self AddAMap];
     [self AddAllViews];
@@ -395,22 +397,56 @@
    // NSLog(@"%f---屏幕中心----%f",mapView.centerCoordinate.latitude,mapView.centerCoordinate.longitude);
     if (!state) {//非导航状态
         NSLog(@"mapView_is_annotations===%@",mapView.annotations);
-     
-        [mapView removeAnnotations:mapView.annotations];
-        [self MrPin:mapView];
+        if (point.x==0) {//如果等于0 就表示刚进来
+            point=MAMapPointForCoordinate(CLLocationCoordinate2DMake(mapView.centerCoordinate.latitude,mapView.centerCoordinate.longitude));
+        }else{
+            //获取当前的位置
+            MAMapPoint point2=MAMapPointForCoordinate(CLLocationCoordinate2DMake(mapView.centerCoordinate.latitude,mapView.centerCoordinate.longitude));
+            //那当前的位置和上次移动的距离比较
+            CLLocationDistance distance = MAMetersBetweenMapPoints(point,point2);
+            if (distance>5000) {//超过五公里就重新加载
+                point=MAMapPointForCoordinate(CLLocationCoordinate2DMake(mapView.centerCoordinate.latitude,mapView.centerCoordinate.longitude));
+                [self QueryEquipmentNear:mapView];
+            }
+            
+        }
+
+        
     }
     
+}
+
+#pragma mark 查询附近设备
+- (void)QueryEquipmentNear:(MAMapView *)mapView{
+    if (_mapView.userLocation.location!=nil) {
+         CLLocationCoordinate2D oldCoordinate = _mapView.userLocation.coordinate;//获取用户当前位置信息
+        [SVProgressHUD showWithStatus:loading];
+        [HomeRequest TheDeviceNearTheQuery_equipment_longitude:[NSString stringWithFormat:@"%f",oldCoordinate.longitude] equipment_latitude:[NSString stringWithFormat:@"%f",oldCoordinate.latitude] block:^(NSDictionary *dic) {
+            NearTheEquipmentBaseClass *class=[[NearTheEquipmentBaseClass alloc]initWithDictionary:[self deleteEmpty:dic]];
+            self.dataLatitudeAndLongitude=[self deleteEmpty:dic];
+            if ([stringFormat(class.code) isEqualToString:@"3"]) {
+                [mapView removeAnnotations:mapView.annotations];
+                [self MrPin:mapView];
+            }
+        }];
+    }
+
 }
 #pragma mark 插入大头针
 -(void)MrPin:(MAMapView *)mapView{
 
-    //扎大头针
-    MAPointAnnotation *APin = [[MAPointAnnotation alloc] init];
-    APin.coordinate = CLLocationCoordinate2DMake(mapView.centerCoordinate.latitude+0.001, mapView.centerCoordinate.longitude+0.0010);
-    APin.title = @"旷世兄弟集团";
-    APin.subtitle = @"天府二街,东方希望天祥广场";
-    
-    [_mapView addAnnotation:APin];
+    NearTheEquipmentBaseClass *class=[[NearTheEquipmentBaseClass alloc]initWithDictionary:self.dataLatitudeAndLongitude];
+    for (int i=0; i<class.equipmentall.count; i++) {
+        NearTheEquipmentEquipmentall *equipmentall=class.equipmentall[i];
+        //扎大头针
+        MAPointAnnotation *APin = [[MAPointAnnotation alloc] init];
+        APin.coordinate = CLLocationCoordinate2DMake([stringFormat(equipmentall.equipmentLatitude) floatValue], [stringFormat(equipmentall.equipmentLongitude) floatValue]);
+        APin.title = stringFormat(equipmentall.equipmentName);
+        APin.subtitle = stringFormat(equipmentall.equipmentAddress);
+        
+        [_mapView addAnnotation:APin];
+    }
+
 }
 
 /**
