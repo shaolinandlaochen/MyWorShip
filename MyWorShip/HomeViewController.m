@@ -512,7 +512,7 @@
     free(coords);
 
     
-    [_mapView showAnnotations:_mapView.annotations animated:NO];
+    //[_mapView showAnnotations:_mapView.annotations animated:NO];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

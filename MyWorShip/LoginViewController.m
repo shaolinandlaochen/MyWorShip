@@ -178,7 +178,6 @@
             [self dismissViewControllerAnimated:YES completion:^{
                 [_delegate LoginSuccessful];
             }];
-             [SVProgressHUD showErrorWithStatus:class.msg];
         }else{
             [SVProgressHUD showErrorWithStatus:class.msg];
         }
