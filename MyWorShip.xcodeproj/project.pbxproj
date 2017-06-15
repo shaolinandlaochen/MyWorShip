@@ -401,6 +401,11 @@
 		9DF855CE1EF222D600E8D250 /* VIPPagingList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF855CA1EF222D600E8D250 /* VIPPagingList.m */; };
 		9DF855CF1EF222D600E8D250 /* VIPResultList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF855CC1EF222D600E8D250 /* VIPResultList.m */; };
 		9DF855D21EF2233D00E8D250 /* APinOperationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF855D11EF2233D00E8D250 /* APinOperationView.m */; };
+		9DF855D51EF22C6800E8D250 /* VIPConsumptionRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF855D41EF22C6800E8D250 /* VIPConsumptionRecordViewController.m */; };
+		9DF855D81EF2302600E8D250 /* VIPConsumptionRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF855D71EF2302600E8D250 /* VIPConsumptionRecordCell.m */; };
+		9DF855DF1EF231F100E8D250 /* VIPRecordsBaseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF855DA1EF231F100E8D250 /* VIPRecordsBaseClass.m */; };
+		9DF855E01EF231F100E8D250 /* VIPRecordsPagingList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF855DC1EF231F100E8D250 /* VIPRecordsPagingList.m */; };
+		9DF855E11EF231F100E8D250 /* VIPRecordsResultList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF855DE1EF231F100E8D250 /* VIPRecordsResultList.m */; };
 		F03DFB4F8BA6C4BBBE633D48 /* libPods-MyWorShip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A10E7D0553C7BC98CFE26DD /* libPods-MyWorShip.a */; };
 /* End PBXBuildFile section */
 
@@ -941,6 +946,16 @@
 		9DF855CC1EF222D600E8D250 /* VIPResultList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPResultList.m; sourceTree = "<group>"; };
 		9DF855D01EF2233D00E8D250 /* APinOperationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APinOperationView.h; sourceTree = "<group>"; };
 		9DF855D11EF2233D00E8D250 /* APinOperationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APinOperationView.m; sourceTree = "<group>"; };
+		9DF855D31EF22C6800E8D250 /* VIPConsumptionRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPConsumptionRecordViewController.h; sourceTree = "<group>"; };
+		9DF855D41EF22C6800E8D250 /* VIPConsumptionRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPConsumptionRecordViewController.m; sourceTree = "<group>"; };
+		9DF855D61EF2302600E8D250 /* VIPConsumptionRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPConsumptionRecordCell.h; sourceTree = "<group>"; };
+		9DF855D71EF2302600E8D250 /* VIPConsumptionRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPConsumptionRecordCell.m; sourceTree = "<group>"; };
+		9DF855D91EF231F100E8D250 /* VIPRecordsBaseClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPRecordsBaseClass.h; sourceTree = "<group>"; };
+		9DF855DA1EF231F100E8D250 /* VIPRecordsBaseClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPRecordsBaseClass.m; sourceTree = "<group>"; };
+		9DF855DB1EF231F100E8D250 /* VIPRecordsPagingList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPRecordsPagingList.h; sourceTree = "<group>"; };
+		9DF855DC1EF231F100E8D250 /* VIPRecordsPagingList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPRecordsPagingList.m; sourceTree = "<group>"; };
+		9DF855DD1EF231F100E8D250 /* VIPRecordsResultList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPRecordsResultList.h; sourceTree = "<group>"; };
+		9DF855DE1EF231F100E8D250 /* VIPRecordsResultList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPRecordsResultList.m; sourceTree = "<group>"; };
 		B1F76F225114F462ED6266F6 /* Pods-MyWorShip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWorShip.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyWorShip/Pods-MyWorShip.debug.xcconfig"; sourceTree = "<group>"; };
 		F4C3DF5CDFAB03E9178A1432 /* Pods-MyWorShip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWorShip.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyWorShip/Pods-MyWorShip.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1102,6 +1117,10 @@
 				9D42012B1EEA818500425D5D /* OpenTheVIPViewController.m */,
 				9D42014B1EEA867A00425D5D /* VIPView.h */,
 				9D42014C1EEA867A00425D5D /* VIPView.m */,
+				9DF855D31EF22C6800E8D250 /* VIPConsumptionRecordViewController.h */,
+				9DF855D41EF22C6800E8D250 /* VIPConsumptionRecordViewController.m */,
+				9DF855D61EF2302600E8D250 /* VIPConsumptionRecordCell.h */,
+				9DF855D71EF2302600E8D250 /* VIPConsumptionRecordCell.m */,
 				9DF855C31EF21DBC00E8D250 /* model */,
 				9DF855C21EF21DB300E8D250 /* 请求 */,
 			);
@@ -1878,6 +1897,12 @@
 				9DF855CA1EF222D600E8D250 /* VIPPagingList.m */,
 				9DF855CB1EF222D600E8D250 /* VIPResultList.h */,
 				9DF855CC1EF222D600E8D250 /* VIPResultList.m */,
+				9DF855D91EF231F100E8D250 /* VIPRecordsBaseClass.h */,
+				9DF855DA1EF231F100E8D250 /* VIPRecordsBaseClass.m */,
+				9DF855DB1EF231F100E8D250 /* VIPRecordsPagingList.h */,
+				9DF855DC1EF231F100E8D250 /* VIPRecordsPagingList.m */,
+				9DF855DD1EF231F100E8D250 /* VIPRecordsResultList.h */,
+				9DF855DE1EF231F100E8D250 /* VIPRecordsResultList.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -2351,6 +2376,7 @@
 				9D4201061EEA2DAF00425D5D /* CouponsRequest.m in Sources */,
 				9D9773231ED7D016005EAC95 /* TransactionDetailsViewController.m in Sources */,
 				9DF855B41EF1192700E8D250 /* NearTheEquipmentEquipment.m in Sources */,
+				9DF855DF1EF231F100E8D250 /* VIPRecordsBaseClass.m in Sources */,
 				9D9772821ED582F1005EAC95 /* PersonalDataView.m in Sources */,
 				9D0C76361EEE30F9006AF814 /* HTMLCell.m in Sources */,
 				9D97733D1ED7F541005EAC95 /* InvitationViewController.m in Sources */,
@@ -2373,6 +2399,7 @@
 				9DD501851EE6A77A00278600 /* StatementPagingList.m in Sources */,
 				9D9772F81ED7B7BA005EAC95 /* AnnouncementOfTheDetailsViewController.m in Sources */,
 				9D0C76531EEF82B6006AF814 /* PayViewController.m in Sources */,
+				9DF855D81EF2302600E8D250 /* VIPConsumptionRecordCell.m in Sources */,
 				9D42015A1EEA9F3000425D5D /* GoodsDetilBaseClass.m in Sources */,
 				9D4201011EE9492A00425D5D /* AnnouncementListResultList.m in Sources */,
 				9DF855BD1EF128E000E8D250 /* MonthsThanksGoodsResultList.m in Sources */,
@@ -2392,6 +2419,7 @@
 				9D9771DD1ED4348B005EAC95 /* MyButton.m in Sources */,
 				9D42010E1EEA2F7A00425D5D /* CouponsListPagingList.m in Sources */,
 				9D4201231EEA7C9300425D5D /* MyVIPViewController.m in Sources */,
+				9DF855D51EF22C6800E8D250 /* VIPConsumptionRecordViewController.m in Sources */,
 				9D4200741EE7E5A100425D5D /* VerifyTheMobilePhoneViewController.m in Sources */,
 				9D9772BB1ED6A32B005EAC95 /* PreferentialViewController.m in Sources */,
 				9D4201191EEA70E300425D5D /* GoodsRequest.m in Sources */,
@@ -2425,6 +2453,7 @@
 				9D9772E81ED6C02B005EAC95 /* MessageListViewController.m in Sources */,
 				9D97724C1ED570EE005EAC95 /* MyViewController.m in Sources */,
 				9D6BBE871EE651B7008A9F23 /* BasicInformationInfo.m in Sources */,
+				9DF855E11EF231F100E8D250 /* VIPRecordsResultList.m in Sources */,
 				9D4200651EE796ED00425D5D /* PersonalCenterCell.m in Sources */,
 				9DF855B01EF1070800E8D250 /* NearTheEquipmentBaseClass.m in Sources */,
 				9D6BBE6A1EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.m in Sources */,
@@ -2434,6 +2463,7 @@
 				9D6BBEA61EE6777C008A9F23 /* MyMessageListData.m in Sources */,
 				9D42012C1EEA818500425D5D /* OpenTheVIPViewController.m in Sources */,
 				9D6BBE811EE64E80008A9F23 /* MyRequest.m in Sources */,
+				9DF855E01EF231F100E8D250 /* VIPRecordsPagingList.m in Sources */,
 				9DD501841EE6A77A00278600 /* StatementBaseClass.m in Sources */,
 				9DD501741EE6902B00278600 /* Top_up_detailPagingList.m in Sources */,
 				9D9773021ED7C19B005EAC95 /* WalletViewController.m in Sources */,

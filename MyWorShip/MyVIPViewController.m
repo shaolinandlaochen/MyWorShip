@@ -14,6 +14,7 @@
 #import "TransactionDetailsViewController.h"
 #import "OpenTheVIPViewController.h"
 #import "VIPRequest.h"
+#import "VIPConsumptionRecordViewController.h"
 @interface MyVIPViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     UITableView *_tableView;
@@ -156,8 +157,8 @@ CANCEL
 }
 #pragma mark 消费明细
 -(void)onStatementClick{
-    TransactionDetailsViewController *TransactionDetails=[[TransactionDetailsViewController alloc]init];
-    [self.navigationController pushViewController:TransactionDetails animated:YES];
+    VIPConsumptionRecordViewController *VIPConsumptionRecord=[[VIPConsumptionRecordViewController alloc]init];
+    [self.navigationController pushViewController:VIPConsumptionRecord animated:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

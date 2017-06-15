@@ -13,4 +13,8 @@
  *获取VIP数据
  */
 +(void)AccessToTheVIPData_page:(NSInteger)page pageSize:(NSInteger)pageSize block:(void(^)(NSDictionary *dic))block;
+/*
+ *获取VIP消费记录明细
+ */
++(void)AccessToTheVIPConsumptionRecordDetails_page:(NSInteger)page pageSize:(NSInteger)pageSize block:(void(^)(NSDictionary *dic))block;
 @end
