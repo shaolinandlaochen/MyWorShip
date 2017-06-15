@@ -11,4 +11,5 @@
 @interface VIPCustomerInformationCell : UITableViewCell
 @property(nonatomic,strong)UILabel *name;
 @property(nonatomic,strong)UILabel *day;
+@property(nonatomic,strong)VIPBaseClass *model;
 @end

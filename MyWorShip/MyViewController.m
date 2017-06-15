@@ -44,6 +44,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if ([tokenString length]>0) {
+         BasicInformationBaseClass *class=[[BasicInformationBaseClass alloc]initWithDictionary:[self deleteEmpty:self.dataDic]];
         switch (indexPath.row) {
             case 0:
             {//我的消息
@@ -73,9 +74,10 @@
             case 4:
             {//会员
                 
-                BasicInformationBaseClass *class=[[BasicInformationBaseClass alloc]initWithDictionary:[self deleteEmpty:self.dataDic]];
+               
                 if (class.info.baseIsVip==1) {//是vip
                     MyVIPViewController *vip=[[MyVIPViewController alloc]init];
+                    vip.name=stringFormat(class.info.baseNickname);
                     [self.navigationController pushViewController:vip animated:YES];
                 }else{//不是VIP去开通
                     OpenTheVIPViewController *OpenTheVIP=[[OpenTheVIPViewController alloc]init];

@@ -36,4 +36,7 @@
 #import "EvaluationListListComment.h"
 #import "NearTheEquipmentEquipment.h"
 #import "NearTheEquipmentBaseClass.h"
+#import "VIPBaseClass.h"
+#import "VIPResultList.h"
+#import "VIPPagingList.h"
 

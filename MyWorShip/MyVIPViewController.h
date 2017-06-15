@@ -9,5 +9,6 @@
 #import "MyClass.h"
 
 @interface MyVIPViewController : MyClass
-
+@property(nonatomic,strong)NSDictionary *dataDic;
+@property(nonatomic,copy)NSString *name;
 @end

@@ -55,6 +55,17 @@
     _listMoney.text=[NSString stringWithFormat:@"原价:¥%.2f元",model.commoditySellprice];
     _listMoney.sd_layout.widthIs(100).autoHeightRatio(0);
 }
+-(void)setList:(VIPResultList *)list{
+    _name.text=stringFormat(list.commodityName);
+    _name.sd_layout.autoHeightRatio(0);
+    
+    _money.text=[NSString stringWithFormat:@"会员价:¥%.2f元",list.commodityVipSellprice];
+    CGSize size=[MyClass StringHeight:_money.text Lblfont:14 heightOfTheMinus:0];
+    _money.sd_layout.widthIs(size.width).autoHeightRatio(0);
+    
+    _listMoney.text=[NSString stringWithFormat:@"原价:¥%.2f元",list.commoditySellprice];
+    _listMoney.sd_layout.widthIs(100).autoHeightRatio(0);
+}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

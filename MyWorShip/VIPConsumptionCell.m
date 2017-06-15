@@ -29,12 +29,13 @@
     }
     return self;
 }
--(void)setNumber:(NSInteger)number{
-_allAcount.text=@"VIP特权消费商品免费消费次数:200次";
+
+-(void)setModel:(VIPBaseClass *)model{
+    _allAcount.text=[NSString stringWithFormat:@"VIP特权消费商品免费消费次数:%.0f次",model.vipMonthTotal];
     NSString *string1=@"已消费次数";
     NSString *string2=@"剩余消费次数";
-    NSString *str1=@"2次";
-    NSString *str2=@"8次";
+    NSString *str1=[NSString stringWithFormat:@"%.0f次",model.vipMonthConsumed];
+    NSString *str2=[NSString stringWithFormat:@"%.0f次",model.vipMonthQuantity];
     
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@%@%@",string1,str1,string2,str2]];
     
@@ -44,7 +45,6 @@ _allAcount.text=@"VIP特权消费商品免费消费次数:200次";
     [str addAttribute:NSForegroundColorAttributeName value:[MyClass colorWithHexString:@"ff7b84"] range:NSMakeRange([string1 length]+[str1 length]+[string2 length],[str2 length])];
     
     _context.attributedText = str;
-
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

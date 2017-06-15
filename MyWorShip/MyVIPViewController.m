@@ -13,6 +13,7 @@
 #import "VIPView.h"
 #import "TransactionDetailsViewController.h"
 #import "OpenTheVIPViewController.h"
+#import "VIPRequest.h"
 @interface MyVIPViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     UITableView *_tableView;
@@ -35,21 +36,42 @@
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     _tableView.separatorColor=[self colorWithHexString:@"d7d7d7"];
     [self.view addSubview:_tableView];
+
+    TheDrop_downRefresh(_tableView, @selector(AccessToTheVIPData))
     UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc] initWithTitle:@"VIP特权" style:UIBarButtonItemStylePlain target:self action:@selector(onClickedOKbtn)];
     self.navigationItem.rightBarButtonItem = rightBarItem;
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];//导航栏左右两边按钮颜色
     [self.navigationItem.rightBarButtonItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont boldSystemFontOfSize:14],NSFontAttributeName, nil] forState:UIControlStateNormal];
     // Do any additional setup after loading the view.
 }
+#pragma mark 获取VIP数据
+-(void)AccessToTheVIPData{
+[VIPRequest AccessToTheVIPData_page:1 pageSize:1000 block:^(NSDictionary *dic) {
+    VIPBaseClass *class=[[VIPBaseClass alloc]initWithDictionary:[self deleteEmpty:dic]];
+    if ([stringFormat(class.code) isEqualToString:@"3"]) {
+        self.dataDic=[self deleteEmpty:dic];
+        [_tableView reloadData];
+    }else{
+        [SVProgressHUD showErrorWithStatus:stringFormat(class.msg)];
+    }
+    [_tableView.mj_header endRefreshing];
+}];
+}
 CANCEL
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 3;
+    if (self.dataDic!=nil) {
+        return 3;
+    }
+    return 0;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    VIPBaseClass *class=[[VIPBaseClass alloc]initWithDictionary:self.dataDic];
     if (section!=2) {
         return 1;
+    }else{
+    return class.pagingList.resultList.count;
     }
-    return 3;
+    
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0) {
@@ -90,12 +112,15 @@ CANCEL
     return view;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    VIPBaseClass *class=[[VIPBaseClass alloc]initWithDictionary:self.dataDic];
     if (indexPath.section==0) {
         static NSString *string1=@"shting";
         VIPCustomerInformationCell *cell=[tableView dequeueReusableCellWithIdentifier:string1];
         if (!cell) {
             cell=[[VIPCustomerInformationCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:string1];
         }
+        cell.name.text=self.name;
+        cell.model=class;
         return cell;
     }else if (indexPath.section==1){
         static NSString *string1=@"shting2";
@@ -103,7 +128,7 @@ CANCEL
         if (!cell) {
             cell=[[VIPConsumptionCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:string1];
         }
-        cell.number=0;
+        cell.model=class;
         return cell;
     }else{
         static NSString *string1=@"shting3";
@@ -111,7 +136,9 @@ CANCEL
         if (!cell) {
             cell=[[GoodsCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:string1];
         }
-        
+        VIPResultList *ResultList=class.pagingList.resultList[indexPath.row];
+        [cell.img sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",class.imgSrc,ResultList.commodityImagesPath,ResultList.commodityCoverImage]]];
+        cell.list=ResultList;
         return cell;
     
     }

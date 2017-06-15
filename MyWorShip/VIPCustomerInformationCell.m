@@ -23,7 +23,6 @@
         img.sd_layout.leftSpaceToView(self.contentView, 17.5).topSpaceToView(self.contentView, 22).widthIs(31).heightIs(31);
         
         _name=[[UILabel alloc]init];
-        _name.text=@"说得对发生大";
         _name.textColor=[MyClass colorWithHexString:@"ffffff"];
         _name.font=[UIFont systemFontOfSize:13];
         [self.contentView addSubview:_name];
@@ -36,7 +35,7 @@
         imgVip.sd_layout.leftSpaceToView(self.contentView, (WIDTH-252)/2).topSpaceToView(self.contentView, 58).widthIs(252).heightIs(172);
         
         _day=[[UILabel alloc]init];
-        _day.text=@"剩余VIP天数:200天";
+        //_day.text=@"剩余VIP天数:200天";
         _day.font=[UIFont systemFontOfSize:12];
         _day.textColor=[MyClass colorWithHexString:@"ffffff"];
         _day.textAlignment=NSTextAlignmentCenter;
@@ -55,6 +54,11 @@
         
     }
     return self;
+}
+-(void)setModel:(VIPBaseClass *)model{
+    
+    _day.text=[NSString stringWithFormat:@"剩余VIP天数:%.0f天",model.vipRemainDay];
+    
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

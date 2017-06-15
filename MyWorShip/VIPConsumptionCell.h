@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface VIPConsumptionCell : UITableViewCell
-@property(nonatomic,assign)NSInteger number;
 @property(nonatomic,strong)UILabel *allAcount;
 @property(nonatomic,strong)UILabel *context;
+@property(nonatomic,strong)VIPBaseClass *model;
 @end

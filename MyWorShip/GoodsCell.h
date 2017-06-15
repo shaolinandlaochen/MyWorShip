@@ -14,4 +14,5 @@
 @property(nonatomic,strong)UILabel *listMoney;//市场价格
 @property(nonatomic,strong)UIImageView *img;//商品图片
 @property(nonatomic,strong)MonthsThanksGoodsResultList *model;
+@property(nonatomic,strong)VIPResultList *list;
 @end

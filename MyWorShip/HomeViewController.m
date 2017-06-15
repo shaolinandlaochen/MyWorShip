@@ -9,6 +9,7 @@
 #import "HomeViewController.h"
 #import "SelectableOverlay.h"
 #import "HomeRequest.h"
+#import "APinOperationView.h"
 @interface HomeViewController ()<MAMapViewDelegate,SGQRCodeScanningVCDelegate,MyViewControllerDelegate,AMapNaviWalkManagerDelegate>
 {
     MAMapView *_mapView;
@@ -17,6 +18,7 @@
     MyButton *_location;
     BOOL state;//地图状态:yes表示正在导航(推荐路线中) no表示常规状态
     MAMapPoint point;
+    APinOperationView *_apinView;//操作大头针的视图view
 }
 @end
 
@@ -30,6 +32,15 @@
     [self AddAllViews];
     [self initWalkManager];
     // Do any additional setup after loading the view.
+}
+#pragma mark 创建大头针的弹框
+-(void)CreateBounced{
+
+    _apinView=[[APinOperationView alloc]init];
+    _apinView.backgroundColor=[UIColor whiteColor];
+    [self.view addSubview:_apinView];
+    _apinView.sd_layout.leftSpaceToView(self.view, 0).topSpaceToView(self.view, -100).rightSpaceToView(self.view, 0).heightIs(100);
+    
 }
 #pragma mark 视图伸缩
 -(void)scaling:(BOOL)isScaling{
@@ -51,6 +62,7 @@
 #pragma mark 点击大头针执行该方法
 - (void)mapView:(MAMapView *)mapView didSelectAnnotationView:(MAAnnotationView *)view
 {
+    NSLog(@"标题==%@   副标题==%@",view.annotation.title,view.annotation.subtitle);
     CLLocationCoordinate2D coorinate = [view.annotation coordinate];
     self.endPoint=[AMapNaviPoint locationWithLatitude:coorinate.latitude longitude:coorinate.longitude];
     NSLog(@"点击大头针执行该方法 = {%f, %f}", coorinate.latitude, coorinate.longitude);
@@ -211,7 +223,7 @@
     
     ///初始化地图
     _mapView = [[MAMapView alloc] initWithFrame:self.view.bounds];
-    _mapView.zoomLevel=15;//缩放级别
+    _mapView.zoomLevel=17;//缩放级别
     ///把地图添加至view
     [self.view addSubview:_mapView];
     ///如果您需要进入地图就显示定位小蓝点，则需要下面两行代码
@@ -333,9 +345,9 @@
         {
             annotationView = [[MAPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pointReuseIndentifier];
         }
-        annotationView.canShowCallout= YES;       //设置气泡可以弹出，默认为NO
-        annotationView.animatesDrop = YES;        //设置标注动画显示，默认为NO
-        annotationView.draggable = YES;        //设置标注可以拖动，默认为NO
+        annotationView.canShowCallout= NO;       //设置气泡可以弹出，默认为NO
+        annotationView.animatesDrop = NO;        //设置标注动画显示，默认为NO
+        annotationView.draggable = NO;        //设置标注可以拖动，默认为NO
         annotationView.pinColor = MAPinAnnotationColorPurple;
         annotationView.image=[UIImage imageNamed:@"icon_place"];
         return annotationView;
@@ -405,7 +417,7 @@
             //那当前的位置和上次移动的距离比较
             CLLocationDistance distance = MAMetersBetweenMapPoints(point,point2);
             NSLog(@"距离上次移动距离为%f",distance);
-            if (distance>50000) {//超过五公里就重新加载
+            if (distance>20000) {//超过20公里就重新加载
                 point=MAMapPointForCoordinate(CLLocationCoordinate2DMake(mapView.centerCoordinate.latitude,mapView.centerCoordinate.longitude));
                  [_mapView removeOverlays:_mapView.overlays];//移除所有推荐线路
                 [self QueryEquipmentNear:mapView];
@@ -513,6 +525,14 @@
 
     
     //[_mapView showAnnotations:_mapView.annotations animated:NO];
+}
+/**
+ * @brief 单击地图回调，返回经纬度
+ * @param mapView 地图View
+ * @param coordinate 经纬度
+ */
+- (void)mapView:(MAMapView *)mapView didSingleTappedAtCoordinate:(CLLocationCoordinate2D)coordinate{
+    NSLog(@"我单机了地图");
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
