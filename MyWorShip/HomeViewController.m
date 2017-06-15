@@ -10,7 +10,13 @@
 #import "SelectableOverlay.h"
 #import "HomeRequest.h"
 #import "APinOperationView.h"
-@interface HomeViewController ()<MAMapViewDelegate,SGQRCodeScanningVCDelegate,MyViewControllerDelegate,AMapNaviWalkManagerDelegate>
+#import <AMapSearchKit/AMapSearchKit.h>
+#import "MANaviRoute.h"
+#import "CommonUtility.h"
+static const NSInteger RoutePlanningPaddingEdge                    = 20;
+static const NSString *RoutePlanningViewControllerStartTitle       = @"起点";
+static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
+@interface HomeViewController ()<MAMapViewDelegate,SGQRCodeScanningVCDelegate,MyViewControllerDelegate,AMapNaviWalkManagerDelegate,APinOperationDelegate,AMapNaviDriveManagerDelegate,AMapSearchDelegate>
 {
     MAMapView *_mapView;
     LocationAnnotationView *_locationAnnotationView;
@@ -20,6 +26,19 @@
     MAMapPoint point;
     APinOperationView *_apinView;//操作大头针的视图view
 }
+/* 起始点经纬度. */
+@property (nonatomic) CLLocationCoordinate2D startCoordinate;
+/* 终点经纬度. */
+@property (nonatomic) CLLocationCoordinate2D destinationCoordinate;
+@property (nonatomic, strong) AMapSearchAPI *search;
+@property (nonatomic, strong) MAPointAnnotation *startAnnotation;
+@property (nonatomic, strong) MAPointAnnotation *destinationAnnotation;
+/* 用于显示当前路线方案. */
+@property (nonatomic) MANaviRoute * naviRoute;
+@property (nonatomic, strong) AMapRoute *route;
+/* 当前路线方案索引值. */
+@property (nonatomic) NSInteger currentCourse;
+
 @end
 
 @implementation HomeViewController
@@ -31,33 +50,60 @@
     [self AddAMap];
     [self AddAllViews];
     [self initWalkManager];
+    [self initDriveManager];
+    [self CreateBounced];
+    self.search = [[AMapSearchAPI alloc] init];
+    self.search.delegate = self;
     // Do any additional setup after loading the view.
 }
 #pragma mark 创建大头针的弹框
 -(void)CreateBounced{
 
     _apinView=[[APinOperationView alloc]init];
+    _apinView.delegate=self;
     _apinView.backgroundColor=[UIColor whiteColor];
+    _apinView.frame=CGRectMake(0, -100, WIDTH, 95);
     [self.view addSubview:_apinView];
-    _apinView.sd_layout.leftSpaceToView(self.view, 0).topSpaceToView(self.view, -100).rightSpaceToView(self.view, 0).heightIs(100);
     
+    
+}
+#pragma mark 点击步行,驾车,公交执行该方法
+-(void)ClickOnTheLine:(MAAnnotationView *)manontation myBtn:(MyButton*)btn{
+     [_mapView removeOverlays:_mapView.overlays];//移除所有推荐线路
+    if (btn.selected) {
+        [self initProperties:btn.tag];
+       
+    }
 }
 #pragma mark 视图伸缩
 -(void)scaling:(BOOL)isScaling{
 
 }
 #pragma mark 用户进行步行路线规划
-- (void)initProperties
+- (void)initProperties:(NSInteger)index
 {
 
     self.routeIndicatorInfoArray = [NSMutableArray array];
     
     CLLocationCoordinate2D oldCoordinate = _mapView.userLocation.coordinate;//获取用户当前位置信息
     self.startPoint = [AMapNaviPoint locationWithLatitude:oldCoordinate.latitude longitude:oldCoordinate.longitude];
+    self.startCoordinate=_mapView.userLocation.coordinate;
     NSLog(@"startPoint===%@-----",self.startPoint);
     NSLog(@"endPoint=====%@-----",self.endPoint);
-    [self.walkManager calculateWalkRouteWithStartPoints:@[self.startPoint]
-                                              endPoints:@[self.endPoint]];
+    if (index==1) {//步行
+        [self.walkManager calculateWalkRouteWithStartPoints:@[self.startPoint]
+                                                  endPoints:@[self.endPoint]];
+    }else if (index==2){//驾车
+
+        [self.driveManager calculateDriveRouteWithStartPoints:@[self.startPoint]
+                                                    endPoints:@[self.endPoint]
+                                                    wayPoints:nil
+                                              drivingStrategy:17];
+    }else{//公交
+        self.currentCourse=0;
+        [self searchRoutePlanningBus];
+    }
+    
 }
 #pragma mark 点击大头针执行该方法
 - (void)mapView:(MAMapView *)mapView didSelectAnnotationView:(MAAnnotationView *)view
@@ -65,8 +111,17 @@
     NSLog(@"标题==%@   副标题==%@",view.annotation.title,view.annotation.subtitle);
     CLLocationCoordinate2D coorinate = [view.annotation coordinate];
     self.endPoint=[AMapNaviPoint locationWithLatitude:coorinate.latitude longitude:coorinate.longitude];
+    self.destinationCoordinate=CLLocationCoordinate2DMake(coorinate.latitude, coorinate.longitude);
     NSLog(@"点击大头针执行该方法 = {%f, %f}", coorinate.latitude, coorinate.longitude);
-    [self initProperties];
+    _apinView.maannotations=view;
+    NAVHEIGHT
+    RECTSTATUS
+    [UIView animateWithDuration:0.3 animations:^{
+        _apinView.frame=CGRectMake(0, navheight+rectStatus.size.height, WIDTH, 95);
+        if (_apinView.state) {
+            [self initProperties:_apinView.index];
+        }
+    }];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -224,6 +279,7 @@
     ///初始化地图
     _mapView = [[MAMapView alloc] initWithFrame:self.view.bounds];
     _mapView.zoomLevel=17;//缩放级别
+    _mapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     ///把地图添加至view
     [self.view addSubview:_mapView];
     ///如果您需要进入地图就显示定位小蓝点，则需要下面两行代码
@@ -264,7 +320,14 @@
         [self.walkManager setDelegate:self];
     }
 }
-
+- (void)initDriveManager
+{
+    if (self.driveManager == nil)
+    {
+        self.driveManager = [[AMapNaviDriveManager alloc] init];
+        [self.driveManager setDelegate:self];
+    }
+}
 /**
  * @brief 定位失败后，会调用此函数
  * @param mapView 地图View
@@ -306,6 +369,48 @@
         
         polylineRenderer.lineWidth = 8.f;
         polylineRenderer.strokeColor = selectableOverlay.isSelected ? selectableOverlay.selectedColor : selectableOverlay.regularColor;
+        
+        return polylineRenderer;
+    }
+    //下面是公交的
+    if ([overlay isKindOfClass:[LineDashPolyline class]])
+    {
+        MAPolylineRenderer *polylineRenderer = [[MAPolylineRenderer alloc] initWithPolyline:((LineDashPolyline *)overlay).polyline];
+        polylineRenderer.lineWidth  = 8;
+        polylineRenderer.lineDash = YES;
+        polylineRenderer.strokeColor = [UIColor redColor];
+        
+        return polylineRenderer;
+    }
+    if ([overlay isKindOfClass:[MANaviPolyline class]])
+    {
+        MANaviPolyline *naviPolyline = (MANaviPolyline *)overlay;
+        MAPolylineRenderer *polylineRenderer = [[MAPolylineRenderer alloc] initWithPolyline:naviPolyline.polyline];
+        
+        polylineRenderer.lineWidth = 8;
+        
+        if (naviPolyline.type == MANaviAnnotationTypeWalking)
+        {
+            polylineRenderer.strokeColor = self.naviRoute.walkingColor;
+        }
+        else if (naviPolyline.type == MANaviAnnotationTypeRailway)
+        {
+            polylineRenderer.strokeColor = self.naviRoute.railwayColor;
+        }
+        else
+        {
+            polylineRenderer.strokeColor = self.naviRoute.routeColor;
+        }
+        
+        return polylineRenderer;
+    }
+    if ([overlay isKindOfClass:[MAMultiPolyline class]])
+    {
+        MAMultiColoredPolylineRenderer * polylineRenderer = [[MAMultiColoredPolylineRenderer alloc] initWithMultiPolyline:overlay];
+        
+        polylineRenderer.lineWidth = 10;
+        polylineRenderer.strokeColors = [self.naviRoute.multiPolylineColors copy];
+        polylineRenderer.gradient = YES;
         
         return polylineRenderer;
     }
@@ -352,6 +457,63 @@
         annotationView.image=[UIImage imageNamed:@"icon_place"];
         return annotationView;
     }
+    //下面是公交的
+    if ([annotation isKindOfClass:[MAPointAnnotation class]])
+    {
+        static NSString *routePlanningCellIdentifier = @"RoutePlanningCellIdentifier";
+        
+        MAAnnotationView *poiAnnotationView = (MAAnnotationView*)[_mapView dequeueReusableAnnotationViewWithIdentifier:routePlanningCellIdentifier];
+        if (poiAnnotationView == nil)
+        {
+            poiAnnotationView = [[MAAnnotationView alloc] initWithAnnotation:annotation
+                                                             reuseIdentifier:routePlanningCellIdentifier];
+        }
+        
+        poiAnnotationView.canShowCallout = YES;
+        poiAnnotationView.image = nil;
+        
+        if ([annotation isKindOfClass:[MANaviAnnotation class]])
+        {
+            switch (((MANaviAnnotation*)annotation).type)
+            {
+                case MANaviAnnotationTypeRailway:
+                    poiAnnotationView.image = [UIImage imageNamed:@"railway_station"];
+                    break;
+                    
+                case MANaviAnnotationTypeBus:
+                    poiAnnotationView.image = [UIImage imageNamed:@"bus"];
+                    break;
+                    
+                case MANaviAnnotationTypeDrive:
+                    poiAnnotationView.image = [UIImage imageNamed:@"car"];
+                    break;
+                    
+                case MANaviAnnotationTypeWalking:
+                    poiAnnotationView.image = [UIImage imageNamed:@"man"];
+                    break;
+                    
+                default:
+                    break;
+            }
+        }
+        else
+        {
+            /* 起点. */
+            if ([[annotation title] isEqualToString:(NSString*)RoutePlanningViewControllerStartTitle])
+            {
+                poiAnnotationView.image = [UIImage imageNamed:@"startPoint"];
+            }
+            /* 终点. */
+            else if([[annotation title] isEqualToString:(NSString*)RoutePlanningViewControllerDestinationTitle])
+            {
+                poiAnnotationView.image = [UIImage imageNamed:@"endPoint"];
+            }
+            
+        }
+        
+        return poiAnnotationView;
+    }
+
     
     
     return nil;
@@ -462,7 +624,7 @@
     }
 
 }
-
+#pragma mark 路径规划
 /**
  * @brief 发生错误时,会调用代理的此方法
  * @param walkManager 步行导航管理类
@@ -479,7 +641,7 @@
 - (void)walkManagerOnCalculateRouteSuccess:(AMapNaviWalkManager *)walkManager{
     NSLog(@"步行路径规划成功");
     state=YES;
-    [self showNaviRoutes];
+    [self showNaviRouteswalking];
 }
 
 /**
@@ -493,8 +655,89 @@
     NSLog(@"步行路径规划失败2----%@",str);
     
 }
-#pragma mark 显示路径
-- (void)showNaviRoutes
+
+/**
+ * @brief 发生错误时,会调用代理的此方法
+ * @param driveManager 驾车导航管理类
+ * @param error 错误信息
+ */
+- (void)driveManager:(AMapNaviDriveManager *)driveManager error:(NSError *)error{
+     [SVProgressHUD showErrorWithStatus:error.domain];
+}
+
+/**
+ * @brief 驾车路径规划成功后的回调函数
+ * @param driveManager 驾车导航管理类
+ */
+- (void)driveManagerOnCalculateRouteSuccess:(AMapNaviDriveManager *)driveManager{
+//显示路径或开启导航
+    [self showNaviRoutesDriving];
+    NSLog(@"驾车路径规划成功");
+}
+
+/**
+ * @brief 驾车路径规划失败后的回调函数
+ * @param error 错误信息,error.code参照 AMapNaviCalcRouteState .
+ * @param driveManager 驾车导航管理类
+ */
+- (void)driveManager:(AMapNaviDriveManager *)driveManager onCalculateRouteFailure:(NSError *)error{
+     [SVProgressHUD showErrorWithStatus:error.domain];
+}
+
+#pragma mark 开始公交搜索
+- (void)searchRoutePlanningBus
+{
+    self.startAnnotation.coordinate = self.startCoordinate;
+    self.destinationAnnotation.coordinate = self.destinationCoordinate;
+    
+    
+    AMapTransitRouteSearchRequest *navi = [[AMapTransitRouteSearchRequest alloc] init];
+    
+    navi.requireExtension = YES;
+    navi.city             = @"chengdu";
+    navi.strategy=0;
+    navi.nightflag=YES;
+    
+    /* 出发点. */
+    navi.origin = [AMapGeoPoint locationWithLatitude:self.startCoordinate.latitude
+                                           longitude:self.startCoordinate.longitude];
+    NSLog(@"出发点经纬度%f--%f",self.startCoordinate.latitude,self.startCoordinate.longitude);
+    /* 目的地. */
+    navi.destination = [AMapGeoPoint locationWithLatitude:self.destinationCoordinate.latitude
+                                                longitude:self.destinationCoordinate.longitude];
+    NSLog(@"目的地经纬度%f--%f",self.destinationCoordinate.latitude,self.destinationCoordinate.longitude);
+    
+    [self.search AMapTransitRouteSearch:navi];
+    
+}
+#pragma mark /* 路径规划搜索回调. */
+- (void)onRouteSearchDone:(AMapRouteSearchBaseRequest *)request response:(AMapRouteSearchResponse *)response{
+    NSLog(@"路径规划搜索回调...");
+    self.route = response.route;
+    if (response.count > 0)
+    {
+        NSLog(@"开始展示路线%ld",response.count);
+        [self presentCurrentCourse];
+    }
+}
+#pragma mark /* 清空地图上已有的路线. */
+- (void)clear
+{
+    [self.naviRoute removeFromMapView];
+}
+#pragma mark /* 展示当前路线方案. */
+- (void)presentCurrentCourse
+{
+    
+    self.naviRoute = [MANaviRoute naviRouteForTransit:self.route.transits[0] startPoint:[AMapGeoPoint locationWithLatitude:self.startAnnotation.coordinate.latitude longitude:self.startAnnotation.coordinate.longitude] endPoint:[AMapGeoPoint locationWithLatitude:self.destinationAnnotation.coordinate.latitude longitude:self.destinationAnnotation.coordinate.longitude]];
+    [self.naviRoute addToMapView:_mapView];
+    
+    /* 缩放地图使其适应polylines的展示. */
+    //[_mapView setVisibleMapRect:[CommonUtility mapRectForOverlays:self.naviRoute.routePolylines]edgePadding:UIEdgeInsetsMake(RoutePlanningPaddingEdge, RoutePlanningPaddingEdge, RoutePlanningPaddingEdge, RoutePlanningPaddingEdge)animated:YES];
+}
+
+#pragma mark 显示路径(步行)
+- (void)showNaviRouteswalking
 {
     if (self.walkManager.naviRoute == nil)
     {
@@ -526,13 +769,109 @@
     
     //[_mapView showAnnotations:_mapView.annotations animated:NO];
 }
+#pragma mark 显示路径 (驾车)
+- (void)showNaviRoutesDriving
+{
+    if ([self.driveManager.naviRoutes count] <= 0)
+    {
+        return;
+    }
+    
+    [_mapView removeOverlays:_mapView.overlays];
+    [self.routeIndicatorInfoArray removeAllObjects];
+    
+    //将路径显示到地图上
+    for (NSNumber *aRouteID in [self.driveManager.naviRoutes allKeys])
+    {
+        AMapNaviRoute *aRoute = [[self.driveManager naviRoutes] objectForKey:aRouteID];
+        int count = (int)[[aRoute routeCoordinates] count];
+        
+        //添加路径Polyline
+        CLLocationCoordinate2D *coords = (CLLocationCoordinate2D *)malloc(count * sizeof(CLLocationCoordinate2D));
+        for (int i = 0; i < count; i++)
+        {
+            AMapNaviPoint *coordinate = [[aRoute routeCoordinates] objectAtIndex:i];
+            coords[i].latitude = [coordinate latitude];
+            coords[i].longitude = [coordinate longitude];
+        }
+        
+        MAPolyline *polyline = [MAPolyline polylineWithCoordinates:coords count:count];
+        
+        SelectableOverlay *selectablePolyline = [[SelectableOverlay alloc] initWithOverlay:polyline];
+        [selectablePolyline setRouteID:[aRouteID integerValue]];
+        
+        [_mapView addOverlay:selectablePolyline];
+        free(coords);
+        
+    }
+    
+   // [_mapView showAnnotations:_mapView.annotations animated:NO];
+    
+    [self selectNaviRouteWithID:[[self.routeIndicatorInfoArray firstObject] routeID]];
+}
+- (void)selectNaviRouteWithID:(NSInteger)routeID
+{
+    //在开始导航前进行路径选择
+    if ([self.driveManager selectNaviRouteWithRouteID:routeID])
+    {
+        [self selecteOverlayWithRouteID:routeID];
+    }
+    else
+    {
+        NSLog(@"路径选择失败!");
+    }
+}
+
+- (void)selecteOverlayWithRouteID:(NSInteger)routeID
+{
+    [_mapView.overlays enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id<MAOverlay> overlay, NSUInteger idx, BOOL *stop)
+     {
+         if ([overlay isKindOfClass:[SelectableOverlay class]])
+         {
+             SelectableOverlay *selectableOverlay = overlay;
+             
+             /* 获取overlay对应的renderer. */
+             MAPolylineRenderer * overlayRenderer = (MAPolylineRenderer *)[_mapView rendererForOverlay:selectableOverlay];
+             
+             if (selectableOverlay.routeID == routeID)
+             {
+                 /* 设置选中状态. */
+                 selectableOverlay.selected = YES;
+                 
+                 /* 修改renderer选中颜色. */
+                 overlayRenderer.fillColor   = selectableOverlay.selectedColor;
+                 overlayRenderer.strokeColor = selectableOverlay.selectedColor;
+                 
+                 /* 修改overlay覆盖的顺序. */
+                 [_mapView exchangeOverlayAtIndex:idx withOverlayAtIndex:_mapView.overlays.count - 1];
+             }
+             else
+             {
+                 /* 设置选中状态. */
+                 selectableOverlay.selected = NO;
+                 
+                 /* 修改renderer选中颜色. */
+                 overlayRenderer.fillColor   = selectableOverlay.regularColor;
+                 overlayRenderer.strokeColor = selectableOverlay.regularColor;
+             }
+             
+             [overlayRenderer glRender];
+         }
+     }];
+}
 /**
  * @brief 单击地图回调，返回经纬度
  * @param mapView 地图View
  * @param coordinate 经纬度
  */
 - (void)mapView:(MAMapView *)mapView didSingleTappedAtCoordinate:(CLLocationCoordinate2D)coordinate{
-    NSLog(@"我单机了地图");
+
+   [UIView animateWithDuration:0.3 animations:^{
+       _apinView.nulls=@"a";
+       [_mapView removeOverlays:_mapView.overlays];//移除所有推荐线路
+       _apinView.frame=CGRectMake(0, -100, WIDTH, 95);
+   }];
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

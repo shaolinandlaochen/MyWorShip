@@ -15,4 +15,7 @@
 @property (nonatomic, strong) AMapNaviPoint *myCenterPoint;//用户当前经纬度
 @property (nonatomic, strong) NSMutableArray *routeIndicatorInfoArray;
 @property(nonatomic,strong)NSDictionary *dataLatitudeAndLongitude;//请求到的经纬度
+
+@property(nonatomic,strong)AMapNaviDriveManager *driveManager;//驾车
+
 @end
