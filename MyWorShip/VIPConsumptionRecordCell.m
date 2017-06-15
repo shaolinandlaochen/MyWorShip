@@ -34,7 +34,7 @@
         _timeBig.sd_layout.leftSpaceToView(self, 38).topSpaceToView(self, 33);
         
         _timeSmall=[[UILabel alloc]init];
-        _timeSmall.textColor=[MyClass colorWithHexString:@"000000"];
+        _timeSmall.textColor=[MyClass colorWithHexString:@"a3a3a3"];
         _timeSmall.font=[UIFont systemFontOfSize:14];
         _timeSmall.textAlignment=NSTextAlignmentCenter;
         [self addSubview:_timeSmall];
