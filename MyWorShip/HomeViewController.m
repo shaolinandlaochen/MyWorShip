@@ -13,7 +13,6 @@
 #import <AMapSearchKit/AMapSearchKit.h>
 #import "MANaviRoute.h"
 #import "CommonUtility.h"
-static const NSInteger RoutePlanningPaddingEdge                    = 20;
 static const NSString *RoutePlanningViewControllerStartTitle       = @"起点";
 static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
 @interface HomeViewController ()<MAMapViewDelegate,SGQRCodeScanningVCDelegate,MyViewControllerDelegate,AMapNaviWalkManagerDelegate,APinOperationDelegate,AMapNaviDriveManagerDelegate,AMapSearchDelegate>
@@ -70,6 +69,7 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
 #pragma mark 点击步行,驾车,公交执行该方法
 -(void)ClickOnTheLine:(MAAnnotationView *)manontation myBtn:(MyButton*)btn{
      [_mapView removeOverlays:_mapView.overlays];//移除所有推荐线路
+    [self clear];//清楚路线缓存
     if (btn.selected) {
         [self initProperties:btn.tag];
        
@@ -90,6 +90,7 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
     self.startCoordinate=_mapView.userLocation.coordinate;
     NSLog(@"startPoint===%@-----",self.startPoint);
     NSLog(@"endPoint=====%@-----",self.endPoint);
+     [self clear];//清楚路线缓存
     if (index==1) {//步行
         [self.walkManager calculateWalkRouteWithStartPoints:@[self.startPoint]
                                                   endPoints:@[self.endPoint]];
@@ -101,7 +102,6 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
                                               drivingStrategy:17];
     }else{//公交
         self.currentCourse=0;
-        [self clear];
         [self addDefaultAnnotations];
         [self searchRoutePlanningBus];
     }
@@ -115,15 +115,19 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
     self.endPoint=[AMapNaviPoint locationWithLatitude:coorinate.latitude longitude:coorinate.longitude];
     self.destinationCoordinate=CLLocationCoordinate2DMake(coorinate.latitude, coorinate.longitude);
     NSLog(@"点击大头针执行该方法 = {%f, %f}", coorinate.latitude, coorinate.longitude);
-    _apinView.maannotations=view;
-    NAVHEIGHT
-    RECTSTATUS
-    [UIView animateWithDuration:0.3 animations:^{
-        _apinView.frame=CGRectMake(0, navheight+rectStatus.size.height, WIDTH, 95);
-        if (_apinView.state) {
-            [self initProperties:_apinView.index];
-        }
-    }];
+    if ([view.annotation.subtitle length]>0) {
+        _apinView.maannotations=view;
+        NAVHEIGHT
+        RECTSTATUS
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            _apinView.frame=CGRectMake(0, navheight+rectStatus.size.height, WIDTH, 95);
+            if (_apinView.state) {
+                [self initProperties:_apinView.index];
+            }
+        }];
+    }
+   
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -348,6 +352,12 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
 
     
 }
+/**
+ * @brief 根据overlay生成对应的Renderer
+ * @param mapView 地图View
+ * @param overlay 指定的overlay
+ * @return 生成的覆盖物Renderer
+ */
 - (MAOverlayRenderer *)mapView:(MAMapView *)mapView rendererForOverlay:(id <MAOverlay>)overlay
 {
     /* 自定义定位精度对应的MACircleView. */
@@ -427,7 +437,6 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
  */
 - (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id<MAAnnotation>)annotation
 {
-    NSLog(@"调用了几次");
     /* 自定义userLocation对应的annotationView. */
     if ([annotation isKindOfClass:[MAUserLocation class]])
     {
@@ -452,82 +461,61 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
     //设置大头针和公交图标
     if ([annotation isKindOfClass:[MAPointAnnotation class]])
     {
-        static NSString *pointReuseIndentifier = @"pointReuseIndentifier";
-        MAPinAnnotationView*annotationView = (MAPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:pointReuseIndentifier];
-        if (annotationView == nil)
-        {
-            annotationView = [[MAPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pointReuseIndentifier];
-        }
-        annotationView.canShowCallout= NO;       //设置气泡可以弹出，默认为NO
-        annotationView.animatesDrop = NO;        //设置标注动画显示，默认为NO
-        annotationView.draggable = NO;        //设置标注可以拖动，默认为NO
-        annotationView.pinColor = MAPinAnnotationColorPurple;
-        annotationView.image=[UIImage imageNamed:@"icon_place"];
-        return annotationView;
-    }
-    //下面是公交的
-    if ([annotation isKindOfClass:[MAPointAnnotation class]])
-    {
-        NSLog(@"进不进来公交的");
-        static NSString *routePlanningCellIdentifier = @"RoutePlanningCellIdentifier";
-        
-        MAAnnotationView *poiAnnotationView = (MAAnnotationView*)[_mapView dequeueReusableAnnotationViewWithIdentifier:routePlanningCellIdentifier];
-        if (poiAnnotationView == nil)
-        {
-            poiAnnotationView = [[MAAnnotationView alloc] initWithAnnotation:annotation
-                                                             reuseIdentifier:routePlanningCellIdentifier];
-        }
-        
-        poiAnnotationView.canShowCallout = YES;
-        poiAnnotationView.image = nil;
-        
-        if ([annotation isKindOfClass:[MANaviAnnotation class]])
-        {
-            switch (((MANaviAnnotation*)annotation).type)
+        if (_apinView.state) {//公交划线
+            static NSString *routePlanningCellIdentifier = @"RoutePlanningCellIdentifier";
+            
+            MAAnnotationView *poiAnnotationView = (MAAnnotationView*)[_mapView dequeueReusableAnnotationViewWithIdentifier:routePlanningCellIdentifier];
+            if (poiAnnotationView == nil)
             {
-                   
-                case MANaviAnnotationTypeRailway:
-                    poiAnnotationView.image = [UIImage imageNamed:@"railway_station"];
-                     NSLog(@"添加公交图片1");
-                    break;
-                    
-                case MANaviAnnotationTypeBus:
-                    poiAnnotationView.image = [UIImage imageNamed:@"bus"];
-                     NSLog(@"添加公交图片2");
-                    break;
-                    
-                case MANaviAnnotationTypeDrive:
-                    poiAnnotationView.image = [UIImage imageNamed:@"car"];
-                     NSLog(@"添加公交图片3");
-                    break;
-                    
-                case MANaviAnnotationTypeWalking:
-                    poiAnnotationView.image = [UIImage imageNamed:@"man"];
-                     NSLog(@"添加公交图片4");
-                    break;
-                    
-                default:
-                    break;
-            }
-        }
-        else
-        {
-            /* 起点. */
-            if ([[annotation title] isEqualToString:(NSString*)RoutePlanningViewControllerStartTitle])
-            {
-                poiAnnotationView.image = [UIImage imageNamed:@"startPoint"];
-                 NSLog(@"添加起点图片");
-            }
-            /* 终点. */
-            else if([[annotation title] isEqualToString:(NSString*)RoutePlanningViewControllerDestinationTitle])
-            {
-                poiAnnotationView.image = [UIImage imageNamed:@"endPoint"];
-                 NSLog(@"添加终点图片");
+                poiAnnotationView = [[MAAnnotationView alloc] initWithAnnotation:annotation
+                                                                 reuseIdentifier:routePlanningCellIdentifier];
             }
             
+            poiAnnotationView.canShowCallout = YES;
+            poiAnnotationView.image = nil;
+            
+            if ([annotation isKindOfClass:[MANaviAnnotation class]])
+            {
+                switch (((MANaviAnnotation*)annotation).type)
+                {
+                        
+                    case MANaviAnnotationTypeRailway:
+                        poiAnnotationView.image = [UIImage imageNamed:@"railway_station"];
+                        break;
+                        
+                    case MANaviAnnotationTypeBus:
+                        poiAnnotationView.image = [UIImage imageNamed:@"bus"];
+                        break;
+                        
+                    case MANaviAnnotationTypeDrive:
+                        poiAnnotationView.image = [UIImage imageNamed:@"car"];
+                        break;
+                        
+                    case MANaviAnnotationTypeWalking:
+                        poiAnnotationView.image = [UIImage imageNamed:@"man"];
+                        break;
+                        
+                    default:
+                        break;
+                }
+            }
+            
+            return poiAnnotationView;
+        }else{
+            static NSString *pointReuseIndentifier = @"pointReuseIndentifier";
+            MAPinAnnotationView*annotationView = (MAPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:pointReuseIndentifier];
+            if (annotationView == nil)
+            {
+                annotationView = [[MAPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pointReuseIndentifier];
+            }
+            annotationView.canShowCallout= NO;       //设置气泡可以弹出，默认为NO
+            annotationView.animatesDrop = NO;        //设置标注动画显示，默认为NO
+            annotationView.draggable = NO;        //设置标注可以拖动，默认为NO
+            annotationView.pinColor = MAPinAnnotationColorPurple;
+            annotationView.image=[UIImage imageNamed:@"icon_place"];
+            return annotationView;
         }
-        
-        return poiAnnotationView;
+      
     }
 
     
@@ -732,8 +720,9 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
     self.route = response.route;
     if (response.count > 0)
     {
-        NSLog(@"开始展示路线%ld",response.count);
         [self presentCurrentCourse];
+    }else{
+        [SVProgressHUD showInfoWithStatus:@"抱歉,未找到公交结果"];
     }
 }
 #pragma mark /* 清空地图上已有的路线. */
