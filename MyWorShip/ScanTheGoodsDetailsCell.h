@@ -15,6 +15,6 @@
 @property(nonatomic,strong)UILabel *VIPmoney;//vip商品价格
 @property(nonatomic,strong)UILabel *context;//已售数量和剩余数量
 @property(nonatomic,strong)MyButton *buyBtn;//立即购买按钮
-@property(nonatomic,copy)NSString *aaaaaaaa;
+@property(nonatomic,copy)EquipmentCommodityResultList *model;
 
 @end

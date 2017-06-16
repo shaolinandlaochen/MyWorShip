@@ -46,9 +46,12 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self setupNavigationBar];
     [self.view addSubview:self.scanningView];
+    
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     [self setupSGQRCodeScanning];
 }
-
 - (void)setupNavigationBar {
     self.navigationItem.title = @"扫一扫";
    // self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"相册" style:(UIBarButtonItemStyleDone) target:self action:@selector(rightBarButtonItenAction)];
@@ -214,16 +217,19 @@
     
     // 3、设置界面显示扫描结果
     if (metadataObjects.count > 0) {
+        NSLog(@"扫描结果===%@",metadataObjects);
         AVMetadataMachineReadableCodeObject *obj = metadataObjects[0];
 
-        [self dismissViewControllerAnimated:YES completion:^{
-            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-            [_delegate ScanResults:obj.stringValue];
-        }];
+        //[SVProgressHUD showSuccessWithStatus:obj.stringValue];
+        ListOfGoodsViewController *ListOfGoods=[[ListOfGoodsViewController alloc]init];
+        ListOfGoods.equipment_uuid=obj.stringValue;
+        [self.navigationController pushViewController:ListOfGoods animated:YES];
+//        [self dismissViewControllerAnimated:YES completion:^{
+//            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+//            [_delegate ScanResults:obj.stringValue];
+//        }];
     }
-    [self dismissViewControllerAnimated:YES completion:^{
-        [_delegate ScanResults:@"没有扫描到任何数据"];
-    }];
+
 }
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     

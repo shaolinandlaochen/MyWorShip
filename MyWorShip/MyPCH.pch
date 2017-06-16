@@ -66,8 +66,8 @@
 #import "EvaluationViewController.h"//评价
 
 
-#define RequestUrl @"http://192.168.88.69:8080//yb_app/"//api
-//#define RequestUrl @"http://192.168.88.18:8080//yb_app/"//api尹仁明
+//#define RequestUrl @"http://192.168.88.69:8080//yb_app/"//api徐海滨
+#define RequestUrl @"http://192.168.88.18:8080//yb_app/"//api尹仁明
 //宏定义token
 #define tokenString [[NSUserDefaults standardUserDefaults]valueForKey:@"token"]
 //正在加载你

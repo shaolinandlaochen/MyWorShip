@@ -9,6 +9,7 @@
 #import "ListOfGoodsViewController.h"
 #import "ScanTheGoodsDetailsCell.h"
 #import "GoodsDetailsViewController.h"
+#import "GoodsRequest.h"
 @interface ListOfGoodsViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     UITableView *_tableView;
@@ -37,10 +38,15 @@
     self.navigationController.navigationBarHidden=NO;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
+    if (self.dataDic!=nil) {
+        
+        return 1;
+    }
+    return 0;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+    EquipmentCommodityBaseClass *class=[[EquipmentCommodityBaseClass alloc]initWithDictionary:self.dataDic];
+    return class.pagingList.resultList.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 130;
@@ -53,8 +59,11 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    EquipmentCommodityBaseClass *class=[[EquipmentCommodityBaseClass alloc]initWithDictionary:self.dataDic];
+    EquipmentCommodityResultList *list=class.pagingList.resultList[indexPath.row];
     GoodsDetailsViewController *GoodsDetails=[[GoodsDetailsViewController alloc]init];
     GoodsDetails.why=@"a";
+    GoodsDetails.goodsID=[NSString stringWithFormat:@"%.0f",list.commoditySerial];
     [self.navigationController pushViewController:GoodsDetails animated:YES];
     
 }
@@ -64,20 +73,33 @@
     return view;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    EquipmentCommodityBaseClass *class=[[EquipmentCommodityBaseClass alloc]initWithDictionary:self.dataDic];
     static NSString *string=@"indexPath";
     ScanTheGoodsDetailsCell *cell=[tableView dequeueReusableCellWithIdentifier:string];
     if (!cell) {
         cell=[[ScanTheGoodsDetailsCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:string];
     }
- 
-    cell.aaaaaaaa=@"aaaa";
+    EquipmentCommodityResultList *list=class.pagingList.resultList[indexPath.row];
+    cell.model=list;
+    [cell.image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",class.imgSrc,list.commodityImagesPath,list.commodityCoverImage]]];
     return cell;
 }
 
 #pragma mark 请求获取数据
 -(void)RequestData{
 
+    [GoodsRequest EquipmentCommodityList_page:1 pageSize:100 equipment_uuid:self.equipment_uuid block:^(NSDictionary *dic) {
+        EquipmentCommodityBaseClass *class=[[EquipmentCommodityBaseClass alloc]initWithDictionary:[self deleteEmpty:dic]];
+        if ([stringFormat(class.code) isEqualToString:@"3"]) {
+            self.dataDic=[self deleteEmpty:dic];
+            [_tableView reloadData];
+        }else{
+            [SVProgressHUD showErrorWithStatus:class.msg];
+        }
     [_tableView.mj_header endRefreshing];
+    }];
+    
+    
 }
 CANCEL
 - (void)didReceiveMemoryWarning {

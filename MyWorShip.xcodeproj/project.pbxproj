@@ -157,6 +157,9 @@
 		9D6491DD1EF386BA00203AF6 /* OrderPagingList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6491D91EF386BA00203AF6 /* OrderPagingList.m */; };
 		9D6491DE1EF386BA00203AF6 /* OrderResultList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6491DB1EF386BA00203AF6 /* OrderResultList.m */; };
 		9D6491E31EF3B09A00203AF6 /* ShipmentRequests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6491E21EF3B09A00203AF6 /* ShipmentRequests.m */; };
+		9D6491EA1EF3D44D00203AF6 /* EquipmentCommodityBaseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6491E51EF3D44D00203AF6 /* EquipmentCommodityBaseClass.m */; };
+		9D6491EB1EF3D44D00203AF6 /* EquipmentCommodityPagingList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6491E71EF3D44D00203AF6 /* EquipmentCommodityPagingList.m */; };
+		9D6491EC1EF3D44D00203AF6 /* EquipmentCommodityResultList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6491E91EF3D44D00203AF6 /* EquipmentCommodityResultList.m */; };
 		9D6BBE6A1EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6BBE691EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.m */; };
 		9D6BBE6D1EE63E9A008A9F23 /* RequestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6BBE6C1EE63E9A008A9F23 /* RequestClass.m */; };
 		9D6BBE711EE6404C008A9F23 /* LoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6BBE701EE6404C008A9F23 /* LoginRequest.m */; };
@@ -678,6 +681,12 @@
 		9D6491DB1EF386BA00203AF6 /* OrderResultList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderResultList.m; sourceTree = "<group>"; };
 		9D6491E11EF3B09A00203AF6 /* ShipmentRequests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShipmentRequests.h; sourceTree = "<group>"; };
 		9D6491E21EF3B09A00203AF6 /* ShipmentRequests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShipmentRequests.m; sourceTree = "<group>"; };
+		9D6491E41EF3D44D00203AF6 /* EquipmentCommodityBaseClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquipmentCommodityBaseClass.h; sourceTree = "<group>"; };
+		9D6491E51EF3D44D00203AF6 /* EquipmentCommodityBaseClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquipmentCommodityBaseClass.m; sourceTree = "<group>"; };
+		9D6491E61EF3D44D00203AF6 /* EquipmentCommodityPagingList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquipmentCommodityPagingList.h; sourceTree = "<group>"; };
+		9D6491E71EF3D44D00203AF6 /* EquipmentCommodityPagingList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquipmentCommodityPagingList.m; sourceTree = "<group>"; };
+		9D6491E81EF3D44D00203AF6 /* EquipmentCommodityResultList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquipmentCommodityResultList.h; sourceTree = "<group>"; };
+		9D6491E91EF3D44D00203AF6 /* EquipmentCommodityResultList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquipmentCommodityResultList.m; sourceTree = "<group>"; };
 		9D6BBE681EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DeleteArrOrDeleteDicBothNull.h"; sourceTree = "<group>"; };
 		9D6BBE691EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DeleteArrOrDeleteDicBothNull.m"; sourceTree = "<group>"; };
 		9D6BBE6B1EE63E9A008A9F23 /* RequestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestClass.h; sourceTree = "<group>"; };
@@ -1218,6 +1227,12 @@
 		9D4201161EEA70BE00425D5D /* model */ = {
 			isa = PBXGroup;
 			children = (
+				9D6491E41EF3D44D00203AF6 /* EquipmentCommodityBaseClass.h */,
+				9D6491E51EF3D44D00203AF6 /* EquipmentCommodityBaseClass.m */,
+				9D6491E61EF3D44D00203AF6 /* EquipmentCommodityPagingList.h */,
+				9D6491E71EF3D44D00203AF6 /* EquipmentCommodityPagingList.m */,
+				9D6491E81EF3D44D00203AF6 /* EquipmentCommodityResultList.h */,
+				9D6491E91EF3D44D00203AF6 /* EquipmentCommodityResultList.m */,
 				9DF855B51EF128E000E8D250 /* MonthsThanksGoodsBaseClass.h */,
 				9DF855B61EF128E000E8D250 /* MonthsThanksGoodsBaseClass.m */,
 				9DF855B71EF128E000E8D250 /* MonthsThanksGoodsPagingList.h */,
@@ -2685,6 +2700,7 @@
 				9D6491D51EF3834100203AF6 /* OrderRequest.m in Sources */,
 				9D97733D1ED7F541005EAC95 /* InvitationViewController.m in Sources */,
 				9D9771F91ED533A8005EAC95 /* ScanningViewController.m in Sources */,
+				9D6491EC1EF3D44D00203AF6 /* EquipmentCommodityResultList.m in Sources */,
 				9D42010D1EEA2F7A00425D5D /* CouponsListBaseClass.m in Sources */,
 				9DF855CF1EF222D600E8D250 /* VIPResultList.m in Sources */,
 				9D6BBEA71EE6777C008A9F23 /* MyMessageListResultList.m in Sources */,
@@ -2776,6 +2792,7 @@
 				9DD501841EE6A77A00278600 /* StatementBaseClass.m in Sources */,
 				9DD501741EE6902B00278600 /* Top_up_detailPagingList.m in Sources */,
 				9D9773021ED7C19B005EAC95 /* WalletViewController.m in Sources */,
+				9D6491EB1EF3D44D00203AF6 /* EquipmentCommodityPagingList.m in Sources */,
 				9DF855D21EF2233D00E8D250 /* APinOperationView.m in Sources */,
 				9D42014D1EEA867A00425D5D /* VIPView.m in Sources */,
 				9DF855CD1EF222D600E8D250 /* VIPBaseClass.m in Sources */,
@@ -2792,6 +2809,7 @@
 				9D97715B1ED41BB9005EAC95 /* main.m in Sources */,
 				9D42010F1EEA2F7A00425D5D /* CouponsListResultList.m in Sources */,
 				9DD5016B1EE68B4F00278600 /* MoneyRequest.m in Sources */,
+				9D6491EA1EF3D44D00203AF6 /* EquipmentCommodityBaseClass.m in Sources */,
 				9D9773B81ED91022005EAC95 /* UseGuideContextTableViewCell.m in Sources */,
 				9D42007D1EE8E04200425D5D /* GoodsDetailsCell.m in Sources */,
 				9D9771E01ED437A3005EAC95 /* LocationAnnotationView.m in Sources */,

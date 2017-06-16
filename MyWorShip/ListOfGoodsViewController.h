@@ -10,4 +10,5 @@
 
 @interface ListOfGoodsViewController : MyClass
 @property(nonatomic,strong)NSDictionary *dataDic;
+@property(nonatomic,copy)NSString *equipment_uuid;
 @end

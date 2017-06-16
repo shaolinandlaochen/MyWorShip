@@ -343,6 +343,13 @@
                 PersonalCenter.phone=stringFormat(class.info.basePhone);
             }
             [self.navigationController pushViewController:PersonalCenter animated:YES];
+        }else{
+            LoginViewController *Login =[[LoginViewController alloc]init];
+            Login.delegate=self;
+            UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:Login];
+            [self presentViewController:nav animated:YES completion:^{
+                //nav.view.backgroundColor = [[UIColor clearColor] colorWithAlphaComponent:0.5];
+            }];
         }
 
     }else{//去登陆

@@ -45,4 +45,8 @@
 #import "OrderBaseClass.h"
 #import "OrderResultList.h"
 #import "OrderPagingList.h"
+#import "EquipmentCommodityBaseClass.h"
+#import "EquipmentCommodityResultList.h"
+#import "EquipmentCommodityPagingList.h"
+
 

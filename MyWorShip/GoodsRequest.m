@@ -51,4 +51,19 @@
         
     }];
 }
+/*
+ *设备商品列表
+ */
++(void)EquipmentCommodityList_page:(int)page pageSize:(int)pageSize equipment_uuid:(NSString *)equipment_uuid block:(void(^)(NSDictionary *dic))block{
+    NSMutableDictionary *dic=[[NSMutableDictionary alloc]init];
+    [dic setObject:@(page) forKey:@"page"];
+    [dic setObject:@(pageSize) forKey:@"pageSize"];
+    [dic setObject:equipment_uuid forKey:@"equipment_uuid"];
+    NSDictionary *dataDic=[MyClass ReceiveTheOriginalData:dic];//去添加时间戳等数据然后返回签名后的数据
+    [RequestClass getUrl:@"commequipment" Dic:dataDic block:^(NSDictionary *dic) {
+        NSLog(@"设备商品列表:%@",dic);
+        block(dic);
+        
+    }];
+}
 @end

@@ -186,6 +186,11 @@
     
 
 }
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+[self dismissViewControllerAnimated:YES completion:^{
+    
+}];
+}
 #pragma mark 捕捉输入框输入内容
 -(void)textChange:(UITextField *)tf{
 

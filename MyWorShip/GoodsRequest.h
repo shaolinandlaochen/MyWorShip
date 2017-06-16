@@ -21,4 +21,8 @@
  *获取商品全部评价
  */
 +(void)QueryEvaluationOfAllCommodities_serial:(NSString *)serial page:(NSString *)page pageSize:(NSString *)pageSize block:(void(^)(NSDictionary *dic))bolck;
+/*
+ *设备商品列表
+ */
++(void)EquipmentCommodityList_page:(int)page pageSize:(int)pageSize equipment_uuid:(NSString *)equipment_uuid block:(void(^)(NSDictionary *dic))block;
 @end
