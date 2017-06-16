@@ -101,6 +101,8 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
                                               drivingStrategy:17];
     }else{//公交
         self.currentCourse=0;
+        [self clear];
+        [self addDefaultAnnotations];
         [self searchRoutePlanningBus];
     }
     
@@ -417,9 +419,15 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
     
     return nil;
 }
-
+/**
+ * @brief 根据anntation生成对应的View
+ * @param mapView 地图View
+ * @param annotation 指定的标注
+ * @return 生成的标注View
+ */
 - (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id<MAAnnotation>)annotation
 {
+    NSLog(@"调用了几次");
     /* 自定义userLocation对应的annotationView. */
     if ([annotation isKindOfClass:[MAUserLocation class]])
     {
@@ -441,7 +449,7 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
         return annotationView;
     }
     
-    //设置大头针
+    //设置大头针和公交图标
     if ([annotation isKindOfClass:[MAPointAnnotation class]])
     {
         static NSString *pointReuseIndentifier = @"pointReuseIndentifier";
@@ -460,6 +468,7 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
     //下面是公交的
     if ([annotation isKindOfClass:[MAPointAnnotation class]])
     {
+        NSLog(@"进不进来公交的");
         static NSString *routePlanningCellIdentifier = @"RoutePlanningCellIdentifier";
         
         MAAnnotationView *poiAnnotationView = (MAAnnotationView*)[_mapView dequeueReusableAnnotationViewWithIdentifier:routePlanningCellIdentifier];
@@ -476,20 +485,25 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
         {
             switch (((MANaviAnnotation*)annotation).type)
             {
+                   
                 case MANaviAnnotationTypeRailway:
                     poiAnnotationView.image = [UIImage imageNamed:@"railway_station"];
+                     NSLog(@"添加公交图片1");
                     break;
                     
                 case MANaviAnnotationTypeBus:
                     poiAnnotationView.image = [UIImage imageNamed:@"bus"];
+                     NSLog(@"添加公交图片2");
                     break;
                     
                 case MANaviAnnotationTypeDrive:
                     poiAnnotationView.image = [UIImage imageNamed:@"car"];
+                     NSLog(@"添加公交图片3");
                     break;
                     
                 case MANaviAnnotationTypeWalking:
                     poiAnnotationView.image = [UIImage imageNamed:@"man"];
+                     NSLog(@"添加公交图片4");
                     break;
                     
                 default:
@@ -502,11 +516,13 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
             if ([[annotation title] isEqualToString:(NSString*)RoutePlanningViewControllerStartTitle])
             {
                 poiAnnotationView.image = [UIImage imageNamed:@"startPoint"];
+                 NSLog(@"添加起点图片");
             }
             /* 终点. */
             else if([[annotation title] isEqualToString:(NSString*)RoutePlanningViewControllerDestinationTitle])
             {
                 poiAnnotationView.image = [UIImage imageNamed:@"endPoint"];
+                 NSLog(@"添加终点图片");
             }
             
         }
@@ -735,7 +751,23 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
     /* 缩放地图使其适应polylines的展示. */
     //[_mapView setVisibleMapRect:[CommonUtility mapRectForOverlays:self.naviRoute.routePolylines]edgePadding:UIEdgeInsetsMake(RoutePlanningPaddingEdge, RoutePlanningPaddingEdge, RoutePlanningPaddingEdge, RoutePlanningPaddingEdge)animated:YES];
 }
-
+- (void)addDefaultAnnotations
+{
+    MAPointAnnotation *startAnnotation = [[MAPointAnnotation alloc] init];
+    startAnnotation.coordinate = self.startCoordinate;
+    startAnnotation.title      = (NSString*)RoutePlanningViewControllerStartTitle;
+    startAnnotation.subtitle   = [NSString stringWithFormat:@"{%f, %f}", self.startCoordinate.latitude, self.startCoordinate.longitude];
+    self.startAnnotation = startAnnotation;
+    
+    MAPointAnnotation *destinationAnnotation = [[MAPointAnnotation alloc] init];
+    destinationAnnotation.coordinate = self.destinationCoordinate;
+    destinationAnnotation.title      = (NSString*)RoutePlanningViewControllerDestinationTitle;
+    destinationAnnotation.subtitle   = [NSString stringWithFormat:@"{%f, %f}", self.destinationCoordinate.latitude, self.destinationCoordinate.longitude];
+    self.destinationAnnotation = destinationAnnotation;
+    
+    [_mapView addAnnotation:startAnnotation];
+    [_mapView addAnnotation:destinationAnnotation];
+}
 #pragma mark 显示路径(步行)
 - (void)showNaviRouteswalking
 {

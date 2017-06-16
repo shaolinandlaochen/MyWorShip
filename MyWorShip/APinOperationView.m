@@ -96,6 +96,7 @@
         ((MyButton *)[self viewWithTag:i+1]).selected=NO;
         ((UIView *)[self viewWithTag:i+10]).backgroundColor=[UIColor clearColor];
     }
+    self.state=NO;
 }
 //给地址赋值
 -(void)setMaannotations:(MAAnnotationView *)maannotations{
