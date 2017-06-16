@@ -7,10 +7,12 @@
 //
 
 #import "EvaluationViewController.h"
-
+#import "ShipmentRequests.h"
 @interface EvaluationViewController ()<UITextViewDelegate>
 {
     UILabel *_message;
+    UITextView *TextView;
+    NSInteger xingIDx;
 }
 @end
 
@@ -19,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title=@"评论商品";
+    xingIDx=5;
     lfteItemAndColor
     [self CreateAView];
     // Do any additional setup after loading the view.
@@ -34,7 +37,10 @@
     goodsView.sd_layout.leftSpaceToView(self.view, 0).topSpaceToView(self.view, navheight+rectStatus.size.height).rightSpaceToView(self.view, 0).heightIs(100);
     
     UIImageView *goodsImage=[[UIImageView alloc]init];
-    [goodsImage sd_setImageWithURL:[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1497930479&di=726f2b777c50a22bd9be7f46a713c9c6&imgtype=jpg&er=1&src=http%3A%2F%2Fimage4.xyzs.com%2Fupload%2F66%2F80%2F414%2F20150506%2F143087299270780_0.jpg"]];
+    if (self.imgUrl!=nil) {
+        [goodsImage sd_setImageWithURL:[NSURL URLWithString:self.imgUrl]];
+    }
+   
     [goodsView addSubview:goodsImage];
     goodsImage.sd_layout.leftSpaceToView(goodsView, 10).topSpaceToView(goodsView, 6).bottomSpaceToView(goodsView, 6).widthIs(87);
     
@@ -44,14 +50,18 @@
     lbl.textColor=[MyClass colorWithHexString:@"000000"];
     lbl.font=[UIFont systemFontOfSize:15];
     lbl.numberOfLines=2;
-    lbl.text=@"东风浩荡搜粉红色的粉红色东方闪电会发生的合法你稍等";
+    if (self.name!=nil) {
+        lbl.text=self.name;
+    }
     [goodsView addSubview:lbl];
     lbl.sd_layout.leftSpaceToView(goodsImage, 7.5).topSpaceToView(goodsView, 14.5).rightSpaceToView(goodsView, 18).autoHeightRatio(0);
     
     UILabel *money=[[UILabel alloc]init];
     money.textColor=[MyClass colorWithHexString:@"ff4c59"];
     money.font=[UIFont systemFontOfSize:17];
-    money.text=@"¥200.00";
+    if (self.money!=nil) {
+        money.text=[NSString stringWithFormat:@"¥%@",self.money];
+    }
     [goodsView addSubview:money];
     money.sd_layout.leftSpaceToView(goodsImage, 7.5).bottomSpaceToView(goodsView, 20).heightIs(15).widthIs(120);
     
@@ -83,7 +93,7 @@
     }
     
     
-    UITextView *TextView=[[UITextView alloc]init];
+    TextView=[[UITextView alloc]init];
     TextView.backgroundColor=[MyClass colorWithHexString:@"f3f5f7"];
     TextView.delegate=self;
     TextView.textColor=[MyClass colorWithHexString:@"000000"];
@@ -128,7 +138,7 @@
         }
         
     }
-    
+    xingIDx=btn.tag;
 }
 CANCEL
 - (void)didReceiveMemoryWarning {
@@ -147,6 +157,18 @@ _message.text=@"";
 }
 #pragma mark 立即评价
 -(void)onEvaluationClick{
+    [SVProgressHUD showWithStatus:loading];
+    [ShipmentRequests evaluation_comment_content:TextView.text comment_grade:xingIDx commodity_serial:self.commodity_serial order_serial:self.order_serial block:^(NSDictionary *dic) {
+        LoginsIsBaseClass *CLASS=[[LoginsIsBaseClass alloc]initWithDictionary:[self deleteEmpty:dic]];
+        if ([stringFormat(CLASS.code) isEqualToString:@"30"]) {
+            [_delegate EvaluationAfterEvaluation];
+            [SVProgressHUD showSuccessWithStatus:CLASS.msg];
+            [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            [SVProgressHUD showErrorWithStatus:CLASS.msg];
+        }
+        
+    }];
 
 }
 /*

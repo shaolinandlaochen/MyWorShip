@@ -7,7 +7,21 @@
 //
 
 #import "MyClass.h"
-
-@interface EvaluationViewController : MyClass
-
+@protocol EvaluationDelegate<NSObject>
+//评论完毕
+-(void)EvaluationAfterEvaluation;
 @end
+@interface EvaluationViewController : MyClass
+@property(nonatomic,copy)NSString *name;
+@property(nonatomic,copy)NSString *money;
+@property(nonatomic,copy)NSString *imgUrl;
+@property(nonatomic,copy)NSString *commodity_serial;
+@property(nonatomic,copy)NSString *order_serial;
+@property(nonatomic,assign)id delegate;
+@end
+/*
+ @protocol HTMLContextDelegate<NSObject>
+ -(void)htmlHeight:(float)height;
+ -(void)ReviewImagesUrl:(NSString *)url;
+ @end
+ */

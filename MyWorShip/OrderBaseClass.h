@@ -11,9 +11,10 @@
 
 @interface OrderBaseClass : NSObject <NSCoding, NSCopying>
 
+@property (nonatomic, strong) NSString *code;
+@property (nonatomic, strong) NSString *imgSrc;
 @property (nonatomic, strong) NSString *msg;
 @property (nonatomic, strong) OrderPagingList *pagingList;
-@property (nonatomic, strong) NSString *code;
 
 + (instancetype)modelObjectWithDictionary:(NSDictionary *)dict;
 - (instancetype)initWithDictionary:(NSDictionary *)dict;

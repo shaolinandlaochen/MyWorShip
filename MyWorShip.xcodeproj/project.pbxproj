@@ -156,6 +156,7 @@
 		9D6491DC1EF386BA00203AF6 /* OrderBaseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6491D71EF386BA00203AF6 /* OrderBaseClass.m */; };
 		9D6491DD1EF386BA00203AF6 /* OrderPagingList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6491D91EF386BA00203AF6 /* OrderPagingList.m */; };
 		9D6491DE1EF386BA00203AF6 /* OrderResultList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6491DB1EF386BA00203AF6 /* OrderResultList.m */; };
+		9D6491E31EF3B09A00203AF6 /* ShipmentRequests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6491E21EF3B09A00203AF6 /* ShipmentRequests.m */; };
 		9D6BBE6A1EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6BBE691EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.m */; };
 		9D6BBE6D1EE63E9A008A9F23 /* RequestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6BBE6C1EE63E9A008A9F23 /* RequestClass.m */; };
 		9D6BBE711EE6404C008A9F23 /* LoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6BBE701EE6404C008A9F23 /* LoginRequest.m */; };
@@ -675,6 +676,8 @@
 		9D6491D91EF386BA00203AF6 /* OrderPagingList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderPagingList.m; sourceTree = "<group>"; };
 		9D6491DA1EF386BA00203AF6 /* OrderResultList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderResultList.h; sourceTree = "<group>"; };
 		9D6491DB1EF386BA00203AF6 /* OrderResultList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderResultList.m; sourceTree = "<group>"; };
+		9D6491E11EF3B09A00203AF6 /* ShipmentRequests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShipmentRequests.h; sourceTree = "<group>"; };
+		9D6491E21EF3B09A00203AF6 /* ShipmentRequests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShipmentRequests.m; sourceTree = "<group>"; };
 		9D6BBE681EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DeleteArrOrDeleteDicBothNull.h"; sourceTree = "<group>"; };
 		9D6BBE691EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DeleteArrOrDeleteDicBothNull.m"; sourceTree = "<group>"; };
 		9D6BBE6B1EE63E9A008A9F23 /* RequestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestClass.h; sourceTree = "<group>"; };
@@ -1159,6 +1162,8 @@
 				9D0C76561EEF91D2006AF814 /* ShipmentViewController.m */,
 				9D0C76761EEF954B006AF814 /* EvaluationViewController.h */,
 				9D0C76791EEFB732006AF814 /* EvaluationViewController.m */,
+				9D6491E01EF3B07300203AF6 /* 请求 */,
+				9D6491DF1EF3B06500203AF6 /* model */,
 			);
 			name = "出货";
 			sourceTree = "<group>";
@@ -1348,6 +1353,22 @@
 			children = (
 				9D6491D31EF3834100203AF6 /* OrderRequest.h */,
 				9D6491D41EF3834100203AF6 /* OrderRequest.m */,
+			);
+			name = "请求";
+			sourceTree = "<group>";
+		};
+		9D6491DF1EF3B06500203AF6 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		9D6491E01EF3B07300203AF6 /* 请求 */ = {
+			isa = PBXGroup;
+			children = (
+				9D6491E11EF3B09A00203AF6 /* ShipmentRequests.h */,
+				9D6491E21EF3B09A00203AF6 /* ShipmentRequests.m */,
 			);
 			name = "请求";
 			sourceTree = "<group>";
@@ -2744,6 +2765,7 @@
 				9DF855B01EF1070800E8D250 /* NearTheEquipmentBaseClass.m in Sources */,
 				9D6BBE6A1EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.m in Sources */,
 				9D9772BE1ED6A4DF005EAC95 /* PreferentialCell.m in Sources */,
+				9D6491E31EF3B09A00203AF6 /* ShipmentRequests.m in Sources */,
 				9D4200801EE8E0D600425D5D /* ScrollViewCell.m in Sources */,
 				9DF855F01EF27CF300E8D250 /* MANaviRoute.m in Sources */,
 				9D9773951ED824E2005EAC95 /* OrderCell.m in Sources */,

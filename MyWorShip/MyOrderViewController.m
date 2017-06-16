@@ -9,7 +9,8 @@
 #import "MyOrderViewController.h"
 #import "OrderCell.h"
 #import "OrderRequest.h"
-@interface MyOrderViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "EvaluationViewController.h"
+@interface MyOrderViewController ()<UITableViewDelegate,UITableViewDataSource,EvaluationDelegate>
 {
     UITableView *_tableView;
     NSInteger index;
@@ -68,6 +69,10 @@
 
     // Do any additional setup after loading the view.
 }
+//评论完毕
+-(void)EvaluationAfterEvaluation{
+    [self ToObtainAListOrder];
+}
 #pragma mark 加载数据
 -(void)ToObtainAListOrder{
     NSString *type;
@@ -119,10 +124,51 @@ CANCEL
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     OrderBaseClass *class=[[OrderBaseClass alloc]initWithDictionary:self.dataDic];
     OrderResultList *list=class.pagingList.resultList[indexPath.section];
+   
     if (list.orderState==1) {//已付款未发货
-
+        UIAlertController *alert=[UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请选择取消订单理由" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action1=[UIAlertAction actionWithTitle:@"设备故障" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            [SVProgressHUD showWithStatus:loading];
+            [OrderRequest CancelTheOrder_order_refund_cause:@"0" order_serial:[NSString stringWithFormat:@"%.0f",list.orderSerial] block:^(NSDictionary *dic) {
+                LoginsIsBaseClass *class=[[LoginsIsBaseClass alloc]initWithDictionary:[self deleteEmpty:dic]];
+                if ([stringFormat(class.code) isEqualToString:@"31"]) {
+                    [self ToObtainAListOrder];
+                    [SVProgressHUD showSuccessWithStatus:class.msg];
+                }else{
+                    [SVProgressHUD showErrorWithStatus:class.msg];
+                }
+            }];
+            
+        }];
+        UIAlertAction *action2=[UIAlertAction actionWithTitle:@"出货超时" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            [SVProgressHUD showWithStatus:loading];
+            [OrderRequest CancelTheOrder_order_refund_cause:@"0" order_serial:[NSString stringWithFormat:@"%.0f",list.orderSerial] block:^(NSDictionary *dic) {
+                LoginsIsBaseClass *class=[[LoginsIsBaseClass alloc]initWithDictionary:[self deleteEmpty:dic]];
+                if ([stringFormat(class.code) isEqualToString:@"31"]) {
+                    [SVProgressHUD showSuccessWithStatus:class.msg];
+                    [self ToObtainAListOrder];
+                }else{
+                    [SVProgressHUD showErrorWithStatus:class.msg];
+                }
+            }];
+        }];
+        UIAlertAction *action3=[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            NSLog(@"加粗(取消)");
+        }];
+        [alert addAction:action1];
+        [alert addAction:action2];
+        [alert addAction:action3];
+        [self presentViewController:alert animated:YES completion:nil];
     }else if (list.orderState==2){//已发货未评价
 
+        EvaluationViewController *Evaluation=[[EvaluationViewController alloc]init];
+        Evaluation.delegate=self;
+        Evaluation.name=stringFormat(list.commodityName);
+        Evaluation.money=[NSString stringWithFormat:@"%.2f",list.orderAmount];
+        Evaluation.imgUrl=[NSString stringWithFormat:@"%@%@%@",class.imgSrc,list.commodityImagesPath,list.commodityCoverImage];
+        Evaluation.order_serial=[NSString stringWithFormat:@"%.0f",list.orderSerial];
+        Evaluation.commodity_serial=[NSString stringWithFormat:@"%.0f",list.commoditySerial];
+        [self.navigationController pushViewController:Evaluation animated:YES];
     }
     
 }
