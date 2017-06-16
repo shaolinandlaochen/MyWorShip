@@ -738,7 +738,7 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
     [self.naviRoute addToMapView:_mapView];
     
     /* 缩放地图使其适应polylines的展示. */
-    //[_mapView setVisibleMapRect:[CommonUtility mapRectForOverlays:self.naviRoute.routePolylines]edgePadding:UIEdgeInsetsMake(RoutePlanningPaddingEdge, RoutePlanningPaddingEdge, RoutePlanningPaddingEdge, RoutePlanningPaddingEdge)animated:YES];
+    [_mapView setVisibleMapRect:[CommonUtility mapRectForOverlays:self.naviRoute.routePolylines]edgePadding:UIEdgeInsetsMake(20, 20, 20, 20)animated:YES];
 }
 - (void)addDefaultAnnotations
 {
