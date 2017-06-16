@@ -152,6 +152,10 @@
 		9D6491CE1EF371DB00203AF6 /* startPoint@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D6490551EF371DB00203AF6 /* startPoint@2x.png */; };
 		9D6491CF1EF371DB00203AF6 /* userPosition.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D6490561EF371DB00203AF6 /* userPosition.png */; };
 		9D6491D01EF371DB00203AF6 /* userPosition@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D6490571EF371DB00203AF6 /* userPosition@2x.png */; };
+		9D6491D51EF3834100203AF6 /* OrderRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6491D41EF3834100203AF6 /* OrderRequest.m */; };
+		9D6491DC1EF386BA00203AF6 /* OrderBaseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6491D71EF386BA00203AF6 /* OrderBaseClass.m */; };
+		9D6491DD1EF386BA00203AF6 /* OrderPagingList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6491D91EF386BA00203AF6 /* OrderPagingList.m */; };
+		9D6491DE1EF386BA00203AF6 /* OrderResultList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6491DB1EF386BA00203AF6 /* OrderResultList.m */; };
 		9D6BBE6A1EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6BBE691EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.m */; };
 		9D6BBE6D1EE63E9A008A9F23 /* RequestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6BBE6C1EE63E9A008A9F23 /* RequestClass.m */; };
 		9D6BBE711EE6404C008A9F23 /* LoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6BBE701EE6404C008A9F23 /* LoginRequest.m */; };
@@ -663,6 +667,14 @@
 		9D6490551EF371DB00203AF6 /* startPoint@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "startPoint@2x.png"; sourceTree = "<group>"; };
 		9D6490561EF371DB00203AF6 /* userPosition.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userPosition.png; sourceTree = "<group>"; };
 		9D6490571EF371DB00203AF6 /* userPosition@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userPosition@2x.png"; sourceTree = "<group>"; };
+		9D6491D31EF3834100203AF6 /* OrderRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderRequest.h; sourceTree = "<group>"; };
+		9D6491D41EF3834100203AF6 /* OrderRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderRequest.m; sourceTree = "<group>"; };
+		9D6491D61EF386BA00203AF6 /* OrderBaseClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderBaseClass.h; sourceTree = "<group>"; };
+		9D6491D71EF386BA00203AF6 /* OrderBaseClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderBaseClass.m; sourceTree = "<group>"; };
+		9D6491D81EF386BA00203AF6 /* OrderPagingList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderPagingList.h; sourceTree = "<group>"; };
+		9D6491D91EF386BA00203AF6 /* OrderPagingList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderPagingList.m; sourceTree = "<group>"; };
+		9D6491DA1EF386BA00203AF6 /* OrderResultList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderResultList.h; sourceTree = "<group>"; };
+		9D6491DB1EF386BA00203AF6 /* OrderResultList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderResultList.m; sourceTree = "<group>"; };
 		9D6BBE681EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DeleteArrOrDeleteDicBothNull.h"; sourceTree = "<group>"; };
 		9D6BBE691EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DeleteArrOrDeleteDicBothNull.m"; sourceTree = "<group>"; };
 		9D6BBE6B1EE63E9A008A9F23 /* RequestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestClass.h; sourceTree = "<group>"; };
@@ -1318,6 +1330,28 @@
 			path = animatedTrain;
 			sourceTree = "<group>";
 		};
+		9D6491D11EF3831500203AF6 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				9D6491D61EF386BA00203AF6 /* OrderBaseClass.h */,
+				9D6491D71EF386BA00203AF6 /* OrderBaseClass.m */,
+				9D6491D81EF386BA00203AF6 /* OrderPagingList.h */,
+				9D6491D91EF386BA00203AF6 /* OrderPagingList.m */,
+				9D6491DA1EF386BA00203AF6 /* OrderResultList.h */,
+				9D6491DB1EF386BA00203AF6 /* OrderResultList.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		9D6491D21EF3831E00203AF6 /* 请求 */ = {
+			isa = PBXGroup;
+			children = (
+				9D6491D31EF3834100203AF6 /* OrderRequest.h */,
+				9D6491D41EF3834100203AF6 /* OrderRequest.m */,
+			);
+			name = "请求";
+			sourceTree = "<group>";
+		};
 		9D6BBE671EE63C97008A9F23 /* 请求 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1936,6 +1970,8 @@
 				9D97732F1ED7DB65005EAC95 /* MyOrderViewController.m */,
 				9D9773931ED824E2005EAC95 /* OrderCell.h */,
 				9D9773941ED824E2005EAC95 /* OrderCell.m */,
+				9D6491D21EF3831E00203AF6 /* 请求 */,
+				9D6491D11EF3831500203AF6 /* model */,
 			);
 			name = "订单";
 			sourceTree = "<group>";
@@ -2625,6 +2661,7 @@
 				9DF855DF1EF231F100E8D250 /* VIPRecordsBaseClass.m in Sources */,
 				9D9772821ED582F1005EAC95 /* PersonalDataView.m in Sources */,
 				9D0C76361EEE30F9006AF814 /* HTMLCell.m in Sources */,
+				9D6491D51EF3834100203AF6 /* OrderRequest.m in Sources */,
 				9D97733D1ED7F541005EAC95 /* InvitationViewController.m in Sources */,
 				9D9771F91ED533A8005EAC95 /* ScanningViewController.m in Sources */,
 				9D42010D1EEA2F7A00425D5D /* CouponsListBaseClass.m in Sources */,
@@ -2666,6 +2703,7 @@
 				9D9771DD1ED4348B005EAC95 /* MyButton.m in Sources */,
 				9D42010E1EEA2F7A00425D5D /* CouponsListPagingList.m in Sources */,
 				9D4201231EEA7C9300425D5D /* MyVIPViewController.m in Sources */,
+				9D6491DD1EF386BA00203AF6 /* OrderPagingList.m in Sources */,
 				9DF855D51EF22C6800E8D250 /* VIPConsumptionRecordViewController.m in Sources */,
 				9D4200741EE7E5A100425D5D /* VerifyTheMobilePhoneViewController.m in Sources */,
 				9D9772BB1ED6A32B005EAC95 /* PreferentialViewController.m in Sources */,
@@ -2702,6 +2740,7 @@
 				9D6BBE871EE651B7008A9F23 /* BasicInformationInfo.m in Sources */,
 				9DF855E11EF231F100E8D250 /* VIPRecordsResultList.m in Sources */,
 				9D4200651EE796ED00425D5D /* PersonalCenterCell.m in Sources */,
+				9D6491DC1EF386BA00203AF6 /* OrderBaseClass.m in Sources */,
 				9DF855B01EF1070800E8D250 /* NearTheEquipmentBaseClass.m in Sources */,
 				9D6BBE6A1EE63E79008A9F23 /* NSObject+DeleteArrOrDeleteDicBothNull.m in Sources */,
 				9D9772BE1ED6A4DF005EAC95 /* PreferentialCell.m in Sources */,
@@ -2727,6 +2766,7 @@
 				9D9771E31ED43AEA005EAC95 /* MyImage.m in Sources */,
 				9D9772EF1ED6C4A6005EAC95 /* MessageCell.m in Sources */,
 				9DF855F91EF27D6800E8D250 /* LineDashPolyline.m in Sources */,
+				9D6491DE1EF386BA00203AF6 /* OrderResultList.m in Sources */,
 				9D97715B1ED41BB9005EAC95 /* main.m in Sources */,
 				9D42010F1EEA2F7A00425D5D /* CouponsListResultList.m in Sources */,
 				9DD5016B1EE68B4F00278600 /* MoneyRequest.m in Sources */,

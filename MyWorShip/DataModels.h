@@ -42,4 +42,7 @@
 #import "VIPRecordsBaseClass.h"
 #import "VIPRecordsResultList.h"
 #import "VIPRecordsPagingList.h"
+#import "OrderBaseClass.h"
+#import "OrderResultList.h"
+#import "OrderPagingList.h"
 

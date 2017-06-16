@@ -9,5 +9,5 @@
 #import "MyClass.h"
 
 @interface MyOrderViewController : MyClass
-
+@property(nonatomic,strong)NSDictionary *dataDic;
 @end
