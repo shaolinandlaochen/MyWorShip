@@ -205,15 +205,14 @@ static double angle=0;
     [self.view addSubview:IMGCentr];
     IMGCentr.sd_layout.leftSpaceToView(self.view, (self.view.frame.size.width-25)/2).topSpaceToView(self.view, (self.view.frame.size.height-38)/2).widthIs(25).heightIs(38);
     autoSize
-    UIButton *imgview = [[UIButton alloc]init];
-    imgview.frame = CGRectMake(15,self.view.frame.size.height-99, 41, 41);
-    [imgview addTarget:self action:@selector(onUpdataClick) forControlEvents:UIControlEventTouchUpInside];
-    [imgview setBackgroundImage:[UIImage imageNamed:@"icon_shuaxin"] forState:UIControlStateNormal];
+    _imgview = [[UIButton alloc]init];
+    _imgview.frame = CGRectMake(15,self.view.frame.size.height-99, 41, 41);
+    [_imgview addTarget:self action:@selector(onUpdataClick) forControlEvents:UIControlEventTouchUpInside];
+    [_imgview setBackgroundImage:[UIImage imageNamed:@"icon_shuaxin"] forState:UIControlStateNormal];
     
-    [self.view addSubview:imgview];
+    [self.view addSubview:_imgview];
     //imgview.sd_layout.leftEqualToView(positioningBtn).bottomSpaceToView(positioningBtn, 13.5).widthIs(41).heightIs(41);
     
-    _imgview = imgview;
     
 
     
@@ -222,20 +221,18 @@ static double angle=0;
 #pragma mark 点击刷新执行该方法
 -(void)onUpdataClick{
     NSLog(@"我点了");
-    
+    _timer=[NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(onTimer) userInfo:nil repeats:YES];
     [self QueryEquipmentNear:_mapView];
-    _timer=[NSTimer scheduledTimerWithTimeInterval:0.0001 target:self selector:@selector(onTimer) userInfo:nil repeats:YES];
+    
 }
 -(void)onTimer {
-    //    NSLog(@"111")
     static int angle = 0;
-    angle +=30;
+    angle +=5;
     _imgview.transform = CGAffineTransformMakeRotation(angle*M_PI/180);
-    
-    //362 2
-    //%360
+
     if (angle >= 360) {
-        angle = 0/*angle-360*/;
+        angle = 0;
+        NSLog(@"几圈了");
     }
     
     NSLog(@"%d",angle);
