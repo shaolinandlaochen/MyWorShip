@@ -15,6 +15,7 @@
 #import "CommonUtility.h"
 static const NSString *RoutePlanningViewControllerStartTitle       = @"起点";
 static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
+static double angle=0;
 @interface HomeViewController ()<MAMapViewDelegate,SGQRCodeScanningVCDelegate,MyViewControllerDelegate,AMapNaviWalkManagerDelegate,APinOperationDelegate,AMapNaviDriveManagerDelegate,AMapSearchDelegate>
 {
     MAMapView *_mapView;
@@ -23,7 +24,9 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
     MyButton *_location;
     BOOL state;//地图状态:yes表示正在导航(推荐路线中) no表示常规状态
     MAMapPoint point;
-    APinOperationView *_apinView;//操作大头针的视图view
+    APinOperationView *_apinView;//操作大头针的视图view+
+    MyButton *_upDataButton;//刷新按钮
+    NSTimer *_timer;
 }
 /* 起始点经纬度. */
 @property (nonatomic) CLLocationCoordinate2D startCoordinate;
@@ -55,6 +58,8 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
     self.search.delegate = self;
     // Do any additional setup after loading the view.
 }
+
+
 #pragma mark 创建大头针的弹框
 -(void)CreateBounced{
 
@@ -199,8 +204,43 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
     IMGCentr.image=[UIImage imageNamed:@"icon_zuobiao"];
     [self.view addSubview:IMGCentr];
     IMGCentr.sd_layout.leftSpaceToView(self.view, (self.view.frame.size.width-25)/2).topSpaceToView(self.view, (self.view.frame.size.height-38)/2).widthIs(25).heightIs(38);
+    autoSize
+    UIButton *imgview = [[UIButton alloc]init];
+    imgview.frame = CGRectMake(15,self.view.frame.size.height-99, 41, 41);
+    [imgview addTarget:self action:@selector(onUpdataClick) forControlEvents:UIControlEventTouchUpInside];
+    [imgview setBackgroundImage:[UIImage imageNamed:@"icon_shuaxin"] forState:UIControlStateNormal];
+    
+    [self.view addSubview:imgview];
+    //imgview.sd_layout.leftEqualToView(positioningBtn).bottomSpaceToView(positioningBtn, 13.5).widthIs(41).heightIs(41);
+    
+    _imgview = imgview;
+    
+
+    
     
 }
+#pragma mark 点击刷新执行该方法
+-(void)onUpdataClick{
+    NSLog(@"我点了");
+    
+    [self QueryEquipmentNear:_mapView];
+    _timer=[NSTimer scheduledTimerWithTimeInterval:0.0001 target:self selector:@selector(onTimer) userInfo:nil repeats:YES];
+}
+-(void)onTimer {
+    //    NSLog(@"111")
+    static int angle = 0;
+    angle +=30;
+    _imgview.transform = CGAffineTransformMakeRotation(angle*M_PI/180);
+    
+    //362 2
+    //%360
+    if (angle >= 360) {
+        angle = 0/*angle-360*/;
+    }
+    
+    NSLog(@"%d",angle);
+}
+
 
 #pragma mark 点击定位回到初始位置或者反馈
 -(void)PositioningAndFeedback:(MyButton *)btn{
@@ -607,6 +647,8 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
                 [mapView removeAnnotations:mapView.annotations];
                 [self MrPin:mapView];
             }
+            //制空定时器(销毁)
+            [_timer invalidate];_timer=nil;
         }];
     }
 
@@ -888,6 +930,7 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
 
    [UIView animateWithDuration:0.3 animations:^{
        _apinView.nulls=@"a";
+       [self clear];//清楚路线缓存
        [_mapView removeOverlays:_mapView.overlays];//移除所有推荐线路
        _apinView.frame=CGRectMake(0, -100, WIDTH, 95);
    }];

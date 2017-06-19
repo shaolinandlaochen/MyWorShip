@@ -112,7 +112,7 @@ CANCEL
     return 1;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 70;
+    return 150;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0;
@@ -122,9 +122,106 @@ CANCEL
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    
+}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *view=[[UIView alloc]init];
+    view.backgroundColor=[self colorWithHexString:@"f3f5f7"];
+    return view;
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     OrderBaseClass *class=[[OrderBaseClass alloc]initWithDictionary:self.dataDic];
     OrderResultList *list=class.pagingList.resultList[indexPath.section];
-   
+    CELLINIT(@"nidexpath", OrderCell)
+    cell.time.text=stringFormat(list.orderTime);
+    NSMutableAttributedString *str2 = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"¥%.1f",list.orderAmount]];
+    [str2 addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"Arial" size:14] range:NSMakeRange(0, 1)];
+    [str2 addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"Arial" size:20] range:NSMakeRange(1, [[NSString stringWithFormat:@"%.1f",list.orderAmount] length])];
+    cell.money.attributedText=str2;
+    
+    
+    NSMutableAttributedString *nameStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"购买商品: %@",list.commodityName]];
+    [nameStr addAttribute:NSForegroundColorAttributeName value:[MyClass colorWithHexString:@"a3a3a3"] range:NSMakeRange(0,6)];
+    [nameStr addAttribute:NSForegroundColorAttributeName value:[MyClass colorWithHexString:@"000000"] range:NSMakeRange(6,[stringFormat(list.commodityName) length])];
+    cell.name.attributedText=nameStr;
+    
+    NSMutableAttributedString *locationStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"厕所位置: %@",list.equipmentAddress]];
+    [locationStr addAttribute:NSForegroundColorAttributeName value:[MyClass colorWithHexString:@"a3a3a3"] range:NSMakeRange(0,6)];
+    [locationStr addAttribute:NSForegroundColorAttributeName value:[MyClass colorWithHexString:@"000000"] range:NSMakeRange(6,[stringFormat(list.equipmentAddress) length])];
+    cell.location.attributedText=locationStr;
+    
+    cell.stateBtn.indexPath=indexPath;
+    if (list.orderState==1) {//已付款未发货
+        [cell.stateBtn setTitle:@"取消订单" forState:UIControlStateNormal];
+        [cell.stateBtn setTitleColor:[MyClass colorWithHexString:@"#000000"] forState:UIControlStateNormal];
+        [cell.stateBtn.layer setBorderColor:[MyClass colorWithHexString:@"#000000"].CGColor];
+        [cell.stateBtn.layer setBorderWidth:1];
+        [cell.stateBtn.layer setMasksToBounds:YES];
+        cell.stateBtn.layer.cornerRadius = 5;
+        cell.stateBtn.layer.masksToBounds = 5;
+        [cell.stateBtn addTarget:self action:@selector(onCancelTheOrderAnd_ToCommentOnClick:) forControlEvents:UIControlEventTouchUpInside];
+    }else if (list.orderState==2){//已发货未评价
+        [cell.stateBtn setTitle:@"去评论" forState:UIControlStateNormal];
+        [cell.stateBtn setTitleColor:[MyClass colorWithHexString:@"#ff4c59"] forState:UIControlStateNormal];
+        [cell.stateBtn.layer setBorderColor:[MyClass colorWithHexString:@"#ff4c59"].CGColor];
+        [cell.stateBtn.layer setBorderWidth:1];
+        [cell.stateBtn.layer setMasksToBounds:YES];
+        cell.stateBtn.layer.cornerRadius = 5;
+        cell.stateBtn.layer.masksToBounds = 5;
+        [cell.stateBtn addTarget:self action:@selector(onCancelTheOrderAnd_ToCommentOnClick:) forControlEvents:UIControlEventTouchUpInside];
+    }else if (list.orderState==3){//
+        [cell.stateBtn setTitle:@"已完成" forState:UIControlStateNormal];
+        [cell.stateBtn setTitleColor:[MyClass colorWithHexString:@"a3a3a3"] forState:UIControlStateNormal];
+        [cell.stateBtn.layer setBorderColor:[UIColor clearColor].CGColor];
+    }else if (list.orderState==4){
+        [cell.stateBtn setTitle:@"退款成功" forState:UIControlStateNormal];
+        [cell.stateBtn setTitleColor:[MyClass colorWithHexString:@"a3a3a3"] forState:UIControlStateNormal];
+        [cell.stateBtn.layer setBorderColor:[UIColor clearColor].CGColor];
+    }else if (list.orderState==-1){
+        [cell.stateBtn setTitle:@"退款成功" forState:UIControlStateNormal];
+        [cell.stateBtn setTitleColor:[MyClass colorWithHexString:@"a3a3a3"] forState:UIControlStateNormal];
+        [cell.stateBtn.layer setBorderColor:[UIColor clearColor].CGColor];
+    }else if (list.orderState==-2){
+        [cell.stateBtn setTitle:@"退款中" forState:UIControlStateNormal];
+        [cell.stateBtn setTitleColor:[MyClass colorWithHexString:@"#ff4c59"] forState:UIControlStateNormal];
+        [cell.stateBtn.layer setBorderColor:[UIColor clearColor].CGColor];
+    }else if (list.orderState==-3){
+        [cell.stateBtn setTitle:@"退款失败" forState:UIControlStateNormal];
+        [cell.stateBtn setTitleColor:[MyClass colorWithHexString:@"a3a3a3"] forState:UIControlStateNormal];
+        [cell.stateBtn.layer setBorderColor:[UIColor clearColor].CGColor];
+    }
+    
+
+
+
+    return cell;
+}
+#pragma mark 筛选
+-(void)onButtonClick:(UIButton *)btn{
+    if (btn.tag==index+1) {
+        return;
+    }else{
+    
+        index=btn.tag-1;
+        for (int i=0; i<4; i++) {
+            [((UIButton *)[self.view viewWithTag:i+1]) setTitleColor:[MyClass colorWithHexString:@"000000"] forState:UIControlStateNormal];
+            ((UILabel *)[self.view viewWithTag:i+10]).backgroundColor=[UIColor clearColor];
+        }
+        [((UIButton *)[self.view viewWithTag:index+1]) setTitleColor:[MyClass colorWithHexString:@"ff4c59"] forState:UIControlStateNormal];
+        ((UILabel *)[self.view viewWithTag:btn.tag+9]).backgroundColor=[MyClass colorWithHexString:@"ff4c59"];
+        [self ToObtainAListOrder];
+    }
+    
+
+    
+    
+}
+#pragma mark 取消订单和去评论
+-(void)onCancelTheOrderAnd_ToCommentOnClick:(MyButton *)btn{
+    OrderBaseClass *class=[[OrderBaseClass alloc]initWithDictionary:self.dataDic];
+    OrderResultList *list=class.pagingList.resultList[btn.indexPath.section];
+    
     if (list.orderState==1) {//已付款未发货
         UIAlertController *alert=[UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请选择取消订单理由" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *action1=[UIAlertAction actionWithTitle:@"设备故障" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
@@ -160,7 +257,7 @@ CANCEL
         [alert addAction:action3];
         [self presentViewController:alert animated:YES completion:nil];
     }else if (list.orderState==2){//已发货未评价
-
+        
         EvaluationViewController *Evaluation=[[EvaluationViewController alloc]init];
         Evaluation.delegate=self;
         Evaluation.name=stringFormat(list.commodityName);
@@ -170,78 +267,6 @@ CANCEL
         Evaluation.commodity_serial=[NSString stringWithFormat:@"%.0f",list.commoditySerial];
         [self.navigationController pushViewController:Evaluation animated:YES];
     }
-    
-}
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    UIView *view=[[UIView alloc]init];
-    view.backgroundColor=[self colorWithHexString:@"f3f5f7"];
-    return view;
-}
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    OrderBaseClass *class=[[OrderBaseClass alloc]initWithDictionary:self.dataDic];
-    OrderResultList *list=class.pagingList.resultList[indexPath.section];
-    CELLINIT(@"nidexpath", OrderCell)
-    cell.time.text=stringFormat(list.orderTime);
-    NSMutableAttributedString *str2 = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"¥%.1f",list.orderAmount]];
-    [str2 addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"Arial" size:14] range:NSMakeRange(0, 1)];
-    [str2 addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"Arial" size:25] range:NSMakeRange(1, [[NSString stringWithFormat:@"%.1f",list.orderAmount] length])];
-    cell.money.attributedText=str2;
-    cell.location.text=stringFormat(list.equipmentAddress);
-    cell.name.text=stringFormat(list.commodityName);
-    if (list.orderState==1) {//已付款未发货
-        cell.imgRight.image=[UIImage imageNamed:@"icon_right"];
-        cell.state.text=@"取消订单";
-        cell.state.textColor=[MyClass colorWithHexString:@"a3a3a3"];
-    }else if (list.orderState==2){//已发货未评价
-        cell.imgRight.image=[UIImage imageNamed:@"icon_right"];
-        cell.state.text=@"去评论";
-        cell.state.textColor=[MyClass colorWithHexString:@"a3a3a3"];
-    }else if (list.orderState==3){//
-        cell.imgRight.image=[UIImage imageNamed:@""];
-        cell.state.text=@"已完成";
-        cell.state.textColor=[MyClass colorWithHexString:@"a3a3a3"];
-    }else if (list.orderState==4){
-        cell.imgRight.image=[UIImage imageNamed:@""];
-        cell.state.text=@"退款成功";
-        cell.state.textColor=[MyClass colorWithHexString:@"a3a3a3"];
-    }else if (list.orderState==-1){
-        cell.imgRight.image=[UIImage imageNamed:@""];
-        cell.state.text=@"退款成功";
-        cell.state.textColor=[MyClass colorWithHexString:@"a3a3a3"];
-    }else if (list.orderState==-2){
-        cell.imgRight.image=[UIImage imageNamed:@""];
-        cell.state.text=@"处理中";
-        cell.state.textColor=[MyClass colorWithHexString:@"a3a3a3"];
-    }else if (list.orderState==-3){
-        cell.imgRight.image=[UIImage imageNamed:@""];
-        cell.state.text=@"退款失败";
-        cell.state.textColor=[MyClass colorWithHexString:@"a3a3a3"];
-    }
-    
-
-
-
-    return cell;
-}
-#pragma mark 筛选
--(void)onButtonClick:(UIButton *)btn{
-    if (btn.tag==index+1) {
-        return;
-    }else{
-    
-        index=btn.tag-1;
-        for (int i=0; i<4; i++) {
-            [((UIButton *)[self.view viewWithTag:i+1]) setTitleColor:[MyClass colorWithHexString:@"000000"] forState:UIControlStateNormal];
-            ((UILabel *)[self.view viewWithTag:i+10]).backgroundColor=[UIColor clearColor];
-        }
-        [((UIButton *)[self.view viewWithTag:index+1]) setTitleColor:[MyClass colorWithHexString:@"ff4c59"] forState:UIControlStateNormal];
-        ((UILabel *)[self.view viewWithTag:btn.tag+9]).backgroundColor=[MyClass colorWithHexString:@"ff4c59"];
-        [self ToObtainAListOrder];
-    }
-    
-
-    
-    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
