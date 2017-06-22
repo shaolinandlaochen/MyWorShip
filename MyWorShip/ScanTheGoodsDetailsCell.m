@@ -65,12 +65,15 @@
 
 -(void)setModel:(EquipmentCommodityResultList *)model{
     _name.text=stringFormat(model.commodityName);
+    
     _money.text=[NSString stringWithFormat:@"¥%.2f",model.commoditySellprice];
     CGSize moneySize=[MyClass StringHeight:_money.text Lblfont:17 heightOfTheMinus:0];
     _money.sd_layout.widthIs(moneySize.width).autoHeightRatio(0);
-    _VIPmoney.text=[NSString stringWithFormat:@"VIP:¥%.2f元",model.commodityVipSellprice];
     
-    _VIPmoney.sd_layout.widthIs(moneySize.width).autoHeightRatio(0);
+    _VIPmoney.text=[NSString stringWithFormat:@"VIP:¥%.2f元",model.commodityVipSellprice];
+    CGSize VIPSize=[MyClass StringHeight:_VIPmoney.text Lblfont:14 heightOfTheMinus:0];
+    _VIPmoney.sd_layout.widthIs(VIPSize.width).autoHeightRatio(0);
+    
     _context.text=[NSString stringWithFormat:@"已售:%.0f 剩余:%.0f ",model.commoditySales,model.commodityReserves];
     
 

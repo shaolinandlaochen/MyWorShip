@@ -220,8 +220,8 @@ static double angle=0;
 }
 #pragma mark 点击刷新执行该方法
 -(void)onUpdataClick{
-    NSLog(@"我点了");
-    _timer=[NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(onTimer) userInfo:nil repeats:YES];
+    //_timer=[NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(onTimer) userInfo:nil repeats:YES];
+    [SVProgressHUD showWithStatus:@"正在查找附近的设备,请稍后..."];
     [self QueryEquipmentNear:_mapView];
     
 }
@@ -232,7 +232,6 @@ static double angle=0;
 
     if (angle >= 360) {
         angle = 0;
-        NSLog(@"几圈了");
     }
     
     NSLog(@"%d",angle);

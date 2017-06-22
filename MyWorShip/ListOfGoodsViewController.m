@@ -10,6 +10,7 @@
 #import "ScanTheGoodsDetailsCell.h"
 #import "GoodsDetailsViewController.h"
 #import "GoodsRequest.h"
+#import "PayViewController.h"
 @interface ListOfGoodsViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     UITableView *_tableView;
@@ -82,6 +83,8 @@
     EquipmentCommodityResultList *list=class.pagingList.resultList[indexPath.row];
     cell.model=list;
     [cell.image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",class.imgSrc,list.commodityImagesPath,list.commodityCoverImage]]];
+    cell.buyBtn.indexPath=indexPath;
+    [cell.buyBtn addTarget:self action:@selector(onGoodsDtaileBuyClick:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
 
@@ -100,6 +103,15 @@
     }];
     
     
+}
+#pragma mark 用户点击立即购买执行该方法
+-(void)onGoodsDtaileBuyClick:(MyButton *)btn{
+    EquipmentCommodityBaseClass *class=[[EquipmentCommodityBaseClass alloc]initWithDictionary:self.dataDic];
+    EquipmentCommodityResultList *list=class.pagingList.resultList[btn.indexPath.row];
+    PayViewController *Pay=[[PayViewController alloc]init];
+    Pay.ResultList=list;
+    [self.navigationController pushViewController:Pay animated:YES];
+
 }
 CANCEL
 - (void)didReceiveMemoryWarning {

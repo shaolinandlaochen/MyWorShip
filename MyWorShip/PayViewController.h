@@ -9,5 +9,5 @@
 #import "MyClass.h"
 
 @interface PayViewController : MyClass
-
+@property(nonatomic,strong)EquipmentCommodityResultList *ResultList;
 @end
