@@ -222,6 +222,7 @@ static double angle=0;
 -(void)onUpdataClick{
     //_timer=[NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(onTimer) userInfo:nil repeats:YES];
     [SVProgressHUD showWithStatus:@"正在查找附近的设备,请稍后..."];
+    [self initMapViewData];//清楚地图上所有位置信息
     [self QueryEquipmentNear:_mapView];
     
 }
@@ -924,13 +925,17 @@ static double angle=0;
  */
 - (void)mapView:(MAMapView *)mapView didSingleTappedAtCoordinate:(CLLocationCoordinate2D)coordinate{
 
-   [UIView animateWithDuration:0.3 animations:^{
-       _apinView.nulls=@"a";
-       [self clear];//清楚路线缓存
-       [_mapView removeOverlays:_mapView.overlays];//移除所有推荐线路
-       _apinView.frame=CGRectMake(0, -100, WIDTH, 95);
-   }];
+    [self initMapViewData];
     
+}
+#pragma mark 用户点击地图执行该方法
+-(void)initMapViewData{
+    [UIView animateWithDuration:0.3 animations:^{
+        _apinView.nulls=@"a";
+        [self clear];//清楚路线缓存
+        [_mapView removeOverlays:_mapView.overlays];//移除所有推荐线路
+        _apinView.frame=CGRectMake(0, -100, WIDTH, 95);
+    }];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
