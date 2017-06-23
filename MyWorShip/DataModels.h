@@ -50,5 +50,6 @@
 #import "EquipmentCommodityPagingList.h"
 #import "CouponList.h"
 #import "BaseClass.h"
+#import "PayForResultsBaseClass.h"
 
 

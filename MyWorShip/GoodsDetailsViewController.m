@@ -234,6 +234,8 @@
 -(void)onBuyClick{
     GoodsDetilBaseClass *class=[[GoodsDetilBaseClass alloc]initWithDictionary:self.dataDic];
     PayViewController *Pay=[[PayViewController alloc]init];
+    Pay.imgUrl=self.imgUrl;
+    Pay.model=class;
     Pay.equipment_uuid=self.equipment_uuid;
     Pay.commodity_serial=[NSString stringWithFormat:@"%.0f",class.comm.commoditySerial];
     [self.navigationController pushViewController:Pay animated:YES];

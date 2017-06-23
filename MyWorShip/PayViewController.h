@@ -16,4 +16,6 @@
 @property(nonatomic,copy)NSString *coupon_id;
 @property(nonatomic,copy)NSString *equipment_uuid;
 @property(nonatomic,copy)NSString *commodity_serial;
+@property(nonatomic,copy)NSString *imgUrl;
+@property(nonatomic,strong)GoodsDetilBaseClass *model;
 @end

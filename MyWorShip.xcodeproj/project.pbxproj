@@ -441,6 +441,8 @@
 		9D977C631EFCE42D0062A0CE /* CouponList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D977C601EFCE42D0062A0CE /* CouponList.m */; };
 		9D977C661EFCF16D0062A0CE /* ChooseACouponViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D977C651EFCF16D0062A0CE /* ChooseACouponViewController.m */; };
 		9D977C691EFCF42B0062A0CE /* ChooseACouponCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D977C681EFCF42B0062A0CE /* ChooseACouponCell.m */; };
+		9D977C6C1EFD16E00062A0CE /* OrderBuyBaseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D977C6B1EFD16E00062A0CE /* OrderBuyBaseClass.m */; };
+		9D977C6F1EFD19730062A0CE /* PayForResultsBaseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D977C6E1EFD19730062A0CE /* PayForResultsBaseClass.m */; };
 		9DD5016B1EE68B4F00278600 /* MoneyRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DD5016A1EE68B4F00278600 /* MoneyRequest.m */; };
 		9DD5016E1EE68C8700278600 /* WalletBalanceBaseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DD5016D1EE68C8700278600 /* WalletBalanceBaseClass.m */; };
 		9DD501731EE6902B00278600 /* Top_up_detailBaseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DD501701EE6902B00278600 /* Top_up_detailBaseClass.m */; };
@@ -1051,6 +1053,10 @@
 		9D977C651EFCF16D0062A0CE /* ChooseACouponViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseACouponViewController.m; sourceTree = "<group>"; };
 		9D977C671EFCF42B0062A0CE /* ChooseACouponCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseACouponCell.h; sourceTree = "<group>"; };
 		9D977C681EFCF42B0062A0CE /* ChooseACouponCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseACouponCell.m; sourceTree = "<group>"; };
+		9D977C6A1EFD16E00062A0CE /* OrderBuyBaseClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderBuyBaseClass.h; sourceTree = "<group>"; };
+		9D977C6B1EFD16E00062A0CE /* OrderBuyBaseClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderBuyBaseClass.m; sourceTree = "<group>"; };
+		9D977C6D1EFD19730062A0CE /* PayForResultsBaseClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayForResultsBaseClass.h; sourceTree = "<group>"; };
+		9D977C6E1EFD19730062A0CE /* PayForResultsBaseClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayForResultsBaseClass.m; sourceTree = "<group>"; };
 		9DD501691EE68B4F00278600 /* MoneyRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoneyRequest.h; sourceTree = "<group>"; };
 		9DD5016A1EE68B4F00278600 /* MoneyRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyRequest.m; sourceTree = "<group>"; };
 		9DD5016C1EE68C8700278600 /* WalletBalanceBaseClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalletBalanceBaseClass.h; sourceTree = "<group>"; };
@@ -2140,6 +2146,10 @@
 				9D977C5C1EFCE42D0062A0CE /* BaseClass.m */,
 				9D977C5F1EFCE42D0062A0CE /* CouponList.h */,
 				9D977C601EFCE42D0062A0CE /* CouponList.m */,
+				9D977C6A1EFD16E00062A0CE /* OrderBuyBaseClass.h */,
+				9D977C6B1EFD16E00062A0CE /* OrderBuyBaseClass.m */,
+				9D977C6D1EFD19730062A0CE /* PayForResultsBaseClass.h */,
+				9D977C6E1EFD19730062A0CE /* PayForResultsBaseClass.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -2810,6 +2820,7 @@
 				9D97715E1ED41BB9005EAC95 /* AppDelegate.m in Sources */,
 				9D9772F51ED7B789005EAC95 /* MessageForDetailsViewController.m in Sources */,
 				9DF855CE1EF222D600E8D250 /* VIPPagingList.m in Sources */,
+				9D977C6F1EFD19730062A0CE /* PayForResultsBaseClass.m in Sources */,
 				9D9771DD1ED4348B005EAC95 /* MyButton.m in Sources */,
 				9D42010E1EEA2F7A00425D5D /* CouponsListPagingList.m in Sources */,
 				9D4201231EEA7C9300425D5D /* MyVIPViewController.m in Sources */,
@@ -2872,6 +2883,7 @@
 				9DF855D21EF2233D00E8D250 /* APinOperationView.m in Sources */,
 				9D42014D1EEA867A00425D5D /* VIPView.m in Sources */,
 				9DF855CD1EF222D600E8D250 /* VIPBaseClass.m in Sources */,
+				9D977C6C1EFD16E00062A0CE /* OrderBuyBaseClass.m in Sources */,
 				9D9772021ED5611E005EAC95 /* SGQRCodeScanningView.m in Sources */,
 				9D0C763E1EEE3D73006AF814 /* EvaluationListListComment.m in Sources */,
 				9D4201261EEA800500425D5D /* VIPCustomerInformationCell.m in Sources */,

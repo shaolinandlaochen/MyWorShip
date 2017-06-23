@@ -13,4 +13,5 @@
 @property(nonatomic,copy)NSString *why;
 @property(nonatomic,strong)NSDictionary *dataDic;//接收数据
 @property(nonatomic,copy)NSString *equipment_uuid;
+@property(nonatomic,copy)NSString *imgUrl;
 @end

@@ -12,6 +12,7 @@
 #import "PayCell.h"
 #import "BuyRequest.h"
 #import "ChooseACouponViewController.h"
+#import "OrderBuyBaseClass.h"
 @interface PayViewController ()<UITableViewDelegate,UITableViewDataSource,ChooseACouponDelegate>
 {
     UITableView *_tableView;
@@ -41,7 +42,7 @@
         BaseClass *class=[[BaseClass alloc]initWithDictionary:[self deleteEmpty:dic]];
         if ([stringFormat(class.code) isEqualToString:@"3"]) {
             self.dataDic=[self deleteEmpty:dic];
-            if (class.couponList.count>0) {
+            if (class.couponList.count>0&&class.freeCount<1) {
                 CouponList *monsy=class.couponList[0];
                 self.coupon_id=[NSString stringWithFormat:@"%.0f",monsy.couponListIdentifier];
                 if (monsy.couponType==0||monsy.couponType==2) {//满减,抵用
@@ -93,7 +94,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     BaseClass *class=[[BaseClass alloc]initWithDictionary:self.dataDic];
     if (indexPath.row==1) {
-        if (class.couponList.count>0) {
+        if (class.couponList.count>0&&class.freeCount<1) {
             return 50;
         }else{
             return 0;
@@ -192,7 +193,7 @@
         cell.name.text=@"商品价格";
         cell.money.text=[NSString stringWithFormat:@"¥%.2f",class.commoditySellprice];
     }else if (indexPath.row==1){
-        if (class.couponList.count>0) {
+        if (class.couponList.count>0&&class.freeCount<1) {
             cell.name.text=[NSString stringWithFormat:@"优惠券(%ld张可用)",class.couponList.count];
             cell.imgName=@"imgName";
             if (self.DiscountAmount>0) {
@@ -204,7 +205,12 @@
         }
     }else if (indexPath.row==2){
     cell.name.text=@"实际消费";
-    cell.money.text=[NSString stringWithFormat:@"¥%.2f",self.ActualConsumptionAmount];
+        if (class.freeCount>0) {
+            cell.money.text=@"¥0.00";
+        }else{
+        cell.money.text=[NSString stringWithFormat:@"¥%.2f",self.ActualConsumptionAmount];
+        }
+    
     }
     return cell;
 }
@@ -212,11 +218,35 @@
 #pragma mark 立即支付
 -(void)onBuyClick{
     [SVProgressHUD showWithStatus:loading];
+    
     [BuyRequest GoodsOrder_equipment_uuid:self.equipment_uuid pay_type:@"0" commodity_serial:self.commodity_serial coupon_id:self.coupon_id Block:^(NSDictionary *dic) {
+        OrderBuyBaseClass *class=[[OrderBuyBaseClass alloc]initWithDictionary:[self deleteEmpty:dic]];
+        if ([stringFormat(class.code) isEqualToString:@"60"]) {
+            [BuyRequest PaymentInterface_order_serial:[NSString stringWithFormat:@"%@",class.serial] Block:^(NSDictionary *dic) {
+                PayForResultsBaseClass *model=[[PayForResultsBaseClass alloc]initWithDictionary:[self deleteEmpty:dic]];
+                if ([stringFormat(model.code) isEqualToString:@"32"]) {
+                    ShipmentViewController *Shipment=[[ShipmentViewController alloc]init];
+                    Shipment.model=model;
+                    Shipment.commodity_serial=self.commodity_serial;
+                    Shipment.serial=[NSString stringWithFormat:@"%@",class.serial];
+                    if (self.model!=nil) {
+                        Shipment.nameString=self.model.comm.commodityName;
+                        Shipment.money=[NSString stringWithFormat:@"%.0f",self.model.comm.commoditySellprice];
+                    }else{
+                        Shipment.nameString=self.ResultList.commodityName;
+                        Shipment.money=[NSString stringWithFormat:@"%.0f",self.ResultList.commoditySellprice];
+                    }
+                    [self.navigationController pushViewController:Shipment animated:YES];
+                }else{
+                    [SVProgressHUD showErrorWithStatus:model.msg];
+                }
+            }];
+        }else{
+            [SVProgressHUD showErrorWithStatus:stringFormat(class.msg)];
+        }
         
     }];
-//    ShipmentViewController *Shipment=[[ShipmentViewController alloc]init];
-//    [self.navigationController pushViewController:Shipment animated:YES];
+
 }
 #pragma mark 充值
 -(void)onTop_UpClick{
