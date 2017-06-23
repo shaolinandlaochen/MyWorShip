@@ -64,6 +64,7 @@
     EquipmentCommodityResultList *list=class.pagingList.resultList[indexPath.row];
     GoodsDetailsViewController *GoodsDetails=[[GoodsDetailsViewController alloc]init];
     GoodsDetails.why=@"a";
+    GoodsDetails.equipment_uuid=self.equipment_uuid;
     GoodsDetails.goodsID=[NSString stringWithFormat:@"%.0f",list.commoditySerial];
     [self.navigationController pushViewController:GoodsDetails animated:YES];
     
@@ -110,6 +111,8 @@
     EquipmentCommodityResultList *list=class.pagingList.resultList[btn.indexPath.row];
     PayViewController *Pay=[[PayViewController alloc]init];
     Pay.ResultList=list;
+    Pay.commodity_serial=[NSString stringWithFormat:@"%.0f",list.commoditySerial];
+    Pay.equipment_uuid=self.equipment_uuid;
     [self.navigationController pushViewController:Pay animated:YES];
 
 }

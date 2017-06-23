@@ -9,8 +9,13 @@
 #import "PayViewController.h"
 #import "TopUpAmountViewController.h"
 #import "ShipmentViewController.h"
-@interface PayViewController ()
-
+#import "PayCell.h"
+#import "BuyRequest.h"
+#import "ChooseACouponViewController.h"
+@interface PayViewController ()<UITableViewDelegate,UITableViewDataSource,ChooseACouponDelegate>
+{
+    UITableView *_tableView;
+}
 @end
 
 @implementation PayViewController
@@ -19,52 +24,140 @@
     [super viewDidLoad];
     self.title=@"支付";
     lfteItemAndColor
-    [self CreateAView];
+    _tableView=[[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    _tableView.backgroundColor=[self colorWithHexString:@"f3f5f7"];
+    _tableView.delegate=self;
+    _tableView.dataSource=self;
+    _tableView.showsVerticalScrollIndicator = NO;
+    _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    _tableView.separatorColor=[self colorWithHexString:@"d7d7d7"];
+    [self.view addSubview:_tableView];
+    TheDrop_downRefresh(_tableView, @selector(onCreatGoods))
     // Do any additional setup after loading the view.
 }
-#pragma mark 创建视图
--(void)CreateAView{
-    NAVHEIGHT
-    RECTSTATUS
+#pragma mark 查询数据
+-(void)onCreatGoods{
+    [BuyRequest TheWalletPaymentInformationQuery_commodity_serial:self.commodity_serial Block:^(NSDictionary *dic) {
+        BaseClass *class=[[BaseClass alloc]initWithDictionary:[self deleteEmpty:dic]];
+        if ([stringFormat(class.code) isEqualToString:@"3"]) {
+            self.dataDic=[self deleteEmpty:dic];
+            if (class.couponList.count>0) {
+                CouponList *monsy=class.couponList[0];
+                self.coupon_id=[NSString stringWithFormat:@"%.0f",monsy.couponListIdentifier];
+                if (monsy.couponType==0||monsy.couponType==2) {//满减,抵用
+                    self.ActualConsumptionAmount=class.commoditySellprice-monsy.couponSubtractAmount;
+                }else if (monsy.couponType==1){//折扣
+                    self.ActualConsumptionAmount=class.commoditySellprice*monsy.couponDiscount;
+                }
+                self.DiscountAmount=class.commoditySellprice-self.ActualConsumptionAmount;//优惠的金额
+            }else{
+            self.ActualConsumptionAmount=class.commoditySellprice;
+            }
+            [_tableView reloadData];
+        }else{
+            [SVProgressHUD showErrorWithStatus:stringFormat(class.msg)];
+        }
+        [_tableView.mj_header endRefreshing];
+    }];
+    
+}
+// mark 选择优惠券
+-(void)Choose_a_coupon:(NSInteger)index{
+    BaseClass *class=[[BaseClass alloc]initWithDictionary:self.dataDic];
+    if (index<class.couponList.count) {
+        CouponList *monsy=class.couponList[index];
+        self.coupon_id=[NSString stringWithFormat:@"%.0f",monsy.couponListIdentifier];
+        if (monsy.couponType==0||monsy.couponType==2) {//满减,抵用
+            self.ActualConsumptionAmount=class.commoditySellprice-monsy.couponSubtractAmount;
+        }else if (monsy.couponType==1){//折扣
+            self.ActualConsumptionAmount=class.commoditySellprice*monsy.couponDiscount;
+        }
+        self.DiscountAmount=class.commoditySellprice-self.ActualConsumptionAmount;//优惠的金额
+    }else{
+        self.ActualConsumptionAmount=class.commoditySellprice;
+        self.DiscountAmount=0;
+        self.coupon_id=nil;
+    }
+    [_tableView reloadData];
+}
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    if (self.dataDic!=nil) {
+        return 1;
+    }
+    return 0;
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return 3;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    BaseClass *class=[[BaseClass alloc]initWithDictionary:self.dataDic];
+    if (indexPath.row==1) {
+        if (class.couponList.count>0) {
+            return 50;
+        }else{
+            return 0;
+        }
+    }
+    return 50;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 107;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 100;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.row==1) {
+        BaseClass *class=[[BaseClass alloc]initWithDictionary:self.dataDic];
+        ChooseACouponViewController *ChooseACoupon=[[ChooseACouponViewController alloc]init];
+        ChooseACoupon.delegate=self;
+        ChooseACoupon.model=class;
+        ChooseACoupon.modalPresentationStyle = UIModalPresentationOverFullScreen;
+        [self presentViewController:ChooseACoupon animated:YES completion:^{
+            ChooseACoupon.view.backgroundColor = [[UIColor clearColor] colorWithAlphaComponent:0.5];
+        }];
+    }
+    
+}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *view=[[UIView alloc]init];
+    BaseClass *class=[[BaseClass alloc]initWithDictionary:self.dataDic];
+    view.backgroundColor=[self colorWithHexString:@"f3f5f7"];
     UILabel *lblOne=[[UILabel alloc]init];
     lblOne.textColor=[MyClass colorWithHexString:@"000000"];
     lblOne.font=[UIFont systemFontOfSize:17];
     lblOne.textAlignment=NSTextAlignmentCenter;
     lblOne.text=@"账户余额";
-    [self.view addSubview:lblOne];
-    lblOne.sd_layout.leftSpaceToView(self.view, 0).rightSpaceToView(self.view, 0).topSpaceToView(self.view, 29+navheight+rectStatus.size.height).autoHeightRatio(0);
+    [view addSubview:lblOne];
+    lblOne.sd_layout.leftSpaceToView(view, 0).rightSpaceToView(view, 0).topSpaceToView(view, 29).autoHeightRatio(0);
     
     
     UILabel *money=[[UILabel alloc]init];
     money.textColor=[MyClass colorWithHexString:@"000000"];
     money.font=[UIFont systemFontOfSize:17];
     money.textAlignment=NSTextAlignmentCenter;
-    money.text=@"¥200.00";
-    [self.view addSubview:money];
-    money.sd_layout.leftSpaceToView(self.view, 0).rightSpaceToView(self.view, 0).topSpaceToView(lblOne, 10).autoHeightRatio(0);
+    money.text=[NSString stringWithFormat:@"¥%.2f",class.remain];
+    [view addSubview:money];
+    money.sd_layout.leftSpaceToView(view, 0).rightSpaceToView(view, 0).topSpaceToView(lblOne, 10).autoHeightRatio(0);
     
+    UILabel *message=[[UILabel alloc]init];
+    message.textColor=[MyClass colorWithHexString:@"ff4c59"];
+    message.font=[UIFont systemFontOfSize:12];
+    message.textAlignment=NSTextAlignmentCenter;
+    if (class.freeCount>0) {
+        message.text=[NSString stringWithFormat:@"VIP免费消费次数本月剩余:%.0f次",class.freeCount];
+    }
     
+    [view addSubview:message];
+    message.sd_layout.leftSpaceToView(view, 0).rightSpaceToView(view, 0).bottomSpaceToView(view, 12).autoHeightRatio(0);
+    return view;
+}
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     UIView *view=[[UIView alloc]init];
-    view.backgroundColor=[UIColor whiteColor];
-    [self.view addSubview:view];
-    view.sd_layout.topSpaceToView(money, 38).leftSpaceToView(self.view, 0).rightSpaceToView(self.view, 0).heightIs(50);
-    
-    
-    UILabel *consumption=[[UILabel alloc]init];
-    consumption.textColor=[MyClass colorWithHexString:@"000000"];
-    consumption.font=[UIFont systemFontOfSize:15];
-    consumption.text=@"本次消费";
-    [view addSubview:consumption];
-    consumption.sd_layout.leftSpaceToView(view, 18).topSpaceToView(view, 0).bottomSpaceToView(view, 0).widthIs(120);
-    
-    UILabel *ConsumptionAmount=[[UILabel alloc]init];
-    ConsumptionAmount.textColor=[MyClass colorWithHexString:@"ff4c59"];
-    ConsumptionAmount.font=[UIFont systemFontOfSize:17];
-    ConsumptionAmount.textAlignment=NSTextAlignmentRight;
-    ConsumptionAmount.text=@"¥20.00";
-    [view addSubview:ConsumptionAmount];
-    ConsumptionAmount.sd_layout.rightSpaceToView(view, 17).topEqualToView(consumption).bottomEqualToView(consumption).widthIs(200);
-    
+    view.backgroundColor=[self colorWithHexString:@"f3f5f7"];
     UIButton *buyBtn=[UIButton buttonWithType:UIButtonTypeCustom];
     buyBtn.backgroundColor=[MyClass colorWithHexString:@"ff4c59"];
     [buyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -73,26 +166,57 @@
     buyBtn.layer.cornerRadius=5;
     [buyBtn setTitle:@"确认支付" forState:UIControlStateNormal];
     [buyBtn addTarget:self action:@selector(onBuyClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:buyBtn];
-    buyBtn.sd_layout.leftSpaceToView(self.view, 17).topSpaceToView(view, 31).heightIs(47).rightSpaceToView(self.view, 17);
+    [view addSubview:buyBtn];
+    buyBtn.sd_layout.leftSpaceToView(view, 17).topSpaceToView(view, 22.5).heightIs(47).rightSpaceToView(view, 17);
     
-    
-    UIButton *top_upBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    [top_upBtn addTarget:self action:@selector(onTop_UpClick) forControlEvents:UIControlEventTouchUpInside];
-    top_upBtn.titleLabel.font=[UIFont systemFontOfSize:13];
-    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"余额不足请充值"];
-    [str addAttribute:NSForegroundColorAttributeName value:[self colorWithHexString:@"ff4c59"] range:NSMakeRange(5,2)];
-    [str addAttribute:NSForegroundColorAttributeName value:[self colorWithHexString:@"a3a3a3"] range:NSMakeRange(0,5)];
-    [top_upBtn setAttributedTitle:str forState:UIControlStateNormal];
-    [self.view addSubview:top_upBtn];
-    top_upBtn.sd_layout.leftSpaceToView(self.view, (WIDTH-100)/2).topSpaceToView(buyBtn, 13).widthIs(100).heightIs(15);
-    
-    
+    BaseClass *class=[[BaseClass alloc]initWithDictionary:self.dataDic];
+    if (class.remain<class.commoditySellprice) {//可用余额小于商品价格
+        UIButton *top_upBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+        [top_upBtn addTarget:self action:@selector(onTop_UpClick) forControlEvents:UIControlEventTouchUpInside];
+        top_upBtn.titleLabel.font=[UIFont systemFontOfSize:13];
+        NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"余额不足请充值"];
+        [str addAttribute:NSForegroundColorAttributeName value:[self colorWithHexString:@"ff4c59"] range:NSMakeRange(5,2)];
+        [str addAttribute:NSForegroundColorAttributeName value:[self colorWithHexString:@"a3a3a3"] range:NSMakeRange(0,5)];
+        [top_upBtn setAttributedTitle:str forState:UIControlStateNormal];
+        [view addSubview:top_upBtn];
+        top_upBtn.sd_layout.leftSpaceToView(view, (WIDTH-100)/2).topSpaceToView(buyBtn, 13).widthIs(100).heightIs(15);
+    }
+
+    return view;
 }
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    CELLINIT(@"indexPath", PayCell)
+
+    BaseClass *class=[[BaseClass alloc]initWithDictionary:self.dataDic];
+    if (indexPath.row==0) {
+        cell.name.text=@"商品价格";
+        cell.money.text=[NSString stringWithFormat:@"¥%.2f",class.commoditySellprice];
+    }else if (indexPath.row==1){
+        if (class.couponList.count>0) {
+            cell.name.text=[NSString stringWithFormat:@"优惠券(%ld张可用)",class.couponList.count];
+            cell.imgName=@"imgName";
+            if (self.DiscountAmount>0) {
+                cell.money.text=[NSString stringWithFormat:@"-¥%.2f",self.DiscountAmount];
+            }else{
+            cell.money.text=@"暂不使用优惠券";
+            }
+            
+        }
+    }else if (indexPath.row==2){
+    cell.name.text=@"实际消费";
+    cell.money.text=[NSString stringWithFormat:@"¥%.2f",self.ActualConsumptionAmount];
+    }
+    return cell;
+}
+
 #pragma mark 立即支付
 -(void)onBuyClick{
-    ShipmentViewController *Shipment=[[ShipmentViewController alloc]init];
-    [self.navigationController pushViewController:Shipment animated:YES];
+    [SVProgressHUD showWithStatus:loading];
+    [BuyRequest GoodsOrder_equipment_uuid:self.equipment_uuid pay_type:@"0" commodity_serial:self.commodity_serial coupon_id:self.coupon_id Block:^(NSDictionary *dic) {
+        
+    }];
+//    ShipmentViewController *Shipment=[[ShipmentViewController alloc]init];
+//    [self.navigationController pushViewController:Shipment animated:YES];
 }
 #pragma mark 充值
 -(void)onTop_UpClick{

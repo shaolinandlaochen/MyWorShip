@@ -48,5 +48,7 @@
 #import "EquipmentCommodityBaseClass.h"
 #import "EquipmentCommodityResultList.h"
 #import "EquipmentCommodityPagingList.h"
+#import "CouponList.h"
+#import "BaseClass.h"
 
 

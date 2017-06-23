@@ -10,4 +10,10 @@
 
 @interface PayViewController : MyClass
 @property(nonatomic,strong)EquipmentCommodityResultList *ResultList;
+@property(nonatomic,strong)NSDictionary *dataDic;
+@property(nonatomic,assign)double ActualConsumptionAmount;
+@property(nonatomic,assign)double DiscountAmount;
+@property(nonatomic,copy)NSString *coupon_id;
+@property(nonatomic,copy)NSString *equipment_uuid;
+@property(nonatomic,copy)NSString *commodity_serial;
 @end

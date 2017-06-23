@@ -435,6 +435,12 @@
 		9D977C461EF7CD130062A0CE /* icon_shuaxin.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D977C431EF7CD130062A0CE /* icon_shuaxin.png */; };
 		9D977C471EF7CD130062A0CE /* icon_shuaxin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D977C441EF7CD130062A0CE /* icon_shuaxin@2x.png */; };
 		9D977C481EF7CD130062A0CE /* icon_shuaxin@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D977C451EF7CD130062A0CE /* icon_shuaxin@3x.png */; };
+		9D977C4B1EFBA72A0062A0CE /* PayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D977C4A1EFBA72A0062A0CE /* PayCell.m */; };
+		9D977C501EFCA36E0062A0CE /* BuyRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D977C4F1EFCA36E0062A0CE /* BuyRequest.m */; };
+		9D977C611EFCE42D0062A0CE /* BaseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D977C5C1EFCE42D0062A0CE /* BaseClass.m */; };
+		9D977C631EFCE42D0062A0CE /* CouponList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D977C601EFCE42D0062A0CE /* CouponList.m */; };
+		9D977C661EFCF16D0062A0CE /* ChooseACouponViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D977C651EFCF16D0062A0CE /* ChooseACouponViewController.m */; };
+		9D977C691EFCF42B0062A0CE /* ChooseACouponCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D977C681EFCF42B0062A0CE /* ChooseACouponCell.m */; };
 		9DD5016B1EE68B4F00278600 /* MoneyRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DD5016A1EE68B4F00278600 /* MoneyRequest.m */; };
 		9DD5016E1EE68C8700278600 /* WalletBalanceBaseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DD5016D1EE68C8700278600 /* WalletBalanceBaseClass.m */; };
 		9DD501731EE6902B00278600 /* Top_up_detailBaseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DD501701EE6902B00278600 /* Top_up_detailBaseClass.m */; };
@@ -1033,6 +1039,18 @@
 		9D977C431EF7CD130062A0CE /* icon_shuaxin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_shuaxin.png; sourceTree = "<group>"; };
 		9D977C441EF7CD130062A0CE /* icon_shuaxin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_shuaxin@2x.png"; sourceTree = "<group>"; };
 		9D977C451EF7CD130062A0CE /* icon_shuaxin@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_shuaxin@3x.png"; sourceTree = "<group>"; };
+		9D977C491EFBA72A0062A0CE /* PayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayCell.h; sourceTree = "<group>"; };
+		9D977C4A1EFBA72A0062A0CE /* PayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayCell.m; sourceTree = "<group>"; };
+		9D977C4E1EFCA36E0062A0CE /* BuyRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyRequest.h; sourceTree = "<group>"; };
+		9D977C4F1EFCA36E0062A0CE /* BuyRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyRequest.m; sourceTree = "<group>"; };
+		9D977C5B1EFCE42D0062A0CE /* BaseClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseClass.h; sourceTree = "<group>"; };
+		9D977C5C1EFCE42D0062A0CE /* BaseClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseClass.m; sourceTree = "<group>"; };
+		9D977C5F1EFCE42D0062A0CE /* CouponList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponList.h; sourceTree = "<group>"; };
+		9D977C601EFCE42D0062A0CE /* CouponList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponList.m; sourceTree = "<group>"; };
+		9D977C641EFCF16D0062A0CE /* ChooseACouponViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseACouponViewController.h; sourceTree = "<group>"; };
+		9D977C651EFCF16D0062A0CE /* ChooseACouponViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseACouponViewController.m; sourceTree = "<group>"; };
+		9D977C671EFCF42B0062A0CE /* ChooseACouponCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseACouponCell.h; sourceTree = "<group>"; };
+		9D977C681EFCF42B0062A0CE /* ChooseACouponCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseACouponCell.m; sourceTree = "<group>"; };
 		9DD501691EE68B4F00278600 /* MoneyRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoneyRequest.h; sourceTree = "<group>"; };
 		9DD5016A1EE68B4F00278600 /* MoneyRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyRequest.m; sourceTree = "<group>"; };
 		9DD5016C1EE68C8700278600 /* WalletBalanceBaseClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalletBalanceBaseClass.h; sourceTree = "<group>"; };
@@ -1172,6 +1190,14 @@
 			children = (
 				9D0C76511EEF82B6006AF814 /* PayViewController.h */,
 				9D0C76521EEF82B6006AF814 /* PayViewController.m */,
+				9D977C491EFBA72A0062A0CE /* PayCell.h */,
+				9D977C4A1EFBA72A0062A0CE /* PayCell.m */,
+				9D977C641EFCF16D0062A0CE /* ChooseACouponViewController.h */,
+				9D977C651EFCF16D0062A0CE /* ChooseACouponViewController.m */,
+				9D977C671EFCF42B0062A0CE /* ChooseACouponCell.h */,
+				9D977C681EFCF42B0062A0CE /* ChooseACouponCell.m */,
+				9D977C4D1EFCA3510062A0CE /* 请求 */,
+				9D977C4C1EFCA3480062A0CE /* model */,
 			);
 			name = "支付";
 			sourceTree = "<group>";
@@ -2107,6 +2133,26 @@
 			name = "登录注册";
 			sourceTree = "<group>";
 		};
+		9D977C4C1EFCA3480062A0CE /* model */ = {
+			isa = PBXGroup;
+			children = (
+				9D977C5B1EFCE42D0062A0CE /* BaseClass.h */,
+				9D977C5C1EFCE42D0062A0CE /* BaseClass.m */,
+				9D977C5F1EFCE42D0062A0CE /* CouponList.h */,
+				9D977C601EFCE42D0062A0CE /* CouponList.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		9D977C4D1EFCA3510062A0CE /* 请求 */ = {
+			isa = PBXGroup;
+			children = (
+				9D977C4E1EFCA36E0062A0CE /* BuyRequest.h */,
+				9D977C4F1EFCA36E0062A0CE /* BuyRequest.m */,
+			);
+			name = "请求";
+			sourceTree = "<group>";
+		};
 		9DD501671EE68B2300278600 /* 请求 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2713,10 +2759,13 @@
 				9D9772E51ED6AB2E005EAC95 /* PreferentialView.m in Sources */,
 				9DF855F31EF27D3A00E8D250 /* MANaviAnnotation.m in Sources */,
 				9DD5017A1EE69C3D00278600 /* ListOfGoodsViewController.m in Sources */,
+				9D977C4B1EFBA72A0062A0CE /* PayCell.m in Sources */,
+				9D977C661EFCF16D0062A0CE /* ChooseACouponViewController.m in Sources */,
 				9D9773991ED82E17005EAC95 /* GoodsViewController.m in Sources */,
 				9D97738C1ED820B1005EAC95 /* TopUpResultsViewController.m in Sources */,
 				9D4201061EEA2DAF00425D5D /* CouponsRequest.m in Sources */,
 				9D9773231ED7D016005EAC95 /* TransactionDetailsViewController.m in Sources */,
+				9D977C631EFCE42D0062A0CE /* CouponList.m in Sources */,
 				9DF855B41EF1192700E8D250 /* NearTheEquipmentEquipment.m in Sources */,
 				9DF855DF1EF231F100E8D250 /* VIPRecordsBaseClass.m in Sources */,
 				9D9772821ED582F1005EAC95 /* PersonalDataView.m in Sources */,
@@ -2779,6 +2828,7 @@
 				9D0C767A1EEFB732006AF814 /* EvaluationViewController.m in Sources */,
 				9D9773B21ED90E53005EAC95 /* UseGuideViewController.m in Sources */,
 				9D9772F21ED6C4CB005EAC95 /* AnnouncementCell.m in Sources */,
+				9D977C611EFCE42D0062A0CE /* BaseClass.m in Sources */,
 				9D9771FD1ED560DF005EAC95 /* SGQRCodeScanningVC.m in Sources */,
 				9D42007A1EE8DE8F00425D5D /* GoodsDetailsViewController.m in Sources */,
 				9D4200831EE8E40500425D5D /* GoodsContextCell.m in Sources */,
@@ -2787,6 +2837,7 @@
 				9D9773BB1ED916E6005EAC95 /* GuideTheContentViewController.m in Sources */,
 				9D97724F1ED57924005EAC95 /* MyCell.m in Sources */,
 				9D4200FF1EE9492A00425D5D /* AnnouncementListBaseClass.m in Sources */,
+				9D977C691EFCF42B0062A0CE /* ChooseACouponCell.m in Sources */,
 				9D9773051ED7C4F5005EAC95 /* WalletMoneyCell.m in Sources */,
 				9D0C763F1EEE3D73006AF814 /* EvaluationListResultList.m in Sources */,
 				9D6BBE861EE651B7008A9F23 /* BasicInformationBaseClass.m in Sources */,
@@ -2800,6 +2851,7 @@
 				9D97724C1ED570EE005EAC95 /* MyViewController.m in Sources */,
 				9D6BBE871EE651B7008A9F23 /* BasicInformationInfo.m in Sources */,
 				9DF855E11EF231F100E8D250 /* VIPRecordsResultList.m in Sources */,
+				9D977C501EFCA36E0062A0CE /* BuyRequest.m in Sources */,
 				9D4200651EE796ED00425D5D /* PersonalCenterCell.m in Sources */,
 				9D6491DC1EF386BA00203AF6 /* OrderBaseClass.m in Sources */,
 				9DF855B01EF1070800E8D250 /* NearTheEquipmentBaseClass.m in Sources */,

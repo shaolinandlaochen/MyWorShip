@@ -232,7 +232,10 @@
 }
 #pragma mark 立即购买
 -(void)onBuyClick{
+    GoodsDetilBaseClass *class=[[GoodsDetilBaseClass alloc]initWithDictionary:self.dataDic];
     PayViewController *Pay=[[PayViewController alloc]init];
+    Pay.equipment_uuid=self.equipment_uuid;
+    Pay.commodity_serial=[NSString stringWithFormat:@"%.0f",class.comm.commoditySerial];
     [self.navigationController pushViewController:Pay animated:YES];
 }
 CANCEL
