@@ -163,8 +163,8 @@ _message.text=@"";
         if ([stringFormat(CLASS.code) isEqualToString:@"30"]) {
             [_delegate EvaluationAfterEvaluation];
             [SVProgressHUD showSuccessWithStatus:CLASS.msg];
-            ReturnToSpecifyTheController(ListOfGoodsViewController)
-            ReturnToSpecifyTheController(MyOrderViewController)
+            ReturnToSpecifyTheController(ListOfGoodsViewController)//返回商品列表
+            ReturnToSpecifyTheController(MyOrderViewController)//返回订单列表
         }else{
             [SVProgressHUD showErrorWithStatus:CLASS.msg];
         }
