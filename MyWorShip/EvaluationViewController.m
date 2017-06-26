@@ -163,7 +163,8 @@ _message.text=@"";
         if ([stringFormat(CLASS.code) isEqualToString:@"30"]) {
             [_delegate EvaluationAfterEvaluation];
             [SVProgressHUD showSuccessWithStatus:CLASS.msg];
-            [self.navigationController popViewControllerAnimated:YES];
+            ReturnToSpecifyTheController(ListOfGoodsViewController)
+            ReturnToSpecifyTheController(MyOrderViewController)
         }else{
             [SVProgressHUD showErrorWithStatus:CLASS.msg];
         }
