@@ -16,6 +16,9 @@
     NSMutableDictionary *dic=[[NSMutableDictionary alloc]init];
     [dic setObject:@(page) forKey:@"page"];
     [dic setObject:@(pageSize) forKey:@"pageSize"];
+    if (coupon_state==2) {
+        coupon_state=-1;
+    }
     [dic setObject:@(coupon_state) forKey:@"coupon_state"];
     NSDictionary *dataDic=[MyClass ReceiveTheOriginalData:dic];//去添加时间戳等数据然后返回签名后的数据
     [RequestClass getUrl:@"querycoupon" Dic:dataDic block:^(NSDictionary *dic) {

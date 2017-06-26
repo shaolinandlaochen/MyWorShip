@@ -118,7 +118,7 @@
         cell.name.textColor=[self colorWithHexString:@"000000"];
         cell.time.textColor=[self colorWithHexString:@"000000"];
         cell.money.textColor=[self colorWithHexString:@"ff4c59"];
-        cell.conditions.text=stringFormat(list.couponName);
+        cell.name.text=stringFormat(list.couponName);
     }else if (index==1){
         cell.bjImage.image=[UIImage imageNamed:@"bg_used"];
         cell.typeImage.image=[UIImage imageNamed:@"img_used"];
@@ -134,13 +134,13 @@
     }
     NSString *coupon_subtract_amount=@"";
     if (list.couponType==0) {
-    cell.name.text=@"月拜共享·满减券";
+    cell.conditions.text=[NSString stringWithFormat:@"满%.2f元可使用",list.couponFullAmount];
         coupon_subtract_amount=[NSString stringWithFormat:@"%.0f元",list.couponSubtractAmount];
     }else if (list.couponType==1){
-    cell.name.text=@"月拜共享·折扣券";
-        coupon_subtract_amount=[NSString stringWithFormat:@"%.1f折",list.couponDiscount];
+    //cell.name.text=@"月拜共享·折扣券";
+        coupon_subtract_amount=[NSString stringWithFormat:@"%.1f折",list.couponDiscount*10];
     }else if (list.couponType==2){
-    cell.name.text=@"月拜共享·抵用券";
+    //cell.name.text=@"月拜共享·抵用券";
         coupon_subtract_amount=[NSString stringWithFormat:@"%.0f元",list.couponSubtractAmount];
     }
     

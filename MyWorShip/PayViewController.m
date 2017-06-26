@@ -42,7 +42,7 @@
         BaseClass *class=[[BaseClass alloc]initWithDictionary:[self deleteEmpty:dic]];
         if ([stringFormat(class.code) isEqualToString:@"3"]) {
             self.dataDic=[self deleteEmpty:dic];
-            if (class.couponList.count>0&&class.freeCount<1) {
+            if (class.couponList.count>0&&class.freeCount<1) {//如果不是可以免费消费的商品和有优惠券条件满足就进入该方法
                 CouponList *monsy=class.couponList[0];
                 self.coupon_id=[NSString stringWithFormat:@"%.0f",monsy.couponListIdentifier];
                 if (monsy.couponType==0||monsy.couponType==2) {//满减,抵用
