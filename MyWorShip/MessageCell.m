@@ -53,6 +53,8 @@
     _name.sd_layout.leftSpaceToView(self.contentView, 35).topSpaceToView(self.contentView, 18).widthIs(65).autoHeightRatio(0);
     if (model.readState==0) {
         _red.backgroundColor=[UIColor redColor];
+    }else{
+    _red.backgroundColor=[UIColor clearColor];
     }
     
     _time.text=[NSString stringWithFormat:@"%@",model.messageTime];

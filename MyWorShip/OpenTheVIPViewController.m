@@ -61,13 +61,13 @@
     time.sd_layout.leftSpaceToView(_scrollView, 18).topSpaceToView(_scrollView, 176).rightSpaceToView(_scrollView, 18).autoHeightRatio(0);
     
     
-    UILabel *Agreement=[[UILabel alloc]init];
+    UITextView *Agreement=[[UITextView alloc]init];
+    Agreement.editable=NO;
     Agreement.textColor=[MyClass colorWithHexString:@"a3a3a3"];
     Agreement.font=[UIFont systemFontOfSize:13];
-    Agreement.numberOfLines=0;
     [_scrollView addSubview:Agreement];
-    Agreement.text=@"地大家纷纷规划的粉丝更好地覅共和党发生过ID发生过ID是否更好的双方各华东师范赶快来剑荡四方华工科技六点十分哈根达斯的看法就更好的师傅看了几个男的富士康公司的反馈给第三方高科技的书房里感受到付款就感觉到是否考虑过的是否考虑过的市房管局课代表打开房间风格的十分可观的付款公司的控股的顺口溜广东省咖啡馆的方式开关多晶硅的尽快改变对方改变对方几个地方规定收费规定是否经历过后对方老师给第三方来看规划的首付款更好地烦死规定符合三个东方时空看见对方更好地开发是个好地方开个会第三方开个会大使馆的反馈更好地烧开后改";
-    Agreement.sd_layout.leftSpaceToView(_scrollView, 15).topSpaceToView(imgview, 15).rightSpaceToView(_scrollView, 15).bottomSpaceToView(_scrollView, 50);
+    Agreement.text=@"VIP开通协议内容填写处VIP开通协议内容填写处VIP开通协议内容填写处VIP开通协议内容填写处VIP开通协议内容填写处VIP开通协议内容填写处VIP开通协议内容填写处VIP开通协议内容填写处VIP开通协议内容填写处VIP开通协议内容填写处VIP开通协议内容填写处VIP开通协议内容填写处VIP开通协议内容填写处VIP开通协议内容填写处VIP开通协议内容填写处VIP开通协议内容填写处VIP开通协议内容填写处VIP开通协议内容填写处VIP开通协议内容填写处VIP开通协议内容填写处VIP开通协议内容填写处VIP开通协议内容填写处VIP开通协议内容填写处VIP开通协议内容填写处VIP开通协议内容填写处VIP开通协议内容填写处VIP开通协议内容填写处VIP开通协议内容填写处VIP开通协议内容填议内容填写处VIP开通协议内容填写处VIP开通协议内容填写处VIP开通协议内容填写处VIP开通协议内容填写处VIP开通协议内容填写处VIP开通协议内容填写处VIP开通协议内容填写处VIP开通协议内容填写处";
+    Agreement.sd_layout.leftSpaceToView(_scrollView, 15).topSpaceToView(imgview, 15).rightSpaceToView(_scrollView, 15).bottomSpaceToView(_scrollView, 0);
     
     
     // Do any additional setup after loading the view.
